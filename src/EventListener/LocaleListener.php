@@ -9,6 +9,7 @@ class LocaleListener
 {
     private $requestStack;
     private $tokenStorage;
+    private $priority = 15; // Priorité inférieure à LocaleSubscriber (25)
 
     public function __construct(RequestStack $requestStack, TokenStorageInterface $tokenStorage)
     {
@@ -18,21 +19,27 @@ class LocaleListener
 
     public function onKernelRequest(RequestEvent $event)
     {
+        if (!$event->isMainRequest()) {
+            return;
+        }
+        
         $request = $event->getRequest();
         $session = $this->requestStack->getSession();
 
-        // RÃ©cupÃ©rer l'utilisateur connectÃ©
+        // Récupérer l'utilisateur connecté
         $token = $this->tokenStorage->getToken();
         $user = $token ? $token->getUser() : null;
 
-        // DÃ©finir la locale selon l'ordre de prioritÃ© :
-        // 1. Langue de session
-        // 2. Langue de l'utilisateur connectÃ©
-        // 3. Langue par dÃ©faut (franÃ§ais)
-        if ($session->has('_locale')) {
-            $request->setLocale($session->get('_locale'));
-        } elseif ($user && method_exists($user, 'getLocale')) {
-            $request->setLocale($user->getLocale() ?? 'fr');
+        // Ne rien faire si la locale est déjà définie par LocaleSubscriber
+        if ($request->attributes->has('_locale') || $session->has('_locale')) {
+            return;
+        }
+
+        // Définir la locale selon l'utilisateur connecté ou la langue par défaut
+        if ($user && method_exists($user, 'getLocale') && $user->getLocale()) {
+            $locale = $user->getLocale();
+            $session->set('_locale', $locale);
+            $request->setLocale($locale);
         } else {
             $request->setLocale('fr');
         }

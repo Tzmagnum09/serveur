@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     app.locales: ['fr', 'en', 'nl', 'de']
+    app.default_locale: 'fr'
     app.email_sender: '%env(APP_EMAIL)%'
     app.domain: '%env(APP_DOMAIN)%'
     app.logo_directory: '%kernel.project_dir%/public/images'
@@ -25,27 +26,43 @@ services:
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
     
-    # Service pour gérer les templates d'emails
+    # Service for email templates management
     App\Service\EmailTemplateService:
         arguments:
             $templateRepository: '@App\Repository\EmailTemplateRepository'
             $translator: '@translator'
-            $defaultLocale: '%kernel.default_locale%'
+            $defaultLocale: '%app.default_locale%'
             $emailSender: '%app.email_sender%'
             $domain: '%app.domain%'
             
-    # Service pour gérer les permissions des administrateurs
+    # Service for admin permissions management
     App\Service\AdminPermissionService:
         arguments:
             $permissionRepository: '@App\Repository\AdminPermissionRepository'
     
-    # Event listener pour définir la langue de l'utilisateur
+    # Service for dynamic translations
+    App\Service\DynamicTranslatorService:
+        arguments:
+            $defaultLocale: '%app.default_locale%'
+    
+    # Locale listeners and subscribers
     App\EventListener\UserLocaleListener:
         tags:
             - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
     
-    # Pour gérer les emails asynchrones
+    App\EventListener\LocaleListener:
+        arguments:
+            $requestStack: '@request_stack'
+            $tokenStorage: '@security.token_storage'
+    
+    App\EventSubscriber\LocaleSubscriber:
+        arguments:
+            $defaultLocale: '%app.default_locale%'
+    
+    # Locale Controller
+    App\Controller\LocaleController:
+    
+    # Async email message handler
     App\MessageHandler\SendEmailMessageHandler:
         tags: ['messenger.message_handler']

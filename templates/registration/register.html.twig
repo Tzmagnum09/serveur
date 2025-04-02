@@ -74,7 +74,9 @@
                 
                 <div class="mb-3 form-check">
                     {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
-                    {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                    <label for="{{ registrationForm.agreeTerms.vars.id }}" class="form-check-label">
+                        J'accepte les <a href="{{ path('app_terms') }}" class="text-decoration-none" target="_blank">conditions d'utilisation</a>
+                    </label>
                     {{ form_errors(registrationForm.agreeTerms) }}
                 </div>
 
@@ -86,7 +88,7 @@
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-gradient">{{ 'registration.register'|trans }}</button>
                 </div>
-                {{ form_end(registrationForm) }}
+                {{ form_end(registrationForm, {'render_rest': false}) }}
             </div>
             <div class="card-footer text-center py-3">
                 <div class="text-muted">

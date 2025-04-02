@@ -41,10 +41,19 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         
+        // Stocker l'ancienne locale avant la mise à jour
+        $oldLocale = $user->getLocale();
+        
         $form = $this->createForm(ProfileFormType::class, $user);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            // Si la locale a changé, mettre à jour la session
+            if ($oldLocale !== $user->getLocale()) {
+                $request->getSession()->set('_locale', $user->getLocale());
+                $request->setLocale($user->getLocale());
+            }
+            
             $userRepository->save($user, true);
             
             $this->addFlash('success', $translator->trans('profile.flash.updated'));
