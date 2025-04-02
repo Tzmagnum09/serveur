@@ -3,49 +3,28 @@
 namespace App\Repository;
 
 use App\Entity\ResetPasswordRequest;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;
-use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestTrait;
+use SymfonyCasts\Bundle\ResetPassword\Persistence\Repository\ResetPasswordRequestRepositoryTrait;
+use SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepositoryInterface;
 
-/**
- * @extends ServiceEntityRepository<ResetPasswordRequest>
- */
-class ResetPasswordRequestRepository extends ServiceEntityRepository
+class ResetPasswordRequestRepository extends ServiceEntityRepository implements ResetPasswordRequestRepositoryInterface
 {
+    use ResetPasswordRequestRepositoryTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ResetPasswordRequest::class);
     }
 
-    /**
-     * Supprime les demandes de réinitialisation de mot de passe expirées
-     */
-    public function removeExpiredRequests(): void
+    public function createResetPasswordRequest(object $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken): ResetPasswordRequestInterface
     {
-        $qb = $this->createQueryBuilder('r')
-            ->delete()
-            ->where('r.expiresAt < :now')
-            ->setParameter('now', new \DateTime());
-        
-        $qb->getQuery()->execute();
-    }
-
-    /**
-     * Trouve une demande de réinitialisation de mot de passe par sélecteur
-     */
-    public function findResetPasswordRequest(string $selector): ?ResetPasswordRequestInterface
-    {
-        return $this->findOneBy(['selector' => $selector]);
-    }
-
-    /**
-     * Supprime une demande de réinitialisation de mot de passe
-     */
-    public function removeResetPasswordRequest(ResetPasswordRequestInterface $request): void
-    {
-        $this->_em->remove($request);
-        $this->_em->flush();
+        return new ResetPasswordRequest(
+            $user,
+            $expiresAt,
+            $selector,
+            $hashedToken
+        );
     }
 }
