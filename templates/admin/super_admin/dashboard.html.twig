@@ -1,0 +1,214 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'super_admin.dashboard.title'|trans }}{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+    <h5 class="mb-4">{{ 'super_admin.sidebar.title'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_super_admin_dashboard') }}">
+                <i class="fas fa-tachometer-alt me-2"></i> {{ 'super_admin.sidebar.dashboard'|trans }}
+            </a>
+        </li>
+    </ul>
+    
+    <h5 class="mb-3 mt-4">{{ 'super_admin.sidebar.admin_section'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
+                <i class="fas fa-arrow-left me-2"></i> {{ 'super_admin.sidebar.back_to_admin'|trans }}
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'super_admin.dashboard.title'|trans }}</h1>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="stats-card">
+                <div class="stats-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="stats-info">
+                    <div class="stats-title">{{ 'super_admin.dashboard.stats.admins'|trans }}</div>
+                    <div class="stats-value">{{ admins|length }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="stats-card">
+                <div class="stats-icon">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <div class="stats-info">
+                    <div class="stats-title">{{ 'super_admin.dashboard.stats.super_admins'|trans }}</div>
+                    <div class="stats-value">{{ super_admin_count|default(0) }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="stats-card">
+                <div class="stats-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stats-info">
+                    <div class="stats-title">{{ 'super_admin.dashboard.stats.total_users'|trans }}</div>
+                    <div class="stats-value">{{ user_count|default(0) }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="stats-card">
+                <div class="stats-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="stats-info">
+                    <div class="stats-title">{{ 'super_admin.dashboard.stats.permissions'|trans }}</div>
+                    <div class="stats-value">{{ permission_count|default(6) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">{{ 'super_admin.dashboard.admins_list'|trans }}</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>{{ 'super_admin.dashboard.admin_name'|trans }}</th>
+                            <th>{{ 'super_admin.dashboard.admin_email'|trans }}</th>
+                            <th>{{ 'super_admin.dashboard.created_at'|trans }}</th>
+                            <th>{{ 'super_admin.dashboard.last_login'|trans }}</th>
+                            <th>{{ 'super_admin.dashboard.actions'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for admin in admins %}
+                            <tr>
+                                <td>{{ admin.fullName }}</td>
+                                <td>{{ admin.email }}</td>
+                                <td>{{ admin.createdAt|date('d/m/Y') }}</td>
+                                <td>
+                                    {% if admin.lastLoginAt %}
+                                        {{ admin.lastLoginAt|date('d/m/Y H:i') }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{{ path('app_admin_user_edit', {'id': admin.id}) }}" class="btn btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        
+                                        <a href="{{ path('app_super_admin_permissions', {'id': admin.id}) }}" class="btn btn-outline-secondary">
+                                            <i class="fas fa-key"></i>
+                                        </a>
+                                        
+                                        <form method="post" action="{{ path('app_super_admin_demote', {'id': admin.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'super_admin.dashboard.confirm_demote'|trans }}')">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('demote' ~ admin.id) }}">
+                                            <button type="submit" class="btn btn-outline-danger">
+                                                <i class="fas fa-user-minus"></i>
+                                            </button>
+                                        </form>
+                                        
+                                        <form method="post" action="{{ path('app_super_admin_promote_super', {'id': admin.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'super_admin.dashboard.confirm_promote_super'|trans }}')">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('promote-super' ~ admin.id) }}">
+                                            <button type="submit" class="btn btn-outline-primary">
+                                                <i class="fas fa-user-shield"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center py-4">{{ 'super_admin.dashboard.no_admins'|trans }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">{{ 'super_admin.dashboard.promote_user'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <form action="#" method="get" class="row g-3">
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="userSearch" name="q" placeholder="{{ 'super_admin.dashboard.search_users'|trans }}">
+                </div>
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-gradient">{{ 'super_admin.dashboard.search'|trans }}</button>
+                </div>
+            </form>
+            
+            {% if app.request.query.get('q') is not empty %}
+                <div class="search-results mt-4">
+                    <h6>{{ 'super_admin.dashboard.search_results'|trans }}</h6>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ 'super_admin.dashboard.user_name'|trans }}</th>
+                                    <th>{{ 'super_admin.dashboard.user_email'|trans }}</th>
+                                    <th>{{ 'super_admin.dashboard.user_role'|trans }}</th>
+                                    <th>{{ 'super_admin.dashboard.actions'|trans }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in search_results|default([]) %}
+                                    <tr>
+                                        <td>{{ user.fullName }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>
+                                            {% if user.isSuperAdmin %}
+                                                <span class="badge bg-danger">{{ 'super_admin.dashboard.role_super_admin'|trans }}</span>
+                                            {% elseif user.isAdmin %}
+                                                <span class="badge bg-primary">{{ 'super_admin.dashboard.role_admin'|trans }}</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">{{ 'super_admin.dashboard.role_user'|trans }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if not user.isAdmin and not user.isSuperAdmin %}
+                                                <form method="post" action="{{ path('app_super_admin_promote', {'id': user.id}) }}" style="display: inline-block;">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('promote' ~ user.id) }}">
+                                                    <button type="submit" class="btn btn-sm btn-outline-primary">
+                                                        <i class="fas fa-user-plus me-1"></i> {{ 'super_admin.dashboard.promote_to_admin'|trans }}
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="4" class="text-center py-3">{{ 'super_admin.dashboard.no_results'|trans }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

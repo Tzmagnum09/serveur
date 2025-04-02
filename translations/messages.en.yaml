@@ -1,0 +1,307 @@
+# General
+site:
+    name: "DMQode.be"
+
+# Navbar
+navbar:
+    home: "Home"
+    super_admin: "Super Admin"
+    admin: "Administration"
+    profile: "My Profile"
+    logout: "Logout"
+    login: "Login"
+    register: "Register"
+
+# Home page
+home:
+    title: "Home"
+    welcome: "Welcome to our website"
+    intro: "Discover our platform with features adapted to your needs."
+    feature1:
+        title: "Simple Registration"
+        description: "Create your account in minutes and access all our services."
+    feature2:
+        title: "Multilingual"
+        description: "Our site is available in French, Dutch, English, and German."
+    feature3:
+        title: "Secure"
+        description: "Your data is protected and secured according to the latest standards."
+    register_btn: "Register"
+    login_btn: "Login"
+    profile_btn: "My Profile"
+
+# Login
+login:
+    title: "Login"
+    header: "Login to your account"
+    username_or_email: "Username or Email"
+    password: "Password"
+    remember_me: "Remember me"
+    sign_in: "Sign in"
+    forgot_password: "Forgot your password?"
+    no_account: "Don't have an account?"
+    register: "Register"
+
+# Registration
+registration:
+    title: "Registration"
+    header: "Create your account"
+    info_approval: "After registration, you'll need to verify your email address. Then, an administrator will need to approve your account."
+    register: "Register"
+    already_account: "Already have an account?"
+    login: "Login"
+    flash:
+        check_email: "An email has been sent to verify your account. Click on the link in the email to activate your account."
+        email_verified: "Your email address has been verified. Your account is pending approval by an administrator."
+        user_not_found: "User not found. Please register again."
+        invalid_token: "The email verification link is invalid. Please request a new link."
+
+# Password Reset
+reset_password:
+    request:
+        title: "Reset Password"
+        header: "Forgot Password"
+        info: "Enter your email address and we'll send you a link to reset your password."
+        submit: "Send"
+        back_to_login: "Back to login"
+    check_email:
+        title: "Check your email"
+        header: "Email sent"
+        sent: "An email has been sent to your email address. Click on the link in the email to reset your password."
+        not_received: "If you don't receive an email, check your spam folder or try again."
+        expires_in: "The link will expire in %hours% hour(s)."
+        try_again: "Try again"
+    reset:
+        title: "Reset Password"
+        header: "Set a new password"
+        new_password: "New password"
+        repeat_password: "Confirm password"
+        submit: "Reset password"
+    flash:
+        success: "Your password has been reset successfully. You can now login."
+
+# Profile
+profile:
+    title: "My Profile"
+    sidebar:
+        title: "My Account"
+        overview: "Overview"
+        edit_profile: "Edit Profile"
+        change_password: "Change Password"
+    overview:
+        title: "Profile Overview"
+        edit_btn: "Edit"
+        personal_info: "Personal Information"
+    edit:
+        title: "Edit Profile"
+        form_title: "Edit your information"
+        back_btn: "Back"
+        cancel_btn: "Cancel"
+        save_btn: "Save"
+        language_info: "Changing the language will update the interface after your next login."
+    change_password:
+        title: "Change Password"
+        form_title: "Set a new password"
+        back_btn: "Back"
+        new_password: "New password"
+        repeat_password: "Confirm password"
+        warning: "After changing your password, you'll need to log in again."
+        cancel_btn: "Cancel"
+        save_btn: "Save"
+    fields:
+        email: "Email"
+        username: "Username"
+        full_name: "Full Name"
+        phone: "Phone"
+        language: "Language"
+        address: "Address"
+        created_at: "Registration Date"
+        last_login: "Last Login"
+        status: "Status"
+    status:
+        active: "Active"
+        pending_approval: "Pending Approval"
+        unverified: "Unverified"
+    flash:
+        updated: "Your profile has been updated successfully."
+        password_changed: "Your password has been changed successfully."
+
+# Administration
+admin:
+    dashboard:
+        title: "Admin Dashboard"
+        pending_approvals: "Users Pending Approval"
+        stats:
+            total_users: "Total Users"
+            approved_users: "Approved Users"
+            pending_users: "Pending"
+            email_templates: "Email Templates"
+        quick_links: "Quick Links"
+        manage_users: "Manage Users"
+        manage_templates: "Manage Email Templates"
+        super_admin: "Super Admin"
+    sidebar:
+        title: "Administration"
+        dashboard: "Dashboard"
+        users: "Users"
+        email_templates: "Email Templates"
+        super_admin: "Super Admin"
+        super_dashboard: "Super Dashboard"
+    users:
+        title: "User Management"
+        list: "User List"
+        back_btn: "Back"
+        search: "Search for a user..."
+        filter: "Filter"
+        filter_all: "All Users"
+        filter_verified: "Verified Users"
+        filter_unverified: "Unverified Users"
+        filter_approved: "Approved Users"
+        filter_pending: "Pending Approval"
+        name: "Name"
+        email: "Email"
+        username: "Username"
+        registered_at: "Registered on"
+        status: "Status"
+        role: "Role"
+        actions: "Actions"
+        status_active: "Active"
+        status_pending: "Pending"
+        status_unverified: "Unverified"
+        role_super_admin: "Super Admin"
+        role_admin: "Admin"
+        role_user: "User"
+        no_users: "No users found"
+        confirm_approve: "Are you sure you want to approve this user?"
+        confirm_promote: "Are you sure you want to promote this user to administrator?"
+        promote_to_admin: "Promote to admin"
+    user_edit:
+        title: "Edit User %name%"
+        back_btn: "Back"
+        approve_btn: "Approve"
+        user_info: "User Information"
+        status: "Status"
+        role: "Role"
+        registered_on: "Registered on"
+        last_login: "Last login"
+        never_logged_in: "Never logged in"
+        verified_on: "Verified on"
+        approved_on: "Approved on"
+        edit_profile: "Edit Profile"
+        cancel_btn: "Cancel"
+        save_btn: "Save"
+    user:
+        flash:
+            updated: "The user has been updated successfully."
+            approved: "The user has been approved successfully."
+    email_templates:
+        title: "Email Template Management"
+        new_btn: "New Template"
+        list: "Template List"
+        code: "Code"
+        subject: "Subject"
+        translations: "Translations"
+        updated_at: "Updated on"
+        actions: "Actions"
+        manage: "Modify"
+        edit: "Edit"
+        preview: "Preview"
+        add_translation: "Add translation"
+        no_templates: "No templates found"
+        about: "About Email Templates"
+        variables:
+            title: "Available Variables"
+            description: "You can use these variables in your email templates. They will be replaced with actual values when sending."
+            firstName: "User's first name"
+            lastName: "User's last name"
+            fullName: "User's full name"
+            email: "User's email address"
+            domain: "Site domain name"
+            token: "Email verification token"
+            resetToken: "Password reset token"
+        editor:
+            placeholder: "HTML content of the template..."
+            no_image_upload: "Image upload is not supported. Use links to external images."
+    email_template_new:
+        title: "New Email Template"
+        back_btn: "Back"
+        form_title: "Create a new email template"
+        cancel_btn: "Cancel"
+        save_btn: "Save"
+    email_template_edit:
+        title: "Edit Template %code% (%locale%)"
+        back_btn: "Back"
+        preview_btn: "Preview"
+        delete_btn: "Delete"
+        form_title: "Edit Email Template"
+        cancel_btn: "Cancel"
+        save_btn: "Save"
+        confirm_delete: "Are you sure you want to delete this email template?"
+    email_template:
+        flash:
+            created: "The email template has been created successfully."
+            updated: "The email template has been updated successfully."
+            deleted: "The email template has been deleted successfully."
+
+# Super Administration
+super_admin:
+    dashboard:
+        title: "Super Administration"
+        stats:
+            admins: "Administrators"
+            super_admins: "Super Admins"
+            total_users: "Total Users"
+            permissions: "Permissions"
+        admins_list: "Administrator List"
+        admin_name: "Name"
+        admin_email: "Email"
+        created_at: "Created on"
+        last_login: "Last login"
+        actions: "Actions"
+        no_admins: "No administrators found"
+        confirm_demote: "Are you sure you want to demote this administrator?"
+        confirm_promote_super: "Are you sure you want to promote this administrator to super administrator?"
+        promote_user: "Promote a User"
+        search_users: "Search for a user to promote..."
+        search: "Search"
+        search_results: "Search Results"
+        user_name: "Name"
+        user_email: "Email"
+        user_role: "Role"
+        role_super_admin: "Super Admin"
+        role_admin: "Admin"
+        role_user: "User"
+        promote_to_admin: "Promote to admin"
+        no_results: "No results found"
+    sidebar:
+        title: "Super Admin"
+        dashboard: "Dashboard"
+        admin_section: "Administration"
+        back_to_admin: "Back to Admin"
+    permissions:
+        title: "Permission Management"
+        back_btn: "Back"
+        admin_info: "Permissions for %name%"
+        name: "Name"
+        email: "Email"
+        role: "Role"
+        admin_role: "Administrator"
+        info: "Manage this administrator's permissions. Super administrators have all permissions by default."
+        manage_title: "Manage Permissions"
+        permission: "Permission"
+        granted: "Granted"
+        description: "Description"
+        cancel_btn: "Cancel"
+        save_btn: "Save"
+        desc:
+            manage_users: "Allows managing users (view, edit)"
+            approve_users: "Allows approving pending users"
+            edit_email_templates: "Allows creating and editing email templates"
+            preview_email_templates: "Allows previewing email templates"
+            translate_content: "Allows translating dynamic content"
+            view_statistics: "Allows viewing site statistics"
+    flash:
+        user_promoted: "The user has been promoted to administrator successfully."
+        admin_demoted: "The administrator has been demoted successfully."
+        user_promoted_super: "The administrator has been promoted to super administrator successfully."
+        permissions_updated: "Permissions have been updated successfully."

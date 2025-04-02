@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'profile.title'|trans }}{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+    <h5 class="mb-4">{{ 'profile.sidebar.title'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_profile') }}">
+                <i class="fas fa-user me-2"></i> {{ 'profile.sidebar.overview'|trans }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_profile_edit') }}">
+                <i class="fas fa-edit me-2"></i> {{ 'profile.sidebar.edit_profile'|trans }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_profile_change_password') }}">
+                <i class="fas fa-key me-2"></i> {{ 'profile.sidebar.change_password'|trans }}
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'profile.overview.title'|trans }}</h1>
+        <a href="{{ path('app_profile_edit') }}" class="btn btn-gradient">
+            <i class="fas fa-edit me-1"></i> {{ 'profile.overview.edit_btn'|trans }}
+        </a>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ 'profile.overview.personal_info'|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th class="ps-0" style="width: 40%">{{ 'profile.fields.email'|trans }}</th>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="ps-0">{{ 'profile.fields.username'|trans }}</th>
+                                    <td>{{ user.username }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="ps-0">{{ 'profile.fields.full_name'|trans }}</th>
+                                    <td>{{ user.fullName }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="ps-0">{{ 'profile.fields.phone'|trans }}</th>
+                                    <td>{{ user.phoneNumber }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="ps-0">{{ 'profile.fields.language'|trans }}</th>
+                                    <td>
+                                        {% if user.locale == 'fr' %}
+                                            Français
+                                        {% elseif user.locale == 'nl' %}
+                                            Nederlands
+                                        {% elseif user.locale == 'en' %}
+                                            English
+                                        {% elseif user.locale == 'de' %}
+                                            Deutsch
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th class="ps-0" style="width: 40%">{{ 'profile.fields.address'|trans }}</th>
+                                    <td>{{ user.fullAddress }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="ps-0">{{ 'profile.fields.created_at'|trans }}</th>
+                                    <td>{{ user.createdAt|date('d/m/Y') }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="ps-0">{{ 'profile.fields.last_login'|trans }}</th>
+                                    <td>
+                                        {% if user.lastLoginAt %}
+                                            {{ user.lastLoginAt|date('d/m/Y H:i') }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="ps-0">{{ 'profile.fields.status'|trans }}</th>
+                                    <td>
+                                        {% if user.isVerified and user.isApproved %}
+                                            <span class="badge bg-success">{{ 'profile.status.active'|trans }}</span>
+                                        {% elseif user.isVerified and not user.isApproved %}
+                                            <span class="badge bg-warning">{{ 'profile.status.pending_approval'|trans }}</span>
+                                        {% else %}
+                                            <span class="badge bg-danger">{{ 'profile.status.unverified'|trans }}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

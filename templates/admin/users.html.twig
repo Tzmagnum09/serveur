@@ -1,0 +1,156 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'admin.users.title'|trans }}{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+    <h5 class="mb-4">{{ 'admin.sidebar.title'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
+                <i class="fas fa-tachometer-alt me-2"></i> {{ 'admin.sidebar.dashboard'|trans }}
+            </a>
+        </li>
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'manage_users') %}
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_admin_users') }}">
+                <i class="fas fa-users me-2"></i> {{ 'admin.sidebar.users'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'edit_email_templates') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_email_templates') }}">
+                <i class="fas fa-envelope me-2"></i> {{ 'admin.sidebar.email_templates'|trans }}
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <h5 class="mb-3 mt-4">{{ 'admin.sidebar.super_admin'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_super_admin_dashboard') }}">
+                <i class="fas fa-shield-alt me-2"></i> {{ 'admin.sidebar.super_dashboard'|trans }}
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'admin.users.title'|trans }}</h1>
+        <div class="d-flex">
+            <a href="{{ path('app_admin_dashboard') }}" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i> {{ 'admin.users.back_btn'|trans }}
+            </a>
+        </div>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">{{ 'admin.users.list'|trans }}</h5>
+            
+            <div class="d-flex">
+                <form class="me-2" method="get" action="{{ path('app_admin_users') }}">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="{{ 'admin.users.search'|trans }}" value="{{ app.request.query.get('q', '') }}">
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-filter me-1"></i> {{ 'admin.users.filter'|trans }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdown">
+                        <li><a class="dropdown-item" href="{{ path('app_admin_users') }}">{{ 'admin.users.filter_all'|trans }}</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_admin_users', {'filter': 'verified'}) }}">{{ 'admin.users.filter_verified'|trans }}</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_admin_users', {'filter': 'unverified'}) }}">{{ 'admin.users.filter_unverified'|trans }}</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_admin_users', {'filter': 'approved'}) }}">{{ 'admin.users.filter_approved'|trans }}</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_admin_users', {'filter': 'pending'}) }}">{{ 'admin.users.filter_pending'|trans }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>{{ 'admin.users.name'|trans }}</th>
+                            <th>{{ 'admin.users.email'|trans }}</th>
+                            <th>{{ 'admin.users.username'|trans }}</th>
+                            <th>{{ 'admin.users.registered_at'|trans }}</th>
+                            <th>{{ 'admin.users.status'|trans }}</th>
+                            <th>{{ 'admin.users.role'|trans }}</th>
+                            <th>{{ 'admin.users.actions'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.fullName }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.createdAt|date('d/m/Y') }}</td>
+                                <td>
+                                    {% if user.isVerified and user.isApproved %}
+                                        <span class="badge bg-success">{{ 'admin.users.status_active'|trans }}</span>
+                                    {% elseif user.isVerified and not user.isApproved %}
+                                        <span class="badge bg-warning text-dark">{{ 'admin.users.status_pending'|trans }}</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">{{ 'admin.users.status_unverified'|trans }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if user.isSuperAdmin %}
+                                        <span class="badge bg-danger">{{ 'admin.users.role_super_admin'|trans }}</span>
+                                    {% elseif user.isAdmin %}
+                                        <span class="badge bg-primary">{{ 'admin.users.role_admin'|trans }}</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">{{ 'admin.users.role_user'|trans }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        {% if user.isVerified and not user.isApproved and (is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'approve_users')) %}
+                                            <form method="post" action="{{ path('app_admin_user_approve', {'id': user.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'admin.users.confirm_approve'|trans }}')">
+                                                <button type="submit" class="btn btn-outline-success">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                            </form>
+                                        {% endif %}
+                                        
+                                        {% if is_granted('ROLE_SUPER_ADMIN') and not user.isAdmin and not user.isSuperAdmin %}
+                                            <form method="post" action="{{ path('app_super_admin_promote', {'id': user.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'admin.users.confirm_promote'|trans }}')">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('promote' ~ user.id) }}">
+                                                <button type="submit" class="btn btn-outline-info" title="{{ 'admin.users.promote_to_admin'|trans }}">
+                                                    <i class="fas fa-user-plus"></i>
+                                                </button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="7" class="text-center py-4">{{ 'admin.users.no_users'|trans }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

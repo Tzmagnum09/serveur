@@ -1,0 +1,307 @@
+# Algemeen
+site:
+    name: "DMQode.be"
+
+# Navigatiebalk
+navbar:
+    home: "Home"
+    super_admin: "Super Admin"
+    admin: "Beheer"
+    profile: "Mijn profiel"
+    logout: "Uitloggen"
+    login: "Inloggen"
+    register: "Registreren"
+
+# Startpagina
+home:
+    title: "Home"
+    welcome: "Welkom op onze website"
+    intro: "Ontdek ons platform met functies die zijn aangepast aan uw behoeften."
+    feature1:
+        title: "Eenvoudige registratie"
+        description: "Maak uw account in enkele minuten aan en krijg toegang tot al onze diensten."
+    feature2:
+        title: "Meertalig"
+        description: "Onze website is beschikbaar in het Frans, Nederlands, Engels en Duits."
+    feature3:
+        title: "Veilig"
+        description: "Uw gegevens worden beschermd en beveiligd volgens de nieuwste standaarden."
+    register_btn: "Registreren"
+    login_btn: "Inloggen"
+    profile_btn: "Mijn profiel"
+
+# Inloggen
+login:
+    title: "Inloggen"
+    header: "Log in op uw account"
+    username_or_email: "Gebruikersnaam of E-mail"
+    password: "Wachtwoord"
+    remember_me: "Onthoud mij"
+    sign_in: "Inloggen"
+    forgot_password: "Wachtwoord vergeten?"
+    no_account: "Heeft u nog geen account?"
+    register: "Registreer"
+
+# Registratie
+registration:
+    title: "Registratie"
+    header: "Maak uw account aan"
+    info_approval: "Na registratie moet u uw e-mailadres verifiëren. Daarna moet een beheerder uw account goedkeuren."
+    register: "Registreren"
+    already_account: "Heeft u al een account?"
+    login: "Inloggen"
+    flash:
+        check_email: "Er is een e-mail verzonden om uw account te verifiëren. Klik op de link in de e-mail om uw account te activeren."
+        email_verified: "Uw e-mailadres is geverifieerd. Uw account wacht op goedkeuring door een beheerder."
+        user_not_found: "Gebruiker niet gevonden. Registreer opnieuw."
+        invalid_token: "De e-mailverificatielink is ongeldig. Vraag een nieuwe link aan."
+
+# Wachtwoord resetten
+reset_password:
+    request:
+        title: "Wachtwoord resetten"
+        header: "Wachtwoord vergeten"
+        info: "Voer uw e-mailadres in en we sturen u een link om uw wachtwoord te resetten."
+        submit: "Verzenden"
+        back_to_login: "Terug naar inloggen"
+    check_email:
+        title: "Controleer uw e-mail"
+        header: "E-mail verzonden"
+        sent: "Er is een e-mail verzonden naar uw e-mailadres. Klik op de link in de e-mail om uw wachtwoord te resetten."
+        not_received: "Als u geen e-mail ontvangt, controleert u uw spam-map of probeert u het opnieuw."
+        expires_in: "De link vervalt over %hours% uur."
+        try_again: "Opnieuw proberen"
+    reset:
+        title: "Wachtwoord resetten"
+        header: "Stel een nieuw wachtwoord in"
+        new_password: "Nieuw wachtwoord"
+        repeat_password: "Bevestig wachtwoord"
+        submit: "Wachtwoord resetten"
+    flash:
+        success: "Uw wachtwoord is succesvol gereset. U kunt nu inloggen."
+
+# Profiel
+profile:
+    title: "Mijn profiel"
+    sidebar:
+        title: "Mijn account"
+        overview: "Overzicht"
+        edit_profile: "Profiel bewerken"
+        change_password: "Wachtwoord wijzigen"
+    overview:
+        title: "Profieloverzicht"
+        edit_btn: "Bewerken"
+        personal_info: "Persoonlijke informatie"
+    edit:
+        title: "Profiel bewerken"
+        form_title: "Uw informatie bijwerken"
+        back_btn: "Terug"
+        cancel_btn: "Annuleren"
+        save_btn: "Opslaan"
+        language_info: "Het wijzigen van de taal werkt pas na uw volgende aanmelding."
+    change_password:
+        title: "Wachtwoord wijzigen"
+        form_title: "Stel een nieuw wachtwoord in"
+        back_btn: "Terug"
+        new_password: "Nieuw wachtwoord"
+        repeat_password: "Bevestig wachtwoord"
+        warning: "Na het wijzigen van uw wachtwoord moet u opnieuw inloggen."
+        cancel_btn: "Annuleren"
+        save_btn: "Opslaan"
+    fields:
+        email: "E-mail"
+        username: "Gebruikersnaam"
+        full_name: "Volledige naam"
+        phone: "Telefoon"
+        language: "Taal"
+        address: "Adres"
+        created_at: "Registratiedatum"
+        last_login: "Laatste login"
+        status: "Status"
+    status:
+        active: "Actief"
+        pending_approval: "In afwachting van goedkeuring"
+        unverified: "Niet geverifieerd"
+    flash:
+        updated: "Uw profiel is succesvol bijgewerkt."
+        password_changed: "Uw wachtwoord is succesvol gewijzigd."
+
+# Beheer
+admin:
+    dashboard:
+        title: "Beheerdashboard"
+        pending_approvals: "Gebruikers in afwachting van goedkeuring"
+        stats:
+            total_users: "Totaal aantal gebruikers"
+            approved_users: "Goedgekeurde gebruikers"
+            pending_users: "In afwachting"
+            email_templates: "E-mailsjablonen"
+        quick_links: "Snelle links"
+        manage_users: "Gebruikers beheren"
+        manage_templates: "E-mailsjablonen beheren"
+        super_admin: "Super Admin"
+    sidebar:
+        title: "Beheer"
+        dashboard: "Dashboard"
+        users: "Gebruikers"
+        email_templates: "E-mailsjablonen"
+        super_admin: "Super Admin"
+        super_dashboard: "Super Dashboard"
+    users:
+        title: "Gebruikersbeheer"
+        list: "Gebruikerslijst"
+        back_btn: "Terug"
+        search: "Zoek een gebruiker..."
+        filter: "Filteren"
+        filter_all: "Alle gebruikers"
+        filter_verified: "Geverifieerde gebruikers"
+        filter_unverified: "Niet-geverifieerde gebruikers"
+        filter_approved: "Goedgekeurde gebruikers"
+        filter_pending: "In afwachting van goedkeuring"
+        name: "Naam"
+        email: "E-mail"
+        username: "Gebruiker"
+        registered_at: "Geregistreerd"
+        status: "Status"
+        role: "Rol"
+        actions: "Acties"
+        status_active: "Actief"
+        status_pending: "In afwachting"
+        status_unverified: "Niet geverifieerd"
+        role_super_admin: "Super Admin"
+        role_admin: "Admin"
+        role_user: "Gebruiker"
+        no_users: "Geen gebruikers gevonden"
+        confirm_approve: "Weet u zeker dat u deze gebruiker wilt goedkeuren?"
+        confirm_promote: "Weet u zeker dat u deze gebruiker wilt promoveren tot beheerder?"
+        promote_to_admin: "Promoveren tot admin"
+    user_edit:
+        title: "Gebruiker %name% bewerken"
+        back_btn: "Terug"
+        approve_btn: "Goedkeuren"
+        user_info: "Gebruikersinformatie"
+        status: "Status"
+        role: "Rol"
+        registered_on: "Geregistreerd op"
+        last_login: "Laatste login"
+        never_logged_in: "Nooit ingelogd"
+        verified_on: "Geverifieerd op"
+        approved_on: "Goedgekeurd op"
+        edit_profile: "Profiel bewerken"
+        cancel_btn: "Annuleren"
+        save_btn: "Opslaan"
+    user:
+        flash:
+            updated: "De gebruiker is succesvol bijgewerkt."
+            approved: "De gebruiker is succesvol goedgekeurd."
+    email_templates:
+        title: "E-mailsjabloonbeheer"
+        new_btn: "Nieuwe sjabloon"
+        list: "Sjabloonlijst"
+        code: "Code"
+        subject: "Onderwerp"
+        translations: "Vertalingen"
+        updated_at: "Bijgewerkt op"
+        actions: "Acties"
+        manage: "Wijzigen"
+        edit: "Bewerken"
+        preview: "Voorbeeld"
+        add_translation: "Vertaling toevoegen"
+        no_templates: "Geen sjablonen gevonden"
+        about: "Over e-mailsjablonen"
+        variables:
+            title: "Beschikbare variabelen"
+            description: "U kunt deze variabelen gebruiken in uw e-mailsjablonen. Ze worden vervangen door de werkelijke waarden bij het verzenden."
+            firstName: "Voornaam van de gebruiker"
+            lastName: "Achternaam van de gebruiker"
+            fullName: "Volledige naam van de gebruiker"
+            email: "E-mailadres van de gebruiker"
+            domain: "Domeinnaam van de site"
+            token: "E-mailverificatietoken"
+            resetToken: "Wachtwoord reset token"
+        editor:
+            placeholder: "HTML-inhoud van de sjabloon..."
+            no_image_upload: "Het uploaden van afbeeldingen wordt niet ondersteund. Gebruik links naar externe afbeeldingen."
+    email_template_new:
+        title: "Nieuwe e-mailsjabloon"
+        back_btn: "Terug"
+        form_title: "Maak een nieuwe e-mailsjabloon"
+        cancel_btn: "Annuleren"
+        save_btn: "Opslaan"
+    email_template_edit:
+        title: "Sjabloon %code% (%locale%) bewerken"
+        back_btn: "Terug"
+        preview_btn: "Voorbeeld"
+        delete_btn: "Verwijderen"
+        form_title: "E-mailsjabloon bewerken"
+        cancel_btn: "Annuleren"
+        save_btn: "Opslaan"
+        confirm_delete: "Weet u zeker dat u deze e-mailsjabloon wilt verwijderen?"
+    email_template:
+        flash:
+            created: "De e-mailsjabloon is succesvol aangemaakt."
+            updated: "De e-mailsjabloon is succesvol bijgewerkt."
+            deleted: "De e-mailsjabloon is succesvol verwijderd."
+
+# Super Beheer
+super_admin:
+    dashboard:
+        title: "Super Beheer"
+        stats:
+            admins: "Beheerders"
+            super_admins: "Super Admins"
+            total_users: "Totaal gebruikers"
+            permissions: "Machtigingen"
+        admins_list: "Lijst van beheerders"
+        admin_name: "Naam"
+        admin_email: "E-mail"
+        created_at: "Aangemaakt op"
+        last_login: "Laatste login"
+        actions: "Acties"
+        no_admins: "Geen beheerders gevonden"
+        confirm_demote: "Weet u zeker dat u deze beheerder wilt degraderen?"
+        confirm_promote_super: "Weet u zeker dat u deze beheerder wilt promoveren tot super beheerder?"
+        promote_user: "Gebruiker promoveren"
+        search_users: "Zoek een gebruiker om te promoveren..."
+        search: "Zoeken"
+        search_results: "Zoekresultaten"
+        user_name: "Naam"
+        user_email: "E-mail"
+        user_role: "Rol"
+        role_super_admin: "Super Admin"
+        role_admin: "Admin"
+        role_user: "Gebruiker"
+        promote_to_admin: "Promoveren tot admin"
+        no_results: "Geen resultaten gevonden"
+    sidebar:
+        title: "Super Admin"
+        dashboard: "Dashboard"
+        admin_section: "Beheer"
+        back_to_admin: "Terug naar admin"
+    permissions:
+        title: "Machtigingenbeheer"
+        back_btn: "Terug"
+        admin_info: "Machtigingen voor %name%"
+        name: "Naam"
+        email: "E-mail"
+        role: "Rol"
+        admin_role: "Beheerder"
+        info: "Beheer de machtigingen van deze beheerder. Super beheerders hebben standaard alle machtigingen."
+        manage_title: "Machtigingen beheren"
+        permission: "Machtiging"
+        granted: "Toegekend"
+        description: "Beschrijving"
+        cancel_btn: "Annuleren"
+        save_btn: "Opslaan"
+        desc:
+            manage_users: "Maakt het mogelijk om gebruikers te beheren (bekijken, bewerken)"
+            approve_users: "Maakt het mogelijk om wachtende gebruikers goed te keuren"
+            edit_email_templates: "Maakt het mogelijk om e-mailsjablonen te maken en te bewerken"
+            preview_email_templates: "Maakt het mogelijk om e-mailsjablonen te bekijken"
+            translate_content: "Maakt het mogelijk om dynamische inhoud te vertalen"
+            view_statistics: "Maakt het mogelijk om statistieken van de site te bekijken"
+    flash:
+        user_promoted: "De gebruiker is succesvol gepromoveerd tot beheerder."
+        admin_demoted: "De beheerder is succesvol gedegradeerd."
+        user_promoted_super: "De beheerder is succesvol gepromoveerd tot super beheerder."
+        permissions_updated: "Machtigingen zijn succesvol bijgewerkt."

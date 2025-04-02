@@ -1,0 +1,6 @@
+# Créer le fichier .htaccess à la racine du projet
+echo "# Deny access to .env files
+<FilesMatch ^\.env>
+    Order allow,deny
+    Deny from all
+</FilesMatch>" > /var/www/serveur/.htaccess

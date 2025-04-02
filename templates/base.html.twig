@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Bienvenue{% endblock %} - {{ 'site.name'|trans }}</title>
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+        
+        {# Bootstrap CSS #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+        
+        {# Font Awesome #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        {# Custom CSS #}
+        <style>
+            :root {
+                --primary-gradient: linear-gradient(135deg, #8e44ad, #3498db);
+                --sidebar-width: 280px;
+            }
+            
+            body {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            
+            /* Navbar styles */
+            .navbar-custom {
+                background: var(--primary-gradient);
+                padding: 0.8rem 1rem;
+            }
+            
+            .navbar-custom .navbar-brand img {
+                max-height: 50px;
+            }
+            
+            .navbar-custom .nav-link {
+                color: white !important;
+                font-weight: 500;
+                margin: 0 0.5rem;
+                transition: all 0.3s;
+                position: relative;
+            }
+            
+            .navbar-custom .nav-link:hover {
+                transform: translateY(-2px);
+            }
+            
+            .navbar-custom .nav-link:after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: white;
+                transition: width 0.3s;
+            }
+            
+            .navbar-custom .nav-link:hover:after {
+                width: 100%;
+            }
+            
+            /* Main content */
+            .content-wrapper {
+                flex: 1;
+                display: flex;
+            }
+            
+            /* Sidebar styles */
+            .sidebar {
+                width: var(--sidebar-width);
+                background: var(--primary-gradient);
+                color: white;
+                padding: 2rem 1rem;
+                min-height: 100%;
+            }
+            
+            .sidebar .nav-link {
+                color: white;
+                border-radius: 5px;
+                margin-bottom: 0.5rem;
+                transition: all 0.3s;
+            }
+            
+            .sidebar .nav-link:hover, 
+            .sidebar .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.2);
+                transform: translateX(5px);
+            }
+            
+            /* Button styles */
+            .btn-gradient {
+                background: var(--primary-gradient);
+                border: none;
+                color: white;
+                transition: all 0.3s;
+            }
+            
+            .btn-gradient:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                color: white;
+            }
+            
+            /* Card styles */
+            .card {
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s;
+            }
+            
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .card-header {
+                background: var(--primary-gradient);
+                color: white;
+                font-weight: 500;
+                padding: 1rem 1.5rem;
+            }
+            
+            /* Form styles */
+            .form-control:focus {
+                border-color: #8e44ad;
+                box-shadow: 0 0 0 0.25rem rgba(142, 68, 173, 0.25);
+            }
+            
+            /* Mobile adjustments */
+            @media (max-width: 768px) {
+                .sidebar {
+                    position: fixed;
+                    top: 0;
+                    left: -280px;
+                    height: 100%;
+                    z-index: 1000;
+                    transition: left 0.3s;
+                }
+                
+                .sidebar.show {
+                    left: 0;
+                }
+                
+                .sidebar-toggle {
+                    display: block !important;
+                }
+                
+                .main-content {
+                    width: 100% !important;
+                }
+            }
+            
+            /* Dashboard stats */
+            .stats-card {
+                border-radius: 10px;
+                padding: 1.5rem;
+                background: white;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s;
+                height: 100%;
+            }
+            
+            .stats-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .stats-icon {
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background: var(--primary-gradient);
+                color: white;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .stats-title {
+                color: #777;
+                font-size: 0.9rem;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+            }
+            
+            .stats-value {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #333;
+            }
+        </style>
+        
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% include 'partials/navbar.html.twig' %}
+        
+        <div class="content-wrapper">
+            {% block sidebar %}{% endblock %}
+            
+            <div class="main-content p-4 {% if block('sidebar') is not empty %}ps-4{% else %}container py-5{% endif %}" style="{% if block('sidebar') is not empty %}width: calc(100% - var(--sidebar-width)){% endif %}">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        
+        {# Bootstrap JS with Popper #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        
+        {# jQuery #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+        {# Custom JS #}
+        <script>
+            // Mobile sidebar toggle
+            document.addEventListener('DOMContentLoaded', function() {
+                const sidebarToggle = document.querySelector('.sidebar-toggle');
+                if (sidebarToggle) {
+                    sidebarToggle.addEventListener('click', function() {
+                        document.querySelector('.sidebar').classList.toggle('show');
+                    });
+                }
+                
+                // Address autocomplete
+                // This is just a placeholder. In a real project, you would
+                // integrate with a proper address service like Google Places API
+                // or other geocoding service.
+                $('.address-autocomplete').on('focus', function() {
+                    // This would be where you initialize the autocomplete
+                    console.log('Address autocomplete field focused');
+                });
+            });
+        </script>
+        
+        {% block javascripts %}{% endblock %}
+        
+        <!-- Fenêtre modale des conditions d'utilisation -->
+        <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h5 class="modal-title w-100" id="termsModalLabel">Conditions d'utilisation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>Les présentes conditions d'utilisation sont d'application au site Dmqode.be. Par l'utilisation de ce site, vous acceptez les présentes conditions d'utilisation et vous vous engagez à les respecter.</p>
+                <ol>
+                  <li>Données enregistrées automatiquement : Ce site web peut collecter des données à caractère non personnel tel que le type de navigateur ou l'adresse IP, le programme d'exploitation que vous utilisez, les pages que vous visitez sur le site web ou le nom de domaine du site web à partir duquel vous êtes arrivé sur le site web ou par lequel vous le quittez.
+                  Durant une visite sur ce site web, des 'cookies' peuvent également être placés automatiquement sur le disque dur de votre ordinateur. Ces données nous aident à améliorer le site web. Avec la plupart des navigateurs, vous pouvez supprimer les cookies de votre disque dur, rejeter des cookies ou recevoir un avertissement avant qu'un cookie ne soit installé.</li>
+                  <li>Informations personnelles : Les données à caractère personnel que vous communiquez à Dmqode.be sont collectées et traitées par Dmqode.be,.
+                  Ce traitement a pour but de conclure un éventuel contrat de confidencialité entre l'utilisateur et Dmqode.be.
+                  Dmqode.be peut également utiliser ces données pour la création de services demandés par vous-même ou encore des campagnes d'information et de promotion.
+                  Conformément à la loi du 8 décembre 1992 relative à la protection de la vie privée, il vous est loisible de demander ces données et, au besoin, de les faire corriger. Vous pouvez également consulter le registre central auprès de la Commission pour la protection de la vie privée.</li>
+                  <li>Droits intellectuels : Dmqode.be apporte le plus grand soin à la création et à l'entretien de son site web. Les textes, dessins, photos, films, lay-out, images, data, noms, dénominations commerciales et noms de domaine, marques, logos et autres éléments de quelque nature que ce soit de ce site sont protégés par des droits intellectuels et sont la propriété de Dmqode.be. L'utilisation, la copie, la traduction, l'adaptation, la modification, la diffusion de tout ou partie de ce site, sous quelque forme que ce soit est prohibée, sauf accord écrit préalable du titulaire de ces droits. Toute infraction à de tels droits intellectuels peut donner lieu à des poursuites civiles et pénales.</li>
+                  <li>Informations sur le site web : Les informations présentées sur ou par le biais de ce site web peuvent contenir des imperfections. Dmqode.be décline également toute responsabilité au titre d'éventuels virus qui se présenteraient sur ce site web.
+                  Dmqode.be se réserve expressément le droit de modifier à tout moment les informations présentées sur le site.</li>
+                  <li>Hyperliens : Ce site web peut contenir des hyperliens vers des sites web de tiers. Dmqode.be n'a aucune autorité sur le contenu de ces sites web et n'est en aucun cas responsable de leur contenu.
+                  L'insertion de liens par Dmqode.be n'implique en aucune manière une approbation implicite du contenu de ces sites web.</li>
+                  <li>Tribunal compétent et loi applicable : Tout différend relatif au site Dmqode.be sera exclusivement régi par le droit belge. Les cours et tribunaux compétent seront seuls compétents en cas de différend.</li>
+                </ol>
+              </div>
+              <div class="modal-footer justify-content-end">
+                <button type="button" class="btn btn-gradient" data-bs-dismiss="modal">Fermer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    </body>
+</html>

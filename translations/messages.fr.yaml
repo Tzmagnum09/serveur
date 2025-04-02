@@ -1,0 +1,307 @@
+# Général
+site:
+    name: "DMQode.be"
+
+# Navbar
+navbar:
+    home: "Accueil"
+    super_admin: "Super Admin"
+    admin: "Administration"
+    profile: "Mon profil"
+    logout: "Déconnexion"
+    login: "Connexion"
+    register: "Inscription"
+
+# Page d'accueil
+home:
+    title: "Accueil"
+    welcome: "Bienvenue sur notre site"
+    intro: "Découvrez notre plateforme avec des fonctionnalités adaptées à vos besoins."
+    feature1:
+        title: "Inscription simple"
+        description: "Créez votre compte en quelques minutes et accédez à tous nos services."
+    feature2:
+        title: "Multilingue"
+        description: "Notre site est disponible en français, néerlandais, anglais et allemand."
+    feature3:
+        title: "Sécurisé"
+        description: "Vos données sont protégées et sécurisées selon les dernières normes."
+    register_btn: "S'inscrire"
+    login_btn: "Se connecter"
+    profile_btn: "Mon profil"
+
+# Connexion
+login:
+    title: "Connexion"
+    header: "Connectez-vous à votre compte"
+    username_or_email: "Nom d'utilisateur ou Email"
+    password: "Mot de passe"
+    remember_me: "Se souvenir de moi"
+    sign_in: "Se connecter"
+    forgot_password: "Mot de passe oublié ?"
+    no_account: "Vous n'avez pas de compte ?"
+    register: "Inscrivez-vous"
+
+# Inscription
+registration:
+    title: "Inscription"
+    header: "Créez votre compte"
+    info_approval: "Après votre inscription, vous devrez vérifier votre adresse e-mail. Ensuite, un administrateur devra approuver votre compte."
+    register: "S'inscrire"
+    already_account: "Vous avez déjà un compte ?"
+    login: "Connectez-vous"
+    flash:
+        check_email: "Un email a été envoyé à votre adresse pour vérifier votre compte. Cliquez sur le lien contenu dans l'email pour activer votre compte."
+        email_verified: "Votre adresse email a été vérifiée. Votre compte est en attente d'approbation par un administrateur."
+        user_not_found: "Utilisateur non trouvé. Veuillez vous réinscrire."
+        invalid_token: "Le lien pour vérifier votre adresse e-mail est invalide. Veuillez demander un nouveau lien."
+
+# Réinitialisation de mot de passe
+reset_password:
+    request:
+        title: "Réinitialisation du mot de passe"
+        header: "Mot de passe oublié"
+        info: "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+        submit: "Envoyer"
+        back_to_login: "Retour à la connexion"
+    check_email:
+        title: "Vérifiez votre email"
+        header: "Email envoyé"
+        sent: "Un email a été envoyé à votre adresse email. Cliquez sur le lien contenu dans l'email pour réinitialiser votre mot de passe."
+        not_received: "Si vous ne recevez pas d'email, vérifiez votre dossier spam ou essayez à nouveau."
+        expires_in: "Le lien expirera dans %hours% heure(s)."
+        try_again: "Essayer à nouveau"
+    reset:
+        title: "Réinitialiser le mot de passe"
+        header: "Définir un nouveau mot de passe"
+        new_password: "Nouveau mot de passe"
+        repeat_password: "Confirmer le mot de passe"
+        submit: "Réinitialiser le mot de passe"
+    flash:
+        success: "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter."
+
+# Profil
+profile:
+    title: "Mon profil"
+    sidebar:
+        title: "Mon compte"
+        overview: "Vue d'ensemble"
+        edit_profile: "Modifier le profil"
+        change_password: "Changer le mot de passe"
+    overview:
+        title: "Vue d'ensemble du profil"
+        edit_btn: "Modifier"
+        personal_info: "Informations personnelles"
+    edit:
+        title: "Modifier le profil"
+        form_title: "Modifier vos informations"
+        back_btn: "Retour"
+        cancel_btn: "Annuler"
+        save_btn: "Enregistrer"
+        language_info: "Changer la langue mettra à jour l'interface après votre prochaine connexion."
+    change_password:
+        title: "Changer le mot de passe"
+        form_title: "Définir un nouveau mot de passe"
+        back_btn: "Retour"
+        new_password: "Nouveau mot de passe"
+        repeat_password: "Confirmer le mot de passe"
+        warning: "Après avoir changé votre mot de passe, vous devrez vous reconnecter."
+        cancel_btn: "Annuler"
+        save_btn: "Enregistrer"
+    fields:
+        email: "Email"
+        username: "Nom d'utilisateur"
+        full_name: "Nom complet"
+        phone: "Téléphone"
+        language: "Langue"
+        address: "Adresse"
+        created_at: "Date d'inscription"
+        last_login: "Dernière connexion"
+        status: "Statut"
+    status:
+        active: "Actif"
+        pending_approval: "En attente d'approbation"
+        unverified: "Non vérifié"
+    flash:
+        updated: "Votre profil a été mis à jour avec succès."
+        password_changed: "Votre mot de passe a été modifié avec succès."
+
+# Administration
+admin:
+    dashboard:
+        title: "Tableau de bord administrateur"
+        pending_approvals: "Utilisateurs en attente d'approbation"
+        stats:
+            total_users: "Utilisateurs totaux"
+            approved_users: "Utilisateurs approuvés"
+            pending_users: "En attente"
+            email_templates: "Templates d'emails"
+        quick_links: "Accès rapides"
+        manage_users: "Gérer les utilisateurs"
+        manage_templates: "Gérer les templates des emails"
+        super_admin: "Super Admin"
+    sidebar:
+        title: "Administration"
+        dashboard: "Tableau de bord"
+        users: "Utilisateurs"
+        email_templates: "Templates d'emails"
+        super_admin: "Super Admin"
+        super_dashboard: "Super Dashboard"
+    users:
+        title: "Gestion des utilisateurs"
+        list: "Liste des utilisateurs"
+        back_btn: "Retour"
+        search: "Rechercher un utilisateur..."
+        filter: "Filtrer"
+        filter_all: "Tous les utilisateurs"
+        filter_verified: "Utilisateurs vérifiés"
+        filter_unverified: "Utilisateurs non vérifiés"
+        filter_approved: "Utilisateurs approuvés"
+        filter_pending: "En attente d'approbation"
+        name: "Nom"
+        email: "Email"
+        username: "Utilisateur"
+        registered_at: "Inscrit le"
+        status: "Statut"
+        role: "Rôle"
+        actions: "Actions"
+        status_active: "Actif"
+        status_pending: "En attente"
+        status_unverified: "Non vérifié"
+        role_super_admin: "Super Admin"
+        role_admin: "Admin"
+        role_user: "Utilisateur"
+        no_users: "Aucun utilisateur trouvé"
+        confirm_approve: "Êtes-vous sûr de vouloir approuver cet utilisateur ?"
+        confirm_promote: "Êtes-vous sûr de vouloir promouvoir cet utilisateur en administrateur ?"
+        promote_to_admin: "Promouvoir en admin"
+    user_edit:
+        title: "Modifier l'utilisateur %name%"
+        back_btn: "Retour"
+        approve_btn: "Approuver"
+        user_info: "Informations de l'utilisateur"
+        status: "Statut"
+        role: "Rôle"
+        registered_on: "Inscrit le"
+        last_login: "Dernière connexion"
+        never_logged_in: "Jamais connecté"
+        verified_on: "Vérifié le"
+        approved_on: "Approuvé le"
+        edit_profile: "Modifier le profil"
+        cancel_btn: "Annuler"
+        save_btn: "Enregistrer"
+    user:
+        flash:
+            updated: "L'utilisateur a été mis à jour avec succès."
+            approved: "L'utilisateur a été approuvé avec succès."
+    email_templates:
+        title: "Gestion des templates d'emails"
+        new_btn: "Nouveau template"
+        list: "Liste des templates"
+        code: "Code"
+        subject: "Sujet"
+        translations: "Traductions"
+        updated_at: "Mis à jour le"
+        actions: "Actions"
+        manage: "Modifier"
+        edit: "Modifier"
+        preview: "Prévisualiser"
+        add_translation: "Ajouter traduction"
+        no_templates: "Aucun template trouvé"
+        about: "À propos des templates d'emails"
+        variables:
+            title: "Variables disponibles"
+            description: "Vous pouvez utiliser ces variables dans vos templates d'emails. Elles seront remplacées par les valeurs réelles lors de l'envoi."
+            firstName: "Prénom de l'utilisateur"
+            lastName: "Nom de l'utilisateur"
+            fullName: "Nom complet de l'utilisateur"
+            email: "Adresse email de l'utilisateur"
+            domain: "Nom de domaine du site"
+            token: "Token de vérification d'email"
+            resetToken: "Token de réinitialisation de mot de passe"
+        editor:
+            placeholder: "Contenu HTML du template..."
+            no_image_upload: "L'upload d'images n'est pas pris en charge. Utilisez des liens vers des images externes."
+    email_template_new:
+        title: "Nouveau template d'email"
+        back_btn: "Retour"
+        form_title: "Créer un nouveau template d'email"
+        cancel_btn: "Annuler"
+        save_btn: "Enregistrer"
+    email_template_edit:
+        title: "Modifier le template %code% (%locale%)"
+        back_btn: "Retour"
+        preview_btn: "Prévisualiser"
+        delete_btn: "Supprimer"
+        form_title: "Modifier le template d'email"
+        cancel_btn: "Annuler"
+        save_btn: "Enregistrer"
+        confirm_delete: "Êtes-vous sûr de vouloir supprimer ce template d'email ?"
+    email_template:
+        flash:
+            created: "Le template d'email a été créé avec succès."
+            updated: "Le template d'email a été mis à jour avec succès."
+            deleted: "Le template d'email a été supprimé avec succès."
+
+# Super Administration
+super_admin:
+    dashboard:
+        title: "Super Administration"
+        stats:
+            admins: "Administrateurs"
+            super_admins: "Super Admins"
+            total_users: "Utilisateurs totaux"
+            permissions: "Permissions"
+        admins_list: "Liste des administrateurs"
+        admin_name: "Nom"
+        admin_email: "Email"
+        created_at: "Créé le"
+        last_login: "Dernière connexion"
+        actions: "Actions"
+        no_admins: "Aucun administrateur trouvé"
+        confirm_demote: "Êtes-vous sûr de vouloir rétrograder cet administrateur ?"
+        confirm_promote_super: "Êtes-vous sûr de vouloir promouvoir cet administrateur en super administrateur ?"
+        promote_user: "Promouvoir un utilisateur"
+        search_users: "Rechercher un utilisateur à promouvoir..."
+        search: "Rechercher"
+        search_results: "Résultats de la recherche"
+        user_name: "Nom"
+        user_email: "Email"
+        user_role: "Rôle"
+        role_super_admin: "Super Admin"
+        role_admin: "Admin"
+        role_user: "Utilisateur"
+        promote_to_admin: "Promouvoir en admin"
+        no_results: "Aucun résultat trouvé"
+    sidebar:
+        title: "Super Admin"
+        dashboard: "Tableau de bord"
+        admin_section: "Administration"
+        back_to_admin: "Retour à l'admin"
+    permissions:
+        title: "Gestion des permissions"
+        back_btn: "Retour"
+        admin_info: "Permissions pour %name%"
+        name: "Nom"
+        email: "Email"
+        role: "Rôle"
+        admin_role: "Administrateur"
+        info: "Gérez les permissions de cet administrateur. Les super administrateurs ont toutes les permissions par défaut."
+        manage_title: "Gérer les permissions"
+        permission: "Permission"
+        granted: "Accordée"
+        description: "Description"
+        cancel_btn: "Annuler"
+        save_btn: "Enregistrer"
+        desc:
+            manage_users: "Permet de gérer les utilisateurs (voir, modifier)"
+            approve_users: "Permet d'approuver les utilisateurs en attente"
+            edit_email_templates: "Permet de créer et modifier les templates d'emails"
+            preview_email_templates: "Permet de prévisualiser les templates d'emails"
+            translate_content: "Permet de traduire le contenu dynamique"
+            view_statistics: "Permet de voir les statistiques du site"
+    flash:
+        user_promoted: "L'utilisateur a été promu administrateur avec succès."
+        admin_demoted: "L'administrateur a été rétrogradé avec succès."
+        user_promoted_super: "L'administrateur a été promu super administrateur avec succès."
+        permissions_updated: "Les permissions ont été mises à jour avec succès."

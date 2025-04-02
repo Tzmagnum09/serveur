@@ -1,0 +1,208 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'admin.user_edit.title'|trans({'%name%': user.fullName}) }}{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+    <h5 class="mb-4">{{ 'admin.sidebar.title'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
+                <i class="fas fa-tachometer-alt me-2"></i> {{ 'admin.sidebar.dashboard'|trans }}
+            </a>
+        </li>
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'manage_users') %}
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_admin_users') }}">
+                <i class="fas fa-users me-2"></i> {{ 'admin.sidebar.users'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'edit_email_templates') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_email_templates') }}">
+                <i class="fas fa-envelope me-2"></i> {{ 'admin.sidebar.email_templates'|trans }}
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <h5 class="mb-3 mt-4">{{ 'admin.sidebar.super_admin'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_super_admin_dashboard') }}">
+                <i class="fas fa-shield-alt me-2"></i> {{ 'admin.sidebar.super_dashboard'|trans }}
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'admin.user_edit.title'|trans({'%name%': user.fullName}) }}</h1>
+        <div class="d-flex">
+            <a href="{{ path('app_admin_users') }}" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i> {{ 'admin.user_edit.back_btn'|trans }}
+            </a>
+            
+            {% if user.isVerified and not user.isApproved and (is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'approve_users')) %}
+                <form method="post" action="{{ path('app_admin_user_approve', {'id': user.id}) }}" onsubmit="return confirm('{{ 'admin.users.confirm_approve'|trans }}')">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-check me-1"></i> {{ 'admin.user_edit.approve_btn'|trans }}
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ 'admin.user_edit.user_info'|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="avatar-circle bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                            <span class="h1 text-white">{{ user.firstName|first }}{{ user.lastName|first }}</span>
+                        </div>
+                        <h5>{{ user.fullName }}</h5>
+                        <p class="text-muted mb-0">{{ user.email }}</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.status'|trans }}</div>
+                        {% if user.isVerified and user.isApproved %}
+                            <span class="badge bg-success">{{ 'admin.users.status_active'|trans }}</span>
+                        {% elseif user.isVerified and not user.isApproved %}
+                            <span class="badge bg-warning text-dark">{{ 'admin.users.status_pending'|trans }}</span>
+                        {% else %}
+                            <span class="badge bg-danger">{{ 'admin.users.status_unverified'|trans }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.role'|trans }}</div>
+                        {% if user.isSuperAdmin %}
+                            <span class="badge bg-danger">{{ 'admin.users.role_super_admin'|trans }}</span>
+                        {% elseif user.isAdmin %}
+                            <span class="badge bg-primary">{{ 'admin.users.role_admin'|trans }}</span>
+                        {% else %}
+                            <span class="badge bg-secondary">{{ 'admin.users.role_user'|trans }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.registered_on'|trans }}</div>
+                        <p class="mb-0">{{ user.createdAt|date('d/m/Y H:i') }}</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.last_login'|trans }}</div>
+                        <p class="mb-0">
+                            {% if user.lastLoginAt %}
+                                {{ user.lastLoginAt|date('d/m/Y H:i') }}
+                            {% else %}
+                                {{ 'admin.user_edit.never_logged_in'|trans }}
+                            {% endif %}
+                        </p>
+                    </div>
+                    
+                    {% if user.isVerified %}
+                    <div class="mb-3">
+                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.verified_on'|trans }}</div>
+                        <p class="mb-0">{{ user.emailVerifiedAt|date('d/m/Y H:i') }}</p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if user.isApproved %}
+                    <div class="mb-3">
+                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.approved_on'|trans }}</div>
+                        <p class="mb-0">{{ user.approvedAt|date('d/m/Y H:i') }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ 'admin.user_edit.edit_profile'|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    {{ form_start(userForm) }}
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                {{ form_row(userForm.email) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(userForm.username) }}
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                {{ form_row(userForm.firstName) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(userForm.lastName) }}
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-8">
+                                {{ form_row(userForm.street) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(userForm.houseNumber) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_row(userForm.boxNumber) }}
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                {{ form_row(userForm.postalCode) }}
+                            </div>
+                            <div class="col-md-5">
+                                {{ form_row(userForm.city) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(userForm.country) }}
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                {{ form_row(userForm.phoneNumber) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(userForm.locale) }}
+                            </div>
+                        </div>
+                        
+                        {% if userForm.isApproved is defined %}
+                            <div class="mb-3 form-check">
+                                {{ form_widget(userForm.isApproved, {'attr': {'class': 'form-check-input'}}) }}
+                                {{ form_label(userForm.isApproved, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                {{ form_errors(userForm.isApproved) }}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ path('app_admin_users') }}" class="btn btn-outline-secondary me-2">{{ 'admin.user_edit.cancel_btn'|trans }}</a>
+                            <button type="submit" class="btn btn-gradient">{{ 'admin.user_edit.save_btn'|trans }}</button>
+                        </div>
+                    {{ form_end(userForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

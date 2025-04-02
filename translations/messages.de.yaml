@@ -1,0 +1,307 @@
+# Allgemein
+site:
+    name: "DMQode.be"
+
+# Navigationsleiste
+navbar:
+    home: "Startseite"
+    super_admin: "Super Admin"
+    admin: "Verwaltung"
+    profile: "Mein Profil"
+    logout: "Abmelden"
+    login: "Anmelden"
+    register: "Registrieren"
+
+# Startseite
+home:
+    title: "Startseite"
+    welcome: "Willkommen auf unserer Website"
+    intro: "Entdecken Sie unsere Plattform mit Funktionen, die auf Ihre Bedürfnisse zugeschnitten sind."
+    feature1:
+        title: "Einfache Registrierung"
+        description: "Erstellen Sie Ihren Account in wenigen Minuten und greifen Sie auf alle unsere Dienste zu."
+    feature2:
+        title: "Mehrsprachig"
+        description: "Unsere Website ist auf Französisch, Niederländisch, Englisch und Deutsch verfügbar."
+    feature3:
+        title: "Sicher"
+        description: "Ihre Daten werden nach den neuesten Standards geschützt und gesichert."
+    register_btn: "Registrieren"
+    login_btn: "Anmelden"
+    profile_btn: "Mein Profil"
+
+# Anmeldung
+login:
+    title: "Anmeldung"
+    header: "Melden Sie sich in Ihrem Account an"
+    username_or_email: "Benutzername oder E-Mail"
+    password: "Passwort"
+    remember_me: "Angemeldet bleiben"
+    sign_in: "Anmelden"
+    forgot_password: "Passwort vergessen?"
+    no_account: "Noch kein Account?"
+    register: "Registrieren"
+
+# Registrierung
+registration:
+    title: "Registrierung"
+    header: "Erstellen Sie Ihren Account"
+    info_approval: "Nach der Registrierung müssen Sie Ihre E-Mail-Adresse bestätigen. Danach muss ein Administrator Ihren Account freigeben."
+    register: "Registrieren"
+    already_account: "Haben Sie bereits einen Account?"
+    login: "Anmelden"
+    flash:
+        check_email: "Eine E-Mail wurde gesendet, um Ihren Account zu bestätigen. Klicken Sie auf den Link in der E-Mail, um Ihren Account zu aktivieren."
+        email_verified: "Ihre E-Mail-Adresse wurde bestätigt. Ihr Account wartet auf Freigabe durch einen Administrator."
+        user_not_found: "Benutzer nicht gefunden. Bitte registrieren Sie sich erneut."
+        invalid_token: "Der E-Mail-Bestätigungslink ist ungültig. Bitte fordern Sie einen neuen Link an."
+
+# Passwort zurücksetzen
+reset_password:
+    request:
+        title: "Passwort zurücksetzen"
+        header: "Passwort vergessen"
+        info: "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts."
+        submit: "Senden"
+        back_to_login: "Zurück zur Anmeldung"
+    check_email:
+        title: "Überprüfen Sie Ihre E-Mail"
+        header: "E-Mail gesendet"
+        sent: "Eine E-Mail wurde an Ihre E-Mail-Adresse gesendet. Klicken Sie auf den Link in der E-Mail, um Ihr Passwort zurückzusetzen."
+        not_received: "Wenn Sie keine E-Mail erhalten, überprüfen Sie Ihren Spam-Ordner oder versuchen Sie es erneut."
+        expires_in: "Der Link läuft in %hours% Stunde(n) ab."
+        try_again: "Erneut versuchen"
+    reset:
+        title: "Passwort zurücksetzen"
+        header: "Neues Passwort festlegen"
+        new_password: "Neues Passwort"
+        repeat_password: "Passwort bestätigen"
+        submit: "Passwort zurücksetzen"
+    flash:
+        success: "Ihr Passwort wurde erfolgreich zurückgesetzt. Sie können sich jetzt anmelden."
+
+# Profil
+profile:
+    title: "Mein Profil"
+    sidebar:
+        title: "Mein Account"
+        overview: "Übersicht"
+        edit_profile: "Profil bearbeiten"
+        change_password: "Passwort ändern"
+    overview:
+        title: "Profilübersicht"
+        edit_btn: "Bearbeiten"
+        personal_info: "Persönliche Informationen"
+    edit:
+        title: "Profil bearbeiten"
+        form_title: "Ihre Informationen aktualisieren"
+        back_btn: "Zurück"
+        cancel_btn: "Abbrechen"
+        save_btn: "Speichern"
+        language_info: "Die Änderung der Sprache wird erst nach Ihrer nächsten Anmeldung wirksam."
+    change_password:
+        title: "Passwort ändern"
+        form_title: "Neues Passwort festlegen"
+        back_btn: "Zurück"
+        new_password: "Neues Passwort"
+        repeat_password: "Passwort bestätigen"
+        warning: "Nach der Änderung Ihres Passworts müssen Sie sich erneut anmelden."
+        cancel_btn: "Abbrechen"
+        save_btn: "Speichern"
+    fields:
+        email: "E-Mail"
+        username: "Benutzername"
+        full_name: "Vollständiger Name"
+        phone: "Telefon"
+        language: "Sprache"
+        address: "Adresse"
+        created_at: "Registrierungsdatum"
+        last_login: "Letzte Anmeldung"
+        status: "Status"
+    status:
+        active: "Aktiv"
+        pending_approval: "Wartet auf Freigabe"
+        unverified: "Nicht bestätigt"
+    flash:
+        updated: "Ihr Profil wurde erfolgreich aktualisiert."
+        password_changed: "Ihr Passwort wurde erfolgreich geändert."
+
+# Verwaltung
+admin:
+    dashboard:
+        title: "Verwaltungs-Dashboard"
+        pending_approvals: "Benutzer warten auf Freigabe"
+        stats:
+            total_users: "Gesamtanzahl Benutzer"
+            approved_users: "Freigegebene Benutzer"
+            pending_users: "Ausstehend"
+            email_templates: "E-Mail-Vorlagen"
+        quick_links: "Schnellzugriff"
+        manage_users: "Benutzer verwalten"
+        manage_templates: "E-Mail-Vorlagen verwalten"
+        super_admin: "Super Admin"
+    sidebar:
+        title: "Verwaltung"
+        dashboard: "Dashboard"
+        users: "Benutzer"
+        email_templates: "E-Mail-Vorlagen"
+        super_admin: "Super Admin"
+        super_dashboard: "Super Dashboard"
+    users:
+        title: "Benutzerverwaltung"
+        list: "Benutzerliste"
+        back_btn: "Zurück"
+        search: "Benutzer suchen..."
+        filter: "Filtern"
+        filter_all: "Alle Benutzer"
+        filter_verified: "Bestätigte Benutzer"
+        filter_unverified: "Unbestätigte Benutzer"
+        filter_approved: "Freigegebene Benutzer"
+        filter_pending: "Wartet auf Freigabe"
+        name: "Name"
+        email: "E-Mail"
+        username: "Benutzer"
+        registered_at: "Registriert am"
+        status: "Status"
+        role: "Rolle"
+        actions: "Aktionen"
+        status_active: "Aktiv"
+        status_pending: "Ausstehend"
+        status_unverified: "Unbestätigt"
+        role_super_admin: "Super Admin"
+        role_admin: "Admin"
+        role_user: "Benutzer"
+        no_users: "Keine Benutzer gefunden"
+        confirm_approve: "Sind Sie sicher, dass Sie diesen Benutzer freigeben möchten?"
+        confirm_promote: "Sind Sie sicher, dass Sie diesen Benutzer zum Administrator befördern möchten?"
+        promote_to_admin: "Zum Admin befördern"
+    user_edit:
+        title: "Benutzer %name% bearbeiten"
+        back_btn: "Zurück"
+        approve_btn: "Freigeben"
+        user_info: "Benutzerinformationen"
+        status: "Status"
+        role: "Rolle"
+        registered_on: "Registriert am"
+        last_login: "Letzte Anmeldung"
+        never_logged_in: "Nie angemeldet"
+        verified_on: "Bestätigt am"
+        approved_on: "Freigegeben am"
+        edit_profile: "Profil bearbeiten"
+        cancel_btn: "Abbrechen"
+        save_btn: "Speichern"
+    user:
+        flash:
+            updated: "Der Benutzer wurde erfolgreich aktualisiert."
+            approved: "Der Benutzer wurde erfolgreich freigegeben."
+    email_templates:
+        title: "E-Mail-Vorlagenverwaltung"
+        new_btn: "Neue Vorlage"
+        list: "Vorlagenliste"
+        code: "Code"
+        subject: "Betreff"
+        translations: "Übersetzungen"
+        updated_at: "Aktualisiert am"
+        actions: "Aktionen"
+        manage: "Verwalten"
+        edit: "Bearbeiten"
+        preview: "Vorschau"
+        add_translation: "Übersetzung hinzufügen"
+        no_templates: "Keine Vorlagen gefunden"
+        about: "Über E-Mail-Vorlagen"
+        variables:
+            title: "Verfügbare Variablen"
+            description: "Sie können diese Variablen in Ihren E-Mail-Vorlagen verwenden. Sie werden beim Senden durch tatsächliche Werte ersetzt."
+            firstName: "Vorname des Benutzers"
+            lastName: "Nachname des Benutzers"
+            fullName: "Vollständiger Name des Benutzers"
+            email: "E-Mail-Adresse des Benutzers"
+            domain: "Domainname der Website"
+            token: "E-Mail-Bestätigungstoken"
+            resetToken: "Passwort-Reset-Token"
+        editor:
+            placeholder: "HTML-Inhalt der Vorlage..."
+            no_image_upload: "Das Hochladen von Bildern wird nicht unterstützt. Verwenden Sie Links zu externen Bildern."
+    email_template_new:
+        title: "Neue E-Mail-Vorlage"
+        back_btn: "Zurück"
+        form_title: "Neue E-Mail-Vorlage erstellen"
+        cancel_btn: "Abbrechen"
+        save_btn: "Speichern"
+    email_template_edit:
+        title: "Vorlage %code% (%locale%) bearbeiten"
+        back_btn: "Zurück"
+        preview_btn: "Vorschau"
+        delete_btn: "Löschen"
+        form_title: "E-Mail-Vorlage bearbeiten"
+        cancel_btn: "Abbrechen"
+        save_btn: "Speichern"
+        confirm_delete: "Sind Sie sicher, dass Sie diese E-Mail-Vorlage löschen möchten?"
+    email_template:
+        flash:
+            created: "Die E-Mail-Vorlage wurde erfolgreich erstellt."
+            updated: "Die E-Mail-Vorlage wurde erfolgreich aktualisiert."
+            deleted: "Die E-Mail-Vorlage wurde erfolgreich gelöscht."
+
+# Super-Verwaltung
+super_admin:
+    dashboard:
+        title: "Super-Verwaltung"
+        stats:
+            admins: "Administratoren"
+            super_admins: "Super Admins"
+            total_users: "Gesamtanzahl Benutzer"
+            permissions: "Berechtigungen"
+        admins_list: "Administratorenliste"
+        admin_name: "Name"
+        admin_email: "E-Mail"
+        created_at: "Erstellt am"
+        last_login: "Letzte Anmeldung"
+        actions: "Aktionen"
+        no_admins: "Keine Administratoren gefunden"
+        confirm_demote: "Sind Sie sicher, dass Sie diesen Administrator herabstufen möchten?"
+        confirm_promote_super: "Sind Sie sicher, dass Sie diesen Administrator zum Super-Administrator befördern möchten?"
+        promote_user: "Benutzer befördern"
+        search_users: "Benutzer zum Befördern suchen..."
+        search: "Suchen"
+        search_results: "Suchergebnisse"
+        user_name: "Name"
+        user_email: "E-Mail"
+        user_role: "Rolle"
+        role_super_admin: "Super Admin"
+        role_admin: "Admin"
+        role_user: "Benutzer"
+        promote_to_admin: "Zum Admin befördern"
+        no_results: "Keine Ergebnisse gefunden"
+    sidebar:
+        title: "Super Admin"
+        dashboard: "Dashboard"
+        admin_section: "Verwaltung"
+        back_to_admin: "Zurück zur Verwaltung"
+    permissions:
+        title: "Berechtigungsverwaltung"
+        back_btn: "Zurück"
+        admin_info: "Berechtigungen für %name%"
+        name: "Name"
+        email: "E-Mail"
+        role: "Rolle"
+        admin_role: "Administrator"
+        info: "Verwalten Sie die Berechtigungen dieses Administrators. Super-Administratoren haben standardmäßig alle Berechtigungen."
+        manage_title: "Berechtigungen verwalten"
+        permission: "Berechtigung"
+        granted: "Erteilt"
+        description: "Beschreibung"
+        cancel_btn: "Abbrechen"
+        save_btn: "Speichern"
+        desc:
+            manage_users: "Ermöglicht die Verwaltung von Benutzern (Anzeigen, Bearbeiten)"
+            approve_users: "Ermöglicht die Freigabe wartender Benutzer"
+            edit_email_templates: "Ermöglicht das Erstellen und Bearbeiten von E-Mail-Vorlagen"
+            preview_email_templates: "Ermöglicht die Vorschau von E-Mail-Vorlagen"
+            translate_content: "Ermöglicht das Übersetzen dynamischer Inhalte"
+            view_statistics: "Ermöglicht das Anzeigen von Website-Statistiken"
+    flash:
+        user_promoted: "Der Benutzer wurde erfolgreich zum Administrator befördert."
+        admin_demoted: "Der Administrator wurde erfolgreich herabgestuft."
+        user_promoted_super: "Der Administrator wurde erfolgreich zum Super Administrator befördert."
+        permissions_updated: "Die Berechtigungen wurden erfolgreich aktualisiert."

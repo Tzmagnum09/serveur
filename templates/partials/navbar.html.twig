@@ -1,0 +1,107 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('app_home') }}">
+            <img src="{{ asset('images/logo.png') }}" alt="{{ 'site.name'|trans }}">
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if app.request.get('_route') == 'app_home' %}active{% endif %}" href="{{ path('app_home') }}">
+                        {{ 'navbar.home'|trans }}
+                    </a>
+                </li>
+                
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.get('_route') starts with 'app_super_admin' %}active{% endif %}" href="{{ path('app_super_admin_dashboard') }}">
+                            {{ 'navbar.super_admin'|trans }}
+                        </a>
+                    </li>
+                {% endif %}
+                
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.get('_route') starts with 'app_admin' %}active{% endif %}" href="{{ path('app_admin_dashboard') }}">
+                            {{ 'navbar.admin'|trans }}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            
+            <ul class="navbar-nav">
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ app.user.fullName }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ path('app_profile') }}">
+                                    <i class="fas fa-user me-2"></i> {{ 'navbar.profile'|trans }}
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ path('app_logout') }}">
+                                    <i class="fas fa-sign-out-alt me-2"></i> {{ 'navbar.logout'|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">
+                            <i class="fas fa-sign-in-alt me-1"></i> {{ 'navbar.login'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register') }}">
+                            <i class="fas fa-user-plus me-1"></i> {{ 'navbar.register'|trans }}
+                        </a>
+                    </li>
+                {% endif %}
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if app.request.locale == 'fr' %}
+                            <i class="fas fa-flag me-1"></i> FR
+                        {% elseif app.request.locale == 'nl' %}
+                            <i class="fas fa-flag me-1"></i> NL
+                        {% elseif app.request.locale == 'en' %}
+                            <i class="fas fa-flag me-1"></i> EN
+                        {% elseif app.request.locale == 'de' %}
+                            <i class="fas fa-flag me-1"></i> DE
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route', 'app_home'), app.request.get('_route_params', [])|merge({'_locale': 'fr'})) }}">
+                                Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route', 'app_home'), app.request.get('_route_params', [])|merge({'_locale': 'nl'})) }}">
+                                Nederlands
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route', 'app_home'), app.request.get('_route_params', [])|merge({'_locale': 'en'})) }}">
+                                English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route', 'app_home'), app.request.get('_route_params', [])|merge({'_locale': 'de'})) }}">
+                                Deutsch
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

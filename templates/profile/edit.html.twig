@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'profile.edit.title'|trans }}{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+    <h5 class="mb-4">{{ 'profile.sidebar.title'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_profile') }}">
+                <i class="fas fa-user me-2"></i> {{ 'profile.sidebar.overview'|trans }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_profile_edit') }}">
+                <i class="fas fa-edit me-2"></i> {{ 'profile.sidebar.edit_profile'|trans }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_profile_change_password') }}">
+                <i class="fas fa-key me-2"></i> {{ 'profile.sidebar.change_password'|trans }}
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'profile.edit.title'|trans }}</h1>
+        <a href="{{ path('app_profile') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> {{ 'profile.edit.back_btn'|trans }}
+        </a>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">{{ 'profile.edit.form_title'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            {{ form_start(profileForm) }}
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        {{ form_row(profileForm.email) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(profileForm.username) }}
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        {{ form_row(profileForm.firstName) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(profileForm.lastName) }}
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-8">
+                        {{ form_row(profileForm.street) }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ form_row(profileForm.houseNumber) }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ form_row(profileForm.boxNumber) }}
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        {{ form_row(profileForm.postalCode) }}
+                    </div>
+                    <div class="col-md-5">
+                        {{ form_row(profileForm.city) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(profileForm.country) }}
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        {{ form_row(profileForm.phoneNumber) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(profileForm.locale) }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            {{ 'profile.edit.language_info'|trans }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-end">
+                    <a href="{{ path('app_profile') }}" class="btn btn-outline-secondary me-2">{{ 'profile.edit.cancel_btn'|trans }}</a>
+                    <button type="submit" class="btn btn-gradient">{{ 'profile.edit.save_btn'|trans }}</button>
+                </div>
+            {{ form_end(profileForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

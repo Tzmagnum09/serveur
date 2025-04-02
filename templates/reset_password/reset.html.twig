@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'reset_password.reset.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h1 class="h4 mb-0">{{ 'reset_password.reset.header'|trans }}</h1>
+            </div>
+            <div class="card-body p-4">
+                {{ form_start(resetForm) }}
+                    <div class="mb-3">
+                        {{ form_row(resetForm.plainPassword.first, {
+                            'label': 'reset_password.reset.new_password'|trans
+                        }) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(resetForm.plainPassword.second, {
+                            'label': 'reset_password.reset.repeat_password'|trans
+                        }) }}
+                    </div>
+                
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-gradient">{{ 'reset_password.reset.submit'|trans }}</button>
+                    </div>
+                {{ form_end(resetForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'home.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg mb-5">
+                <div class="card-header text-center">
+                    <h1 class="h3 mb-0">{{ 'home.welcome'|trans }}</h1>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="{{ asset('images/logo_black.png') }}" alt="{{ 'site.name'|trans }}" class="img-fluid mb-4" style="max-width: 200px;">
+                        <p class="lead">{{ 'home.intro'|trans }}</p>
+                    </div>
+                    
+                    <div class="row mt-5">
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-user-check fa-3x mb-3" style="color: #8e44ad;"></i>
+                                    <h3 class="h5">{{ 'home.feature1.title'|trans }}</h3>
+                                    <p class="card-text">{{ 'home.feature1.description'|trans }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-globe fa-3x mb-3" style="color: #3498db;"></i>
+                                    <h3 class="h5">{{ 'home.feature2.title'|trans }}</h3>
+                                    <p class="card-text">{{ 'home.feature2.description'|trans }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-shield-alt fa-3x mb-3" style="color: #8e44ad;"></i>
+                                    <h3 class="h5">{{ 'home.feature3.title'|trans }}</h3>
+                                    <p class="card-text">{{ 'home.feature3.description'|trans }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        {% if not app.user %}
+                            <a href="{{ path('app_register') }}" class="btn btn-gradient btn-lg px-4 me-3">{{ 'home.register_btn'|trans }}</a>
+                            <a href="{{ path('app_login') }}" class="btn btn-outline-secondary btn-lg px-4">{{ 'home.login_btn'|trans }}</a>
+                        {% else %}
+                            <a href="{{ path('app_profile') }}" class="btn btn-gradient btn-lg px-4">{{ 'home.profile_btn'|trans }}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
