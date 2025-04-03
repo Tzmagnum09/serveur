@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ResetPasswordRequest;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;
@@ -27,6 +28,10 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         string $selector,
         string $hashedToken
     ): ResetPasswordRequestInterface {
+        // Cleanup old reset password requests for the user
+        $this->removeResetPasswordRequest($user);
+
+        // Create and persist new reset password request
         $resetPasswordRequest = new ResetPasswordRequest();
         $resetPasswordRequest->setUser($user);
         $resetPasswordRequest->setExpiresAt($expiresAt);
@@ -37,5 +42,26 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         $this->getEntityManager()->flush();
 
         return $resetPasswordRequest;
+    }
+
+    /**
+     * Remove all reset password requests for a given user
+     */
+    public function removeResetPasswordRequest(object $user): void
+    {
+        $this->createQueryBuilder('r')
+            ->delete()
+            ->where('r.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * Find reset password request by selector
+     */
+    public function findBySelector(string $selector): ?ResetPasswordRequestInterface
+    {
+        return $this->findOneBy(['selector' => $selector]);
     }
 }
