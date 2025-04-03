@@ -381,7 +381,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $address = $this->street . ' ' . $this->houseNumber;
         
         if ($this->boxNumber) {
-            $address .= '/' . $this->boxNumber;
+            $address .= ', boîte ' . $this->boxNumber;
         }
         
         $address .= ', ' . $this->postalCode . ' ' . $this->city . ', ' . $this->country;
