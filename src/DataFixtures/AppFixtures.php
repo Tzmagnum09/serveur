@@ -65,7 +65,7 @@ class AppFixtures extends Fixture
         $manager->persist($superAdmin);
         $manager->flush();
 
-        // Initialiser les templates d'emails
+        // Initialiser les templates d'emails - maintenant la méthode est publique
         $this->emailService->initializeDefaultTemplates();
 
         // Créer quelques utilisateurs de test
