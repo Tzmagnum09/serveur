@@ -145,6 +145,7 @@ admin:
         dashboard: "Dashboard"
         users: "Benutzer"
         email_templates: "E-Mail-Vorlagen"
+        translations: "Übersetzungen"
         super_admin: "Super Admin"
         super_dashboard: "Super Dashboard"
     users:
@@ -242,6 +243,28 @@ admin:
             created: "Die E-Mail-Vorlage wurde erfolgreich erstellt."
             updated: "Die E-Mail-Vorlage wurde erfolgreich aktualisiert."
             deleted: "Die E-Mail-Vorlage wurde erfolgreich gelöscht."
+    translations:
+        title: "Übersetzungsverwaltung"
+        tables_list: "Tabellenliste"
+        table_title: "Tabelle %table%"
+        edit_title: "Übersetze %table% (Feld: %field%)"
+        help_text: "Wählen Sie eine Tabelle aus, um ihre Übersetzungen zu verwalten. Sie können jedes Textfeld in mehrere Sprachen übersetzen."
+        items_list: "Elementliste"
+        no_tables: "Keine Tabellen für die Übersetzung verfügbar."
+        no_items: "Keine Elemente in dieser Tabelle gefunden."
+        select_field: "Feld auswählen"
+        actions: "Aktionen"
+        translate: "Übersetzen"
+        translate_field: "Feld %field% übersetzen"
+        original_content: "Originalinhalt"
+        content: "Inhalt"
+        translations: "Übersetzungen"
+        current_locale: "Aktuelle Sprache"
+        back_btn: "Zurück"
+        cancel_btn: "Abbrechen"
+        save_btn: "Speichern"
+        flash:
+            updated: "Übersetzungen wurden erfolgreich aktualisiert."
 
 # Super-Verwaltung
 super_admin:

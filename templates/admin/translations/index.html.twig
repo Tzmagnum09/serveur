@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'admin.translations.title'|trans }}{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+    <h5 class="mb-4">{{ 'admin.sidebar.title'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
+                <i class="fas fa-tachometer-alt me-2"></i> {{ 'admin.sidebar.dashboard'|trans }}
+            </a>
+        </li>
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'manage_users') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_users') }}">
+                <i class="fas fa-users me-2"></i> {{ 'admin.sidebar.users'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'edit_email_templates') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_email_templates') }}">
+                <i class="fas fa-envelope me-2"></i> {{ 'admin.sidebar.email_templates'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_admin_translations') }}">
+                <i class="fas fa-language me-2"></i> {{ 'admin.sidebar.translations'|trans }}
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <h5 class="mb-3 mt-4">{{ 'admin.sidebar.super_admin'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_super_admin_dashboard') }}">
+                <i class="fas fa-shield-alt me-2"></i> {{ 'admin.sidebar.super_dashboard'|trans }}
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'admin.translations.title'|trans }}</h1>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">{{ 'admin.translations.tables_list'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                {{ 'admin.translations.help_text'|trans }}
+            </div>
+            
+            <div class="list-group mt-4">
+                {% for table in tables %}
+                    <a href="{{ path('app_admin_translations_table', {'table': table}) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-table me-2"></i>
+                            <strong>{{ table }}</strong>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </a>
+                {% else %}
+                    <div class="alert alert-warning">
+                        {{ 'admin.translations.no_tables'|trans }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

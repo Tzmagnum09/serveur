@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'admin.translations.edit_title'|trans({'%table%': table, '%field%': field}) }}{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+    <h5 class="mb-4">{{ 'admin.sidebar.title'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
+                <i class="fas fa-tachometer-alt me-2"></i> {{ 'admin.sidebar.dashboard'|trans }}
+            </a>
+        </li>
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'manage_users') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_users') }}">
+                <i class="fas fa-users me-2"></i> {{ 'admin.sidebar.users'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'edit_email_templates') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_email_templates') }}">
+                <i class="fas fa-envelope me-2"></i> {{ 'admin.sidebar.email_templates'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_admin_translations') }}">
+                <i class="fas fa-language me-2"></i> {{ 'admin.sidebar.translations'|trans }}
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <h5 class="mb-3 mt-4">{{ 'admin.sidebar.super_admin'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_super_admin_dashboard') }}">
+                <i class="fas fa-shield-alt me-2"></i> {{ 'admin.sidebar.super_dashboard'|trans }}
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'admin.translations.edit_title'|trans({'%table%': table, '%field%': field}) }}</h1>
+        <a href="{{ path('app_admin_translations_table', {'table': table}) }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> {{ 'admin.translations.back_btn'|trans }}
+        </a>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">{{ 'admin.translations.original_content'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label class="form-label">{{ 'admin.translations.content'|trans }}</label>
+                <div class="border p-3 bg-light">
+                    {{ originalContent|nl2br }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">{{ 'admin.translations.translations'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% for locale in locales %}
+                    <div class="mb-3">
+                        <label for="translation_{{ locale }}" class="form-label">
+                            {% if locale == 'fr' %}
+                                <span class="badge bg-primary me-2">Français</span>
+                            {% elseif locale == 'nl' %}
+                                <span class="badge bg-primary me-2">Nederlands</span>
+                            {% elseif locale == 'en' %}
+                                <span class="badge bg-primary me-2">English</span>
+                            {% elseif locale == 'de' %}
+                                <span class="badge bg-primary me-2">Deutsch</span>
+                            {% endif %}
+                            {% if locale == app.request.locale %}
+                                <span class="badge bg-success">{{ 'admin.translations.current_locale'|trans }}</span>
+                            {% endif %}
+                        </label>
+                        
+                        {% if originalContent|length > 100 %}
+                            <textarea id="translation_{{ locale }}" name="translation_{{ locale }}" class="form-control" rows="5">{{ translations[locale] is defined ? translations[locale] : '' }}</textarea>
+                        {% else %}
+                            <input type="text" id="translation_{{ locale }}" name="translation_{{ locale }}" class="form-control" value="{{ translations[locale] is defined ? translations[locale] : '' }}">
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                
+                <input type="hidden" name="_token" value="{{ csrf_token('edit-translations' ~ id) }}">
+                
+                <div class="d-flex justify-content-end">
+                    <a href="{{ path('app_admin_translations_table', {'table': table}) }}" class="btn btn-outline-secondary me-2">{{ 'admin.translations.cancel_btn'|trans }}</a>
+                    <button type="submit" class="btn btn-gradient">{{ 'admin.translations.save_btn'|trans }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

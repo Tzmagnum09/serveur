@@ -145,6 +145,7 @@ admin:
         dashboard: "Dashboard"
         users: "Gebruikers"
         email_templates: "E-mailsjablonen"
+        translations: "Vertalingen"
         super_admin: "Super Admin"
         super_dashboard: "Super Dashboard"
     users:
@@ -242,6 +243,28 @@ admin:
             created: "De e-mailsjabloon is succesvol aangemaakt."
             updated: "De e-mailsjabloon is succesvol bijgewerkt."
             deleted: "De e-mailsjabloon is succesvol verwijderd."
+    translations:
+        title: "Vertalingenbeheer"
+        tables_list: "Tabellenlijst"
+        table_title: "Tabel %table%"
+        edit_title: "Vertaal %table% (veld: %field%)"
+        help_text: "Selecteer een tabel om de vertalingen te beheren. U kunt elk tekstveld in meerdere talen vertalen."
+        items_list: "Itemslijst"
+        no_tables: "Geen tabellen beschikbaar voor vertaling."
+        no_items: "Geen items gevonden in deze tabel."
+        select_field: "Selecteer veld"
+        actions: "Acties"
+        translate: "Vertalen"
+        translate_field: "Vertaal veld %field%"
+        original_content: "Originele inhoud"
+        content: "Inhoud"
+        translations: "Vertalingen"
+        current_locale: "Huidige taal"
+        back_btn: "Terug"
+        cancel_btn: "Annuleren"
+        save_btn: "Opslaan"
+        flash:
+            updated: "Vertalingen zijn succesvol bijgewerkt."
 
 # Super Beheer
 super_admin:

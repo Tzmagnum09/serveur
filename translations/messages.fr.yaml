@@ -145,6 +145,7 @@ admin:
         dashboard: "Tableau de bord"
         users: "Utilisateurs"
         email_templates: "Templates d'emails"
+        translations: "Traductions"
         super_admin: "Super Admin"
         super_dashboard: "Super Dashboard"
     users:
@@ -242,6 +243,28 @@ admin:
             created: "Le template d'email a été créé avec succès."
             updated: "Le template d'email a été mis à jour avec succès."
             deleted: "Le template d'email a été supprimé avec succès."
+    translations:
+        title: "Gestion des traductions"
+        tables_list: "Liste des tables"
+        table_title: "Table %table%"
+        edit_title: "Traduire %table% (champ: %field%)"
+        help_text: "Sélectionnez une table pour gérer ses traductions. Vous pouvez traduire n'importe quel champ de texte dans plusieurs langues."
+        items_list: "Liste des éléments"
+        no_tables: "Aucune table disponible pour la traduction."
+        no_items: "Aucun élément trouvé dans cette table."
+        select_field: "Sélectionner un champ"
+        actions: "Actions"
+        translate: "Traduire"
+        translate_field: "Traduire le champ %field%"
+        original_content: "Contenu original"
+        content: "Contenu"
+        translations: "Traductions"
+        current_locale: "Langue actuelle"
+        back_btn: "Retour"
+        cancel_btn: "Annuler"
+        save_btn: "Enregistrer"
+        flash:
+            updated: "Les traductions ont été mises à jour avec succès."
 
 # Super Administration
 super_admin:

@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'admin.translations.table_title'|trans({'%table%': table}) }}{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+    <h5 class="mb-4">{{ 'admin.sidebar.title'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
+                <i class="fas fa-tachometer-alt me-2"></i> {{ 'admin.sidebar.dashboard'|trans }}
+            </a>
+        </li>
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'manage_users') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_users') }}">
+                <i class="fas fa-users me-2"></i> {{ 'admin.sidebar.users'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'edit_email_templates') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_email_templates') }}">
+                <i class="fas fa-envelope me-2"></i> {{ 'admin.sidebar.email_templates'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_admin_translations') }}">
+                <i class="fas fa-language me-2"></i> {{ 'admin.sidebar.translations'|trans }}
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <h5 class="mb-3 mt-4">{{ 'admin.sidebar.super_admin'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_super_admin_dashboard') }}">
+                <i class="fas fa-shield-alt me-2"></i> {{ 'admin.sidebar.super_dashboard'|trans }}
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'admin.translations.table_title'|trans({'%table%': table}) }}</h1>
+        <a href="{{ path('app_admin_translations') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> {{ 'admin.translations.back_btn'|trans }}
+        </a>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">{{ 'admin.translations.items_list'|trans }}</h5>
+            
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-filter me-1"></i> {{ 'admin.translations.select_field'|trans }}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    {% for field in fields %}
+                        <li><a class="dropdown-item" href="{{ path('app_admin_translations_table', {'table': table, 'field': field}) }}">{{ field }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            {% for field in fields %}
+                                <th>{{ field }}</th>
+                            {% endfor %}
+                            <th>{{ 'admin.translations.actions'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                {% for field in fields %}
+                                    <td>
+                                        {% if item[field] is defined and item[field] is not null %}
+                                            {% if item[field]|length > 50 %}
+                                                {{ item[field]|slice(0, 50) }}...
+                                            {% else %}
+                                                {{ item[field] }}
+                                            {% endif %}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                {% endfor %}
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ 'admin.translations.translate'|trans }}
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            {% for field in fields %}
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ path('app_admin_translations_edit', {'table': table, 'id': item.id, 'field': field}) }}">
+                                                        {{ 'admin.translations.translate_field'|trans({'%field%': field}) }}
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="{{ fields|length + 2 }}" class="text-center py-4">{{ 'admin.translations.no_items'|trans }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

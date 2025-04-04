@@ -145,6 +145,7 @@ admin:
         dashboard: "Dashboard"
         users: "Users"
         email_templates: "Email Templates"
+        translations: "Translations"
         super_admin: "Super Admin"
         super_dashboard: "Super Dashboard"
     users:
@@ -242,6 +243,28 @@ admin:
             created: "The email template has been created successfully."
             updated: "The email template has been updated successfully."
             deleted: "The email template has been deleted successfully."
+    translations:
+        title: "Translation Management"
+        tables_list: "Tables List"
+        table_title: "Table %table%"
+        edit_title: "Translate %table% (field: %field%)"
+        help_text: "Select a table to manage its translations. You can translate any text field into multiple languages."
+        items_list: "Items List"
+        no_tables: "No tables available for translation."
+        no_items: "No items found in this table."
+        select_field: "Select Field"
+        actions: "Actions"
+        translate: "Translate"
+        translate_field: "Translate field %field%"
+        original_content: "Original Content"
+        content: "Content"
+        translations: "Translations"
+        current_locale: "Current language"
+        back_btn: "Back"
+        cancel_btn: "Cancel"
+        save_btn: "Save"
+        flash:
+            updated: "Translations have been updated successfully."
 
 # Super Administration
 super_admin:
