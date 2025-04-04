@@ -1,0 +1,60 @@
+{# templates/admin/static_translations/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'admin.static_translations.title'|trans }}{% endblock %}
+
+{% block sidebar %}
+{# Similaire à vos autres pages d'administration #}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'admin.static_translations.title'|trans }}</h1>
+        <a href="{{ path('app_admin_translations') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> {{ 'admin.static_translations.back_btn'|trans }}
+        </a>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">{{ 'admin.static_translations.keys_list'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                {{ 'admin.static_translations.help_text'|trans }}
+            </div>
+            
+            <div class="table-responsive mt-4">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>{{ 'admin.static_translations.key'|trans }}</th>
+                            <th>{{ 'admin.static_translations.value'|trans }}</th>
+                            <th>{{ 'admin.static_translations.actions'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key in keys %}
+                            <tr>
+                                <td>{{ key }}</td>
+                                <td>{{ key|trans }}</td>
+                                <td>
+                                    <a href="{{ path('app_admin_static_translations_edit', {'key': key}) }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-edit me-1"></i> {{ 'admin.static_translations.edit'|trans }}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3" class="text-center py-4">{{ 'admin.static_translations.no_keys'|trans }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

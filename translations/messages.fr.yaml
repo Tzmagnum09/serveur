@@ -263,8 +263,23 @@ admin:
         back_btn: "Retour"
         cancel_btn: "Annuler"
         save_btn: "Enregistrer"
+        static_translations: "Traductions statiques"
         flash:
             updated: "Les traductions ont été mises à jour avec succès."
+    static_translations:
+        title: "Traductions statiques"
+        edit_title: "Modifier la traduction de '%key%'"
+        back_btn: "Retour"
+        keys_list: "Liste des clés de traduction"
+        help_text: "Modifiez les traductions de l'interface du site. Ces modifications sont enregistrées dans les fichiers YAML de traduction."
+        key: "Clé"
+        value: "Valeur"
+        actions: "Actions"
+        edit: "Modifier"
+        no_keys: "Aucune clé de traduction trouvée"
+        edit_form_title: "Modifier les traductions"
+        cancel_btn: "Annuler"
+        save_btn: "Enregistrer"
 
 # Super Administration
 super_admin:

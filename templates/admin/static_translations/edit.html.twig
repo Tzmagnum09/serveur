@@ -1,0 +1,56 @@
+{# templates/admin/static_translations/edit.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'admin.static_translations.edit_title'|trans({'%key%': key}) }}{% endblock %}
+
+{% block sidebar %}
+{# Similaire à vos autres pages d'administration #}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">{{ 'admin.static_translations.edit_title'|trans({'%key%': key}) }}</h1>
+        <a href="{{ path('app_admin_static_translations') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> {{ 'admin.static_translations.back_btn'|trans }}
+        </a>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">{{ 'admin.static_translations.edit_form_title'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% for locale in locales %}
+                    <div class="mb-3">
+                        <label for="translation_{{ locale }}" class="form-label">
+                            {% if locale == 'fr' %}
+                                <span class="badge bg-primary me-2">Français</span>
+                            {% elseif locale == 'nl' %}
+                                <span class="badge bg-primary me-2">Nederlands</span>
+                            {% elseif locale == 'en' %}
+                                <span class="badge bg-primary me-2">English</span>
+                            {% elseif locale == 'de' %}
+                                <span class="badge bg-primary me-2">Deutsch</span>
+                            {% endif %}
+                            {% if locale == app.request.locale %}
+                                <span class="badge bg-success">{{ 'admin.translations.current_locale'|trans }}</span>
+                            {% endif %}
+                        </label>
+                        
+                        <input type="text" id="translation_{{ locale }}" name="translation_{{ locale }}" class="form-control" value="{{ translations[locale] }}">
+                    </div>
+                {% endfor %}
+                
+                <input type="hidden" name="_token" value="{{ csrf_token('edit-static-translation' ~ key) }}">
+                
+                <div class="d-flex justify-content-end">
+                    <a href="{{ path('app_admin_static_translations') }}" class="btn btn-outline-secondary me-2">{{ 'admin.static_translations.cancel_btn'|trans }}</a>
+                    <button type="submit" class="btn btn-gradient">{{ 'admin.static_translations.save_btn'|trans }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

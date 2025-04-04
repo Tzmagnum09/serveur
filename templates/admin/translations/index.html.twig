@@ -51,6 +51,11 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3">{{ 'admin.translations.title'|trans }}</h1>
+        <div>
+            <a href="{{ path('app_admin_static_translations') }}" class="btn btn-outline-primary me-2">
+                <i class="fas fa-language me-1"></i> {{ 'admin.translations.static_translations'|trans }}
+            </a>
+        </div>
     </div>
     
     <div class="card shadow-sm mb-4">

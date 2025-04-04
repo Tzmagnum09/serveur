@@ -46,6 +46,12 @@ services:
         arguments:
             $defaultLocale: '%app.default_locale%'
     
+    # Service for static translations management
+    App\Service\StaticTranslationService:
+        arguments:
+            $projectDir: '%kernel.project_dir%'
+            $availableLocales: '%app.locales%'
+    
     # Locale listeners and subscribers
     App\EventListener\UserLocaleListener:
         tags:
