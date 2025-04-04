@@ -1,39 +1,39 @@
 <?php
+
 namespace App\Controller;
 
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class LocaleController extends AbstractController
 {
     #[Route('/change-locale/{locale}', name: 'change_locale')]
-    public function changeLocale(Request $request, string $locale, EntityManagerInterface $entityManager): Response
+    public function changeLocale(string $locale, Request $request): Response
     {
-        // Vérifier que la locale est valide
-        if (!in_array($locale, ['fr', 'en', 'nl', 'de'])) {
-            $locale = 'fr';
+        // Liste des locales autorisÃ©es
+        $authorizedLocales = ['fr', 'en', 'nl', 'de'];
+
+        // VÃ©rifier si la locale est autorisÃ©e
+        if (!in_array($locale, $authorizedLocales)) {
+            $locale = 'fr'; // Locale par dÃ©faut
         }
-        
-        // Stocker la nouvelle langue dans la session
+
+        // Mettre Ã  jour la session
         $request->getSession()->set('_locale', $locale);
-        
-        // Si l'utilisateur est connecté, mettre à jour sa préférence de langue
+
+        // Si un utilisateur est connectÃ©, mettre Ã  jour sa langue
         $user = $this->getUser();
-        if ($user instanceof User) {
+        if ($user) {
             $user->setLocale($locale);
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $this->getDoctrine()->getManager()->flush();
         }
-        
-        // Rediriger vers la page précédente ou la page d'accueil
+
+        // Rediriger vers la page prÃ©cÃ©dente ou la page d'accueil
         $referer = $request->headers->get('referer');
         return $referer 
-            ? new RedirectResponse($referer) 
+            ? $this->redirect($referer) 
             : $this->redirectToRoute('app_home');
     }
 }

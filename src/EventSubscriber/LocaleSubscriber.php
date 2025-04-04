@@ -5,40 +5,61 @@ namespace App\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class LocaleSubscriber implements EventSubscriberInterface
 {
-    private string $defaultLocale;
+    private $defaultLocale;
+    private $requestStack;
+    private $tokenStorage;
 
-    public function __construct(string $defaultLocale = 'fr')
-    {
+    public function __construct(
+        string $defaultLocale = 'fr', 
+        RequestStack $requestStack, 
+        TokenStorageInterface $tokenStorage
+    ) {
         $this->defaultLocale = $defaultLocale;
+        $this->requestStack = $requestStack;
+        $this->tokenStorage = $tokenStorage;
     }
 
-    public function onKernelRequest(RequestEvent $event): void
+    public function onKernelRequest(RequestEvent $event)
     {
         $request = $event->getRequest();
-        
-        if (!$request->hasPreviousSession()) {
-            return;
+        $session = $request->getSession();
+
+        // 1. Récupérer la langue depuis la session
+        $locale = $session->get('_locale', $this->defaultLocale);
+
+        // 2. Vérifier si un utilisateur est connecté
+        $token = $this->tokenStorage->getToken();
+        if ($token && $token->getUser() instanceof UserInterface) {
+            /** @var UserInterface $user */
+            $user = $token->getUser();
+            
+            // Si l'utilisateur a un paramètre de langue, l'utiliser
+            if (method_exists($user, 'getLocale') && $user->getLocale()) {
+                $locale = $user->getLocale();
+            }
         }
 
-        // Essayez d'abord d'utiliser la locale de l'URL (_locale)
-        if ($locale = $request->attributes->get('_locale')) {
-            $request->getSession()->set('_locale', $locale);
-        } else {
-            // Sinon, utilisez la locale stock�e en session
-            $locale = $request->getSession()->get('_locale', $this->defaultLocale);
+        // 3. Vérifier le paramètre de requête (_locale)
+        if ($request->query->get('_locale')) {
+            $locale = $request->query->get('_locale');
         }
 
+        // 4. Définir la locale pour la requête
         $request->setLocale($locale);
+        $session->set('_locale', $locale);
     }
 
-    public static function getSubscribedEvents(): array
+    public static function getSubscribedEvents()
     {
         return [
-            // Doit �tre ex�cut� AVANT les autres listeners
-            KernelEvents::REQUEST => [['onKernelRequest', 25]],
+            // Doit être appelé avant le LocaleListener de Symfony
+            KernelEvents::REQUEST => [['onKernelRequest', 20]],
         ];
     }
 }
