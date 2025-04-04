@@ -68,15 +68,15 @@
             {{ form_start(form) }}
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        {{ form_widget(form.code, {'value': 'nouveau_template'}) }}
+                        {{ form_row(form.code) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_widget(form.locale) }}
+                        {{ form_row(form.locale) }}
                     </div>
                 </div>
                 
                 <div class="mb-3">
-                    {{ form_widget(form.subject, {'value': 'Nouveau template'}) }}
+                    {{ form_row(form.subject) }}
                 </div>
                 
                 <div class="mb-3">
@@ -162,70 +162,7 @@
                     onImageUpload: function(files) {
                         alert('{{ 'admin.email_templates.editor.no_image_upload'|trans }}');
                     }
-                },
-                code: `
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Nouveau template</title>
-                    <style>
-                        body {
-                            font-family: Arial, sans-serif;
-                            line-height: 1.6;
-                            color: #333;
-                            margin: 0;
-                            padding: 0;
-                        }
-                        .container {
-                            max-width: 600px;
-                            margin: 0 auto;
-                            padding: 20px;
-                        }
-                        .header {
-                            background: linear-gradient(135deg, #8e44ad, #3498db);
-                            color: white;
-                            padding: 20px;
-                            text-align: center;
-                        }
-                        .content {
-                            padding: 20px;
-                            background-color: #f9f9f9;
-                        }
-                        .button {
-                            display: inline-block;
-                            background: linear-gradient(135deg, #8e44ad, #3498db);
-                            color: white;
-                            text-decoration: none;
-                            padding: 10px 20px;
-                            border-radius: 5px;
-                            margin-top: 20px;
-                        }
-                        .footer {
-                            text-align: center;
-                            font-size: 12px;
-                            color: #777;
-                            margin-top: 20px;
-                        }
-                    </style>
-
-                    <div class="container">
-                        <div class="header">
-                            <h1>Nouveau template</h1>
-                        </div>
-                        <div class="content">
-                            <p>Bonjour {{ '{{ firstName }}' }},</p>
-                            <p>Text du nouveau template première ligne.</p>                            <p>Text du nouveau template deuxième ligne.</p>
-                            <p style="text-align: center;">
-                                <a href="#" class="button">Bouton du nouveau template</a>
-                            </p>
-                            <p>Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
-                            <p>Lien</p>
-                            <p>Cordialement,<br>L'équipe Dmqode.be.</p>
-                        </div>
-                        <div class="footer">
-                            <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
-                        </div>
-                    </div>
-                `
+                }
             });
             
             // Variable buttons

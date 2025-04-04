@@ -28,11 +28,20 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         string $selector,
         string $hashedToken
     ): ResetPasswordRequestInterface {
-        // Cleanup old reset password requests for the user
+        // Nettoyer les anciennes requêtes de réinitialisation pour cet utilisateur
         $this->removeResetPasswordRequest($user);
 
-        // Create and persist new reset password request
+        // Créer et persister la nouvelle requête de réinitialisation
         $resetPasswordRequest = new ResetPasswordRequest();
+
+        // Vérifiez que les méthodes existent dans votre entité ResetPasswordRequest
+        if (!method_exists($resetPasswordRequest, 'setUser') ||
+            !method_exists($resetPasswordRequest, 'setExpiresAt') ||
+            !method_exists($resetPasswordRequest, 'setSelector') ||
+            !method_exists($resetPasswordRequest, 'setHashedToken')) {
+            throw new \LogicException('Les méthodes requises ne sont pas définies dans l\'entité ResetPasswordRequest.');
+        }
+
         $resetPasswordRequest->setUser($user);
         $resetPasswordRequest->setExpiresAt($expiresAt);
         $resetPasswordRequest->setSelector($selector);
@@ -45,7 +54,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
     }
 
     /**
-     * Remove all reset password requests for a given user
+     * Supprime toutes les requêtes de réinitialisation de mot de passe pour un utilisateur donné
      */
     public function removeResetPasswordRequest(object $user): void
     {
@@ -58,7 +67,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
     }
 
     /**
-     * Find reset password request by selector
+     * Trouve une requête de réinitialisation par sélecteur
      */
     public function findBySelector(string $selector): ?ResetPasswordRequestInterface
     {

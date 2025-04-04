@@ -89,11 +89,11 @@
                                 <td>{{ item.id }}</td>
                                 {% for field in fields %}
                                     <td>
-                                        {% if item[field] is defined and item[field] is not null %}
-                                            {% if item[field]|length > 50 %}
-                                                {{ item[field]|slice(0, 50) }}...
+                                        {% if attribute(item, field) is defined and attribute(item, field) is not null %}
+                                            {% if attribute(item, field)|length > 50 %}
+                                                {{ attribute(item, field)|slice(0, 50) }}...
                                             {% else %}
-                                                {{ item[field] }}
+                                                {{ attribute(item, field) }}
                                             {% endif %}
                                         {% else %}
                                             -
