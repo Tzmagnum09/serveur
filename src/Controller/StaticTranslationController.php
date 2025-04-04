@@ -1,4 +1,5 @@
-// src/Controller/StaticTranslationController.php
+<?php
+
 namespace App\Controller;
 
 use App\Service\AdminPermissionService;
@@ -14,7 +15,7 @@ class StaticTranslationController extends AbstractController
 {
     private AdminPermissionService $permissionService;
     private StaticTranslationService $translationService;
-    
+
     public function __construct(
         AdminPermissionService $permissionService,
         StaticTranslationService $translationService
@@ -22,7 +23,7 @@ class StaticTranslationController extends AbstractController
         $this->permissionService = $permissionService;
         $this->translationService = $translationService;
     }
-    
+
     #[Route('', name: 'app_admin_static_translations')]
     public function index(): Response
     {
@@ -44,7 +45,7 @@ class StaticTranslationController extends AbstractController
             'keys' => $keys,
         ]);
     }
-    
+
     #[Route('/edit/{key}', name: 'app_admin_static_translations_edit')]
     public function edit(string $key, Request $request, TranslatorInterface $translator): Response
     {

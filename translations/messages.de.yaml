@@ -120,7 +120,7 @@ profile:
         status: "Status"
     status:
         active: "Aktiv"
-        pending_approval: "Wartet auf Freigabe"
+        pending_approval: "Warten auf Freigabe"
         unverified: "Nicht bestätigt"
     flash:
         updated: "Ihr Profil wurde erfolgreich aktualisiert."
@@ -263,8 +263,23 @@ admin:
         back_btn: "Zurück"
         cancel_btn: "Abbrechen"
         save_btn: "Speichern"
+        static_translations: "Statische Übersetzungen"
         flash:
             updated: "Übersetzungen wurden erfolgreich aktualisiert."
+    static_translations:
+        title: "Statische Übersetzungen"
+        edit_title: "Übersetzung von '%key%' bearbeiten"
+        back_btn: "Zurück"
+        keys_list: "Liste der Übersetzungsschlüssel"
+        help_text: "Bearbeiten Sie die Übersetzungen der Website-Oberfläche. Diese Änderungen werden in den YAML-Übersetzungsdateien gespeichert."
+        key: "Schlüssel"
+        value: "Wert"
+        actions: "Aktionen"
+        edit: "Bearbeiten"
+        no_keys: "Keine Übersetzungsschlüssel gefunden"
+        edit_form_title: "Übersetzungen bearbeiten"
+        cancel_btn: "Abbrechen"
+        save_btn: "Speichern"
 
 # Super-Verwaltung
 super_admin:

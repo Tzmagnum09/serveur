@@ -263,8 +263,23 @@ admin:
         back_btn: "Back"
         cancel_btn: "Cancel"
         save_btn: "Save"
+        static_translations: "Static Translations"
         flash:
             updated: "Translations have been updated successfully."
+    static_translations:
+        title: "Static Translations"
+        edit_title: "Edit translation for '%key%'"
+        back_btn: "Back"
+        keys_list: "Translation Keys List"
+        help_text: "Edit site interface translations. These changes are saved in the YAML translation files."
+        key: "Key"
+        value: "Value"
+        actions: "Actions"
+        edit: "Edit"
+        no_keys: "No translation keys found"
+        edit_form_title: "Edit Translations"
+        cancel_btn: "Cancel"
+        save_btn: "Save"
 
 # Super Administration
 super_admin:

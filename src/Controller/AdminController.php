@@ -39,26 +39,19 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         
-        // Get pending approvals if admin has permission
-        $pendingApprovals = [];
+        // Récupérer les utilisateurs en attente d'approbation 
+        // Seulement si l'admin a la permission
+        $pending_approvals = [];
         if ($this->permissionService->hasPermission($admin, 'approve_users')) {
-            $pendingApprovals = $userRepository->findPendingApproval();
+            $pending_approvals = $userRepository->findPendingApproval();
         }
         
-        // Calculate total user count
-        $user_count = $userRepository->count([]);
-        
-        // Calculate approved user count
-        $approved_user_count = $userRepository->count(['isVerified' => true, 'isApproved' => true]);
-        
-        // Calculate email template count
-        $email_template_count = $emailTemplateRepository->count([]);
-        
         return $this->render('admin/dashboard.html.twig', [
-            'pendingApprovals' => $pendingApprovals,
-            'user_count' => $user_count,
-            'approved_user_count' => $approved_user_count,
-            'email_template_count' => $email_template_count,
+            'pending_approvals' => $pending_approvals,
+            'user_count' => $userRepository->count([]),
+            'approved_count' => $userRepository->count(['isVerified' => true, 'isApproved' => true]),
+            'template_count' => $emailTemplateRepository->count([]),
+            'permission_service' => $this->permissionService
         ]);
     }
     
@@ -71,9 +64,9 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         
-        // Check if admin has permission
+        // Vérifier la permission de gestion des utilisateurs
         if (!$this->permissionService->hasPermission($admin, 'manage_users')) {
-            $this->addFlash('error', 'Vous n\'avez pas les permissions n�cessaires.');
+            $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
             return $this->redirectToRoute('app_admin_dashboard');
         }
         
@@ -81,6 +74,7 @@ class AdminController extends AbstractController
         
         return $this->render('admin/users.html.twig', [
             'users' => $users,
+            'permission_service' => $this->permissionService
         ]);
     }
     
@@ -97,13 +91,13 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         
-        // Check if admin has permission
+        // Vérifier la permission de gestion des utilisateurs
         if (!$this->permissionService->hasPermission($admin, 'manage_users')) {
-            $this->addFlash('error', 'Vous n\'avez pas les permissions n�cessaires.');
+            $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
             return $this->redirectToRoute('app_admin_dashboard');
         }
         
-        // Check if trying to edit a super admin
+        // Empêcher la modification d'un super admin par un admin standard
         if ($user->isSuperAdmin() && !$admin->isSuperAdmin()) {
             $this->addFlash('error', 'Vous ne pouvez pas modifier un super administrateur.');
             return $this->redirectToRoute('app_admin_users');
@@ -123,6 +117,7 @@ class AdminController extends AbstractController
         return $this->render('admin/user_edit.html.twig', [
             'user' => $user,
             'userForm' => $form->createView(),
+            'permission_service' => $this->permissionService
         ]);
     }
     
@@ -139,29 +134,29 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         
-        // Check if admin has permission
+        // Vérifier la permission d'approbation des utilisateurs
         if (!$this->permissionService->hasPermission($admin, 'approve_users')) {
-            $this->addFlash('error', 'Vous n\'avez pas les permissions n�cessaires.');
+            $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
             return $this->redirectToRoute('app_admin_dashboard');
         }
         
-        // Validate user is verified but not approved
+        // Valider que l'utilisateur est vérifié mais pas encore approuvé
         if (!$user->isVerified() || $user->isApproved()) {
-            $this->addFlash('error', 'Cet utilisateur ne peut pas �tre approuv�.');
+            $this->addFlash('error', 'Cet utilisateur ne peut pas être approuvé.');
             return $this->redirectToRoute('app_admin_dashboard');
         }
         
-        // Approve user
+        // Approuver l'utilisateur
         $user->setIsApproved(true);
         $user->setApprovedAt(new \DateTimeImmutable());
         $userRepository->save($user, true);
         
-        // Send approval email
+        // Envoyer un email d'approbation
         $this->emailService->sendEmailToUser('account_approved', $user);
         
         $this->addFlash('success', $translator->trans('admin.user.flash.approved'));
         
-        // Redirect back to the referring page
+        // Rediriger vers la page précédente
         $referer = $request->headers->get('referer');
         if ($referer) {
             return $this->redirect($referer);

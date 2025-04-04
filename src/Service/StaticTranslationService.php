@@ -1,4 +1,5 @@
-// src/Service/StaticTranslationService.php
+<?php
+
 namespace App\Service;
 
 use Symfony\Component\Yaml\Yaml;
