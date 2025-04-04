@@ -25,6 +25,13 @@
             </a>
         </li>
         {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_translations') }}">
+                <i class="fas fa-language me-2"></i> {{ 'admin.sidebar.translations'|trans }}
+            </a>
+        </li>
+        {% endif %}
     </ul>
     
     {% if is_granted('ROLE_SUPER_ADMIN') %}
@@ -77,18 +84,10 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {% if localeTemplates['fr'] is defined %}
-                                        <a href="{{ path('app_admin_email_template_preview', {'id': localeTemplates['fr'].id}) }}" target="_blank" class="badge bg-primary me-1" style="text-decoration: none;">FR</a>
-                                    {% endif %}
-                                    {% if localeTemplates['nl'] is defined %}
-                                        <a href="{{ path('app_admin_email_template_preview', {'id': localeTemplates['nl'].id}) }}" target="_blank" class="badge bg-primary me-1" style="text-decoration: none;">NL</a>
-                                    {% endif %}
-                                    {% if localeTemplates['en'] is defined %}
-                                        <a href="{{ path('app_admin_email_template_preview', {'id': localeTemplates['en'].id}) }}" target="_blank" class="badge bg-primary me-1" style="text-decoration: none;">EN</a>
-                                    {% endif %}
-                                    {% if localeTemplates['de'] is defined %}
-                                        <a href="{{ path('app_admin_email_template_preview', {'id': localeTemplates['de'].id}) }}" target="_blank" class="badge bg-primary me-1" style="text-decoration: none;">DE</a>
-                                    {% endif %}
+                                    {% if localeTemplates['fr'] is defined %}<span class="badge bg-primary me-1">FR</span>{% endif %}
+                                    {% if localeTemplates['nl'] is defined %}<span class="badge bg-primary me-1">NL</span>{% endif %}
+                                    {% if localeTemplates['en'] is defined %}<span class="badge bg-primary me-1">EN</span>{% endif %}
+                                    {% if localeTemplates['de'] is defined %}<span class="badge bg-primary me-1">DE</span>{% endif %}
                                 </td>
                                 <td>
                                     {% if localeTemplates['fr'] is defined and localeTemplates['fr'].updatedAt %}
@@ -102,65 +101,54 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Modifier
+                                            {{ 'admin.email_templates.manage'|trans }}
                                         </button>
                                         <ul class="dropdown-menu">
-                                            {# Français #}
-                                            {% if localeTemplates['fr'] is defined %}
+                                            {% for locale, template in localeTemplates %}
                                                 <li>
-                                                    <a class="dropdown-item" href="{{ path('app_admin_email_template_edit', {'id': localeTemplates['fr'].id}) }}">
-                                                        Français
+                                                    <a class="dropdown-item" href="{{ path('app_admin_email_template_edit', {'id': template.id}) }}">
+                                                        {{ 'admin.email_templates.edit'|trans }} ({{ locale|upper }})
                                                     </a>
                                                 </li>
-                                            {% else %}
+                                                {% if is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'preview_email_templates') %}
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ path('app_admin_email_template_preview', {'id': template.id}) }}" target="_blank">
+                                                        {{ 'admin.email_templates.preview'|trans }} ({{ locale|upper }})
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                            
+                                            <li><hr class="dropdown-divider"></li>
+                                            
+                                            {% if not localeTemplates['fr'] is defined %}
                                                 <li>
                                                     <a class="dropdown-item" href="{{ path('app_admin_email_template_new', {'code': code, 'locale': 'fr'}) }}">
-                                                        + Français
+                                                        {{ 'admin.email_templates.add_translation'|trans }} (FR)
                                                     </a>
                                                 </li>
                                             {% endif %}
                                             
-                                            {# Néerlandais #}
-                                            {% if localeTemplates['nl'] is defined %}
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ path('app_admin_email_template_edit', {'id': localeTemplates['nl'].id}) }}">
-                                                        Néerlandais
-                                                    </a>
-                                                </li>
-                                            {% else %}
+                                            {% if not localeTemplates['nl'] is defined %}
                                                 <li>
                                                     <a class="dropdown-item" href="{{ path('app_admin_email_template_new', {'code': code, 'locale': 'nl'}) }}">
-                                                        + Néerlandais
+                                                        {{ 'admin.email_templates.add_translation'|trans }} (NL)
                                                     </a>
                                                 </li>
                                             {% endif %}
                                             
-                                            {# Anglais #}
-                                            {% if localeTemplates['en'] is defined %}
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ path('app_admin_email_template_edit', {'id': localeTemplates['en'].id}) }}">
-                                                        Anglais
-                                                    </a>
-                                                </li>
-                                            {% else %}
+                                            {% if not localeTemplates['en'] is defined %}
                                                 <li>
                                                     <a class="dropdown-item" href="{{ path('app_admin_email_template_new', {'code': code, 'locale': 'en'}) }}">
-                                                        + Anglais
+                                                        {{ 'admin.email_templates.add_translation'|trans }} (EN)
                                                     </a>
                                                 </li>
                                             {% endif %}
                                             
-                                            {# Allemand #}
-                                            {% if localeTemplates['de'] is defined %}
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ path('app_admin_email_template_edit', {'id': localeTemplates['de'].id}) }}">
-                                                        Allemand
-                                                    </a>
-                                                </li>
-                                            {% else %}
+                                            {% if not localeTemplates['de'] is defined %}
                                                 <li>
                                                     <a class="dropdown-item" href="{{ path('app_admin_email_template_new', {'code': code, 'locale': 'de'}) }}">
-                                                        + Allemand
+                                                        {{ 'admin.email_templates.add_translation'|trans }} (DE)
                                                     </a>
                                                 </li>
                                             {% endif %}
@@ -195,7 +183,6 @@
                     <li><code>{{ '{{ email }}' }}</code> - {{ 'admin.email_templates.variables.email'|trans }}</li>
                     <li><code>{{ '{{ domain }}' }}</code> - {{ 'admin.email_templates.variables.domain'|trans }}</li>
                     <li><code>{{ '{{ token }}' }}</code> - {{ 'admin.email_templates.variables.token'|trans }}</li>
-                    <li><code>{{ '{{ signedUrl }}' }}</code> - {{ 'admin.email_templates.variables.token'|trans }}</li>
                     <li><code>{{ '{{ resetToken }}' }}</code> - {{ 'admin.email_templates.variables.resetToken'|trans }}</li>
                 </ul>
             </div>

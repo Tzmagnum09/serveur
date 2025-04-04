@@ -25,6 +25,13 @@
             </a>
         </li>
         {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_translations') }}">
+                <i class="fas fa-language me-2"></i> {{ 'admin.sidebar.translations'|trans }}
+            </a>
+        </li>
+        {% endif %}
     </ul>
     
     {% if is_granted('ROLE_SUPER_ADMIN') %}

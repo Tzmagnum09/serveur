@@ -25,6 +25,13 @@
             </a>
         </li>
         {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_translations') }}">
+                <i class="fas fa-language me-2"></i> {{ 'admin.sidebar.translations'|trans }}
+            </a>
+        </li>
+        {% endif %}
     </ul>
     
     {% if is_granted('ROLE_SUPER_ADMIN') %}
@@ -46,120 +53,76 @@
         <h1 class="h3">{{ 'admin.dashboard.title'|trans }}</h1>
     </div>
     
-    {% if pendingApprovals|length > 0 and (is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'approve_users')) %}
-    <div class="card shadow-sm mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">{{ 'admin.dashboard.pending_approvals'|trans }}</h5>
-            <span class="badge bg-primary">{{ pendingApprovals|length }}</span>
-        </div>
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                    <thead>
-                        <tr>
-                            <th>{{ 'admin.users.name'|trans }}</th>
-                            <th>{{ 'admin.users.email'|trans }}</th>
-                            <th>{{ 'admin.users.registered_at'|trans }}</th>
-                            <th>{{ 'admin.users.actions'|trans }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in pendingApprovals %}
-                            <tr>
-                                <td>{{ user.fullName }}</td>
-                                <td>{{ user.email }}</td>
-                                <td>{{ user.createdAt|date('d/m/Y H:i') }}</td>
-                                <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-outline-primary">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <form method="post" action="{{ path('app_admin_user_approve', {'id': user.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'admin.users.confirm_approve'|trans }}')">
-                                            <button type="submit" class="btn btn-outline-success">
-                                                <i class="fas fa-check"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    
-    <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4">
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
             <div class="stats-card">
                 <div class="stats-icon">
                     <i class="fas fa-users"></i>
                 </div>
                 <div class="stats-info">
                     <div class="stats-title">{{ 'admin.dashboard.stats.total_users'|trans }}</div>
-                    <div class="stats-value">{{ user_count }}</div>
+                    <div class="stats-value">{{ user_count|default(0) }}</div>
                 </div>
             </div>
         </div>
         
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-md-3 mb-3">
             <div class="stats-card">
                 <div class="stats-icon">
                     <i class="fas fa-user-check"></i>
                 </div>
                 <div class="stats-info">
                     <div class="stats-title">{{ 'admin.dashboard.stats.approved_users'|trans }}</div>
-                    <div class="stats-value">{{ approved_user_count }}</div>
+                    <div class="stats-value">{{ approved_count|default(0) }}</div>
                 </div>
             </div>
         </div>
         
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-md-3 mb-3">
             <div class="stats-card">
                 <div class="stats-icon">
                     <i class="fas fa-user-clock"></i>
                 </div>
                 <div class="stats-info">
                     <div class="stats-title">{{ 'admin.dashboard.stats.pending_users'|trans }}</div>
-                    <div class="stats-value">{{ pendingApprovals|length }}</div>
+                    <div class="stats-value">{{ pending_approvals|length }}</div>
                 </div>
             </div>
         </div>
         
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-md-3 mb-3">
             <div class="stats-card">
                 <div class="stats-icon">
                     <i class="fas fa-envelope-open-text"></i>
                 </div>
                 <div class="stats-info">
                     <div class="stats-title">{{ 'admin.dashboard.stats.email_templates'|trans }}</div>
-                    <div class="stats-value">{{ email_template_count }}</div>
+                    <div class="stats-value">{{ template_count|default(0) }}</div>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <div class="card shadow-sm">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm mb-4">
                 <div class="card-header">
                     <h5 class="mb-0">{{ 'admin.dashboard.quick_links'|trans }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        {% if is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'manage_users') %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'manage_users') %}
                         <div class="col-md-4 mb-3">
-                            <a href="{{ path('app_admin_users') }}" class="btn btn-gradient w-100 py-3">
+                            <a href="{{ path('app_admin_users') }}" class="btn btn-outline-primary w-100 p-3">
                                 <i class="fas fa-users fa-2x mb-2"></i><br>
                                 {{ 'admin.dashboard.manage_users'|trans }}
                             </a>
                         </div>
                         {% endif %}
                         
-                        {% if is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'edit_email_templates') %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'edit_email_templates') %}
                         <div class="col-md-4 mb-3">
-                            <a href="{{ path('app_admin_email_templates') }}" class="btn btn-gradient w-100 py-3">
+                            <a href="{{ path('app_admin_email_templates') }}" class="btn btn-outline-primary w-100 p-3">
                                 <i class="fas fa-envelope fa-2x mb-2"></i><br>
                                 {{ 'admin.dashboard.manage_templates'|trans }}
                             </a>
@@ -168,15 +131,58 @@
                         
                         {% if is_granted('ROLE_SUPER_ADMIN') %}
                         <div class="col-md-4 mb-3">
-                            <a href="{{ path('app_super_admin_dashboard') }}" class="btn btn-gradient w-100 py-3">
-                                <i class="fas fa-user-shield fa-2x mb-2"></i><br>
+                            <a href="{{ path('app_super_admin_dashboard') }}" class="btn btn-outline-danger w-100 p-3">
+                                <i class="fas fa-shield-alt fa-2x mb-2"></i><br>
                                 {{ 'admin.dashboard.super_admin'|trans }}
+                            </a>
+                        </div>
+                        {% endif %}
+                        
+                        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
+                        <div class="col-md-4 mb-3">
+                            <a href="{{ path('app_admin_translations') }}" class="btn btn-outline-primary w-100 p-3">
+                                <i class="fas fa-language fa-2x mb-2"></i><br>
+                                {{ 'admin.sidebar.translations'|trans }}
                             </a>
                         </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="col-md-4">
+            {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'approve_users') %}
+            <div class="card shadow-sm mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">{{ 'admin.dashboard.pending_approvals'|trans }}</h5>
+                    <span class="badge bg-warning text-dark rounded-pill">{{ pending_approvals|length }}</span>
+                </div>
+                <div class="card-body">
+                    {% if pending_approvals is empty %}
+                        <p class="text-muted text-center mb-0">{{ 'admin.users.no_users'|trans }}</p>
+                    {% else %}
+                        <div class="list-group">
+                            {% for user in pending_approvals %}
+                                <div class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>{{ user.fullName }}</strong><br>
+                                            <small class="text-muted">{{ user.email }}</small>
+                                        </div>
+                                        <form method="post" action="{{ path('app_admin_user_approve', {'id': user.id}) }}" onsubmit="return confirm('{{ 'admin.users.confirm_approve'|trans }}')">
+                                            <button type="submit" class="btn btn-sm btn-success">
+                                                <i class="fas fa-check me-1"></i> {{ 'admin.user_edit.approve_btn'|trans }}
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

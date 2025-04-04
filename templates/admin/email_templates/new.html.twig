@@ -1,402 +1,175 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}{{ 'admin.email_template_new.title'|trans }}{% endblock %}
+
 {% block stylesheets %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css">
-<style>
-:root {
-    --primary-gradient: linear-gradient(135deg, #8e44ad, #3498db);
-}
-.btn-gradient {
-    background: var(--primary-gradient);
-    color: white;
-    border: none;
-}
-.btn-gradient:hover {
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-.card-header {
-    background: var(--primary-gradient);
-    color: white;
-}
-</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css">
 {% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+    <h5 class="mb-4">{{ 'admin.sidebar.title'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
+                <i class="fas fa-tachometer-alt me-2"></i> {{ 'admin.sidebar.dashboard'|trans }}
+            </a>
+        </li>
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'manage_users') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_users') }}">
+                <i class="fas fa-users me-2"></i> {{ 'admin.sidebar.users'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'edit_email_templates') %}
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ path('app_admin_email_templates') }}">
+                <i class="fas fa-envelope me-2"></i> {{ 'admin.sidebar.email_templates'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_translations') }}">
+                <i class="fas fa-language me-2"></i> {{ 'admin.sidebar.translations'|trans }}
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <h5 class="mb-3 mt-4">{{ 'admin.sidebar.super_admin'|trans }}</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_super_admin_dashboard') }}">
+                <i class="fas fa-shield-alt me-2"></i> {{ 'admin.sidebar.super_dashboard'|trans }}
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3">Nouveau template d'email</h1>
+        <h1 class="h3">{{ 'admin.email_template_new.title'|trans }}</h1>
         <a href="{{ path('app_admin_email_templates') }}" class="btn btn-outline-secondary">
-            <i class="fas fa-arrow-left me-1"></i> Retour
+            <i class="fas fa-arrow-left me-1"></i> {{ 'admin.email_template_new.back_btn'|trans }}
         </a>
     </div>
+    
     <div class="card shadow-sm mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Créer un nouveau template d'email</h5>
-            <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-file-alt me-1"></i> Modèles
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                    <li><button class="dropdown-item" type="button" id="insert-generic-template">
-                        <i class="fas fa-file-code me-2"></i>Modèle générique
-                    </button></li>
-                    <li><button class="dropdown-item" type="button" id="insert-confirmation-template">
-                        <i class="fas fa-envelope me-2"></i>Confirmation d'inscription
-                    </button></li>
-                    <li><button class="dropdown-item" type="button" id="insert-reset-password-template">
-                        <i class="fas fa-key me-2"></i>Réinitialisation de mot de passe
-                    </button></li>
-                </ul>
-            </div>
+        <div class="card-header">
+            <h5 class="mb-0">{{ 'admin.email_template_new.form_title'|trans }}</h5>
         </div>
         <div class="card-body">
-            <form id="email-template-form" method="post">
+            {{ form_start(form) }}
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label class="form-label">Code</label>
-                        <input type="text" class="form-control" id="template-code" name="code" value="new_template">  
+                        {{ form_row(form.code) }}
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Langue</label>
-                        <select class="form-select" name="locale">
-                            <option value="fr" selected>Français</option>
-                            <option value="en">English</option>
-                            <option value="nl">Nederlands</option>
-                            <option value="de">Deutsch</option>
-                        </select>
+                        {{ form_row(form.locale) }}
                     </div>
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">Sujet</label>
-                    <input type="text" class="form-control" id="template-subject" name="subject" value="Exemple de nouveau template">
+                    {{ form_row(form.subject) }}
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">Contenu HTML</label>
-                    <textarea id="summernote" class="form-control html-editor" name="htmlContent"></textarea>
-                    <small class="form-text text-muted">Vous pouvez utiliser des variables comme {{ '{{ firstName }}' }}, {{ '{{ lastName }}' }}, {{ '{{ domain }}' }}, etc.</small>
+                    {{ form_label(form.htmlContent) }}
+                    {{ form_widget(form.htmlContent, {'attr': {'class': 'html-editor form-control'}}) }}
+                    {{ form_help(form.htmlContent) }}
+                    {{ form_errors(form.htmlContent) }}
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">Contenu texte (optionnel)</label>
-                    <textarea class="form-control" name="textContent" rows="4"></textarea>
+                    {{ form_row(form.textContent) }}
                 </div>
                 
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h6 class="mb-0">Variables disponibles</h6>
+                        <h6 class="mb-0">{{ 'admin.email_templates.variables.title'|trans }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            {% set variables = [
-                                'firstName', 'lastName', 'fullName', 'email', 
-                                'domain', 'token', 'resetToken', 'companyName'
-                            ] %}
-                            {% for variable in variables %}
-                            <div class="col-md-3 col-sm-6 mb-2">
-                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="{{ variable }}">
-                                    {{ variable }}
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="firstName">
+                                    {{ 'admin.email_templates.variables.firstName'|trans }}
                                 </button>
                             </div>
-                            {% endfor %}
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="lastName">
+                                    {{ 'admin.email_templates.variables.lastName'|trans }}
+                                </button>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="fullName">
+                                    {{ 'admin.email_templates.variables.fullName'|trans }}
+                                </button>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="email">
+                                    {{ 'admin.email_templates.variables.email'|trans }}
+                                </button>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="domain">
+                                    {{ 'admin.email_templates.variables.domain'|trans }}
+                                </button>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="token">
+                                    {{ 'admin.email_templates.variables.token'|trans }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="d-flex justify-content-end">
-                    <a href="{{ path('app_admin_email_templates') }}" class="btn btn-outline-secondary me-2">Annuler</a>
-                    <button type="submit" class="btn btn-gradient">Enregistrer</button>
+                    <a href="{{ path('app_admin_email_templates') }}" class="btn btn-outline-secondary me-2">{{ 'admin.email_template_new.cancel_btn'|trans }}</a>
+                    <button type="submit" class="btn btn-gradient">{{ 'admin.email_template_new.save_btn'|trans }}</button>
                 </div>
-            </form>
+            {{ form_end(form) }}
         </div>
     </div>
 </div>
 {% endblock %}
+
 {% block javascripts %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
-<script>
-$(document).ready(function() {
-    // Initialisation de Summernote
-    $('#summernote').summernote({
-        height: 500,
-        toolbar: [
-            ['style', ['style']],
-            ['font', ['bold', 'italic', 'underline', 'clear']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link']],
-            ['view', ['fullscreen', 'codeview']]
-        ],
-        callbacks: {
-            onImageUpload: function(files) {
-                alert('L\'upload d\'images n\'est pas pris en charge. Utilisez des liens vers des images externes.');
-            }
-        }
-    });
-
-    // Insertion de variables
-    $('.variable-btn').on('click', function() {
-        const variable = $(this).data('variable');
-        $('#summernote').summernote('insertText', '{{ "{{" }} ' + variable + ' {{ "}}" }}');
-    });
-
-    // Boutons pour les modèles
-    document.getElementById('insert-generic-template').addEventListener('click', function() {
-        insertGenericTemplate();
-    });
-
-    document.getElementById('insert-confirmation-template').addEventListener('click', function() {
-        insertConfirmationTemplate();
-    });
-
-    document.getElementById('insert-reset-password-template').addEventListener('click', function() {
-        insertResetPasswordTemplate();
-    });
-
-    // Fonctions pour insérer les modèles
-    function insertGenericTemplate() {
-        document.getElementById('template-code').value = 'generic_template';
-        document.getElementById('template-subject').value = 'Message important de DMQode';
-        
-        const template = `<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ '{{' }} subject }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .content {
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-            padding: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>{{ '{{' }} subject }}</h1>
-        </div>
-        <div class="content">
-            <p>Bonjour {{ '{{' }} firstName }},</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize HTML editor
+            $('.html-editor').summernote({
+                height: 300,
+                placeholder: '{{ 'admin.email_templates.editor.placeholder'|trans }}',
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onImageUpload: function(files) {
+                        alert('{{ 'admin.email_templates.editor.no_image_upload'|trans }}');
+                    }
+                }
+            });
             
-            <p>Votre contenu ici...</p>
-            
-            <p>Cordialement,<br>L'équipe DMQode</p>
-        </div>
-        <div class="footer">
-            <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
-            <p>&copy; 2025 DMQode.be - Tous droits réservés</p>
-        </div>
-    </div>
-</body>
-</html>`;
-        
-        $('#summernote').summernote('code', template);
-    }
-
-    function insertConfirmationTemplate() {
-        document.getElementById('template-code').value = 'registration_confirmation';
-        document.getElementById('template-subject').value = 'Confirmation de votre inscription';
-        
-        const template = `<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmation de votre inscription</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .content {
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .button {
-            display: inline-block;
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Confirmation de votre inscription</h1>
-        </div>
-        <div class="content">
-            <p>Bonjour {{ '{{' }} firstName }},</p>
-            
-            <p>Merci de vous être inscrit sur notre site. Pour confirmer votre adresse email, veuillez cliquer sur le bouton ci-dessous.</p>
-            
-            <p style="text-align: center;">
-                <a href="https://{{ '{{' }} domain }}/verify/email?token={{ '{{' }} token }}" class="button">Confirmer mon adresse email</a>
-            </p>
-            
-            <p>Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
-            <p>https://{{ '{{' }} domain }}/verify/email?token={{ '{{' }} token }}</p>
-            
-            <p>Ce lien expirera dans 24 heures.</p>
-            
-            <p>Si vous n'avez pas créé de compte, veuillez ignorer cet email.</p>
-            
-            <p>Cordialement,<br>L'équipe DMQode</p>
-        </div>
-        <div class="footer">
-            <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
-            <p>&copy; 2025 DMQode.be - Tous droits réservés</p>
-        </div>
-    </div>
-</body>
-</html>`;
-        
-        $('#summernote').summernote('code', template);
-    }
-
-    function insertResetPasswordTemplate() {
-        document.getElementById('template-code').value = 'reset_password';
-        document.getElementById('template-subject').value = 'Réinitialisation de votre mot de passe';
-        
-        const template = `<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Réinitialisation de votre mot de passe</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .content {
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .button {
-            display: inline-block;
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Réinitialisation de votre mot de passe</h1>
-        </div>
-        <div class="content">
-            <p>Bonjour {{ '{{' }} firstName }},</p>
-            
-            <p>Nous avons reçu une demande de réinitialisation de mot de passe pour votre compte. Pour définir un nouveau mot de passe, cliquez sur le bouton ci-dessous.</p>
-            
-            <p style="text-align: center;">
-                <a href="https://{{ '{{' }} domain }}/reset-password/reset?token={{ '{{' }} resetToken }}" class="button">Réinitialiser mon mot de passe</a>
-            </p>
-            
-            <p>Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
-            <p>https://{{ '{{' }} domain }}/reset-password/reset?token={{ '{{' }} resetToken }}</p>
-            
-            <p>Ce lien expirera dans 1 heure.</p>
-            
-            <p>Si vous n'avez pas demandé de réinitialisation de mot de passe, veuillez ignorer cet email.</p>
-            
-            <p>Cordialement,<br>L'équipe DMQode</p>
-        </div>
-        <div class="footer">
-            <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
-            <p>&copy; 2025 DMQode.be - Tous droits réservés</p>
-        </div>
-    </div>
-</body>
-</html>`;
-        
-        $('#summernote').summernote('code', template);
-    }
-
-    // Prévenir la soumission du formulaire sur les boutons d'insertion
-    $('#email-template-form button:not([type="submit"])').on('click', function(e) {
-        e.preventDefault();
-    });
-});
-</script>
+            // Variable buttons
+            $('.variable-btn').on('click', function() {
+                const variable = $(this).data('variable');
+                $('.html-editor').summernote('insertText', '{{ '{{' }} ' + variable + ' {{ '}}' }}');
+            });
+        });
+    </script>
 {% endblock %}

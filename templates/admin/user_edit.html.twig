@@ -25,6 +25,13 @@
             </a>
         </li>
         {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin_translations') }}">
+                <i class="fas fa-language me-2"></i> {{ 'admin.sidebar.translations'|trans }}
+            </a>
+        </li>
+        {% endif %}
     </ul>
     
     {% if is_granted('ROLE_SUPER_ADMIN') %}
@@ -191,7 +198,6 @@
                             <div class="mb-3 form-check">
                                 {{ form_widget(userForm.isApproved, {'attr': {'class': 'form-check-input'}}) }}
                                 {{ form_label(userForm.isApproved, null, {'label_attr': {'class': 'form-check-label'}}) }}
-                                {{ form_errors(userForm.isApproved) }}
                             </div>
                         {% endif %}
                         
