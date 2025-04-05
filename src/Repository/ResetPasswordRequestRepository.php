@@ -43,7 +43,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         $resetPasswordRequest = new ResetPasswordRequest();
         $resetPasswordRequest->setUser($user);
 
-        // Ces méthodes sont fournies par le trait ResetPasswordRequestTrait
+        // Ces méthodes sont définies dans l'entité ResetPasswordRequest
         $resetPasswordRequest->setExpiresAt($expiresAt);
         $resetPasswordRequest->setSelector($selector);
         $resetPasswordRequest->setHashedToken($hashedToken);
