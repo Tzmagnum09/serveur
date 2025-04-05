@@ -87,6 +87,7 @@
     <parameter key="app.default_locale">fr</parameter>
     <parameter key="app.email_sender">%env(APP_EMAIL)%</parameter>
     <parameter key="app.domain">%env(APP_DOMAIN)%</parameter>
+    <parameter key="app.sender_name">Administrateur Serveur Dmqode.be</parameter>
     <parameter key="app.logo_directory">/var/www/serveur/public/images</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
@@ -512,9 +513,6 @@
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
       <argument type="service" id="translator.default"/>
     </service>
-    <service id="App\Form\ResetPasswordFormType" class="App\Form\ResetPasswordFormType" autowire="true" autoconfigure="true">
-      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
-    </service>
     <service id="App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
@@ -568,6 +566,7 @@
       <argument>fr</argument>
       <argument>%env(APP_EMAIL)%</argument>
       <argument>%env(APP_DOMAIN)%</argument>
+      <argument>Administrateur Serveur Dmqode.be</argument>
     </service>
     <service id="App\Service\StaticTranslationService" class="App\Service\StaticTranslationService" autowire="true" autoconfigure="true">
       <argument>/var/www/serveur</argument>
@@ -1517,7 +1516,6 @@
         <argument>App\Form\EmailTemplateFormType</argument>
         <argument>App\Form\ProfileFormType</argument>
         <argument>App\Form\RegistrationFormType</argument>
-        <argument>App\Form\ResetPasswordFormType</argument>
         <argument>App\Form\ResetPasswordRequestFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -3704,7 +3702,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.MTcNI_9"/>
+      <argument type="service" id=".service_locator.qXenjql"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3807,7 +3805,6 @@
         <argument key="App\Form\EmailTemplateFormType">submit</argument>
         <argument key="App\Form\ProfileFormType">submit</argument>
         <argument key="App\Form\RegistrationFormType">submit</argument>
-        <argument key="App\Form\ResetPasswordFormType">submit</argument>
         <argument key="App\Form\ResetPasswordRequestFormType">submit</argument>
       </argument>
     </service>
@@ -6992,8 +6989,6 @@
     <service id=".abstract.instanceof.App\Form\ProfileFormType" class="App\Form\ProfileFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ResetPasswordFormType" class="App\Form\ResetPasswordFormType" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Form\ResetPasswordFormType" class="App\Form\ResetPasswordFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\MessageHandler\SendEmailMessageHandler.0.App\MessageHandler\SendEmailMessageHandler" class="App\MessageHandler\SendEmailMessageHandler" autowire="true" abstract="true"/>
@@ -7967,7 +7962,7 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.MTcNI_9" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.qXenjql" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AdminPermissionsFormType" type="service_closure" id="App\Form\AdminPermissionsFormType"/>
@@ -7976,7 +7971,6 @@
         <argument key="App\Form\EmailTemplateFormType" type="service_closure" id="App\Form\EmailTemplateFormType"/>
         <argument key="App\Form\ProfileFormType" type="service_closure" id="App\Form\ProfileFormType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
-        <argument key="App\Form\ResetPasswordFormType" type="service_closure" id="App\Form\ResetPasswordFormType"/>
         <argument key="App\Form\ResetPasswordRequestFormType" type="service_closure" id="App\Form\ResetPasswordRequestFormType"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
