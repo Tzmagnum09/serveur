@@ -23,6 +23,15 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     private ?User $user = null;
 
     #[ORM\Column(type: 'datetime')]
+    private \DateTimeInterface $expiresAt;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    private string $selector;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    private string $hashedToken;
+
+    #[ORM\Column(type: 'datetime')]
     private \DateTimeInterface $createdAt;
 
     public function __construct()
@@ -43,6 +52,42 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getExpiresAt(): \DateTimeInterface
+    {
+        return $this->expiresAt;
+    }
+
+    public function setExpiresAt(\DateTimeInterface $expiresAt): self
+    {
+        $this->expiresAt = $expiresAt;
+
+        return $this;
+    }
+
+    public function getSelector(): string
+    {
+        return $this->selector;
+    }
+
+    public function setSelector(string $selector): self
+    {
+        $this->selector = $selector;
+
+        return $this;
+    }
+
+    public function getHashedToken(): string
+    {
+        return $this->hashedToken;
+    }
+
+    public function setHashedToken(string $hashedToken): self
+    {
+        $this->hashedToken = $hashedToken;
 
         return $this;
     }
