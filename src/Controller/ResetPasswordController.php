@@ -161,7 +161,7 @@ class ResetPasswordController extends AbstractController
             'reset_password',
             $user,
             [
-                'resetToken' => $resetToken->getUrl(), // Assurez-vous que la méthode getUrl() existe
+                'resetToken' => $resetToken->getUrl(),
                 'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
             ]
         );

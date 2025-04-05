@@ -21,11 +21,16 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?User $user = null;
 
-    // Ne pas redéfinir ces propriétés qui sont déjà dans le trait:
-    // $selector, $hashedToken, $requestedAt, $expiresAt
-
-    // Aucun constructeur spécifique n'est nécessaire ici
-    // Le trait ResetPasswordRequestTrait fournit déjà l'initialisation requise via sa méthode initialize()
+    /**
+     * Méthode publique pour initialiser la demande de réinitialisation
+     */
+    public function initializeRequest(
+        \DateTimeInterface $expiresAt,
+        string $selector,
+        string $hashedToken
+    ): void {
+        $this->initialize($expiresAt, $selector, $hashedToken, new \DateTimeImmutable());
+    }
 
     public function getId(): ?int
     {
