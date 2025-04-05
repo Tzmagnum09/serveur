@@ -45,9 +45,14 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         // Crée et configure une nouvelle requête de réinitialisation
         $resetPasswordRequest = new ResetPasswordRequest();
         $resetPasswordRequest->setUser($user);
-        $resetPasswordRequest->setExpiresAt($expiresAt); // Méthode ajoutée
-        $resetPasswordRequest->setSelector($selector);
-        $resetPasswordRequest->setHashedToken($hashedToken);
+        
+        // Initialiser ResetPasswordRequestTrait
+        $resetPasswordRequest->initialize(
+            $expiresAt,
+            $selector,
+            $hashedToken,
+            new \DateTimeImmutable()
+        );
 
         $this->getEntityManager()->persist($resetPasswordRequest);
         $this->getEntityManager()->flush();

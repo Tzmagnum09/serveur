@@ -21,26 +21,11 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?User $user = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $createdAt;
+    // Ne pas redéfinir ces propriétés qui sont déjà dans le trait:
+    // $selector, $hashedToken, $requestedAt, $expiresAt
 
-    // Ajout des propriétés requises avec leurs annotations ORM
-    #[ORM\Column(type: 'string', length: 20)]
-    private string $selector;
-
-    #[ORM\Column(type: 'string', length: 100)]
-    private string $hashedToken;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $requestedAt;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $expiresAt;
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTimeImmutable();
-    }
+    // Aucun constructeur spécifique n'est nécessaire ici
+    // Le trait ResetPasswordRequestTrait fournit déjà l'initialisation requise via sa méthode initialize()
 
     public function getId(): ?int
     {
@@ -55,60 +40,6 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     public function setUser(object $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    // Méthodes manquantes pour le sélecteur
-    public function getSelector(): string
-    {
-        return $this->selector;
-    }
-
-    public function setSelector(string $selector): self
-    {
-        $this->selector = $selector;
-
-        return $this;
-    }
-
-    // Méthodes manquantes pour le token haché
-    public function getHashedToken(): string
-    {
-        return $this->hashedToken;
-    }
-
-    public function setHashedToken(string $hashedToken): self
-    {
-        $this->hashedToken = $hashedToken;
-
-        return $this;
-    }
-
-    // Méthodes manquantes pour la date de demande
-    public function getRequestedAt(): \DateTimeImmutable
-    {
-        return $this->requestedAt;
-    }
-
-    public function setRequestedAt(\DateTimeInterface $requestedAt): self
-    {
-        $this->requestedAt = \DateTimeImmutable::createFromInterface($requestedAt);
-
-        return $this;
-    }
-
-    /**
-     * Met à jour la date d'expiration.
-     */
-    public function setExpiresAt(\DateTimeInterface $expiresAt): self
-    {
-        $this->expiresAt = \DateTimeImmutable::createFromInterface($expiresAt);
 
         return $this;
     }

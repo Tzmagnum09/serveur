@@ -28,6 +28,13 @@ services:
 
     # add more service definitions when explicit configuration is needed
     
+    # Service email verifier for registration
+    App\Security\EmailVerifier:
+        arguments:
+            $helper: '@SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface'
+            $mailer: '@mailer.mailer'
+            $manager: '@doctrine.orm.entity_manager'
+    
     # Service for email templates management
     App\Service\EmailTemplateService:
         arguments:

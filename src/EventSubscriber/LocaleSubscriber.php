@@ -16,9 +16,9 @@ class LocaleSubscriber implements EventSubscriberInterface
     private $tokenStorage;
 
     public function __construct(
-        string $defaultLocale = 'fr', 
         RequestStack $requestStack, 
-        TokenStorageInterface $tokenStorage
+        TokenStorageInterface $tokenStorage,
+        string $defaultLocale = 'fr'
     ) {
         $this->defaultLocale = $defaultLocale;
         $this->requestStack = $requestStack;

@@ -489,9 +489,9 @@
     <service id="App\EventSubscriber\LocaleSubscriber" class="App\EventSubscriber\LocaleSubscriber" autowire="true" autoconfigure="true">
       <tag name="kernel.event_subscriber"/>
       <tag name="container.hot_path"/>
-      <argument>fr</argument>
       <argument type="service" id="request_stack"/>
       <argument type="service" id="security.token_storage"/>
+      <argument>fr</argument>
     </service>
     <service id="App\Form\AdminPermissionsFormType" class="App\Form\AdminPermissionsFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
