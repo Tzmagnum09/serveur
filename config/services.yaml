@@ -8,6 +8,7 @@ parameters:
     app.default_locale: 'fr'
     app.email_sender: '%env(APP_EMAIL)%'
     app.domain: '%env(APP_DOMAIN)%'
+    app.sender_name: 'Administrateur Serveur Dmqode.be'
     app.logo_directory: '%kernel.project_dir%/public/images'
 
 services:
@@ -35,6 +36,7 @@ services:
             $defaultLocale: '%app.default_locale%'
             $emailSender: '%app.email_sender%'
             $domain: '%app.domain%'
+            $senderName: '%app.sender_name%'
             
     # Service for admin permissions management
     App\Service\AdminPermissionService:
