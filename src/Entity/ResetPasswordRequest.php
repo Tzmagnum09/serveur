@@ -24,9 +24,6 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $expiresAt;
-
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -52,16 +49,5 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
-    }
-
-    public function getExpiresAt(): \DateTimeImmutable
-    {
-        return $this->expiresAt;
-    }
-
-    public function setExpiresAt(\DateTimeInterface $expiresAt): self
-    {
-        $this->expiresAt = \DateTimeImmutable::createFromInterface($expiresAt);
-        return $this;
     }
 }
