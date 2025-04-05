@@ -22,30 +22,33 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         parent::__construct($registry, ResetPasswordRequest::class);
     }
 
+    /**
+     * Crée une nouvelle requête de réinitialisation de mot de passe pour un utilisateur.
+     * Supprime les anciennes requêtes liées à cet utilisateur avant d'en créer une nouvelle.
+     *
+     * @throws \InvalidArgumentException Si l'utilisateur fourni n'est pas valide.
+     */
     public function createResetPasswordRequest(
         object $user,
         \DateTimeInterface $expiresAt,
         string $selector,
         string $hashedToken
     ): ResetPasswordRequestInterface {
-        // Nettoyer les anciennes requêtes de réinitialisation pour cet utilisateur
-        $this->removeResetPasswordRequest($user);
-
-        // Créer et persister la nouvelle requête de réinitialisation
-        $resetPasswordRequest = new ResetPasswordRequest();
-
-        // Vérifiez que les méthodes existent dans votre entité ResetPasswordRequest
-        if (!method_exists($resetPasswordRequest, 'setUser') ||
-            !method_exists($resetPasswordRequest, 'setExpiresAt') ||
-            !method_exists($resetPasswordRequest, 'setSelector') ||
-            !method_exists($resetPasswordRequest, 'setHashedToken')) {
-            throw new \LogicException('Les méthodes requises ne sont pas définies dans l\'entité ResetPasswordRequest.');
+        // Vérifie que l'objet utilisateur est valide
+        if (!$user instanceof User) {
+            throw new \InvalidArgumentException('Expected an instance of User.');
         }
 
-        $resetPasswordRequest->setUser($user);
-        $resetPasswordRequest->setExpiresAt($expiresAt);
-        $resetPasswordRequest->setSelector($selector);
-        $resetPasswordRequest->setHashedToken($hashedToken);
+        // Supprime les anciennes requêtes pour cet utilisateur
+        $this->removeResetPasswordRequest($user);
+
+        // Crée et persiste une nouvelle requête de réinitialisation
+        $resetPasswordRequest = new ResetPasswordRequest();
+        $resetPasswordRequest
+            ->setUser($user)
+            ->setExpiresAt($expiresAt)
+            ->setSelector($selector)
+            ->setHashedToken($hashedToken);
 
         $this->getEntityManager()->persist($resetPasswordRequest);
         $this->getEntityManager()->flush();
@@ -54,10 +57,14 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
     }
 
     /**
-     * Supprime toutes les requêtes de réinitialisation de mot de passe pour un utilisateur donné
+     * Supprime toutes les requêtes de réinitialisation de mot de passe pour un utilisateur donné.
      */
     public function removeResetPasswordRequest(object $user): void
     {
+        if (!$user instanceof User) {
+            throw new \InvalidArgumentException('Expected an instance of User.');
+        }
+
         $this->createQueryBuilder('r')
             ->delete()
             ->where('r.user = :user')
@@ -67,7 +74,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
     }
 
     /**
-     * Trouve une requête de réinitialisation par sélecteur
+     * Trouve une requête de réinitialisation de mot de passe par son sélecteur unique.
      */
     public function findBySelector(string $selector): ?ResetPasswordRequestInterface
     {
