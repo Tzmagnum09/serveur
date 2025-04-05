@@ -178,7 +178,10 @@ class __TwigTemplate_2a03cfe5108b0005fbdb43e0952d9792 extends Template
                         </a>
                     </li>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"#\">
+                        <a class=\"nav-link\" href=\"";
+            // line 63
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
+            yield "\">
                             <i class=\"fas fa-user-plus me-1\"></i> ";
             // line 64
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("navbar.register"), "html", null, true);
@@ -281,7 +284,7 @@ class __TwigTemplate_2a03cfe5108b0005fbdb43e0952d9792 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  246 => 98,  238 => 93,  230 => 88,  222 => 83,  217 => 80,  213 => 78,  211 => 77,  208 => 76,  206 => 75,  203 => 74,  201 => 73,  198 => 72,  196 => 71,  191 => 68,  184 => 64,  176 => 59,  172 => 58,  169 => 57,  160 => 51,  156 => 50,  148 => 45,  144 => 44,  137 => 40,  133 => 38,  131 => 37,  126 => 34,  119 => 30,  111 => 29,  108 => 28,  106 => 27,  103 => 26,  96 => 22,  88 => 21,  85 => 20,  83 => 19,  76 => 15,  68 => 14,  53 => 4,  49 => 3,  45 => 1,);
+        return array (  249 => 98,  241 => 93,  233 => 88,  225 => 83,  220 => 80,  216 => 78,  214 => 77,  211 => 76,  209 => 75,  206 => 74,  204 => 73,  201 => 72,  199 => 71,  194 => 68,  187 => 64,  183 => 63,  176 => 59,  172 => 58,  169 => 57,  160 => 51,  156 => 50,  148 => 45,  144 => 44,  137 => 40,  133 => 38,  131 => 37,  126 => 34,  119 => 30,  111 => 29,  108 => 28,  106 => 27,  103 => 26,  96 => 22,  88 => 21,  85 => 20,  83 => 19,  76 => 15,  68 => 14,  53 => 4,  49 => 3,  45 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -348,7 +351,7 @@ class __TwigTemplate_2a03cfe5108b0005fbdb43e0952d9792 extends Template
                         </a>
                     </li>
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"#\">
+                        <a class=\"nav-link\" href=\"{{ path('app_register') }}\">
                             <i class=\"fas fa-user-plus me-1\"></i> {{ 'navbar.register'|trans }}
                         </a>
                     </li>
