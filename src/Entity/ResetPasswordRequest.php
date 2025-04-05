@@ -24,6 +24,19 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
 
+    // Ajout des propriétés requises avec leurs annotations ORM
+    #[ORM\Column(type: 'string', length: 20)]
+    private string $selector;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    private string $hashedToken;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $requestedAt;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $expiresAt;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -49,6 +62,45 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    // Méthodes manquantes pour le sélecteur
+    public function getSelector(): string
+    {
+        return $this->selector;
+    }
+
+    public function setSelector(string $selector): self
+    {
+        $this->selector = $selector;
+
+        return $this;
+    }
+
+    // Méthodes manquantes pour le token haché
+    public function getHashedToken(): string
+    {
+        return $this->hashedToken;
+    }
+
+    public function setHashedToken(string $hashedToken): self
+    {
+        $this->hashedToken = $hashedToken;
+
+        return $this;
+    }
+
+    // Méthodes manquantes pour la date de demande
+    public function getRequestedAt(): \DateTimeImmutable
+    {
+        return $this->requestedAt;
+    }
+
+    public function setRequestedAt(\DateTimeInterface $requestedAt): self
+    {
+        $this->requestedAt = \DateTimeImmutable::createFromInterface($requestedAt);
+
+        return $this;
     }
 
     /**
