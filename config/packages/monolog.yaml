@@ -1,0 +1,186 @@
+monolog:
+    channels:
+        - deprecation # Déprécations par défaut
+
+when@dev:
+    monolog:
+        handlers:
+            main:
+                type: stream
+                path: "%kernel.logs_dir%/%kernel.environment%.log"
+                level: debug
+                channels: ["!event", "!deprecation"]
+            
+            # Fichiers de log séparés par niveau
+            debug_file:
+                type: stream
+                path: "%kernel.logs_dir%/debug.log"
+                level: debug
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                
+            info_file:
+                type: stream
+                path: "%kernel.logs_dir%/info.log"
+                level: info
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                
+            notice_file:
+                type: stream
+                path: "%kernel.logs_dir%/notice.log"
+                level: notice
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                
+            warning_file:
+                type: stream
+                path: "%kernel.logs_dir%/warning.log"
+                level: warning
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                
+            error_file:
+                type: stream
+                path: "%kernel.logs_dir%/error.log"
+                level: error
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                
+            critical_file:
+                type: stream
+                path: "%kernel.logs_dir%/critical.log"
+                level: critical
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                
+            alert_file:
+                type: stream
+                path: "%kernel.logs_dir%/alert.log"
+                level: alert
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                
+            emergency_file:
+                type: stream
+                path: "%kernel.logs_dir%/emergency.log"
+                level: emergency
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                
+            # Fichier spécifique pour les événements de doctrine
+            doctrine_file:
+                type: stream
+                path: "%kernel.logs_dir%/doctrine.log"
+                level: debug
+                channels: ["doctrine"]
+                
+            # Fichier de déprécation
+            deprecation_file:
+                type: stream
+                path: "%kernel.logs_dir%/deprecation.log"
+                channels: ["deprecation"]
+                
+            console:
+                type: console
+                process_psr_3_messages: false
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+
+when@test:
+    monolog:
+        handlers:
+            main:
+                type: fingers_crossed
+                action_level: error
+                handler: nested
+                excluded_http_codes: [404, 405]
+                channels: ["!event", "!deprecation"]
+            nested:
+                type: stream
+                path: "%kernel.logs_dir%/%kernel.environment%.log"
+                level: debug
+
+when@prod:
+    monolog:
+        handlers:
+            main:
+                type: fingers_crossed
+                action_level: error
+                handler: nested
+                excluded_http_codes: [404, 405]
+                buffer_size: 50 # Combien de messages garder en mémoire
+                
+            nested:
+                type: stream
+                path: "%kernel.logs_dir%/%kernel.environment%.log"
+                level: debug
+                formatter: monolog.formatter.json
+            
+            # Fichiers de log séparés par niveau
+            debug_file:
+                type: stream
+                path: "%kernel.logs_dir%/debug.log"
+                level: debug
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                formatter: monolog.formatter.json
+                
+            info_file:
+                type: stream
+                path: "%kernel.logs_dir%/info.log"
+                level: info
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                formatter: monolog.formatter.json
+                
+            notice_file:
+                type: stream
+                path: "%kernel.logs_dir%/notice.log"
+                level: notice
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                formatter: monolog.formatter.json
+                
+            warning_file:
+                type: stream
+                path: "%kernel.logs_dir%/warning.log"
+                level: warning
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                formatter: monolog.formatter.json
+                
+            error_file:
+                type: stream
+                path: "%kernel.logs_dir%/error.log"
+                level: error
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                formatter: monolog.formatter.json
+                
+            critical_file:
+                type: stream
+                path: "%kernel.logs_dir%/critical.log"
+                level: critical
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                formatter: monolog.formatter.json
+                
+            alert_file:
+                type: stream
+                path: "%kernel.logs_dir%/alert.log"
+                level: alert
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                formatter: monolog.formatter.json
+                
+            emergency_file:
+                type: stream
+                path: "%kernel.logs_dir%/emergency.log"
+                level: emergency
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
+                formatter: monolog.formatter.json
+                
+            # Fichier spécifique pour les événements de doctrine
+            doctrine_file:
+                type: stream
+                path: "%kernel.logs_dir%/doctrine.log"
+                level: debug
+                channels: ["doctrine"]
+                formatter: monolog.formatter.json
+                
+            # Fichier de déprécation
+            deprecation:
+                type: stream
+                path: "%kernel.logs_dir%/deprecation.log"
+                channels: ["deprecation"]
+                formatter: monolog.formatter.json
+                
+            console:
+                type: console
+                process_psr_3_messages: false
+                channels: ["!event", "!doctrine", "!console", "!deprecation"]
