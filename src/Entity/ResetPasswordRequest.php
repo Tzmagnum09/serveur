@@ -50,4 +50,14 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     {
         return $this->createdAt;
     }
+
+    /**
+     * Met à jour la date d'expiration.
+     */
+    public function setExpiresAt(\DateTimeInterface $expiresAt): self
+    {
+        $this->expiresAt = \DateTimeImmutable::createFromInterface($expiresAt);
+
+        return $this;
+    }
 }

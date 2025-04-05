@@ -39,14 +39,13 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         // Récupère et supprime les anciennes requêtes liées à cet utilisateur
         $resetPasswordRequests = $this->findBy(['user' => $user]);
         foreach ($resetPasswordRequests as $resetPasswordRequest) {
-            $this->removeResetPasswordRequest($resetPasswordRequest); // Passe ResetPasswordRequest
+            $this->removeResetPasswordRequest($resetPasswordRequest);
         }
 
-        // Crée et persiste une nouvelle requête de réinitialisation
+        // Crée et configure une nouvelle requête de réinitialisation
         $resetPasswordRequest = new ResetPasswordRequest();
         $resetPasswordRequest->setUser($user);
-
-        $resetPasswordRequest->setExpiresAt($expiresAt);
+        $resetPasswordRequest->setExpiresAt($expiresAt); // Méthode ajoutée
         $resetPasswordRequest->setSelector($selector);
         $resetPasswordRequest->setHashedToken($hashedToken);
 
