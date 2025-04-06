@@ -399,10 +399,76 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
             // Initialize HTML editor
             \$('.html-editor').summernote({
                 height: 300,
-                placeholder: '";
-        // line 151
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.editor.placeholder"), "html", null, true);
-        yield "',
+                placeholder: '<meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Confirmation de votre inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+        }
+    </style>
+
+
+    <div class=\"container\" fgid=\"290438\">
+        <div class=\"header\" fgid=\"290444\">
+            <h1 fgid=\"290450\">Confirmation de votre inscription</h1>
+        </div>
+        <div class=\"content\" fgid=\"290457\">
+            <p fgid=\"290463\">Bonjour,</p>
+            
+            <p fgid=\"290470\">Text 1</p><p fgid=\"290470\">, Text 2.</p>
+            
+            <p style=\"text-align: center;\" fgid=\"290477\">
+                <a href=\"\" class=\"button\" fgid=\"290483\">Bouton nouveau formulaire</a>
+            </p>
+            
+            <p fgid=\"290491\">Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
+            <p fgid=\"290498\">Lien nouveau formulaire</p>
+            
+            <p fgid=\"290505\">Ce lien expirera dans X heures.</p>
+            
+            <p fgid=\"290512\">Text 3.</p>
+            
+            <p fgid=\"290519\">Cordialement,<br fgid=\"290526\">L'équipe Dmqode.be.</p>
+        </div>
+        <div class=\"footer\" fgid=\"290533\">
+            <p fgid=\"290539\">Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+        </div>
+    </div>',
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
@@ -415,7 +481,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                 callbacks: {
                     onImageUpload: function(files) {
                         alert('";
-        // line 163
+        // line 232
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.editor.no_image_upload"), "html", null, true);
         yield "');
                     }
@@ -426,7 +492,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
             \$('.variable-btn').on('click', function() {
                 const variable = \$(this).data('variable');
                 \$('.html-editor').summernote('insertText', '";
-        // line 171
+        // line 240
         yield "{{";
         yield " ' + variable + ' ";
         yield "}}";
@@ -462,7 +528,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  430 => 171,  419 => 163,  404 => 151,  395 => 144,  385 => 143,  372 => 137,  367 => 135,  361 => 134,  350 => 126,  342 => 121,  334 => 116,  326 => 111,  318 => 106,  310 => 101,  301 => 95,  293 => 90,  286 => 86,  282 => 85,  278 => 84,  274 => 83,  267 => 79,  259 => 74,  253 => 71,  247 => 68,  241 => 65,  232 => 59,  228 => 58,  224 => 57,  220 => 55,  210 => 54,  201 => 51,  193 => 46,  189 => 45,  182 => 42,  180 => 41,  176 => 39,  169 => 35,  165 => 34,  162 => 33,  159 => 32,  152 => 28,  148 => 27,  145 => 26,  142 => 25,  135 => 21,  131 => 20,  128 => 19,  126 => 18,  120 => 15,  116 => 14,  110 => 11,  107 => 10,  97 => 9,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  496 => 240,  485 => 232,  395 => 144,  385 => 143,  372 => 137,  367 => 135,  361 => 134,  350 => 126,  342 => 121,  334 => 116,  326 => 111,  318 => 106,  310 => 101,  301 => 95,  293 => 90,  286 => 86,  282 => 85,  278 => 84,  274 => 83,  267 => 79,  259 => 74,  253 => 71,  247 => 68,  241 => 65,  232 => 59,  228 => 58,  224 => 57,  220 => 55,  210 => 54,  201 => 51,  193 => 46,  189 => 45,  182 => 42,  180 => 41,  176 => 39,  169 => 35,  165 => 34,  162 => 33,  159 => 32,  152 => 28,  148 => 27,  145 => 26,  142 => 25,  135 => 21,  131 => 20,  128 => 19,  126 => 18,  120 => 15,  116 => 14,  110 => 11,  107 => 10,  97 => 9,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -617,7 +683,76 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
             // Initialize HTML editor
             \$('.html-editor').summernote({
                 height: 300,
-                placeholder: '{{ 'admin.email_templates.editor.placeholder'|trans }}',
+                placeholder: '<meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Confirmation de votre inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+        }
+    </style>
+
+
+    <div class=\"container\" fgid=\"290438\">
+        <div class=\"header\" fgid=\"290444\">
+            <h1 fgid=\"290450\">Confirmation de votre inscription</h1>
+        </div>
+        <div class=\"content\" fgid=\"290457\">
+            <p fgid=\"290463\">Bonjour,</p>
+            
+            <p fgid=\"290470\">Text 1</p><p fgid=\"290470\">, Text 2.</p>
+            
+            <p style=\"text-align: center;\" fgid=\"290477\">
+                <a href=\"\" class=\"button\" fgid=\"290483\">Bouton nouveau formulaire</a>
+            </p>
+            
+            <p fgid=\"290491\">Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
+            <p fgid=\"290498\">Lien nouveau formulaire</p>
+            
+            <p fgid=\"290505\">Ce lien expirera dans X heures.</p>
+            
+            <p fgid=\"290512\">Text 3.</p>
+            
+            <p fgid=\"290519\">Cordialement,<br fgid=\"290526\">L'équipe Dmqode.be.</p>
+        </div>
+        <div class=\"footer\" fgid=\"290533\">
+            <p fgid=\"290539\">Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+        </div>
+    </div>',
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],

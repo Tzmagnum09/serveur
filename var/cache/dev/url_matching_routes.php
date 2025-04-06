@@ -17,7 +17,6 @@ return [
         '/profile/edit' => [[['_route' => 'app_profile_edit', '_controller' => 'App\\Controller\\ProfileController::edit'], null, null, null, false, false, null]],
         '/profile/change-password' => [[['_route' => 'app_profile_change_password', '_controller' => 'App\\Controller\\ProfileController::changePassword'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
-        '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
         '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, null, null, false, false, null]],
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
@@ -26,6 +25,7 @@ return [
         '/conditions' => [[['_route' => 'app_terms', '_controller' => 'App\\Controller\\TermsController::index'], null, null, null, false, false, null]],
         '/admin/translations' => [[['_route' => 'app_admin_translations', '_controller' => 'App\\Controller\\TranslationController::index'], null, null, null, true, false, null]],
         '/logout' => [[['_route' => 'app_logout'], null, ['GET' => 0], null, false, false, null]],
+        '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

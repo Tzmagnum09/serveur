@@ -89,7 +89,6 @@ registration:
         confirm_password_placeholder: "Wiederholen Sie Ihr Passwort"
         agree_terms: "Ich akzeptiere die Nutzungsbedingungen"
         accept: "Ich akzeptiere"
-		close: "Schließen"
     validation:
         email_required: "Bitte geben Sie eine E-Mail-Adresse ein"
         username_required: "Bitte geben Sie einen Benutzernamen ein"

@@ -36,12 +36,17 @@ class RegistrationController extends AbstractController
         EntityManagerInterface $entityManager,
         TranslatorInterface $translator
     ): Response {
+        // Si l'utilisateur est déjà connecté, le rediriger vers la page d'accueil
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+        
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            // Encoder le mot de passe
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -49,32 +54,40 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            // Set default role
+            // Définir les rôles par défaut
             $user->setRoles(['ROLE_USER']);
             
-            $entityManager->persist($user);
-            $entityManager->flush();
+            try {
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            // generate a signed url and email it to the user
-            $signatureComponents = $this->emailVerifier->generateSignature(
-                'app_verify_email',
-                $user->getId(),
-                $user->getEmail(),
-                ['id' => $user->getId()]
-            );
-            
-            // Send email using template
-            $this->emailService->sendEmailToUser(
-                'registration_confirmation',
-                $user,
-                [
-                    'signedUrl' => $signatureComponents->getSignedUrl(),
-                ]
-            );
+                // Générer la signature pour la vérification d'email
+                $signatureComponents = $this->emailVerifier->generateSignature(
+                    'app_verify_email',  // Nom de route exact
+                    (string)$user->getId(), // Conversion en string pour être sûr
+                    $user->getEmail(),
+                    ['id' => $user->getId()]
+                );
+                
+                // Envoyer l'email de confirmation
+                $this->emailService->sendEmailToUser(
+                    'registration_confirmation',
+                    $user,
+                    [
+                        'signedUrl' => $signatureComponents->getSignedUrl(),
+                    ]
+                );
 
-            $this->addFlash('success', $translator->trans('registration.flash.check_email'));
+                $this->addFlash('success', $translator->trans('registration.flash.check_email'));
 
-            return $this->redirectToRoute('app_home');
+                return $this->redirectToRoute('app_home');
+            } catch (\Exception $e) {
+                // En cas d'erreur, ajouter un message flash
+                $this->addFlash('error', 'Une erreur est survenue lors de l\'inscription: ' . $e->getMessage());
+                
+                // Log l'erreur pour débogage
+                error_log($e->getMessage());
+            }
         }
 
         return $this->render('registration/register.html.twig', [
@@ -102,7 +115,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
 
-        // validate email confirmation link, sets User::isVerified=true and persists
+        // Valider la confirmation par email
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {
@@ -110,7 +123,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
         
-        // Update verify timestamp
+        // Mettre à jour le timestamp de vérification
         $user->setEmailVerifiedAt(new \DateTimeImmutable());
         $userRepository->save($user, true);
 

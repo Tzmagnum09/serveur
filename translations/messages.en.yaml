@@ -89,7 +89,6 @@ registration:
         confirm_password_placeholder: "Repeat your password"
         agree_terms: "I agree to the terms of service"
         accept: "I Accept"
-		close: "Close"
     validation:
         email_required: "Please enter an email address"
         username_required: "Please enter a username"

@@ -11,6 +11,7 @@
             </div>
             <div class="card-body p-4">
                 {{ form_start(registrationForm) }}
+                {{ form_widget(registrationForm._token) }}
                 
                 <div class="row mb-3">
                     <div class="col-md-6">
@@ -115,6 +116,7 @@
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-gradient">{{ 'registration.register'|trans }}</button>
                 </div>
+                
                 {{ form_end(registrationForm, {'render_rest': false}) }}
             </div>
             <div class="card-footer text-center py-3">

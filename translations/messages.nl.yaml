@@ -89,7 +89,6 @@ registration:
         confirm_password_placeholder: "Herhaal uw wachtwoord"
         agree_terms: "Ik ga akkoord met de gebruiksvoorwaarden"
         accept: "Ik ga akkoord"
-		close: "Sluiten"
     validation:
         email_required: "Voer een e-mailadres in"
         username_required: "Voer een gebruikersnaam in"

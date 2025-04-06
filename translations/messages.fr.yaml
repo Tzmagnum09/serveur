@@ -89,7 +89,6 @@ registration:
         confirm_password_placeholder: "Répétez votre mot de passe"
         agree_terms: "J'accepte les conditions d'utilisation"
         accept: "J'accepte"
-		close: "Fermer"
     validation:
         email_required: "Veuillez entrer une adresse email"
         username_required: "Veuillez entrer un nom d'utilisateur"
