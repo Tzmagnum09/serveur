@@ -89,6 +89,7 @@ registration:
         confirm_password_placeholder: "Herhaal uw wachtwoord"
         agree_terms: "Ik ga akkoord met de gebruiksvoorwaarden"
         accept: "Ik ga akkoord"
+        close: "Sluiten"
     validation:
         email_required: "Voer een e-mailadres in"
         username_required: "Voer een gebruikersnaam in"
@@ -262,6 +263,7 @@ admin:
         add_translation: "Vertaling toevoegen"
         no_templates: "Geen sjablonen gevonden"
         about: "Over e-mailsjablonen"
+        loading: "Voorbeeld laden..."
         variables:
             title: "Beschikbare variabelen"
             description: "U kunt deze variabelen gebruiken in uw e-mailsjablonen. Ze worden vervangen door de werkelijke waarden bij het verzenden."
@@ -289,6 +291,7 @@ admin:
         form_title: "E-mailsjabloon bewerken"
         cancel_btn: "Annuleren"
         save_btn: "Opslaan"
+        close_btn: "Sluiten"
         confirm_delete: "Weet u zeker dat u deze e-mailsjabloon wilt verwijderen?"
     email_template:
         flash:

@@ -89,6 +89,7 @@ registration:
         confirm_password_placeholder: "Repeat your password"
         agree_terms: "I agree to the terms of service"
         accept: "I Accept"
+        close: "Close"
     validation:
         email_required: "Please enter an email address"
         username_required: "Please enter a username"
@@ -262,6 +263,7 @@ admin:
         add_translation: "Add translation"
         no_templates: "No templates found"
         about: "About Email Templates"
+        loading: "Loading preview..."
         variables:
             title: "Available Variables"
             description: "You can use these variables in your email templates. They will be replaced with actual values when sending."
@@ -289,6 +291,7 @@ admin:
         form_title: "Edit Email Template"
         cancel_btn: "Cancel"
         save_btn: "Save"
+        close_btn: "Close"
         confirm_delete: "Are you sure you want to delete this email template?"
     email_template:
         flash:

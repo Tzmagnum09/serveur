@@ -89,6 +89,7 @@ registration:
         confirm_password_placeholder: "Wiederholen Sie Ihr Passwort"
         agree_terms: "Ich akzeptiere die Nutzungsbedingungen"
         accept: "Ich akzeptiere"
+        close: "Schließen"
     validation:
         email_required: "Bitte geben Sie eine E-Mail-Adresse ein"
         username_required: "Bitte geben Sie einen Benutzernamen ein"
@@ -262,6 +263,7 @@ admin:
         add_translation: "Übersetzung hinzufügen"
         no_templates: "Keine Vorlagen gefunden"
         about: "Über E-Mail-Vorlagen"
+        loading: "Vorschau wird geladen..."
         variables:
             title: "Verfügbare Variablen"
             description: "Sie können diese Variablen in Ihren E-Mail-Vorlagen verwenden. Sie werden beim Senden durch tatsächliche Werte ersetzt."
@@ -289,6 +291,7 @@ admin:
         form_title: "E-Mail-Vorlage bearbeiten"
         cancel_btn: "Abbrechen"
         save_btn: "Speichern"
+        close_btn: "Schließen"
         confirm_delete: "Sind Sie sicher, dass Sie diese E-Mail-Vorlage löschen möchten?"
     email_template:
         flash:

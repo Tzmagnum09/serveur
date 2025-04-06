@@ -89,6 +89,7 @@ registration:
         confirm_password_placeholder: "Répétez votre mot de passe"
         agree_terms: "J'accepte les conditions d'utilisation"
         accept: "J'accepte"
+        close: "Fermer"
     validation:
         email_required: "Veuillez entrer une adresse email"
         username_required: "Veuillez entrer un nom d'utilisateur"
@@ -262,6 +263,7 @@ admin:
         add_translation: "Ajouter traduction"
         no_templates: "Aucun template trouvé"
         about: "À propos des templates d'emails"
+        loading: "Chargement de l'aperçu..."
         variables:
             title: "Variables disponibles"
             description: "Vous pouvez utiliser ces variables dans vos templates d'emails. Elles seront remplacées par les valeurs réelles lors de l'envoi."
@@ -289,6 +291,7 @@ admin:
         form_title: "Modifier le template d'email"
         cancel_btn: "Annuler"
         save_btn: "Enregistrer"
+        close_btn: "Fermer"
         confirm_delete: "Êtes-vous sûr de vouloir supprimer ce template d'email ?"
     email_template:
         flash:

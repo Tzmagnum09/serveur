@@ -33,6 +33,7 @@ class __TwigTemplate_28b6266f4ea6bf9a34d80937baa9928e extends Template
             'title' => [$this, 'block_title'],
             'sidebar' => [$this, 'block_sidebar'],
             'body' => [$this, 'block_body'],
+            'javascripts' => [$this, 'block_javascripts'],
         ];
     }
 
@@ -282,141 +283,155 @@ $context["localeTemplates"])) {
                                 <td>
                                     ";
             // line 87
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", true, true, false, 87)) {
-                yield "<span class=\"badge bg-primary me-1\">FR</span>";
+            if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 87, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 87, $this->source); })()), "user", [], "any", false, false, false, 87), "preview_email_templates"], "method", false, false, false, 87))) {
+                // line 88
+                yield "                                        ";
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", true, true, false, 88)) {
+                    // line 89
+                    yield "                                            <a href=\"#\" class=\"badge bg-primary me-1 preview-template\" data-id=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", false, false, false, 89), "id", [], "any", false, false, false, 89), "html", null, true);
+                    yield "\" title=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.preview"), "html", null, true);
+                    yield " (FR)\" data-bs-toggle=\"tooltip\">FR</a>
+                                        ";
+                }
+                // line 91
+                yield "                                        ";
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "nl", [], "array", true, true, false, 91)) {
+                    // line 92
+                    yield "                                            <a href=\"#\" class=\"badge bg-primary me-1 preview-template\" data-id=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "nl", [], "array", false, false, false, 92), "id", [], "any", false, false, false, 92), "html", null, true);
+                    yield "\" title=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.preview"), "html", null, true);
+                    yield " (NL)\" data-bs-toggle=\"tooltip\">NL</a>
+                                        ";
+                }
+                // line 94
+                yield "                                        ";
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "en", [], "array", true, true, false, 94)) {
+                    // line 95
+                    yield "                                            <a href=\"#\" class=\"badge bg-primary me-1 preview-template\" data-id=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "en", [], "array", false, false, false, 95), "id", [], "any", false, false, false, 95), "html", null, true);
+                    yield "\" title=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.preview"), "html", null, true);
+                    yield " (EN)\" data-bs-toggle=\"tooltip\">EN</a>
+                                        ";
+                }
+                // line 97
+                yield "                                        ";
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "de", [], "array", true, true, false, 97)) {
+                    // line 98
+                    yield "                                            <a href=\"#\" class=\"badge bg-primary me-1 preview-template\" data-id=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "de", [], "array", false, false, false, 98), "id", [], "any", false, false, false, 98), "html", null, true);
+                    yield "\" title=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.preview"), "html", null, true);
+                    yield " (DE)\" data-bs-toggle=\"tooltip\">DE</a>
+                                        ";
+                }
+                // line 100
+                yield "                                    ";
+            } else {
+                // line 101
+                yield "                                        ";
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", true, true, false, 101)) {
+                    yield "<span class=\"badge bg-primary me-1\">FR</span>";
+                }
+                // line 102
+                yield "                                        ";
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "nl", [], "array", true, true, false, 102)) {
+                    yield "<span class=\"badge bg-primary me-1\">NL</span>";
+                }
+                // line 103
+                yield "                                        ";
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "en", [], "array", true, true, false, 103)) {
+                    yield "<span class=\"badge bg-primary me-1\">EN</span>";
+                }
+                // line 104
+                yield "                                        ";
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "de", [], "array", true, true, false, 104)) {
+                    yield "<span class=\"badge bg-primary me-1\">DE</span>";
+                }
+                // line 105
+                yield "                                    ";
             }
-            // line 88
-            yield "                                    ";
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "nl", [], "array", true, true, false, 88)) {
-                yield "<span class=\"badge bg-primary me-1\">NL</span>";
-            }
-            // line 89
-            yield "                                    ";
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "en", [], "array", true, true, false, 89)) {
-                yield "<span class=\"badge bg-primary me-1\">EN</span>";
-            }
-            // line 90
-            yield "                                    ";
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "de", [], "array", true, true, false, 90)) {
-                yield "<span class=\"badge bg-primary me-1\">DE</span>";
-            }
-            // line 91
+            // line 106
             yield "                                </td>
                                 <td>
                                     ";
-            // line 93
-            if ((CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", true, true, false, 93) && CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", false, false, false, 93), "updatedAt", [], "any", false, false, false, 93))) {
-                // line 94
+            // line 108
+            if ((CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", true, true, false, 108) && CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", false, false, false, 108), "updatedAt", [], "any", false, false, false, 108))) {
+                // line 109
                 yield "                                        ";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", false, false, false, 94), "updatedAt", [], "any", false, false, false, 94), "d/m/Y H:i"), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", false, false, false, 109), "updatedAt", [], "any", false, false, false, 109), "d/m/Y H:i"), "html", null, true);
                 yield "
                                     ";
-            } elseif ((Twig\Extension\CoreExtension::first($this->env->getCharset(),             // line 95
-$context["localeTemplates"]) && CoreExtension::getAttribute($this->env, $this->source, Twig\Extension\CoreExtension::first($this->env->getCharset(), $context["localeTemplates"]), "updatedAt", [], "any", false, false, false, 95))) {
-                // line 96
+            } elseif ((Twig\Extension\CoreExtension::first($this->env->getCharset(),             // line 110
+$context["localeTemplates"]) && CoreExtension::getAttribute($this->env, $this->source, Twig\Extension\CoreExtension::first($this->env->getCharset(), $context["localeTemplates"]), "updatedAt", [], "any", false, false, false, 110))) {
+                // line 111
                 yield "                                        ";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, Twig\Extension\CoreExtension::first($this->env->getCharset(), $context["localeTemplates"]), "updatedAt", [], "any", false, false, false, 96), "d/m/Y H:i"), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, Twig\Extension\CoreExtension::first($this->env->getCharset(), $context["localeTemplates"]), "updatedAt", [], "any", false, false, false, 111), "d/m/Y H:i"), "html", null, true);
                 yield "
                                     ";
-            } elseif (Twig\Extension\CoreExtension::first($this->env->getCharset(),             // line 97
+            } elseif (Twig\Extension\CoreExtension::first($this->env->getCharset(),             // line 112
 $context["localeTemplates"])) {
-                // line 98
+                // line 113
                 yield "                                        ";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, Twig\Extension\CoreExtension::first($this->env->getCharset(), $context["localeTemplates"]), "createdAt", [], "any", false, false, false, 98), "d/m/Y H:i"), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, Twig\Extension\CoreExtension::first($this->env->getCharset(), $context["localeTemplates"]), "createdAt", [], "any", false, false, false, 113), "d/m/Y H:i"), "html", null, true);
                 yield "
                                     ";
             }
-            // line 100
+            // line 115
             yield "                                </td>
                                 <td>
                                     <div class=\"dropdown\">
                                         <button class=\"btn btn-sm btn-outline-secondary dropdown-toggle\" type=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
                                             ";
-            // line 104
+            // line 119
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.manage"), "html", null, true);
             yield "
                                         </button>
                                         <ul class=\"dropdown-menu\">
                                             ";
-            // line 107
+            // line 122
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable($context["localeTemplates"]);
             foreach ($context['_seq'] as $context["locale"] => $context["template"]) {
-                // line 108
+                // line 123
                 yield "                                                <li>
                                                     <a class=\"dropdown-item\" href=\"";
-                // line 109
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["template"], "id", [], "any", false, false, false, 109)]), "html", null, true);
+                // line 124
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["template"], "id", [], "any", false, false, false, 124)]), "html", null, true);
                 yield "\">
                                                         ";
-                // line 110
+                // line 125
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.edit"), "html", null, true);
                 yield " (";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::upper($this->env->getCharset(), $context["locale"]), "html", null, true);
                 yield ")
                                                     </a>
                                                 </li>
-                                                ";
-                // line 113
-                if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 113, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 113, $this->source); })()), "user", [], "any", false, false, false, 113), "preview_email_templates"], "method", false, false, false, 113))) {
-                    // line 114
-                    yield "                                                <li>
-                                                    <a class=\"dropdown-item\" href=\"";
-                    // line 115
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_preview", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["template"], "id", [], "any", false, false, false, 115)]), "html", null, true);
-                    yield "\" target=\"_blank\">
-                                                        ";
-                    // line 116
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.preview"), "html", null, true);
-                    yield " (";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::upper($this->env->getCharset(), $context["locale"]), "html", null, true);
-                    yield ")
-                                                    </a>
-                                                </li>
-                                                ";
-                }
-                // line 120
-                yield "                                            ";
+                                            ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['locale'], $context['template'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 121
+            // line 129
             yield "                                            
                                             <li><hr class=\"dropdown-divider\"></li>
                                             
                                             ";
-            // line 124
-            if ( !CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", true, true, false, 124)) {
-                // line 125
-                yield "                                                <li>
-                                                    <a class=\"dropdown-item\" href=\"";
-                // line 126
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_new", ["code" => $context["code"], "locale" => "fr"]), "html", null, true);
-                yield "\">
-                                                        ";
-                // line 127
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.add_translation"), "html", null, true);
-                yield " (FR)
-                                                    </a>
-                                                </li>
-                                            ";
-            }
-            // line 131
-            yield "                                            
-                                            ";
             // line 132
-            if ( !CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "nl", [], "array", true, true, false, 132)) {
+            if ( !CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "fr", [], "array", true, true, false, 132)) {
                 // line 133
                 yield "                                                <li>
                                                     <a class=\"dropdown-item\" href=\"";
                 // line 134
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_new", ["code" => $context["code"], "locale" => "nl"]), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_new", ["code" => $context["code"], "locale" => "fr"]), "html", null, true);
                 yield "\">
                                                         ";
                 // line 135
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.add_translation"), "html", null, true);
-                yield " (NL)
+                yield " (FR)
                                                     </a>
                                                 </li>
                                             ";
@@ -425,17 +440,17 @@ $context["localeTemplates"])) {
             yield "                                            
                                             ";
             // line 140
-            if ( !CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "en", [], "array", true, true, false, 140)) {
+            if ( !CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "nl", [], "array", true, true, false, 140)) {
                 // line 141
                 yield "                                                <li>
                                                     <a class=\"dropdown-item\" href=\"";
                 // line 142
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_new", ["code" => $context["code"], "locale" => "en"]), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_new", ["code" => $context["code"], "locale" => "nl"]), "html", null, true);
                 yield "\">
                                                         ";
                 // line 143
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.add_translation"), "html", null, true);
-                yield " (EN)
+                yield " (NL)
                                                     </a>
                                                 </li>
                                             ";
@@ -444,22 +459,41 @@ $context["localeTemplates"])) {
             yield "                                            
                                             ";
             // line 148
-            if ( !CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "de", [], "array", true, true, false, 148)) {
+            if ( !CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "en", [], "array", true, true, false, 148)) {
                 // line 149
                 yield "                                                <li>
                                                     <a class=\"dropdown-item\" href=\"";
                 // line 150
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_new", ["code" => $context["code"], "locale" => "de"]), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_new", ["code" => $context["code"], "locale" => "en"]), "html", null, true);
                 yield "\">
                                                         ";
                 // line 151
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.add_translation"), "html", null, true);
+                yield " (EN)
+                                                    </a>
+                                                </li>
+                                            ";
+            }
+            // line 155
+            yield "                                            
+                                            ";
+            // line 156
+            if ( !CoreExtension::getAttribute($this->env, $this->source, $context["localeTemplates"], "de", [], "array", true, true, false, 156)) {
+                // line 157
+                yield "                                                <li>
+                                                    <a class=\"dropdown-item\" href=\"";
+                // line 158
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_new", ["code" => $context["code"], "locale" => "de"]), "html", null, true);
+                yield "\">
+                                                        ";
+                // line 159
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.add_translation"), "html", null, true);
                 yield " (DE)
                                                     </a>
                                                 </li>
                                             ";
             }
-            // line 155
+            // line 163
             yield "                                        </ul>
                                     </div>
                                 </td>
@@ -467,12 +501,12 @@ $context["localeTemplates"])) {
                         ";
             $context['_iterated'] = true;
         }
-        // line 159
+        // line 167
         if (!$context['_iterated']) {
-            // line 160
+            // line 168
             yield "                            <tr>
                                 <td colspan=\"5\" class=\"text-center py-4\">";
-            // line 161
+            // line 169
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.no_templates"), "html", null, true);
             yield "</td>
                             </tr>
@@ -481,7 +515,7 @@ $context["localeTemplates"])) {
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['code'], $context['localeTemplates'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 164
+        // line 172
         yield "                    </tbody>
                 </table>
             </div>
@@ -491,60 +525,60 @@ $context["localeTemplates"])) {
     <div class=\"card shadow-sm mb-4\">
         <div class=\"card-header\">
             <h5 class=\"mb-0\">";
-        // line 172
+        // line 180
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.about"), "html", null, true);
         yield "</h5>
         </div>
         <div class=\"card-body\">
             <div class=\"alert alert-info mb-0\">
                 <h5 class=\"alert-heading\">";
-        // line 176
+        // line 184
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.title"), "html", null, true);
         yield "</h5>
                 <p>";
-        // line 177
+        // line 185
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.description"), "html", null, true);
         yield "</p>
                 <hr>
                 <ul class=\"mb-0\">
                     <li><code>";
-        // line 180
+        // line 188
         yield "{{ firstName }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.firstName"), "html", null, true);
         yield "</li>
                     <li><code>";
-        // line 181
+        // line 189
         yield "{{ lastName }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.lastName"), "html", null, true);
         yield "</li>
                     <li><code>";
-        // line 182
+        // line 190
         yield "{{ fullName }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.fullName"), "html", null, true);
         yield "</li>
                     <li><code>";
-        // line 183
+        // line 191
         yield "{{ email }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.email"), "html", null, true);
         yield "</li>
                     <li><code>";
-        // line 184
+        // line 192
         yield "{{ domain }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.domain"), "html", null, true);
         yield "</li>
                     <li><code>";
-        // line 185
+        // line 193
         yield "{{ token }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.token"), "html", null, true);
         yield "</li>
                     <li><code>";
-        // line 186
+        // line 194
         yield "{{ resetToken }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.resetToken"), "html", null, true);
@@ -554,6 +588,112 @@ $context["localeTemplates"])) {
         </div>
     </div>
 </div>
+
+<!-- Modal pour la prévisualisation du template -->
+<div class=\"modal fade\" id=\"previewModal\" tabindex=\"-1\" aria-labelledby=\"previewModalLabel\" aria-hidden=\"true\">
+    <div class=\"modal-dialog modal-xl\">
+        <div class=\"modal-content\">
+            <div class=\"modal-header\">
+                <h5 class=\"modal-title\" id=\"previewModalLabel\">";
+        // line 206
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.preview"), "html", null, true);
+        yield "</h5>
+                <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
+            </div>
+            <div class=\"modal-body\">
+                <div class=\"text-center py-4\" id=\"previewLoading\">
+                    <div class=\"spinner-border text-primary\" role=\"status\">
+                        <span class=\"visually-hidden\">Loading...</span>
+                    </div>
+                    <p class=\"mt-2\">";
+        // line 214
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.loading"), "html", null, true);
+        yield "</p>
+                </div>
+                <iframe id=\"previewFrame\" style=\"width: 100%; height: 600px; border: none; display: none;\"></iframe>
+            </div>
+            <div class=\"modal-footer\">
+                <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">";
+        // line 219
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.close_btn"), "html", null, true);
+        yield "</button>
+            </div>
+        </div>
+    </div>
+</div>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        yield from [];
+    }
+
+    // line 226
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_javascripts(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 227
+        yield from $this->yieldParentBlock("javascripts", $context, $blocks);
+        yield "
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialiser les tooltips pour les badges de langue
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle=\"tooltip\"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+
+        // Prévisualisation du template en modal
+        const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+        const previewFrame = document.getElementById('previewFrame');
+        const previewLoading = document.getElementById('previewLoading');
+        
+        document.querySelectorAll('.preview-template').forEach(function(element) {
+            element.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Réinitialiser l'iframe et afficher le loader
+                previewFrame.src = '';
+                previewFrame.style.display = 'none';
+                previewLoading.style.display = 'block';
+                
+                // Mettre à jour le titre avec la langue
+                const language = this.textContent.trim();
+                document.getElementById('previewModalLabel').textContent = '";
+        // line 252
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.preview"), "html", null, true);
+        yield "' + ' (' + language + ')';
+                
+                // Afficher la modal
+                previewModal.show();
+                
+                // Charger le contenu
+                const id = this.getAttribute('data-id');
+                const previewUrl = '";
+        // line 259
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_preview", ["id" => "TEMPLATE_ID"]);
+        yield "'.replace('TEMPLATE_ID', id);
+                
+                // Charger l'URL dans l'iframe après un court délai
+                setTimeout(function() {
+                    previewFrame.src = previewUrl;
+                    
+                    // Quand l'iframe est chargée, masquer le loader et afficher l'iframe
+                    previewFrame.onload = function() {
+                        previewLoading.style.display = 'none';
+                        previewFrame.style.display = 'block';
+                    };
+                }, 500);
+            });
+        });
+    });
+</script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -582,7 +722,7 @@ $context["localeTemplates"])) {
      */
     public function getDebugInfo(): array
     {
-        return array (  548 => 186,  542 => 185,  536 => 184,  530 => 183,  524 => 182,  518 => 181,  512 => 180,  506 => 177,  502 => 176,  495 => 172,  485 => 164,  476 => 161,  473 => 160,  471 => 159,  463 => 155,  456 => 151,  452 => 150,  449 => 149,  447 => 148,  444 => 147,  437 => 143,  433 => 142,  430 => 141,  428 => 140,  425 => 139,  418 => 135,  414 => 134,  411 => 133,  409 => 132,  406 => 131,  399 => 127,  395 => 126,  392 => 125,  390 => 124,  385 => 121,  379 => 120,  370 => 116,  366 => 115,  363 => 114,  361 => 113,  353 => 110,  349 => 109,  346 => 108,  342 => 107,  336 => 104,  330 => 100,  324 => 98,  322 => 97,  317 => 96,  315 => 95,  310 => 94,  308 => 93,  304 => 91,  299 => 90,  294 => 89,  289 => 88,  285 => 87,  281 => 85,  275 => 83,  273 => 82,  268 => 81,  266 => 80,  261 => 78,  258 => 77,  253 => 76,  246 => 72,  242 => 71,  238 => 70,  234 => 69,  230 => 68,  220 => 61,  211 => 55,  207 => 54,  203 => 53,  199 => 51,  189 => 50,  180 => 47,  172 => 42,  168 => 41,  161 => 38,  159 => 37,  155 => 35,  148 => 31,  144 => 30,  141 => 29,  138 => 28,  131 => 24,  127 => 23,  124 => 22,  121 => 21,  114 => 17,  110 => 16,  107 => 15,  105 => 14,  99 => 11,  95 => 10,  89 => 7,  86 => 6,  76 => 5,  59 => 3,  42 => 1,);
+        return array (  680 => 259,  670 => 252,  642 => 227,  632 => 226,  618 => 219,  610 => 214,  599 => 206,  582 => 194,  576 => 193,  570 => 192,  564 => 191,  558 => 190,  552 => 189,  546 => 188,  540 => 185,  536 => 184,  529 => 180,  519 => 172,  510 => 169,  507 => 168,  505 => 167,  497 => 163,  490 => 159,  486 => 158,  483 => 157,  481 => 156,  478 => 155,  471 => 151,  467 => 150,  464 => 149,  462 => 148,  459 => 147,  452 => 143,  448 => 142,  445 => 141,  443 => 140,  440 => 139,  433 => 135,  429 => 134,  426 => 133,  424 => 132,  419 => 129,  407 => 125,  403 => 124,  400 => 123,  396 => 122,  390 => 119,  384 => 115,  378 => 113,  376 => 112,  371 => 111,  369 => 110,  364 => 109,  362 => 108,  358 => 106,  355 => 105,  350 => 104,  345 => 103,  340 => 102,  335 => 101,  332 => 100,  324 => 98,  321 => 97,  313 => 95,  310 => 94,  302 => 92,  299 => 91,  291 => 89,  288 => 88,  286 => 87,  282 => 85,  276 => 83,  274 => 82,  269 => 81,  267 => 80,  262 => 78,  259 => 77,  254 => 76,  247 => 72,  243 => 71,  239 => 70,  235 => 69,  231 => 68,  221 => 61,  212 => 55,  208 => 54,  204 => 53,  200 => 51,  190 => 50,  181 => 47,  173 => 42,  169 => 41,  162 => 38,  160 => 37,  156 => 35,  149 => 31,  145 => 30,  142 => 29,  139 => 28,  132 => 24,  128 => 23,  125 => 22,  122 => 21,  115 => 17,  111 => 16,  108 => 15,  106 => 14,  100 => 11,  96 => 10,  90 => 7,  87 => 6,  77 => 5,  60 => 3,  43 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -673,10 +813,25 @@ $context["localeTemplates"])) {
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {% if localeTemplates['fr'] is defined %}<span class=\"badge bg-primary me-1\">FR</span>{% endif %}
-                                    {% if localeTemplates['nl'] is defined %}<span class=\"badge bg-primary me-1\">NL</span>{% endif %}
-                                    {% if localeTemplates['en'] is defined %}<span class=\"badge bg-primary me-1\">EN</span>{% endif %}
-                                    {% if localeTemplates['de'] is defined %}<span class=\"badge bg-primary me-1\">DE</span>{% endif %}
+                                    {% if is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'preview_email_templates') %}
+                                        {% if localeTemplates['fr'] is defined %}
+                                            <a href=\"#\" class=\"badge bg-primary me-1 preview-template\" data-id=\"{{ localeTemplates['fr'].id }}\" title=\"{{ 'admin.email_templates.preview'|trans }} (FR)\" data-bs-toggle=\"tooltip\">FR</a>
+                                        {% endif %}
+                                        {% if localeTemplates['nl'] is defined %}
+                                            <a href=\"#\" class=\"badge bg-primary me-1 preview-template\" data-id=\"{{ localeTemplates['nl'].id }}\" title=\"{{ 'admin.email_templates.preview'|trans }} (NL)\" data-bs-toggle=\"tooltip\">NL</a>
+                                        {% endif %}
+                                        {% if localeTemplates['en'] is defined %}
+                                            <a href=\"#\" class=\"badge bg-primary me-1 preview-template\" data-id=\"{{ localeTemplates['en'].id }}\" title=\"{{ 'admin.email_templates.preview'|trans }} (EN)\" data-bs-toggle=\"tooltip\">EN</a>
+                                        {% endif %}
+                                        {% if localeTemplates['de'] is defined %}
+                                            <a href=\"#\" class=\"badge bg-primary me-1 preview-template\" data-id=\"{{ localeTemplates['de'].id }}\" title=\"{{ 'admin.email_templates.preview'|trans }} (DE)\" data-bs-toggle=\"tooltip\">DE</a>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if localeTemplates['fr'] is defined %}<span class=\"badge bg-primary me-1\">FR</span>{% endif %}
+                                        {% if localeTemplates['nl'] is defined %}<span class=\"badge bg-primary me-1\">NL</span>{% endif %}
+                                        {% if localeTemplates['en'] is defined %}<span class=\"badge bg-primary me-1\">EN</span>{% endif %}
+                                        {% if localeTemplates['de'] is defined %}<span class=\"badge bg-primary me-1\">DE</span>{% endif %}
+                                    {% endif %}
                                 </td>
                                 <td>
                                     {% if localeTemplates['fr'] is defined and localeTemplates['fr'].updatedAt %}
@@ -699,13 +854,6 @@ $context["localeTemplates"])) {
                                                         {{ 'admin.email_templates.edit'|trans }} ({{ locale|upper }})
                                                     </a>
                                                 </li>
-                                                {% if is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'preview_email_templates') %}
-                                                <li>
-                                                    <a class=\"dropdown-item\" href=\"{{ path('app_admin_email_template_preview', {'id': template.id}) }}\" target=\"_blank\">
-                                                        {{ 'admin.email_templates.preview'|trans }} ({{ locale|upper }})
-                                                    </a>
-                                                </li>
-                                                {% endif %}
                                             {% endfor %}
                                             
                                             <li><hr class=\"dropdown-divider\"></li>
@@ -778,6 +926,81 @@ $context["localeTemplates"])) {
         </div>
     </div>
 </div>
+
+<!-- Modal pour la prévisualisation du template -->
+<div class=\"modal fade\" id=\"previewModal\" tabindex=\"-1\" aria-labelledby=\"previewModalLabel\" aria-hidden=\"true\">
+    <div class=\"modal-dialog modal-xl\">
+        <div class=\"modal-content\">
+            <div class=\"modal-header\">
+                <h5 class=\"modal-title\" id=\"previewModalLabel\">{{ 'admin.email_templates.preview'|trans }}</h5>
+                <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
+            </div>
+            <div class=\"modal-body\">
+                <div class=\"text-center py-4\" id=\"previewLoading\">
+                    <div class=\"spinner-border text-primary\" role=\"status\">
+                        <span class=\"visually-hidden\">Loading...</span>
+                    </div>
+                    <p class=\"mt-2\">{{ 'admin.email_templates.loading'|trans }}</p>
+                </div>
+                <iframe id=\"previewFrame\" style=\"width: 100%; height: 600px; border: none; display: none;\"></iframe>
+            </div>
+            <div class=\"modal-footer\">
+                <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">{{ 'admin.email_template_edit.close_btn'|trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialiser les tooltips pour les badges de langue
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle=\"tooltip\"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+
+        // Prévisualisation du template en modal
+        const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+        const previewFrame = document.getElementById('previewFrame');
+        const previewLoading = document.getElementById('previewLoading');
+        
+        document.querySelectorAll('.preview-template').forEach(function(element) {
+            element.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Réinitialiser l'iframe et afficher le loader
+                previewFrame.src = '';
+                previewFrame.style.display = 'none';
+                previewLoading.style.display = 'block';
+                
+                // Mettre à jour le titre avec la langue
+                const language = this.textContent.trim();
+                document.getElementById('previewModalLabel').textContent = '{{ 'admin.email_templates.preview'|trans }}' + ' (' + language + ')';
+                
+                // Afficher la modal
+                previewModal.show();
+                
+                // Charger le contenu
+                const id = this.getAttribute('data-id');
+                const previewUrl = '{{ path('app_admin_email_template_preview', {'id': 'TEMPLATE_ID'}) }}'.replace('TEMPLATE_ID', id);
+                
+                // Charger l'URL dans l'iframe après un court délai
+                setTimeout(function() {
+                    previewFrame.src = previewUrl;
+                    
+                    // Quand l'iframe est chargée, masquer le loader et afficher l'iframe
+                    previewFrame.onload = function() {
+                        previewLoading.style.display = 'none';
+                        previewFrame.style.display = 'block';
+                    };
+                }, 500);
+            });
+        });
+    });
+</script>
 {% endblock %}", "admin/email_templates/index.html.twig", "/var/www/serveur/templates/admin/email_templates/index.html.twig");
     }
 }

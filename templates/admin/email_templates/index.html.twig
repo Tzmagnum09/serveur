@@ -84,10 +84,25 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {% if localeTemplates['fr'] is defined %}<span class="badge bg-primary me-1">FR</span>{% endif %}
-                                    {% if localeTemplates['nl'] is defined %}<span class="badge bg-primary me-1">NL</span>{% endif %}
-                                    {% if localeTemplates['en'] is defined %}<span class="badge bg-primary me-1">EN</span>{% endif %}
-                                    {% if localeTemplates['de'] is defined %}<span class="badge bg-primary me-1">DE</span>{% endif %}
+                                    {% if is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'preview_email_templates') %}
+                                        {% if localeTemplates['fr'] is defined %}
+                                            <a href="#" class="badge bg-primary me-1 preview-template" data-id="{{ localeTemplates['fr'].id }}" title="{{ 'admin.email_templates.preview'|trans }} (FR)" data-bs-toggle="tooltip">FR</a>
+                                        {% endif %}
+                                        {% if localeTemplates['nl'] is defined %}
+                                            <a href="#" class="badge bg-primary me-1 preview-template" data-id="{{ localeTemplates['nl'].id }}" title="{{ 'admin.email_templates.preview'|trans }} (NL)" data-bs-toggle="tooltip">NL</a>
+                                        {% endif %}
+                                        {% if localeTemplates['en'] is defined %}
+                                            <a href="#" class="badge bg-primary me-1 preview-template" data-id="{{ localeTemplates['en'].id }}" title="{{ 'admin.email_templates.preview'|trans }} (EN)" data-bs-toggle="tooltip">EN</a>
+                                        {% endif %}
+                                        {% if localeTemplates['de'] is defined %}
+                                            <a href="#" class="badge bg-primary me-1 preview-template" data-id="{{ localeTemplates['de'].id }}" title="{{ 'admin.email_templates.preview'|trans }} (DE)" data-bs-toggle="tooltip">DE</a>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if localeTemplates['fr'] is defined %}<span class="badge bg-primary me-1">FR</span>{% endif %}
+                                        {% if localeTemplates['nl'] is defined %}<span class="badge bg-primary me-1">NL</span>{% endif %}
+                                        {% if localeTemplates['en'] is defined %}<span class="badge bg-primary me-1">EN</span>{% endif %}
+                                        {% if localeTemplates['de'] is defined %}<span class="badge bg-primary me-1">DE</span>{% endif %}
+                                    {% endif %}
                                 </td>
                                 <td>
                                     {% if localeTemplates['fr'] is defined and localeTemplates['fr'].updatedAt %}
@@ -110,13 +125,6 @@
                                                         {{ 'admin.email_templates.edit'|trans }} ({{ locale|upper }})
                                                     </a>
                                                 </li>
-                                                {% if is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'preview_email_templates') %}
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ path('app_admin_email_template_preview', {'id': template.id}) }}" target="_blank">
-                                                        {{ 'admin.email_templates.preview'|trans }} ({{ locale|upper }})
-                                                    </a>
-                                                </li>
-                                                {% endif %}
                                             {% endfor %}
                                             
                                             <li><hr class="dropdown-divider"></li>
@@ -189,4 +197,79 @@
         </div>
     </div>
 </div>
+
+<!-- Modal pour la prévisualisation du template -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="previewModalLabel">{{ 'admin.email_templates.preview'|trans }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center py-4" id="previewLoading">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">{{ 'admin.email_templates.loading'|trans }}</p>
+                </div>
+                <iframe id="previewFrame" style="width: 100%; height: 600px; border: none; display: none;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'admin.email_template_edit.close_btn'|trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialiser les tooltips pour les badges de langue
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+
+        // Prévisualisation du template en modal
+        const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+        const previewFrame = document.getElementById('previewFrame');
+        const previewLoading = document.getElementById('previewLoading');
+        
+        document.querySelectorAll('.preview-template').forEach(function(element) {
+            element.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Réinitialiser l'iframe et afficher le loader
+                previewFrame.src = '';
+                previewFrame.style.display = 'none';
+                previewLoading.style.display = 'block';
+                
+                // Mettre à jour le titre avec la langue
+                const language = this.textContent.trim();
+                document.getElementById('previewModalLabel').textContent = '{{ 'admin.email_templates.preview'|trans }}' + ' (' + language + ')';
+                
+                // Afficher la modal
+                previewModal.show();
+                
+                // Charger le contenu
+                const id = this.getAttribute('data-id');
+                const previewUrl = '{{ path('app_admin_email_template_preview', {'id': 'TEMPLATE_ID'}) }}'.replace('TEMPLATE_ID', id);
+                
+                // Charger l'URL dans l'iframe après un court délai
+                setTimeout(function() {
+                    previewFrame.src = previewUrl;
+                    
+                    // Quand l'iframe est chargée, masquer le loader et afficher l'iframe
+                    previewFrame.onload = function() {
+                        previewLoading.style.display = 'none';
+                        previewFrame.style.display = 'block';
+                    };
+                }, 500);
+            });
+        });
+    });
+</script>
 {% endblock %}
