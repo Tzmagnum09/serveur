@@ -14,40 +14,58 @@
                 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.email) }}
+                        {{ form_row(registrationForm.email, {
+                            'attr': {'placeholder': 'registration.form.email_placeholder'|trans}
+                        }) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.username) }}
+                        {{ form_row(registrationForm.username, {
+                            'attr': {'placeholder': 'registration.form.username_placeholder'|trans}
+                        }) }}
                     </div>
                 </div>
                 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.firstName) }}
+                        {{ form_row(registrationForm.firstName, {
+                            'attr': {'placeholder': 'registration.form.first_name_placeholder'|trans}
+                        }) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.lastName) }}
+                        {{ form_row(registrationForm.lastName, {
+                            'attr': {'placeholder': 'registration.form.last_name_placeholder'|trans}
+                        }) }}
                     </div>
                 </div>
                 
                 <div class="row mb-3">
                     <div class="col-md-8">
-                        {{ form_row(registrationForm.street) }}
+                        {{ form_row(registrationForm.street, {
+                            'attr': {'placeholder': 'registration.form.street_placeholder'|trans}
+                        }) }}
                     </div>
                     <div class="col-md-2">
-                        {{ form_row(registrationForm.houseNumber) }}
+                        {{ form_row(registrationForm.houseNumber, {
+                            'attr': {'placeholder': 'registration.form.house_number_placeholder'|trans}
+                        }) }}
                     </div>
                     <div class="col-md-2">
-                        {{ form_row(registrationForm.boxNumber) }}
+                        {{ form_row(registrationForm.boxNumber, {
+                            'attr': {'placeholder': 'registration.form.box_number_placeholder'|trans}
+                        }) }}
                     </div>
                 </div>
                 
                 <div class="row mb-3">
                     <div class="col-md-3">
-                        {{ form_row(registrationForm.postalCode) }}
+                        {{ form_row(registrationForm.postalCode, {
+                            'attr': {'placeholder': 'registration.form.postal_code_placeholder'|trans}
+                        }) }}
                     </div>
                     <div class="col-md-5">
-                        {{ form_row(registrationForm.city) }}
+                        {{ form_row(registrationForm.city, {
+                            'attr': {'placeholder': 'registration.form.city_placeholder'|trans}
+                        }) }}
                     </div>
                     <div class="col-md-4">
                         {{ form_row(registrationForm.country) }}
@@ -56,7 +74,9 @@
                 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.phoneNumber) }}
+                        {{ form_row(registrationForm.phoneNumber, {
+                            'attr': {'placeholder': 'registration.form.phone_number_placeholder'|trans}
+                        }) }}
                     </div>
                     <div class="col-md-6">
                         {{ form_row(registrationForm.locale) }}
@@ -65,17 +85,24 @@
                 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.plainPassword.first) }}
+                        {{ form_row(registrationForm.plainPassword.first, {
+                            'label': 'registration.form.password'|trans,
+                            'attr': {'placeholder': 'registration.form.password_placeholder'|trans}
+                        }) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.plainPassword.second) }}
+                        {{ form_row(registrationForm.plainPassword.second, {
+                            'label': 'registration.form.confirm_password'|trans,
+                            'attr': {'placeholder': 'registration.form.confirm_password_placeholder'|trans}
+                        }) }}
                     </div>
                 </div>
                 
                 <div class="mb-3 form-check">
                     {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
                     <label for="{{ registrationForm.agreeTerms.vars.id }}" class="form-check-label">
-                        J'accepte les <a href="{{ path('app_terms') }}" class="text-decoration-none" target="_blank">conditions d'utilisation</a>
+                        {{ 'registration.form.agree_terms'|trans }}
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-decoration-none">{{ 'terms.title'|trans }}</a>
                     </label>
                     {{ form_errors(registrationForm.agreeTerms) }}
                 </div>
@@ -95,6 +122,64 @@
                     {{ 'registration.already_account'|trans }} 
                     <a href="{{ path('app_login') }}" class="text-decoration-none">{{ 'registration.login'|trans }}</a>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal des conditions d'utilisation -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">{{ 'terms.title'|trans }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>1. {{ 'terms.introduction.title'|trans }}</h5>
+                <p>{{ 'terms.introduction.content'|trans }}</p>
+
+                <h5>2. {{ 'terms.definitions.title'|trans }}</h5>
+                <p>
+                    <strong>{{ 'terms.definitions.service'|trans }}</strong><br>
+                    <strong>{{ 'terms.definitions.user'|trans }}</strong><br>
+                    <strong>{{ 'terms.definitions.account'|trans }}</strong>
+                </p>
+
+                <h5>3. {{ 'terms.registration.title'|trans }}</h5>
+                <p>{{ 'terms.registration.content1'|trans }}</p>
+                <p>{{ 'terms.registration.content2'|trans }}</p>
+
+                <h5>4. {{ 'terms.rights.title'|trans }}</h5>
+                <p>{{ 'terms.rights.content'|trans }}</p>
+                <ul>
+                    <li>{{ 'terms.rights.item1'|trans }}</li>
+                    <li>{{ 'terms.rights.item2'|trans }}</li>
+                    <li>{{ 'terms.rights.item3'|trans }}</li>
+                    <li>{{ 'terms.rights.item4'|trans }}</li>
+                    <li>{{ 'terms.rights.item5'|trans }}</li>
+                </ul>
+
+                <h5>5. {{ 'terms.data_protection.title'|trans }}</h5>
+                <p>{{ 'terms.data_protection.content1'|trans }}</p>
+                <p>{{ 'terms.data_protection.content2'|trans }}</p>
+
+                <h5>6. {{ 'terms.changes.title'|trans }}</h5>
+                <p>{{ 'terms.changes.content'|trans }}</p>
+
+                <h5>7. {{ 'terms.termination.title'|trans }}</h5>
+                <p>{{ 'terms.termination.content'|trans }}</p>
+
+                <h5>8. {{ 'terms.contact.title'|trans }}</h5>
+                <p>{{ 'terms.contact.content'|trans }}</p>
+
+                <p class="text-muted mt-3">
+                    <small>{{ 'terms.footer.last_update'|trans }} {{ "now"|date("d/m/Y") }}</small>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{{ 'registration.form.close'|trans }}</button>
+                <button type="button" class="btn btn-gradient" data-bs-dismiss="modal" onclick="document.getElementById('{{ registrationForm.agreeTerms.vars.id }}').checked = true;">{{ 'registration.form.accept'|trans }}</button>
             </div>
         </div>
     </div>

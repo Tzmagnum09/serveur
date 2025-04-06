@@ -55,6 +55,59 @@ registration:
         email_verified: "Your email address has been verified. Your account is pending approval by an administrator."
         user_not_found: "User not found. Please register again."
         invalid_token: "The email verification link is invalid. Please request a new link."
+    form:
+        email: "Email Address"
+        email_placeholder: "example@domain.com"
+        username: "Username"
+        username_placeholder: "your_username"
+        first_name: "First Name"
+        first_name_placeholder: "Your first name"
+        last_name: "Last Name"
+        last_name_placeholder: "Your last name"
+        street: "Street"
+        street_placeholder: "Street name"
+        house_number: "Number"
+        house_number_placeholder: "123"
+        box_number: "Box"
+        box_number_placeholder: "A"
+        postal_code: "Postal Code"
+        postal_code_placeholder: "1000"
+        city: "City"
+        city_placeholder: "Brussels"
+        country: "Country"
+        phone_number: "Phone Number"
+        phone_number_placeholder: "+32 470 12 34 56"
+        language: "Language"
+        language_choices:
+            french: "French"
+            dutch: "Dutch"
+            english: "English"
+            german: "German"
+        password: "Password"
+        password_placeholder: "Minimum 8 characters"
+        confirm_password: "Confirm Password"
+        confirm_password_placeholder: "Repeat your password"
+        agree_terms: "I agree to the terms of service"
+        accept: "I Accept"
+		close: "Close"
+    validation:
+        email_required: "Please enter an email address"
+        username_required: "Please enter a username"
+        username_min_length: "Your username must have at least {{ limit }} characters"
+        username_max_length: "Your username cannot exceed {{ limit }} characters"
+        first_name_required: "Please enter your first name"
+        last_name_required: "Please enter your last name"
+        street_required: "Please enter your street"
+        house_number_required: "Please enter your house number"
+        postal_code_required: "Please enter your postal code"
+        city_required: "Please enter your city"
+        country_required: "Please select your country"
+        phone_number_required: "Please enter your phone number"
+        language_required: "Please select your language"
+        password_required: "Please enter a password"
+        password_min_length: "Your password must have at least {{ limit }} characters"
+        password_mismatch: "The passwords do not match"
+        terms_required: "You must agree to the terms of service"
 
 # Password Reset
 reset_password:
@@ -343,3 +396,43 @@ super_admin:
         admin_demoted: "The administrator has been demoted successfully."
         user_promoted_super: "The administrator has been promoted to super administrator successfully."
         permissions_updated: "Permissions have been updated successfully."
+
+# Terms of Service
+terms:
+    title: "Terms of Service"
+    introduction:
+        title: "Introduction"
+        content: "Welcome to DMQode.be. These terms of service govern your use of our website and services. By registering on our site, you agree to be bound by these terms. Please read them carefully."
+    definitions:
+        title: "Definitions"
+        service: "\"Service\" refers to the DMQode.be website"
+        user: "\"User\" refers to any person who accesses the Service and creates an account"
+        account: "\"Account\" refers to personalized access to the Service"
+    registration:
+        title: "Registration and Account"
+        content1: "To use certain features of the Service, you must create an account. When registering, you agree to provide accurate, current, and complete information. You are responsible for the confidentiality of your password and for all activities that occur under your account."
+        content2: "After registering, you will need to verify your email address. Then, an administrator will need to approve your account before you can access all features of the service."
+    rights:
+        title: "Rights and Responsibilities"
+        content: "When using our Service, you agree not to:"
+        item1: "Violate applicable laws"
+        item2: "Distribute viruses or any other malicious code"
+        item3: "Disrupt or interfere with the security of the Service"
+        item4: "Collect information about other users without their consent"
+        item5: "Use the Service in a way that could damage, disable, overburden, or impair the Service"
+    data_protection:
+        title: "Personal Data Protection"
+        content1: "We respect your privacy and protect your personal data in accordance with our privacy policy and applicable laws, including the General Data Protection Regulation (GDPR)."
+        content2: "The personal data you provide during registration is used only for providing our services and will not be shared with third parties without your explicit consent."
+    changes:
+        title: "Changes to Terms of Service"
+        content: "We reserve the right to modify these terms of service at any time. Changes take effect immediately upon posting on the Service. It is your responsibility to regularly review these terms."
+    termination:
+        title: "Termination"
+        content: "We reserve the right to suspend or terminate your account and access to the Service at our sole discretion, without notice, for conduct that we deem contrary to these terms of service or any applicable law."
+    contact:
+        title: "Contact"
+        content: "If you have any questions regarding these terms of service, please contact us at: contact@dmqode.be"
+    footer:
+        last_update: "Last updated:"
+    back_btn: "Back to registration"

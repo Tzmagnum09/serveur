@@ -55,6 +55,59 @@ registration:
         email_verified: "Ihre E-Mail-Adresse wurde bestätigt. Ihr Account wartet auf Freigabe durch einen Administrator."
         user_not_found: "Benutzer nicht gefunden. Bitte registrieren Sie sich erneut."
         invalid_token: "Der E-Mail-Bestätigungslink ist ungültig. Bitte fordern Sie einen neuen Link an."
+    form:
+        email: "E-Mail-Adresse"
+        email_placeholder: "beispiel@domain.com"
+        username: "Benutzername"
+        username_placeholder: "ihr_benutzername"
+        first_name: "Vorname"
+        first_name_placeholder: "Ihr Vorname"
+        last_name: "Nachname"
+        last_name_placeholder: "Ihr Nachname"
+        street: "Straße"
+        street_placeholder: "Straßenname"
+        house_number: "Hausnummer"
+        house_number_placeholder: "123"
+        box_number: "Wohnungsnummer"
+        box_number_placeholder: "A"
+        postal_code: "Postleitzahl"
+        postal_code_placeholder: "1000"
+        city: "Stadt"
+        city_placeholder: "Brüssel"
+        country: "Land"
+        phone_number: "Telefonnummer"
+        phone_number_placeholder: "+32 470 12 34 56"
+        language: "Sprache"
+        language_choices:
+            french: "Französisch"
+            dutch: "Niederländisch"
+            english: "Englisch"
+            german: "Deutsch"
+        password: "Passwort"
+        password_placeholder: "Mindestens 8 Zeichen"
+        confirm_password: "Passwort bestätigen"
+        confirm_password_placeholder: "Wiederholen Sie Ihr Passwort"
+        agree_terms: "Ich akzeptiere die Nutzungsbedingungen"
+        accept: "Ich akzeptiere"
+		close: "Schließen"
+    validation:
+        email_required: "Bitte geben Sie eine E-Mail-Adresse ein"
+        username_required: "Bitte geben Sie einen Benutzernamen ein"
+        username_min_length: "Ihr Benutzername muss mindestens {{ limit }} Zeichen haben"
+        username_max_length: "Ihr Benutzername darf nicht mehr als {{ limit }} Zeichen haben"
+        first_name_required: "Bitte geben Sie Ihren Vornamen ein"
+        last_name_required: "Bitte geben Sie Ihren Nachnamen ein"
+        street_required: "Bitte geben Sie Ihre Straße ein"
+        house_number_required: "Bitte geben Sie Ihre Hausnummer ein"
+        postal_code_required: "Bitte geben Sie Ihre Postleitzahl ein"
+        city_required: "Bitte geben Sie Ihre Stadt ein"
+        country_required: "Bitte wählen Sie Ihr Land aus"
+        phone_number_required: "Bitte geben Sie Ihre Telefonnummer ein"
+        language_required: "Bitte wählen Sie Ihre Sprache aus"
+        password_required: "Bitte geben Sie ein Passwort ein"
+        password_min_length: "Ihr Passwort muss mindestens {{ limit }} Zeichen haben"
+        password_mismatch: "Die Passwörter stimmen nicht überein"
+        terms_required: "Sie müssen die Nutzungsbedingungen akzeptieren"
 
 # Passwort zurücksetzen
 reset_password:
@@ -343,3 +396,43 @@ super_admin:
         admin_demoted: "Der Administrator wurde erfolgreich herabgestuft."
         user_promoted_super: "Der Administrator wurde erfolgreich zum Super Administrator befördert."
         permissions_updated: "Die Berechtigungen wurden erfolgreich aktualisiert."
+
+# Nutzungsbedingungen
+terms:
+    title: "Nutzungsbedingungen"
+    introduction:
+        title: "Einführung"
+        content: "Willkommen bei DMQode.be. Diese Nutzungsbedingungen regeln Ihre Nutzung unserer Website und Dienste. Durch die Registrierung auf unserer Website stimmen Sie zu, an diese Bedingungen gebunden zu sein. Bitte lesen Sie sie sorgfältig durch."
+    definitions:
+        title: "Definitionen"
+        service: "\"Dienst\" bezieht sich auf die Website DMQode.be"
+        user: "\"Benutzer\" bezieht sich auf jede Person, die auf den Dienst zugreift und ein Konto erstellt"
+        account: "\"Konto\" bezieht sich auf den personalisierten Zugang zum Dienst"
+    registration:
+        title: "Registrierung und Konto"
+        content1: "Um bestimmte Funktionen des Dienstes nutzen zu können, müssen Sie ein Konto erstellen. Bei der Registrierung stimmen Sie zu, genaue, aktuelle und vollständige Informationen anzugeben. Sie sind für die Vertraulichkeit Ihres Passworts und für alle Aktivitäten, die unter Ihrem Konto stattfinden, verantwortlich."
+        content2: "Nach der Registrierung müssen Sie Ihre E-Mail-Adresse bestätigen. Anschließend muss ein Administrator Ihr Konto freigeben, bevor Sie auf alle Funktionen des Dienstes zugreifen können."
+    rights:
+        title: "Rechte und Pflichten"
+        content: "Bei der Nutzung unseres Dienstes stimmen Sie zu, Folgendes zu unterlassen:"
+        item1: "Verletzung geltender Gesetze"
+        item2: "Verbreitung von Viren oder anderen schädlichen Codes"
+        item3: "Störung oder Beeinträchtigung der Sicherheit des Dienstes"
+        item4: "Sammlung von Informationen über andere Benutzer ohne deren Zustimmung"
+        item5: "Nutzung des Dienstes in einer Weise, die den Dienst beschädigen, deaktivieren, überlasten oder beeinträchtigen könnte"
+    data_protection:
+        title: "Schutz personenbezogener Daten"
+        content1: "Wir respektieren Ihre Privatsphäre und schützen Ihre personenbezogenen Daten gemäß unserer Datenschutzrichtlinie und den geltenden Gesetzen, einschließlich der Datenschutz-Grundverordnung (DSGVO)."
+        content2: "Die personenbezogenen Daten, die Sie bei der Registrierung angeben, werden nur für die Bereitstellung unserer Dienste verwendet und nicht ohne Ihre ausdrückliche Zustimmung an Dritte weitergegeben."
+    changes:
+        title: "Änderungen der Nutzungsbedingungen"
+        content: "Wir behalten uns das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern. Änderungen treten sofort nach der Veröffentlichung auf dem Dienst in Kraft. Es liegt in Ihrer Verantwortung, diese Bedingungen regelmäßig zu überprüfen."
+    termination:
+        title: "Kündigung"
+        content: "Wir behalten uns das Recht vor, Ihr Konto und den Zugang zum Dienst nach eigenem Ermessen und ohne Vorankündigung zu sperren oder zu kündigen, wenn wir der Ansicht sind, dass Ihr Verhalten gegen diese Nutzungsbedingungen oder geltendes Recht verstößt."
+    contact:
+        title: "Kontakt"
+        content: "Wenn Sie Fragen zu diesen Nutzungsbedingungen haben, kontaktieren Sie uns bitte unter: contact@dmqode.be"
+    footer:
+        last_update: "Zuletzt aktualisiert:"
+    back_btn: "Zurück zur Registrierung"

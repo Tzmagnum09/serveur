@@ -55,6 +55,59 @@ registration:
         email_verified: "Uw e-mailadres is geverifieerd. Uw account wacht op goedkeuring door een beheerder."
         user_not_found: "Gebruiker niet gevonden. Registreer opnieuw."
         invalid_token: "De e-mailverificatielink is ongeldig. Vraag een nieuwe link aan."
+    form:
+        email: "E-mailadres"
+        email_placeholder: "voorbeeld@domein.com"
+        username: "Gebruikersnaam"
+        username_placeholder: "uw_gebruikersnaam"
+        first_name: "Voornaam"
+        first_name_placeholder: "Uw voornaam"
+        last_name: "Achternaam"
+        last_name_placeholder: "Uw achternaam"
+        street: "Straat"
+        street_placeholder: "Straatnaam"
+        house_number: "Nummer"
+        house_number_placeholder: "123"
+        box_number: "Bus"
+        box_number_placeholder: "A"
+        postal_code: "Postcode"
+        postal_code_placeholder: "1000"
+        city: "Stad"
+        city_placeholder: "Brussel"
+        country: "Land"
+        phone_number: "Telefoonnummer"
+        phone_number_placeholder: "+32 470 12 34 56"
+        language: "Taal"
+        language_choices:
+            french: "Frans"
+            dutch: "Nederlands"
+            english: "Engels"
+            german: "Duits"
+        password: "Wachtwoord"
+        password_placeholder: "Minimaal 8 tekens"
+        confirm_password: "Bevestig wachtwoord"
+        confirm_password_placeholder: "Herhaal uw wachtwoord"
+        agree_terms: "Ik ga akkoord met de gebruiksvoorwaarden"
+        accept: "Ik ga akkoord"
+		close: "Sluiten"
+    validation:
+        email_required: "Voer een e-mailadres in"
+        username_required: "Voer een gebruikersnaam in"
+        username_min_length: "Uw gebruikersnaam moet minimaal {{ limit }} tekens bevatten"
+        username_max_length: "Uw gebruikersnaam mag niet meer dan {{ limit }} tekens bevatten"
+        first_name_required: "Voer uw voornaam in"
+        last_name_required: "Voer uw achternaam in"
+        street_required: "Voer uw straat in"
+        house_number_required: "Voer uw huisnummer in"
+        postal_code_required: "Voer uw postcode in"
+        city_required: "Voer uw stad in"
+        country_required: "Selecteer uw land"
+        phone_number_required: "Voer uw telefoonnummer in"
+        language_required: "Selecteer uw taal"
+        password_required: "Voer een wachtwoord in"
+        password_min_length: "Uw wachtwoord moet minimaal {{ limit }} tekens bevatten"
+        password_mismatch: "De wachtwoorden komen niet overeen"
+        terms_required: "U moet akkoord gaan met de gebruiksvoorwaarden"
 
 # Wachtwoord resetten
 reset_password:
@@ -343,3 +396,43 @@ super_admin:
         admin_demoted: "De beheerder is succesvol gedegradeerd."
         user_promoted_super: "De beheerder is succesvol gepromoveerd tot super beheerder."
         permissions_updated: "Machtigingen zijn succesvol bijgewerkt."
+
+# Gebruiksvoorwaarden
+terms:
+    title: "Gebruiksvoorwaarden"
+    introduction:
+        title: "Inleiding"
+        content: "Welkom op DMQode.be. Deze gebruiksvoorwaarden regelen uw gebruik van onze website en diensten. Door u in te schrijven op onze site, gaat u ermee akkoord gebonden te zijn aan deze voorwaarden. Lees ze zorgvuldig."
+    definitions:
+        title: "Definities"
+        service: "\"Service\" verwijst naar de website DMQode.be"
+        user: "\"Gebruiker\" verwijst naar elke persoon die toegang heeft tot de Service en een account aanmaakt"
+        account: "\"Account\" verwijst naar gepersonaliseerde toegang tot de Service"
+    registration:
+        title: "Registratie en account"
+        content1: "Om bepaalde functies van de Service te gebruiken, moet u een account aanmaken. Bij registratie gaat u ermee akkoord om nauwkeurige, actuele en volledige informatie te verstrekken. U bent verantwoordelijk voor de vertrouwelijkheid van uw wachtwoord en voor alle activiteiten die onder uw account plaatsvinden."
+        content2: "Na registratie moet u uw e-mailadres verifiëren. Vervolgens moet een beheerder uw account goedkeuren voordat u toegang krijgt tot alle functies van de service."
+    rights:
+        title: "Rechten en verantwoordelijkheden"
+        content: "Bij het gebruik van onze Service, gaat u ermee akkoord om niet:"
+        item1: "Toepasselijke wetten te overtreden"
+        item2: "Virussen of andere kwaadaardige code te verspreiden"
+        item3: "De beveiliging van de Service te verstoren of te hinderen"
+        item4: "Informatie over andere gebruikers te verzamelen zonder hun toestemming"
+        item5: "De Service te gebruiken op een manier die de Service zou kunnen beschadigen, uitschakelen, overbelasten of aantasten"
+    data_protection:
+        title: "Bescherming van persoonlijke gegevens"
+        content1: "Wij respecteren uw privacy en beschermen uw persoonlijke gegevens in overeenstemming met ons privacybeleid en de toepasselijke wetten, waaronder de Algemene Verordening Gegevensbescherming (AVG)."
+        content2: "De persoonlijke gegevens die u verstrekt tijdens de registratie worden alleen gebruikt voor het leveren van onze diensten en worden niet gedeeld met derden zonder uw uitdrukkelijke toestemming."
+    changes:
+        title: "Wijzigingen in de gebruiksvoorwaarden"
+        content: "Wij behouden ons het recht voor om deze gebruiksvoorwaarden op elk moment te wijzigen. Wijzigingen worden onmiddellijk van kracht na publicatie op de Service. Het is uw verantwoordelijkheid om deze voorwaarden regelmatig te raadplegen."
+    termination:
+        title: "Beëindiging"
+        content: "Wij behouden ons het recht voor om uw account en toegang tot de Service naar eigen goeddunken, zonder kennisgeving, op te schorten of te beëindigen voor gedrag dat wij in strijd achten met deze gebruiksvoorwaarden of toepasselijke wetgeving."
+    contact:
+        title: "Contact"
+        content: "Als u vragen heeft over deze gebruiksvoorwaarden, neem dan contact met ons op via: contact@dmqode.be"
+    footer:
+        last_update: "Laatst bijgewerkt:"
+    back_btn: "Terug naar registratie"

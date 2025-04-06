@@ -55,6 +55,59 @@ registration:
         email_verified: "Votre adresse email a été vérifiée. Votre compte est en attente d'approbation par un administrateur."
         user_not_found: "Utilisateur non trouvé. Veuillez vous réinscrire."
         invalid_token: "Le lien pour vérifier votre adresse e-mail est invalide. Veuillez demander un nouveau lien."
+    form:
+        email: "Adresse e-mail"
+        email_placeholder: "exemple@domaine.com"
+        username: "Nom d'utilisateur"
+        username_placeholder: "votre_pseudo"
+        first_name: "Prénom"
+        first_name_placeholder: "Votre prénom"
+        last_name: "Nom"
+        last_name_placeholder: "Votre nom"
+        street: "Rue"
+        street_placeholder: "Nom de la rue"
+        house_number: "Numéro"
+        house_number_placeholder: "123"
+        box_number: "Boîte"
+        box_number_placeholder: "A"
+        postal_code: "Code postal"
+        postal_code_placeholder: "1000"
+        city: "Ville"
+        city_placeholder: "Bruxelles"
+        country: "Pays"
+        phone_number: "Numéro de téléphone"
+        phone_number_placeholder: "+32 470 12 34 56"
+        language: "Langue"
+        language_choices:
+            french: "Français"
+            dutch: "Néerlandais"
+            english: "Anglais"
+            german: "Allemand"
+        password: "Mot de passe"
+        password_placeholder: "8 caractères minimum"
+        confirm_password: "Confirmer le mot de passe"
+        confirm_password_placeholder: "Répétez votre mot de passe"
+        agree_terms: "J'accepte les conditions d'utilisation"
+        accept: "J'accepte"
+		close: "Fermer"
+    validation:
+        email_required: "Veuillez entrer une adresse email"
+        username_required: "Veuillez entrer un nom d'utilisateur"
+        username_min_length: "Votre nom d'utilisateur doit comporter au moins {{ limit }} caractères"
+        username_max_length: "Votre nom d'utilisateur ne peut pas dépasser {{ limit }} caractères"
+        first_name_required: "Veuillez entrer votre prénom"
+        last_name_required: "Veuillez entrer votre nom"
+        street_required: "Veuillez entrer votre rue"
+        house_number_required: "Veuillez entrer votre numéro"
+        postal_code_required: "Veuillez entrer votre code postal"
+        city_required: "Veuillez entrer votre ville"
+        country_required: "Veuillez sélectionner votre pays"
+        phone_number_required: "Veuillez entrer votre numéro de téléphone"
+        language_required: "Veuillez sélectionner votre langue"
+        password_required: "Veuillez entrer un mot de passe"
+        password_min_length: "Votre mot de passe doit comporter au moins {{ limit }} caractères"
+        password_mismatch: "Les mots de passe ne correspondent pas"
+        terms_required: "Vous devez accepter les conditions d'utilisation"
 
 # Réinitialisation de mot de passe
 reset_password:
@@ -343,3 +396,43 @@ super_admin:
         admin_demoted: "L'administrateur a été rétrogradé avec succès."
         user_promoted_super: "L'administrateur a été promu super administrateur avec succès."
         permissions_updated: "Les permissions ont été mises à jour avec succès."
+
+# Conditions d'utilisation
+terms:
+    title: "Conditions d'utilisation"
+    introduction:
+        title: "Introduction"
+        content: "Bienvenue sur DMQode.be. Les présentes conditions d'utilisation régissent votre utilisation de notre site web et de nos services. En vous inscrivant sur notre site, vous acceptez d'être lié par ces conditions. Veuillez les lire attentivement."
+    definitions:
+        title: "Définitions"
+        service: "\"Service\" désigne le site web DMQode.be"
+        user: "\"Utilisateur\" désigne toute personne qui accède au Service et crée un compte"
+        account: "\"Compte\" désigne l'accès personnalisé au Service"
+    registration:
+        title: "Inscription et compte"
+        content1: "Pour utiliser certaines fonctionnalités du Service, vous devez créer un compte. Lors de l'inscription, vous acceptez de fournir des informations exactes, à jour et complètes. Vous êtes responsable de la confidentialité de votre mot de passe et de toutes les activités qui se produisent sous votre compte."
+        content2: "Après votre inscription, vous devrez vérifier votre adresse e-mail. Ensuite, un administrateur devra approuver votre compte avant que vous puissiez accéder à toutes les fonctionnalités du service."
+    rights:
+        title: "Droits et responsabilités"
+        content: "En utilisant notre Service, vous acceptez de ne pas :"
+        item1: "Violer les lois applicables"
+        item2: "Distribuer des virus ou tout autre code malveillant"
+        item3: "Perturber ou interférer avec la sécurité du Service"
+        item4: "Recueillir des informations sur d'autres utilisateurs sans leur consentement"
+        item5: "Utiliser le Service d'une manière qui pourrait endommager, désactiver, surcharger ou altérer le Service"
+    data_protection:
+        title: "Protection des données personnelles"
+        content1: "Nous respectons votre vie privée et protégeons vos données personnelles conformément à notre politique de confidentialité et aux lois applicables, notamment le Règlement Général sur la Protection des Données (RGPD)."
+        content2: "Les données personnelles que vous nous fournissez lors de l'inscription sont utilisées uniquement dans le cadre de la fourniture de nos services et ne seront pas partagées avec des tiers sans votre consentement explicite."
+    changes:
+        title: "Modification des conditions d'utilisation"
+        content: "Nous nous réservons le droit de modifier ces conditions d'utilisation à tout moment. Les modifications entrent en vigueur dès leur publication sur le Service. Il est de votre responsabilité de consulter régulièrement ces conditions."
+    termination:
+        title: "Résiliation"
+        content: "Nous nous réservons le droit de suspendre ou de résilier votre compte et votre accès au Service à notre seule discrétion, sans préavis, pour conduite que nous jugeons contraire à ces conditions d'utilisation ou à toute loi applicable."
+    contact:
+        title: "Contact"
+        content: "Si vous avez des questions concernant ces conditions d'utilisation, veuillez nous contacter à l'adresse suivante : contact@dmqode.be"
+    footer:
+        last_update: "Dernière mise à jour :"
+    back_btn: "Retour à l'inscription"
