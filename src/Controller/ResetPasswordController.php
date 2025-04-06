@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
@@ -156,12 +157,19 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_check_email');
         }
 
+        // Construction de l'URL de réinitialisation
+        $resetUrl = $this->generateUrl(
+            'app_reset_password',
+            ['token' => $resetToken->getToken()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
         // Envoyer l'e-mail à l'utilisateur
         $this->emailService->sendEmailToUser(
             'reset_password',
             $user,
             [
-                'resetToken' => $resetToken->getUrl(),
+                'resetToken' => $resetUrl,
                 'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
             ]
         );
