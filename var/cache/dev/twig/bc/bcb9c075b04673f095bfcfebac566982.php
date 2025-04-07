@@ -79,7 +79,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         yield "        <link rel=\"stylesheet\" href=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/cookie-consent.css"), "html", null, true);
         yield "\">
-        
+
         ";
         // line 19
         yield "        <style>
@@ -334,23 +334,31 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         // line 222
         yield "            </div>
         </div>
-        
+
         ";
+        // line 225
+        yield from $this->loadTemplate("partials/cookie-popup.html.twig", "base.html.twig", 225)->unwrap()->yield($context);
         // line 226
+        yield "        ";
+        yield from $this->loadTemplate("partials/cookie-link.html.twig", "base.html.twig", 226)->unwrap()->yield($context);
+        // line 227
+        yield "        
+        ";
+        // line 229
         yield "        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js\"></script>
         
         ";
-        // line 229
-        yield "        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
-        
-        ";
         // line 232
+        yield "        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
+
+        ";
+        // line 235
         yield "        <script src=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/cookie-consent.js"), "html", null, true);
         yield "\"></script>
         
         ";
-        // line 235
+        // line 238
         yield "        <script>
             // Mobile sidebar toggle
             document.addEventListener('DOMContentLoaded', function() {
@@ -373,18 +381,9 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         </script>
         
         ";
-        // line 256
-        yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 257
-        yield "        
-        ";
         // line 259
-        yield "        ";
-        yield from $this->loadTemplate("partials/cookie-banner.html.twig", "base.html.twig", 259)->unwrap()->yield($context);
+        yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
         // line 260
-        yield "        ";
-        yield from $this->loadTemplate("partials/cookie-modal.html.twig", "base.html.twig", 260)->unwrap()->yield($context);
-        // line 261
         yield "        
         <!-- Fenêtre modale des conditions d'utilisation -->
         <div class=\"modal fade\" id=\"termsModal\" tabindex=\"-1\" aria-labelledby=\"termsModalLabel\" aria-hidden=\"true\">
@@ -491,7 +490,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         yield from [];
     }
 
-    // line 256
+    // line 259
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -528,7 +527,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  495 => 256,  479 => 221,  463 => 209,  447 => 203,  430 => 6,  388 => 261,  385 => 260,  382 => 259,  379 => 257,  377 => 256,  354 => 235,  348 => 232,  344 => 229,  340 => 226,  335 => 222,  333 => 221,  330 => 220,  324 => 219,  314 => 215,  309 => 214,  304 => 213,  300 => 212,  288 => 211,  285 => 210,  283 => 209,  279 => 207,  277 => 206,  273 => 204,  271 => 203,  85 => 19,  79 => 16,  75 => 13,  71 => 10,  66 => 7,  60 => 6,  53 => 2,  50 => 1,);
+        return array (  494 => 259,  478 => 221,  462 => 209,  446 => 203,  429 => 6,  387 => 260,  385 => 259,  362 => 238,  356 => 235,  352 => 232,  348 => 229,  345 => 227,  342 => 226,  340 => 225,  335 => 222,  333 => 221,  330 => 220,  324 => 219,  314 => 215,  309 => 214,  304 => 213,  300 => 212,  288 => 211,  285 => 210,  283 => 209,  279 => 207,  277 => 206,  273 => 204,  271 => 203,  85 => 19,  79 => 16,  75 => 13,  71 => 10,  66 => 7,  60 => 6,  53 => 2,  50 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -549,7 +548,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         
         {# Cookie Consent CSS #}
         <link rel=\"stylesheet\" href=\"{{ asset('css/cookie-consent.css') }}\">
-        
+
         {# Custom CSS #}
         <style>
             :root {
@@ -756,13 +755,16 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                 {% block body %}{% endblock %}
             </div>
         </div>
+
+        {% include 'partials/cookie-popup.html.twig' %}
+        {% include 'partials/cookie-link.html.twig' %}
         
         {# Bootstrap JS with Popper #}
         <script src=\"https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js\"></script>
         
         {# jQuery #}
         <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
-        
+
         {# Cookie Consent JS #}
         <script src=\"{{ asset('js/cookie-consent.js') }}\"></script>
         
@@ -789,10 +791,6 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         </script>
         
         {% block javascripts %}{% endblock %}
-        
-        {# Cookies Banner & Modal #}
-        {% include 'partials/cookie-banner.html.twig' %}
-        {% include 'partials/cookie-modal.html.twig' %}
         
         <!-- Fenêtre modale des conditions d'utilisation -->
         <div class=\"modal fade\" id=\"termsModal\" tabindex=\"-1\" aria-labelledby=\"termsModalLabel\" aria-hidden=\"true\">

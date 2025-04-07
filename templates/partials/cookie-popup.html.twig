@@ -1,0 +1,99 @@
+<div id="cookie-popup-overlay" class="cookie-popup-overlay"></div>
+
+<div id="cookie-popup" class="cookie-popup">
+    <div class="cookie-popup-header">
+        <h5 class="cookie-popup-title">{{ 'cookie.banner.title'|trans }}</h5>
+    </div>
+    <div class="cookie-popup-body">
+        <p>{{ 'cookie.banner.content'|trans }}</p>
+    </div>
+    <div class="cookie-popup-footer">
+        <button id="cookie-customize-btn" class="btn-cookie btn-cookie-outline">
+            {{ 'cookie.banner.customize'|trans }}
+        </button>
+        <button id="cookie-necessary-btn" class="btn-cookie btn-cookie-secondary">
+            {{ 'cookie.banner.necessary_only'|trans }}
+        </button>
+        <button id="cookie-accept-all-btn" class="btn-cookie btn-cookie-primary">
+            {{ 'cookie.banner.accept_all'|trans }}
+        </button>
+    </div>
+</div>
+
+<div id="cookie-modal-overlay" class="cookie-popup-overlay"></div>
+<div id="cookie-modal" class="cookie-popup" style="width: 700px; max-width: 95%;">
+    <div class="cookie-popup-header">
+        <h5 class="cookie-popup-title">{{ 'cookie.modal.title'|trans }}</h5>
+        <button id="close-modal-btn" style="background: none; border: none; font-size: 18px; cursor: pointer;">&times;</button>
+    </div>
+    <div class="cookie-popup-body">
+        <div class="cookie-tabs">
+            <div class="cookie-tab active" data-tab="overview">{{ 'cookie.modal.tab.overview'|trans }}</div>
+            <div class="cookie-tab" data-tab="details">{{ 'cookie.modal.tab.details'|trans }}</div>
+            <div class="cookie-tab" data-tab="about">{{ 'cookie.modal.tab.about'|trans }}</div>
+        </div>
+        
+        <div id="tab-overview" class="cookie-tab-content active">
+            <div class="cookie-type">
+                <div class="cookie-type-header">
+                    <h6 class="cookie-type-title">{{ 'cookie.modal.overview.necessary.title'|trans }}</h6>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" checked disabled id="cookie-necessary-checkbox">
+                    </div>
+                </div>
+                <p>{{ 'cookie.modal.overview.necessary.description'|trans }}</p>
+            </div>
+            
+            <div class="cookie-type">
+                <div class="cookie-type-header">
+                    <h6 class="cookie-type-title">{{ 'cookie.modal.overview.preferences.title'|trans }}</h6>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="cookie-preferences-checkbox">
+                    </div>
+                </div>
+                <p>{{ 'cookie.modal.overview.preferences.description'|trans }}</p>
+            </div>
+            
+            <div class="cookie-type">
+                <div class="cookie-type-header">
+                    <h6 class="cookie-type-title">{{ 'cookie.modal.overview.statistics.title'|trans }}</h6>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="cookie-statistics-checkbox">
+                    </div>
+                </div>
+                <p>{{ 'cookie.modal.overview.statistics.description'|trans }}</p>
+            </div>
+            
+            <div class="cookie-type">
+                <div class="cookie-type-header">
+                    <h6 class="cookie-type-title">{{ 'cookie.modal.overview.marketing.title'|trans }}</h6>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="cookie-marketing-checkbox">
+                    </div>
+                </div>
+                <p>{{ 'cookie.modal.overview.marketing.description'|trans }}</p>
+            </div>
+        </div>
+        
+        <div id="tab-details" class="cookie-tab-content">
+            <!-- Contenu détaillé des cookies ici -->
+            <p>Les détails sur les cookies utilisés seront affichés ici.</p>
+        </div>
+        
+        <div id="tab-about" class="cookie-tab-content">
+            <!-- Informations sur les cookies ici -->
+            <p>Les informations sur ce que sont les cookies et comment nous les utilisons seront affichées ici.</p>
+        </div>
+    </div>
+    <div class="cookie-popup-footer">
+        <button id="modal-necessary-btn" class="btn-cookie btn-cookie-secondary">
+            {{ 'cookie.modal.necessary_only'|trans }}
+        </button>
+        <button id="modal-accept-all-btn" class="btn-cookie btn-cookie-outline">
+            {{ 'cookie.modal.accept_all'|trans }}
+        </button>
+        <button id="save-preferences-btn" class="btn-cookie btn-cookie-primary">
+            {{ 'cookie.modal.save'|trans }}
+        </button>
+    </div>
+</div>
