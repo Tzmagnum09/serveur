@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/cookie-consent.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Bannière de cookies -->
+    <div id="cookie-banner" class="cookie-banner d-none">
+        <div class="cookie-banner-content">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h5>{{ 'cookie.banner.title'|trans }}</h5>
+                    <p>{{ 'cookie.banner.content'|trans }}</p>
+                </div>
+                <div class="col-md-4 cookie-banner-buttons">
+                    <select id="cookie-language-selector" class="form-select mb-2">
+                        <option value="fr" {% if app.request.locale == 'fr' %}selected{% endif %}>Français</option>
+                        <option value="en" {% if app.request.locale == 'en' %}selected{% endif %}>English</option>
+                        <option value="nl" {% if app.request.locale == 'nl' %}selected{% endif %}>Nederlands</option>
+                        <option value="de" {% if app.request.locale == 'de' %}selected{% endif %}>Deutsch</option>
+                    </select>
+                    <button id="customize-cookies-btn" class="btn btn-cookie-customize me-2">
+                        {{ 'cookie.banner.customize'|trans }}
+                    </button>
+                    <button id="necessary-cookies-btn" class="btn btn-cookie-necessary me-2">
+                        {{ 'cookie.banner.necessary_only'|trans }}
+                    </button>
+                    <button id="accept-all-cookies-btn" class="btn btn-cookie-accept">
+                        {{ 'cookie.banner.accept_all'|trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de préférences des cookies -->
+    <div class="modal fade cookie-preferences-modal" id="cookie-preferences-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                        <h5 class="modal-title">{{ 'cookie.modal.title'|trans }}</h5>
+                        <select id="modal-language-selector" class="form-select w-auto">
+                            <option value="fr" {% if app.request.locale == 'fr' %}selected{% endif %}>Français</option>
+                            <option value="en" {% if app.request.locale == 'en' %}selected{% endif %}>English</option>
+                            <option value="nl" {% if app.request.locale == 'nl' %}selected{% endif %}>Nederlands</option>
+                            <option value="de" {% if app.request.locale == 'de' %}selected{% endif %}>Deutsch</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn-close close-preferences" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#overview" role="tab">
+                                {{ 'cookie.modal.tab.overview'|trans }}
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#details" role="tab">
+                                {{ 'cookie.modal.tab.details'|trans }}
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#about" role="tab">
+                                {{ 'cookie.modal.tab.about'|trans }}
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!-- Onglet Vue d'ensemble -->
+                        <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                            <div class="cookie-tab-content">
+                                <p>{{ 'cookie.modal.overview.intro'|trans }}</p>
+                                
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="cookie-necessary" checked disabled>
+                                    <label class="form-check-label" for="cookie-necessary">
+                                        {{ 'cookie.modal.overview.necessary.title'|trans }}
+                                        <i class="fas fa-info-circle cookie-info-icon" 
+                                           title="{{ 'cookie.modal.overview.necessary.description'|trans }}"></i>
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="cookie-preference">
+                                    <label class="form-check-label" for="cookie-preference">
+                                        {{ 'cookie.modal.overview.preferences.title'|trans }}
+                                        <i class="fas fa-info-circle cookie-info-icon" 
+                                           title="{{ 'cookie.modal.overview.preferences.description'|trans }}"></i>
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="cookie-statistics">
+                                    <label class="form-check-label" for="cookie-statistics">
+                                        {{ 'cookie.modal.overview.statistics.title'|trans }}
+                                        <i class="fas fa-info-circle cookie-info-icon" 
+                                           title="{{ 'cookie.modal.overview.statistics.description'|trans }}"></i>
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="cookie-marketing">
+                                    <label class="form-check-label" for="cookie-marketing">
+                                        {{ 'cookie.modal.overview.marketing.title'|trans }}
+                                        <i class="fas fa-info-circle cookie-info-icon" 
+                                           title="{{ 'cookie.modal.overview.marketing.description'|trans }}"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Les onglets Détails et À propos seraient similaires -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cookie-necessary close-preferences me-2">
+                        {{ 'cookie.modal.necessary_only'|trans }}
+                    </button>
+                    <button type="button" class="btn btn-cookie-accept" id="save-preferences-btn">
+                        {{ 'cookie.modal.save'|trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/cookie-consent.js') }}"></script>
+{% endblock %}

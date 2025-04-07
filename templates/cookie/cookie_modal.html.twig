@@ -1,0 +1,232 @@
+<!-- Modal de préférences des cookies -->
+<div class="modal fade cookie-preferences-modal" id="cookie-preferences-modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <h5 class="modal-title">{{ 'cookie.modal.title'|trans }}</h5>
+                    <select id="modal-language-selector" class="form-select w-auto">
+                        <option value="fr" {% if app.request.locale == 'fr' %}selected{% endif %}>Français</option>
+                        <option value="en" {% if app.request.locale == 'en' %}selected{% endif %}>English</option>
+                        <option value="nl" {% if app.request.locale == 'nl' %}selected{% endif %}>Nederlands</option>
+                        <option value="de" {% if app.request.locale == 'de' %}selected{% endif %}>Deutsch</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-close close-preferences" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#overview" role="tab">
+                            {{ 'cookie.modal.tab.overview'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#details" role="tab">
+                            {{ 'cookie.modal.tab.details'|trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#about" role="tab">
+                            {{ 'cookie.modal.tab.about'|trans }}
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <!-- Onglet Vue d'ensemble -->
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                        <div class="cookie-tab-content">
+                            <p>{{ 'cookie.modal.overview.intro'|trans }}</p>
+                            
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="cookie-necessary" checked disabled>
+                                <label class="form-check-label" for="cookie-necessary">
+                                    {{ 'cookie.modal.overview.necessary.title'|trans }}
+                                    <i class="fas fa-info-circle cookie-info-icon" 
+                                       title="{{ 'cookie.modal.overview.necessary.description'|trans }}"></i>
+                                </label>
+                            </div>
+
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="cookie-preference">
+                                <label class="form-check-label" for="cookie-preference">
+                                    {{ 'cookie.modal.overview.preferences.title'|trans }}
+                                    <i class="fas fa-info-circle cookie-info-icon" 
+                                       title="{{ 'cookie.modal.overview.preferences.description'|trans }}"></i>
+                                </label>
+                            </div>
+
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="cookie-statistics">
+                                <label class="form-check-label" for="cookie-statistics">
+                                    {{ 'cookie.modal.overview.statistics.title'|trans }}
+                                    <i class="fas fa-info-circle cookie-info-icon" 
+                                       title="{{ 'cookie.modal.overview.statistics.description'|trans }}"></i>
+                                </label>
+                            </div>
+
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="cookie-marketing">
+                                <label class="form-check-label" for="cookie-marketing">
+                                    {{ 'cookie.modal.overview.marketing.title'|trans }}
+                                    <i class="fas fa-info-circle cookie-info-icon" 
+                                       title="{{ 'cookie.modal.overview.marketing.description'|trans }}"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Onglet Détails -->
+                    <div class="tab-pane fade" id="details" role="tabpanel">
+                        <div class="cookie-tab-content">
+                            <!-- Cookies nécessaires -->
+                            <div class="cookie-type-description">
+                                <h5>{{ 'cookie.modal.details.necessary.title'|trans }}</h5>
+                                <p>{{ 'cookie.modal.details.necessary.description'|trans }}</p>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>{{ 'cookie.modal.details.table.name'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.provider'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.purpose'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.expiry'|trans }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>PHPSESSID</td>
+                                                <td>{{ app.request.host }}</td>
+                                                <td>{{ 'cookie.modal.details.necessary.session'|trans }}</td>
+                                                <td>{{ 'cookie.modal.details.necessary.session_end'|trans }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>cookieConsent</td>
+                                                <td>{{ app.request.host }}</td>
+                                                <td>{{ 'cookie.modal.details.necessary.consent'|trans }}</td>
+                                                <td>1 {{ 'cookie.modal.details.necessary.year'|trans }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Cookies de préférences -->
+                            <div class="cookie-type-description">
+                                <h5>{{ 'cookie.modal.details.preferences.title'|trans }}</h5>
+                                <p>{{ 'cookie.modal.details.preferences.description'|trans }}</p>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>{{ 'cookie.modal.details.table.name'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.provider'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.purpose'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.expiry'|trans }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>_locale</td>
+                                                <td>{{ app.request.host }}</td>
+                                                <td>{{ 'cookie.modal.details.preferences.language'|trans }}</td>
+                                                <td>1 {{ 'cookie.modal.details.necessary.year'|trans }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Cookies statistiques -->
+                            <div class="cookie-type-description">
+                                <h5>{{ 'cookie.modal.details.statistics.title'|trans }}</h5>
+                                <p>{{ 'cookie.modal.details.statistics.description'|trans }}</p>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>{{ 'cookie.modal.details.table.name'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.provider'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.purpose'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.expiry'|trans }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>_ga</td>
+                                                <td>Google</td>
+                                                <td>{{ 'cookie.modal.details.statistics.analytics'|trans }}</td>
+                                                <td>2 {{ 'cookie.modal.details.statistics.years'|trans }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>_gid</td>
+                                                <td>Google</td>
+                                                <td>{{ 'cookie.modal.details.statistics.user_id'|trans }}</td>
+                                                <td>24 {{ 'cookie.modal.details.statistics.hours'|trans }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Cookies marketing -->
+                            <div class="cookie-type-description">
+                                <h5>{{ 'cookie.modal.details.marketing.title'|trans }}</h5>
+                                <p>{{ 'cookie.modal.details.marketing.description'|trans }}</p>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>{{ 'cookie.modal.details.table.name'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.provider'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.purpose'|trans }}</th>
+                                                <th>{{ 'cookie.modal.details.table.expiry'|trans }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>_fbp</td>
+                                                <td>Facebook</td>
+                                                <td>{{ 'cookie.modal.details.marketing.facebook'|trans }}</td>
+                                                <td>3 {{ 'cookie.modal.details.marketing.months'|trans }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Onglet À propos -->
+                    <div class="tab-pane fade" id="about" role="tabpanel">
+                        <div class="cookie-tab-content">
+                            <h5>{{ 'cookie.modal.about.what_are.title'|trans }}</h5>
+                            <p>{{ 'cookie.modal.about.what_are.description'|trans }}</p>
+
+                            <h5>{{ 'cookie.modal.about.how_used.title'|trans }}</h5>
+                            <p>{{ 'cookie.modal.about.how_used.description'|trans }}</p>
+
+                            <h5>{{ 'cookie.modal.about.how_manage.title'|trans }}</h5>
+                            <p>{{ 'cookie.modal.about.how_manage.description'|trans }}</p>
+
+                            <h5>{{ 'cookie.modal.about.more_info.title'|trans }}</h5>
+                            <p>
+                                {{ 'cookie.modal.about.more_info.description'|trans }}
+                                <a href="{{ path('app_terms') }}">{{ 'cookie.modal.about.more_info.terms_link'|trans }}</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cookie-necessary close-preferences me-2">
+                    {{ 'cookie.modal.necessary_only'|trans }}
+                </button>
+                <button type="button" class="btn btn-cookie-accept" id="save-preferences-btn">
+                    {{ 'cookie.modal.save'|trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

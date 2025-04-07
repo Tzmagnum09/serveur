@@ -10,6 +10,8 @@ return [
     [ // $staticRoutes
         '/admin' => [[['_route' => 'app_admin_dashboard', '_controller' => 'App\\Controller\\AdminController::dashboard'], null, null, null, false, false, null]],
         '/admin/users' => [[['_route' => 'app_admin_users', '_controller' => 'App\\Controller\\AdminController::users'], null, null, null, false, false, null]],
+        '/cookie-preferences' => [[['_route' => 'app_cookie_preferences', '_controller' => 'App\\Controller\\CookieController::showPreferences'], null, null, null, false, false, null]],
+        '/cookie-consent' => [[['_route' => 'app_cookie_consent', '_controller' => 'App\\Controller\\CookieController::saveConsent'], null, ['POST' => 0], null, false, false, null]],
         '/admin/email-templates' => [[['_route' => 'app_admin_email_templates', '_controller' => 'App\\Controller\\EmailTemplateController::index'], null, null, null, false, false, null]],
         '/admin/email-templates/new' => [[['_route' => 'app_admin_email_template_new', '_controller' => 'App\\Controller\\EmailTemplateController::new'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],

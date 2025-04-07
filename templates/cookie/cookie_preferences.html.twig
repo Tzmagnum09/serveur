@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'cookie.modal.title'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/cookie-consent.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h1 class="h4 mb-0">{{ 'cookie.modal.title'|trans }}</h1>
+                    </div>
+                    <div class="card-body">
+                        {% include 'cookie/cookie_modal.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/cookie-consent.js') }}"></script>
+    <script>
+        // Ouvrir automatiquement la fenêtre modale des préférences
+        document.addEventListener('DOMContentLoaded', function() {
+            showCookiePreferences();
+        });
+    </script>
+{% endblock %}

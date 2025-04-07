@@ -378,6 +378,13 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\AdminController"/>
       </call>
     </service>
+    <service id="App\Controller\CookieController" class="App\Controller\CookieController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\CookieController"/>
+      </call>
+    </service>
     <service id="App\Controller\EmailTemplateController" class="App\Controller\EmailTemplateController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -2092,6 +2099,7 @@
             <argument>/var/www/serveur/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.de.xlf</argument>
             <argument>/var/www/serveur/vendor/knplabs/knp-paginator-bundle/translations/KnpPaginatorBundle.de.xliff</argument>
             <argument>/var/www/serveur/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.de.xlf</argument>
+            <argument>/var/www/serveur/translations/cookie.de.yaml</argument>
             <argument>/var/www/serveur/translations/messages.de.yaml</argument>
           </argument>
           <argument key="el" type="collection">
@@ -2108,6 +2116,7 @@
             <argument>/var/www/serveur/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.en.xlf</argument>
             <argument>/var/www/serveur/vendor/knplabs/knp-paginator-bundle/translations/KnpPaginatorBundle.en.xliff</argument>
             <argument>/var/www/serveur/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.en.xlf</argument>
+            <argument>/var/www/serveur/translations/cookie.en.yaml</argument>
             <argument>/var/www/serveur/translations/messages.en.yaml</argument>
           </argument>
           <argument key="es" type="collection">
@@ -2152,6 +2161,7 @@
             <argument>/var/www/serveur/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fr.xlf</argument>
             <argument>/var/www/serveur/vendor/knplabs/knp-paginator-bundle/translations/KnpPaginatorBundle.fr.xliff</argument>
             <argument>/var/www/serveur/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.fr.xlf</argument>
+            <argument>/var/www/serveur/translations/cookie.fr.yaml</argument>
             <argument>/var/www/serveur/translations/messages.fr.yaml</argument>
           </argument>
           <argument key="gl" type="collection">
@@ -2254,6 +2264,7 @@
             <argument>/var/www/serveur/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle+intl-icu.nl.xlf</argument>
             <argument>/var/www/serveur/vendor/knplabs/knp-paginator-bundle/translations/KnpPaginatorBundle.nl.xliff</argument>
             <argument>/var/www/serveur/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle+intl-icu.nl.xlf</argument>
+            <argument>/var/www/serveur/translations/cookie.nl.yaml</argument>
             <argument>/var/www/serveur/translations/messages.nl.yaml</argument>
           </argument>
           <argument key="nn" type="collection">
@@ -6930,6 +6941,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CookieController" class="App\Controller\CookieController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CookieController" class="App\Controller\CookieController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CookieController" class="App\Controller\CookieController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\EmailTemplateController" class="App\Controller\EmailTemplateController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\EmailTemplateController" class="App\Controller\EmailTemplateController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\EmailTemplateController" class="App\Controller\EmailTemplateController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -8453,6 +8467,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\CookieController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CookieController"/>
+      <argument>App\Controller\CookieController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\EmailTemplateController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\EmailTemplateController"/>
       <argument>App\Controller\EmailTemplateController</argument>
@@ -8668,6 +8688,7 @@
         <argument type="collection">
           <argument>App\Kernel</argument>
           <argument>App\Controller\AdminController</argument>
+          <argument>App\Controller\CookieController</argument>
           <argument>App\Controller\EmailTemplateController</argument>
           <argument>App\Controller\HomeController</argument>
           <argument>App\Controller\LocaleController</argument>

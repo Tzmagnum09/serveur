@@ -1,0 +1,88 @@
+# Bannière principale
+cookie:
+  banner:
+    title: "Deze website maakt gebruik van cookies"
+    content: "Als bezoeker van onze website proberen wij u een zo aangenaam mogelijke ervaring te bieden. Wij gebruiken cookies in de eerste plaats om uw gebruikerservaring te verbeteren en de werking van onze online diensten te optimaliseren. Bovendien gebruiken wij cookies om de inhoud van onze websites en (mobiele) applicaties interessanter voor u te maken. We gebruiken ook cookies om uw surfgedrag in kaart te brengen. Hoe bent u op onze site terechtgekomen? Hoe lang heeft u het gebruikt? Dankzij de resultaten kunnen we onze websites, indien nodig, verbeteren en inspelen op de voorkeuren en behoeften van u en al onze andere gebruikers."
+    customize: "Aanpassen"
+    necessary_only: "Alleen noodzakelijk"
+    accept_all: "Accepteren en doorgaan"
+
+  # Modal des préférences
+  modal:
+    title: "Cookievoorkeuren"
+    necessary_only: "Alleen noodzakelijk"
+    accept_all: "Alles accepteren"
+    save: "Voorkeuren opslaan"
+    
+    # Onglets
+    tab:
+      overview: "Overzicht"
+      details: "Details"
+      about: "Over"
+    
+    # Contenu de l'onglet Vue d'ensemble
+    overview:
+      intro: "U kunt kiezen welke cookies u wilt accepteren. Noodzakelijke cookies zijn essentieel voor een goede werking van de site."
+      necessary:
+        title: "Noodzakelijke cookies"
+        description: "Deze cookies zijn essentieel voor de basisfunctionaliteit van de website en kunnen niet worden uitgeschakeld."
+      preferences:
+        title: "Voorkeurscookies"
+        description: "Deze cookies stellen u in staat om uw keuzes en voorkeuren te onthouden, zoals uw gewenste taal of regio."
+      statistics:
+        title: "Statistieken cookies"
+        description: "Deze cookies helpen ons te begrijpen hoe bezoekers met onze website omgaan door anoniem informatie te verzamelen en te rapporteren."
+      marketing:
+        title: "Marketingcookies"
+        description: "Deze cookies worden gebruikt om bezoekers op websites te volgen. Ze maken het mogelijk om relevante en aansprekende advertenties voor de gebruiker weer te geven."
+    
+    # Contenu de l'onglet Détails
+    details:
+      necessary:
+        title: "Noodzakelijke cookies"
+        description: "Noodzakelijke cookies helpen een website bruikbaar te maken door basisfuncties zoals paginavigatie en toegang tot beveiligde delen van de website in te schakelen. De website kan niet correct functioneren zonder deze cookies."
+        session: "Gebruikerssessie behouden"
+        session_end: "Einde sessie"
+        consent: "Opslaan van cookie toestemming voorkeuren"
+        year: "jaar"
+      preferences:
+        title: "Voorkeurscookies"
+        description: "Voorkeurscookies stellen een website in staat om informatie te onthouden die de functionaliteit of weergave van de site aanpast, zoals uw voorkeurstaal of regio."
+        language: "Opslag van taalvoorkeur"
+      statistics:
+        title: "Statistieken cookies"
+        description: "Statistieken cookies helpen website-eigenaren te begrijpen hoe bezoekers de site gebruiken door anoniem informatie te verzamelen en over te dragen."
+        analytics: "Volgen van het gedrag van gebruikers op de site voor een verbeterde ervaring"
+        user_id: "Onderscheid tussen gebruikers"
+        years: "jaar"
+        hours: "uren"
+      marketing:
+        title: "Marketingcookies"
+        description: "Marketingcookies worden gebruikt om bezoekers op websites te volgen. Het doel is om advertenties weer te geven die relevant en interessant zijn voor de individuele gebruiker en daardoor waardevoller voor derden (uitgevers en adverteerders)."
+        facebook: "Volgen van advertentieconversies en retargeting"
+        months: "maanden"
+      table:
+        name: "Naam"
+        provider: "Aanbieder"
+        purpose: "Doel"
+        expiry: "Vervaldatum"
+    
+    # Contenu de l'onglet À propos
+    about:
+      what_are:
+        title: "Wat zijn cookies?"
+        description: "Cookies zijn kleine tekstbestanden die op uw computer of mobiele apparaat worden opgeslagen wanneer u een website bezoekt. Ze stellen de site in staat om uw handelingen en voorkeuren gedurende een bepaalde periode te onthouden, zodat u deze niet elke keer opnieuw hoeft in te voeren wanneer u de site bezoekt of van pagina wisselt."
+      how_used:
+        title: "Hoe gebruiken wij cookies?"
+        description: "Wij gebruiken verschillende typen cookies om onze website te laten functioneren, uw gebruikerservaring te verbeteren, te analyseren hoe de site wordt gebruikt en de inhoud en advertenties die u ziet te personaliseren."
+      how_manage:
+        title: "Hoe beheert u cookies?"
+        description: "U kunt uw cookievoorkeuren op elk moment aanpassen door op de link 'Cookie-instellingen' onderaan onze site te klikken. U kunt ook de instellingen van uw browser aanpassen om bepaalde cookies te verwijderen of te blokkeren zonder uw expliciete toestemming."
+      more_info:
+        title: "Meer informatie"
+        description: "Voor meer informatie over ons gebruik van cookies, raadpleegt u ons privacybeleid en de gebruiksvoorwaarden op"
+        terms_link: "onze pagina met gebruiksvoorwaarden"
+
+  # Lien dans le footer
+  footer:
+    settings: "Cookie-instellingen"
