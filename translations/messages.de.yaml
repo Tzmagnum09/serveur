@@ -438,3 +438,89 @@ terms:
     footer:
         last_update: "Zuletzt aktualisiert:"
     back_btn: "Zurück zur Registrierung"
+cookie:
+  preferences:
+    title: "Cookie-Einstellungen"
+    intro: "Auf dieser Seite können Sie Ihre Präferenzen bezüglich der Verwendung von Cookies auf unserer Website verwalten."
+  
+  banner:
+    title: "Diese Website verwendet Cookies"
+    content: "Als Besucher unserer Website bemühen wir uns, Ihnen eine möglichst angenehme Erfahrung zu bieten. Wir verwenden Cookies in erster Linie, um Ihre Benutzererfahrung zu verbessern und den Betrieb unserer Online-Dienste zu optimieren. Darüber hinaus setzen wir Cookies ein, um die Inhalte unserer Websites und mobilen Anwendungen für Sie interessanter zu gestalten. Wir verwenden auch Cookies, um Ihr Surfverhalten zu analysieren."
+    customize: "Anpassen"
+    necessary_only: "Nur notwendig"
+    accept_all: "Alle zulassen und fortfahren"
+
+  modal:
+    title: "Cookie-Präferenzen"
+    necessary_only: "Nur notwendig"
+    accept_all: "Alle zulassen"
+    save: "Einstellungen speichern"
+    
+    tab:
+      overview: "Übersicht"
+      details: "Details"
+      about: "Über"
+    
+    overview:
+      intro: "Sie können auswählen, welche Cookies Sie akzeptieren möchten. Notwendige Cookies sind für den ordnungsgemäßen Betrieb der Website unerlässlich."
+      necessary:
+        title: "Notwendige Cookies"
+        description: "Diese Cookies sind für die Grundfunktionen der Website unerlässlich und können nicht deaktiviert werden."
+      preferences:
+        title: "Präferenz-Cookies"
+        description: "Diese Cookies ermöglichen es, Ihre Einstellungen und Präferenzen wie bevorzugte Sprache oder Ihre Region zu speichern."
+      statistics:
+        title: "Statistik-Cookies"
+        description: "Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, indem sie anonym Informationen sammeln und melden."
+      marketing:
+        title: "Marketing-Cookies"
+        description: "Diese Cookies werden verwendet, um Besucher auf Websites zu verfolgen. Sie ermöglichen es, relevante und ansprechende Werbung für den Nutzer anzuzeigen."
+    
+    details:
+      necessary:
+        title: "Notwendige Cookies"
+        description: "Notwendige Cookies machen eine Website benutzbar, indem sie grundlegende Funktionen wie die Seitennavigation und den Zugang zu geschützten Bereichen ermöglichen. Ohne diese Cookies kann die Website nicht richtig funktionieren."
+        session: "Aufrechterhaltung der Benutzersitzung"
+        session_end: "Sitzungsende"
+        consent: "Speicherung der Cookie-Zustimmungseinstellungen"
+        year: "Jahr"
+        month: "Monate"
+      preferences:
+        title: "Präferenz-Cookies"
+        description: "Präferenz-Cookies ermöglichen es einer Website, Informationen zu speichern, die das Verhalten oder die Darstellung der Seite verändern, wie z.B. Ihre bevorzugte Sprache oder Region."
+        language: "Speicherung der Spracheinstellungen"
+      statistics:
+        title: "Statistik-Cookies"
+        description: "Statistik-Cookies helfen den Website-Betreibern zu verstehen, wie Besucher die Seite nutzen, indem sie anonym Informationen sammeln und übermitteln."
+        analytics: "Verfolgung des Nutzerverhaltens auf der Seite zur Verbesserung der Benutzererfahrung"
+        user_id: "Unterscheidung der Nutzer"
+        years: "Jahre"
+        hours: "Stunden"
+      marketing:
+        title: "Marketing-Cookies"
+        description: "Marketing-Cookies werden verwendet, um Besucher auf Websites zu verfolgen. Ziel ist es, Werbung anzuzeigen, die für den einzelnen Nutzer relevant und interessant ist und somit für Drittanbieter (Publisher und Werbetreibende) wertvoller ist."
+        facebook: "Verfolgung von Werbekonversionen und Retargeting"
+        months: "Monate"
+      table:
+        name: "Name"
+        provider: "Anbieter"
+        purpose: "Zweck"
+        expiry: "Ablaufdatum"
+    
+    about:
+      what_are:
+        title: "Was sind Cookies?"
+        description: "Cookies sind kleine Textdateien, die auf Ihrem Computer oder mobilen Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie ermöglichen es der Website, Ihre Aktionen und Einstellungen für einen bestimmten Zeitraum zu speichern, damit Sie diese nicht bei jedem Besuch oder Seitenwechsel erneut eingeben müssen."
+      how_used:
+        title: "Wie verwenden wir Cookies?"
+        description: "Wir verwenden verschiedene Arten von Cookies, um unsere Website funktionsfähig zu machen, Ihre Benutzererfahrung zu verbessern, zu analysieren, wie die Seite genutzt wird, und um die Inhalte und Werbung, die Sie sehen, zu personalisieren."
+      how_manage:
+        title: "Wie verwalten Sie Cookies?"
+        description: "Sie können Ihre Cookie-Einstellungen jederzeit verwalten, indem Sie auf den Link 'Cookie-Einstellungen' am unteren Rand unserer Website klicken. Außerdem können Sie die Einstellungen Ihres Browsers ändern, um bestimmte Cookies zu löschen oder ihre Speicherung ohne Ihre ausdrückliche Zustimmung zu verhindern."
+      more_info:
+        title: "Mehr Informationen"
+        description: "Für weitere Informationen über unsere Nutzung von Cookies lesen Sie bitte unsere Datenschutzrichtlinie und Nutzungsbedingungen unter"
+        terms_link: "unserer Seite mit den Nutzungsbedingungen"
+
+  footer:
+    settings: "Cookie-Einstellungen"

@@ -2099,7 +2099,6 @@
             <argument>/var/www/serveur/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.de.xlf</argument>
             <argument>/var/www/serveur/vendor/knplabs/knp-paginator-bundle/translations/KnpPaginatorBundle.de.xliff</argument>
             <argument>/var/www/serveur/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.de.xlf</argument>
-            <argument>/var/www/serveur/translations/cookie.de.yaml</argument>
             <argument>/var/www/serveur/translations/messages.de.yaml</argument>
           </argument>
           <argument key="el" type="collection">
@@ -2116,7 +2115,6 @@
             <argument>/var/www/serveur/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.en.xlf</argument>
             <argument>/var/www/serveur/vendor/knplabs/knp-paginator-bundle/translations/KnpPaginatorBundle.en.xliff</argument>
             <argument>/var/www/serveur/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.en.xlf</argument>
-            <argument>/var/www/serveur/translations/cookie.en.yaml</argument>
             <argument>/var/www/serveur/translations/messages.en.yaml</argument>
           </argument>
           <argument key="es" type="collection">
@@ -2161,7 +2159,6 @@
             <argument>/var/www/serveur/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle.fr.xlf</argument>
             <argument>/var/www/serveur/vendor/knplabs/knp-paginator-bundle/translations/KnpPaginatorBundle.fr.xliff</argument>
             <argument>/var/www/serveur/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.fr.xlf</argument>
-            <argument>/var/www/serveur/translations/cookie.fr.yaml</argument>
             <argument>/var/www/serveur/translations/messages.fr.yaml</argument>
           </argument>
           <argument key="gl" type="collection">
@@ -2264,7 +2261,6 @@
             <argument>/var/www/serveur/vendor/symfonycasts/verify-email-bundle/src/Resources/translations/VerifyEmailBundle+intl-icu.nl.xlf</argument>
             <argument>/var/www/serveur/vendor/knplabs/knp-paginator-bundle/translations/KnpPaginatorBundle.nl.xliff</argument>
             <argument>/var/www/serveur/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle+intl-icu.nl.xlf</argument>
-            <argument>/var/www/serveur/translations/cookie.nl.yaml</argument>
             <argument>/var/www/serveur/translations/messages.nl.yaml</argument>
           </argument>
           <argument key="nn" type="collection">
