@@ -1,16 +1,26 @@
 /**
- * Styles pour la bannière et la fenêtre modale des cookies
+ * Styles pour le système de consentement aux cookies
+ * À placer dans public/css/cookie-consent.css
  */
+
+/* Styles généraux */
+.cookie-consent-container {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Bannière principale */
 .cookie-banner {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: #fff;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
     z-index: 1050;
+    background-color: #fff;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #e0e0e0;
 }
 
 .cookie-banner-content {
@@ -20,100 +30,250 @@
 
 .cookie-banner h5 {
     font-weight: 600;
-    color: #333;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.cookie-banner p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
 }
 
 .cookie-banner-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.75rem;
     margin-top: 1rem;
 }
 
-.cookie-preferences-modal .modal-dialog {
+/* Fenêtre modale */
+.cookie-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1060;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.cookie-modal-dialog {
     max-width: 800px;
-}
-
-.cookie-preferences-modal .nav-tabs .nav-link {
-    color: #495057;
-}
-
-.cookie-preferences-modal .nav-tabs .nav-link.active {
-    color: #8e44ad;
-    border-color: #dee2e6 #dee2e6 #fff;
-    border-bottom: 2px solid #8e44ad;
-}
-
-.cookie-type-description {
-    padding: 1rem 0;
-    border-bottom: 1px solid #eee;
-}
-
-.custom-control-input:checked ~ .custom-control-label::before {
-    background-color: #8e44ad;
-    border-color: #8e44ad;
-}
-
-.btn-cookie-necessary {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
-}
-
-.btn-cookie-accept {
-    color: #fff;
-    background: linear-gradient(135deg, #8e44ad, #3498db);
-    border: none;
-}
-
-.btn-cookie-customize {
-    color: #333;
+    margin: 2rem auto;
     background-color: #fff;
-    border: 1px solid #ddd;
+    border-radius: 0.3rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-.cookie-info-icon {
-    color: #8e44ad;
-    margin-left: 0.5rem;
+.cookie-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.cookie-modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.cookie-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
     cursor: pointer;
+    padding: 0.25rem;
+    color: #666;
 }
 
-.form-check-input:checked {
-    background-color: #8e44ad;
-    border-color: #8e44ad;
-}
-
-/* Style pour l'onglet actif */
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    color: #8e44ad;
-    border-color: #dee2e6 #dee2e6 #fff;
-}
-
-.cookie-tab-content {
+.cookie-modal-body {
     padding: 1.5rem;
 }
 
-/* Style pour les switches */
-.form-switch .form-check-input:checked {
+.cookie-modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+/* Onglets */
+.cookie-tabs {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 1.5rem;
+}
+
+.cookie-tab {
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+}
+
+.cookie-tab.active {
+    border-bottom-color: #8e44ad;
+    color: #8e44ad;
+}
+
+.cookie-tab-content {
+    display: none;
+}
+
+.cookie-tab-content.active {
+    display: block;
+}
+
+/* Contenu des onglets */
+.cookie-type {
+    padding: 1rem 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.cookie-type-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.cookie-type-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.cookie-type-description {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.cookie-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.cookie-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.cookie-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.cookie-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .cookie-slider {
     background-color: #8e44ad;
-    border-color: #8e44ad;
 }
 
-.form-switch .form-check-input:focus {
-    box-shadow: 0 0 0 0.25rem rgba(142, 68, 173, 0.25);
+input:checked + .cookie-slider:before {
+    transform: translateX(26px);
 }
 
-/* Style pour le sélecteur de langue */
-#cookie-language-selector, #modal-language-selector {
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
+input:disabled + .cookie-slider {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
-/* Style pour le lien des paramètres de cookies dans le footer */
+/* Boutons */
+.btn-cookie {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-cookie-primary {
+    background: linear-gradient(135deg, #8e44ad, #9b59b6);
+    color: white;
+}
+
+.btn-cookie-primary:hover {
+    background: linear-gradient(135deg, #7d3c98, #8e44ad);
+}
+
+.btn-cookie-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-cookie-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-cookie-outline {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #333;
+}
+
+.btn-cookie-outline:hover {
+    background-color: #f5f5f5;
+}
+
+/* Tables dans l'onglet détails */
+.cookie-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.cookie-table th, 
+.cookie-table td {
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+}
+
+.cookie-table th {
+    background-color: #f5f5f5;
+    text-align: left;
+    font-weight: 600;
+}
+
+.cookie-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Lien de préférences dans le footer */
 .cookie-settings-link {
+    display: inline-block;
+    font-size: 0.85rem;
     color: #6c757d;
     text-decoration: none;
-    font-size: 0.9rem;
+    padding: 0.5rem 0;
 }
 
 .cookie-settings-link:hover {
@@ -121,51 +281,34 @@
     text-decoration: underline;
 }
 
-.footer-cookie-settings {
-    padding: 0.5rem 0;
-    background-color: #f8f9fa;
-    border-top: 1px solid #eee;
-}
-
-/* Style pour les tableaux dans les détails */
-.cookie-preferences-modal .table {
-    font-size: 0.9rem;
-}
-
-.cookie-preferences-modal .table th {
-    background-color: #f8f9fa;
-}
-
-/* Style pour l'accordéon */
-.cookie-preferences-modal .accordion-button:not(.collapsed) {
-    color: #8e44ad;
-    background-color: #f8f9fa;
-}
-
-.cookie-preferences-modal .accordion-button:focus {
-    border-color: rgba(142, 68, 173, 0.25);
-    box-shadow: 0 0 0 0.25rem rgba(142, 68, 173, 0.25);
-}
-
-/* Responsive */
+/* Styles pour les smartphones */
 @media (max-width: 767px) {
     .cookie-banner-buttons {
         flex-direction: column;
-        align-items: center;
     }
     
-    .cookie-banner-buttons .btn {
-        width: 100%;
-        margin-bottom: 0.5rem;
+    .cookie-modal-dialog {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
     }
-
-    .cookie-preferences-modal .modal-header {
+    
+    .cookie-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .cookie-tab {
+        flex-basis: 33.333%;
+        text-align: center;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+    
+    .cookie-modal-footer {
         flex-direction: column;
-        align-items: flex-start;
     }
-
-    .cookie-preferences-modal .modal-header select {
-        margin-top: 0.5rem;
+    
+    .cookie-modal-footer button {
+        width: 100%;
         margin-bottom: 0.5rem;
     }
 }

@@ -1,269 +1,369 @@
 /**
- * Système de gestion du consentement aux cookies avec support multilingue
+ * Système de gestion du consentement aux cookies
+ * À placer dans public/js/cookie-consent.js
  */
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialisation du système de consentement aux cookies
+    initCookieConsent();
+});
+
+/**
+ * Initialise le système de consentement aux cookies
+ */
+function initCookieConsent() {
     // Vérifier si l'utilisateur a déjà fait un choix
-    const hasConsent = localStorage.getItem('cookieConsent');
+    const hasConsent = getCookie('cookieConsent');
     
     if (!hasConsent) {
         // Afficher la bannière principale si aucun choix n'a été fait
         showCookieBanner();
     }
     
-    // Gestionnaire pour le bouton "Personnaliser"
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.id === 'customize-cookies-btn') {
-            showCookiePreferences();
-        }
-    });
+    // Attacher les gestionnaires d'événements
+    attachEventHandlers();
+}
+
+/**
+ * Attache les gestionnaires d'événements pour les boutons et les liens
+ */
+function attachEventHandlers() {
+    // Bouton "Personnaliser" dans la bannière
+    const customizeBtn = document.getElementById('cookie-customize-btn');
+    if (customizeBtn) {
+        customizeBtn.addEventListener('click', showCookieModal);
+    }
     
-    // Gestionnaire pour le bouton "Uniquement nécessaire"
-    document.addEventListener('click', function(e) {
-        if (e.target && (e.target.id === 'necessary-cookies-btn' || 
-                        (e.target.classList.contains('close-preferences') && 
-                         e.target.classList.contains('btn-cookie-necessary')))) {
-            saveCookieConsent({
+    // Bouton "Uniquement nécessaire" dans la bannière
+    const necessaryBtn = document.getElementById('cookie-necessary-btn');
+    if (necessaryBtn) {
+        necessaryBtn.addEventListener('click', function() {
+            saveConsent({
                 necessary: true,
                 preferences: false,
                 statistics: false,
                 marketing: false
             });
             hideCookieBanner();
-            hideCookiePreferences();
-        }
-    });
+        });
+    }
     
-    // Gestionnaire pour le bouton "Autoriser et continuer"
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.id === 'accept-all-cookies-btn') {
-            saveCookieConsent({
+    // Bouton "Autoriser et continuer" dans la bannière
+    const acceptAllBtn = document.getElementById('cookie-accept-all-btn');
+    if (acceptAllBtn) {
+        acceptAllBtn.addEventListener('click', function() {
+            saveConsent({
                 necessary: true,
                 preferences: true,
                 statistics: true,
                 marketing: true
             });
             hideCookieBanner();
-        }
+        });
+    }
+    
+    // Gestionnaire pour le bouton de fermeture de la modale
+    const closeModalBtn = document.getElementById('cookie-modal-close');
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', hideCookieModal);
+    }
+    
+    // Gestionnaire pour le changement d'onglets
+    const tabs = document.querySelectorAll('.cookie-tab');
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+            switchTab(tabId);
+        });
     });
     
-    // Gestionnaire pour le bouton "Enregistrer les préférences"
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.id === 'save-preferences-btn') {
-            const preferenceConsent = document.getElementById('cookie-preference').checked;
-            const statisticsConsent = document.getElementById('cookie-statistics').checked;
-            const marketingConsent = document.getElementById('cookie-marketing').checked;
+    // Bouton "Uniquement nécessaire" dans la modale
+    const modalNecessaryBtn = document.getElementById('cookie-modal-necessary-btn');
+    if (modalNecessaryBtn) {
+        modalNecessaryBtn.addEventListener('click', function() {
+            saveConsent({
+                necessary: true,
+                preferences: false,
+                statistics: false,
+                marketing: false
+            });
+            hideCookieModal();
+            hideCookieBanner();
+        });
+    }
+    
+    // Bouton "Enregistrer les préférences" dans la modale
+    const savePreferencesBtn = document.getElementById('cookie-save-preferences-btn');
+    if (savePreferencesBtn) {
+        savePreferencesBtn.addEventListener('click', function() {
+            const preferencesEnabled = document.getElementById('cookie-preferences-checkbox').checked;
+            const statisticsEnabled = document.getElementById('cookie-statistics-checkbox').checked;
+            const marketingEnabled = document.getElementById('cookie-marketing-checkbox').checked;
             
-            saveCookieConsent({
+            saveConsent({
                 necessary: true, // Toujours nécessaire
-                preferences: preferenceConsent,
-                statistics: statisticsConsent,
-                marketing: marketingConsent
+                preferences: preferencesEnabled,
+                statistics: statisticsEnabled,
+                marketing: marketingEnabled
             });
             
-            hideCookiePreferences();
+            hideCookieModal();
             hideCookieBanner();
-        }
+        });
+    }
+    
+    // Lien des paramètres de cookies dans le footer
+    const settingsLink = document.getElementById('cookie-settings-link');
+    if (settingsLink) {
+        settingsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showCookieModal();
+        });
+    }
+    
+    // Bouton "Autoriser tout" dans la modale
+    const modalAcceptAllBtn = document.getElementById('cookie-modal-accept-all-btn');
+    if (modalAcceptAllBtn) {
+        modalAcceptAllBtn.addEventListener('click', function() {
+            // Cocher toutes les cases
+            document.getElementById('cookie-preferences-checkbox').checked = true;
+            document.getElementById('cookie-statistics-checkbox').checked = true;
+            document.getElementById('cookie-marketing-checkbox').checked = true;
+            
+            saveConsent({
+                necessary: true,
+                preferences: true,
+                statistics: true,
+                marketing: true
+            });
+            
+            hideCookieModal();
+            hideCookieBanner();
+        });
+    }
+    
+    // Gestionnaire pour le sélecteur de langue
+    const languageSelectors = document.querySelectorAll('.cookie-language-selector');
+    languageSelectors.forEach(function(selector) {
+        selector.addEventListener('change', function() {
+            const locale = this.value;
+            changeLanguage(locale);
+        });
     });
     
-    // Gestionnaire pour le bouton de fermeture des préférences (X)
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.classList.contains('btn-close') && 
-            e.target.classList.contains('close-preferences')) {
-            hideCookiePreferences();
-        }
-    });
-
-    // Gestionnaire pour le lien des paramètres de cookies dans le footer
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.id === 'cookie-settings-link') {
-            e.preventDefault();
-            openCookiePreferences();
-        }
-    });
-
-    // Gestionnaire pour le changement de langue dans les cookies
-    document.addEventListener('change', function(e) {
-        if (e.target && (e.target.id === 'cookie-language-selector' || e.target.id === 'modal-language-selector')) {
-            const locale = e.target.value;
-            
-            // Synchroniser les deux sélecteurs
-            if (e.target.id === 'cookie-language-selector') {
-                const modalSelector = document.getElementById('modal-language-selector');
-                if (modalSelector) {
-                    modalSelector.value = locale;
-                }
-            } else {
-                const bannerSelector = document.getElementById('cookie-language-selector');
-                if (bannerSelector) {
-                    bannerSelector.value = locale;
-                }
-            }
-            
-            changeLanguageCookies(locale);
-        }
-    });
-
-    // Initialiser les cases à cocher si un consentement existe déjà
-    if (hasConsent) {
-        const consent = getCookieConsent();
-        
-        // Si on ouvre les préférences ultérieurement
-        const preferenceCheckbox = document.getElementById('cookie-preference');
-        const statisticsCheckbox = document.getElementById('cookie-statistics');
-        const marketingCheckbox = document.getElementById('cookie-marketing');
-        
-        if (preferenceCheckbox && consent.preferences !== undefined) {
-            preferenceCheckbox.checked = consent.preferences;
-        }
-        
-        if (statisticsCheckbox && consent.statistics !== undefined) {
-            statisticsCheckbox.checked = consent.statistics;
-        }
-        
-        if (marketingCheckbox && consent.marketing !== undefined) {
-            marketingCheckbox.checked = consent.marketing;
-        }
-    }
-});
+    // Initialiser les cases à cocher avec les préférences enregistrées
+    initCheckboxes();
+}
 
 /**
- * Affiche la bannière principale de consentement aux cookies
+ * Affiche la bannière de consentement aux cookies
  */
 function showCookieBanner() {
-    const cookieBanner = document.getElementById('cookie-banner');
-    if (cookieBanner) {
-        cookieBanner.classList.remove('d-none');
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+        banner.style.display = 'block';
     }
 }
 
 /**
- * Cache la bannière principale de consentement aux cookies
+ * Cache la bannière de consentement aux cookies
  */
 function hideCookieBanner() {
-    const cookieBanner = document.getElementById('cookie-banner');
-    if (cookieBanner) {
-        cookieBanner.classList.add('d-none');
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+        banner.style.display = 'none';
     }
 }
 
 /**
  * Affiche la fenêtre modale des préférences de cookies
  */
-function showCookiePreferences() {
-    const preferences = document.getElementById('cookie-preferences-modal');
-    if (preferences) {
-        // Initialiser les checkboxes avec les valeurs actuelles (si disponibles)
-        const consent = getCookieConsent();
-        if (consent) {
-            const preferenceCheckbox = document.getElementById('cookie-preference');
-            const statisticsCheckbox = document.getElementById('cookie-statistics');
-            const marketingCheckbox = document.getElementById('cookie-marketing');
-            
-            if (preferenceCheckbox) preferenceCheckbox.checked = consent.preferences;
-            if (statisticsCheckbox) statisticsCheckbox.checked = consent.statistics;
-            if (marketingCheckbox) marketingCheckbox.checked = consent.marketing;
-        }
+function showCookieModal() {
+    const modal = document.getElementById('cookie-modal');
+    if (modal) {
+        modal.style.display = 'block';
         
-        // Afficher la fenêtre modale
-        const modal = new bootstrap.Modal(preferences);
-        modal.show();
+        // S'assurer que l'onglet "Vue d'ensemble" est actif par défaut
+        switchTab('overview');
+        
+        // Initialiser les cases à cocher
+        initCheckboxes();
     }
 }
 
 /**
  * Cache la fenêtre modale des préférences de cookies
  */
-function hideCookiePreferences() {
-    const preferences = document.getElementById('cookie-preferences-modal');
-    if (preferences) {
-        const modal = bootstrap.Modal.getInstance(preferences);
-        if (modal) {
-            modal.hide();
-        }
+function hideCookieModal() {
+    const modal = document.getElementById('cookie-modal');
+    if (modal) {
+        modal.style.display = 'none';
     }
 }
 
 /**
- * Sauvegarde les préférences de consentement aux cookies
+ * Change l'onglet actif dans la fenêtre modale
+ * @param {string} tabId - Identifiant de l'onglet à afficher
  */
-function saveCookieConsent(consent) {
-    // Enregistrer le consentement dans localStorage
-    localStorage.setItem('cookieConsent', JSON.stringify(consent));
-    localStorage.setItem('cookieConsentDate', new Date().toISOString());
+function switchTab(tabId) {
+    // Désactiver tous les onglets et contenus
+    document.querySelectorAll('.cookie-tab').forEach(function(tab) {
+        tab.classList.remove('active');
+    });
     
-    // Activer/désactiver les scripts en fonction des consentements
-    applyConsentPreferences(consent);
+    document.querySelectorAll('.cookie-tab-content').forEach(function(content) {
+        content.classList.remove('active');
+    });
     
-    // Envoyer les données au serveur (si nécessaire)
-    sendConsentToServer(consent);
+    // Activer l'onglet et le contenu sélectionnés
+    document.querySelector(`.cookie-tab[data-tab="${tabId}"]`).classList.add('active');
+    document.getElementById(`cookie-tab-${tabId}`).classList.add('active');
+}
+
+/**
+ * Initialise les cases à cocher avec les préférences enregistrées
+ */
+function initCheckboxes() {
+    const consent = getConsent();
+    
+    if (consent) {
+        const preferencesCheckbox = document.getElementById('cookie-preferences-checkbox');
+        const statisticsCheckbox = document.getElementById('cookie-statistics-checkbox');
+        const marketingCheckbox = document.getElementById('cookie-marketing-checkbox');
+        
+        if (preferencesCheckbox) preferencesCheckbox.checked = consent.preferences;
+        if (statisticsCheckbox) statisticsCheckbox.checked = consent.statistics;
+        if (marketingCheckbox) marketingCheckbox.checked = consent.marketing;
+    }
+}
+
+/**
+ * Enregistre les préférences de consentement aux cookies
+ * @param {Object} consent - Objet contenant les préférences de consentement
+ */
+function saveConsent(consent) {
+    // Créer un objet avec les préférences et la date
+    const consentData = {
+        preferences: consent.preferences,
+        statistics: consent.statistics,
+        marketing: consent.marketing,
+        timestamp: new Date().toISOString()
+    };
+    
+    // Enregistrer dans un cookie qui expire dans 6 mois
+    setCookie('cookieConsent', JSON.stringify(consentData), 180);
+    
+    // Appliquer les consentements
+    applyConsent(consent);
+    
+    // Envoyer les données au serveur (optionnel)
+    // sendConsentToServer(consent);
 }
 
 /**
  * Récupère les préférences de consentement aux cookies
+ * @returns {Object|null} - Objet contenant les préférences de consentement ou null
  */
-function getCookieConsent() {
-    const consent = localStorage.getItem('cookieConsent');
-    return consent ? JSON.parse(consent) : null;
+function getConsent() {
+    const consentCookie = getCookie('cookieConsent');
+    
+    if (consentCookie) {
+        try {
+            return JSON.parse(consentCookie);
+        } catch (e) {
+            return null;
+        }
+    }
+    
+    return null;
 }
 
 /**
- * Applique les préférences de consentement (active/désactive les scripts)
+ * Applique les préférences de consentement (charge les scripts appropriés)
+ * @param {Object} consent - Objet contenant les préférences de consentement
  */
-function applyConsentPreferences(consent) {
-    // Exemple: si l'utilisateur a accepté les cookies statistiques, charger Google Analytics
+function applyConsent(consent) {
+    // Scripts pour les cookies de préférences
+    if (consent.preferences) {
+        // Exemple : chargement de scripts pour les préférences
+        // loadPreferencesScripts();
+    }
+    
+    // Scripts pour les cookies statistiques
     if (consent.statistics) {
-        loadGoogleAnalytics();
+        // Exemple : chargement de Google Analytics
+        // loadGoogleAnalytics();
     }
     
-    // Exemple: si l'utilisateur a accepté les cookies marketing, charger des scripts publicitaires
+    // Scripts pour les cookies marketing
     if (consent.marketing) {
-        loadMarketingScripts();
+        // Exemple : chargement des scripts de marketing
+        // loadMarketingScripts();
     }
 }
 
 /**
- * Charge Google Analytics si l'utilisateur a donné son consentement
+ * Change la langue de l'interface
+ * @param {string} locale - Code de la langue (fr, en, nl, de)
  */
-function loadGoogleAnalytics() {
-    // Votre code pour charger Google Analytics
-    // Exemple:
-    /*
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+function changeLanguage(locale) {
+    // Rediriger vers la version localisée
+    window.location.href = '/change-locale/' + locale;
+}
+
+/**
+ * Définit un cookie
+ * @param {string} name - Nom du cookie
+ * @param {string} value - Valeur du cookie
+ * @param {number} days - Durée de vie du cookie en jours
+ */
+function setCookie(name, value, days) {
+    let expires = '';
     
-    ga('create', 'UA-XXXXXXXXX-X', 'auto');
-    ga('send', 'pageview');
-    */
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
+    }
+    
+    document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=/; SameSite=Lax';
 }
 
 /**
- * Charge les scripts marketing si l'utilisateur a donné son consentement
+ * Récupère la valeur d'un cookie
+ * @param {string} name - Nom du cookie
+ * @returns {string|null} - Valeur du cookie ou null
  */
-function loadMarketingScripts() {
-    // Votre code pour charger les scripts marketing
-    // Exemple:
-    /*
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'XXXXXXXXXXXXXXX');
-    fbq('track', 'PageView');
-    */
+function getCookie(name) {
+    const nameEQ = name + '=';
+    const cookies = document.cookie.split(';');
+    
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+            cookie = cookie.substring(1, cookie.length);
+        }
+        
+        if (cookie.indexOf(nameEQ) === 0) {
+            return decodeURIComponent(cookie.substring(nameEQ.length, cookie.length));
+        }
+    }
+    
+    return null;
 }
 
 /**
- * Envoie les préférences de consentement au serveur
+ * Supprime un cookie
+ * @param {string} name - Nom du cookie
+ */
+function deleteCookie(name) {
+    setCookie(name, '', -1);
+}
+
+/**
+ * Envoie les préférences de consentement au serveur (optionnel)
+ * @param {Object} consent - Objet contenant les préférences de consentement
  */
 function sendConsentToServer(consent) {
-    // Envoyer les données au serveur via une requête AJAX
-    // Cette fonction est optionnelle, mais peut être utile pour suivre les consentements
     fetch('/cookie-consent', {
         method: 'POST',
         headers: {
@@ -272,28 +372,9 @@ function sendConsentToServer(consent) {
         },
         body: JSON.stringify({
             consent: consent,
-            date: new Date().toISOString()
+            timestamp: new Date().toISOString()
         })
     }).catch(error => {
-        console.error('Erreur lors de l\'envoi du consentement au serveur:', error);
+        console.error('Erreur lors de l\'envoi du consentement:', error);
     });
-}
-
-/**
- * Change la langue de l'interface des cookies et redirige vers la version localisée
- */
-function changeLanguageCookies(locale) {
-    // Sauvegarder la préférence de langue
-    if (locale) {
-        // Rediriger vers la version localisée du site
-        window.location.href = '/change-locale/' + locale;
-    }
-}
-
-/**
- * Fonction pour ouvrir les préférences de cookies depuis n'importe où sur le site
- * (peut être appelée depuis un lien dans le footer par exemple)
- */
-function openCookiePreferences() {
-    showCookiePreferences();
 }

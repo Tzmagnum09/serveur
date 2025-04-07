@@ -1,26 +1,27 @@
-# Bannière principale
+# À placer dans translations/cookie.nl.yaml
 cookie:
+  preferences:
+    title: "Cookievoorkeuren"
+    intro: "Op deze pagina kunt u uw voorkeuren met betrekking tot het gebruik van cookies op onze site beheren."
+  
   banner:
-    title: "Deze website maakt gebruik van cookies"
-    content: "Als bezoeker van onze website proberen wij u een zo aangenaam mogelijke ervaring te bieden. Wij gebruiken cookies in de eerste plaats om uw gebruikerservaring te verbeteren en de werking van onze online diensten te optimaliseren. Bovendien gebruiken wij cookies om de inhoud van onze websites en (mobiele) applicaties interessanter voor u te maken. We gebruiken ook cookies om uw surfgedrag in kaart te brengen. Hoe bent u op onze site terechtgekomen? Hoe lang heeft u het gebruikt? Dankzij de resultaten kunnen we onze websites, indien nodig, verbeteren en inspelen op de voorkeuren en behoeften van u en al onze andere gebruikers."
+    title: "Deze website gebruikt cookies"
+    content: "Als bezoeker van onze website proberen wij u een zo aangenaam mogelijke ervaring te bieden. Wij gebruiken cookies in de eerste plaats om uw gebruikerservaring te verbeteren en de werking van onze online diensten te optimaliseren. Bovendien gebruiken wij cookies om de inhoud van onze websites en (mobiele) applicaties interessanter voor u te maken. We gebruiken ook cookies om uw surfgedrag in kaart te brengen."
     customize: "Aanpassen"
     necessary_only: "Alleen noodzakelijk"
     accept_all: "Accepteren en doorgaan"
 
-  # Modal des préférences
   modal:
     title: "Cookievoorkeuren"
     necessary_only: "Alleen noodzakelijk"
     accept_all: "Alles accepteren"
     save: "Voorkeuren opslaan"
     
-    # Onglets
     tab:
       overview: "Overzicht"
       details: "Details"
       about: "Over"
     
-    # Contenu de l'onglet Vue d'ensemble
     overview:
       intro: "U kunt kiezen welke cookies u wilt accepteren. Noodzakelijke cookies zijn essentieel voor een goede werking van de site."
       necessary:
@@ -36,7 +37,6 @@ cookie:
         title: "Marketingcookies"
         description: "Deze cookies worden gebruikt om bezoekers op websites te volgen. Ze maken het mogelijk om relevante en aansprekende advertenties voor de gebruiker weer te geven."
     
-    # Contenu de l'onglet Détails
     details:
       necessary:
         title: "Noodzakelijke cookies"
@@ -45,6 +45,7 @@ cookie:
         session_end: "Einde sessie"
         consent: "Opslaan van cookie toestemming voorkeuren"
         year: "jaar"
+        month: "maanden"
       preferences:
         title: "Voorkeurscookies"
         description: "Voorkeurscookies stellen een website in staat om informatie te onthouden die de functionaliteit of weergave van de site aanpast, zoals uw voorkeurstaal of regio."
@@ -67,7 +68,6 @@ cookie:
         purpose: "Doel"
         expiry: "Vervaldatum"
     
-    # Contenu de l'onglet À propos
     about:
       what_are:
         title: "Wat zijn cookies?"
@@ -83,6 +83,5 @@ cookie:
         description: "Voor meer informatie over ons gebruik van cookies, raadpleegt u ons privacybeleid en de gebruiksvoorwaarden op"
         terms_link: "onze pagina met gebruiksvoorwaarden"
 
-  # Lien dans le footer
   footer:
     settings: "Cookie-instellingen"

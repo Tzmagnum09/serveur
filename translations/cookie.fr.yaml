@@ -1,26 +1,26 @@
-# Bannière principale
 cookie:
+  preferences:
+    title: "Préférences de cookies"
+    intro: "Sur cette page, vous pouvez gérer vos préférences concernant l'utilisation des cookies sur notre site."
+  
   banner:
     title: "Ce site web utilise des cookies"
-    content: "En tant que visiteur de notre site, nous essayons de vous offrir une expérience aussi agréable que possible. Nous utilisons des cookies en premier lieu pour améliorer votre expérience utilisateur et pour améliorer le fonctionnement de nos services en ligne. En outre, nous utilisons des cookies pour rendre le contenu de nos sites web et applications (mobiles) plus intéressant pour vous. Nous utilisons également des cookies pour cartographier votre comportement de navigation. Comment vous êtes-vous retrouvé sur notre site ? Combien de temps l'avez-vous utilisé ? Grâce aux résultats, nous pouvons améliorer nos sites web si nécessaire et répondre aux préférences et aux besoins de vous et de tous nos autres utilisateurs. Enfin, nous pouvons utiliser ces données pour remplir certaines obligations de déclaration."
+    content: "En tant que visiteur de notre site, nous essayons de vous offrir une expérience aussi agréable que possible. Nous utilisons des cookies en premier lieu pour améliorer votre expérience utilisateur et pour améliorer le fonctionnement de nos services en ligne. En outre, nous utilisons des cookies pour rendre le contenu de nos sites web et applications (mobiles) plus intéressant pour vous. Nous utilisons également des cookies pour cartographier votre comportement de navigation."
     customize: "Personnaliser"
     necessary_only: "Uniquement nécessaire"
     accept_all: "Autoriser et continuer"
 
-  # Modal des préférences
   modal:
     title: "Préférences de cookies"
     necessary_only: "Uniquement nécessaire"
     accept_all: "Tout autoriser"
     save: "Enregistrer les préférences"
     
-    # Onglets
     tab:
       overview: "Vue d'ensemble"
       details: "Détails"
       about: "À propos"
     
-    # Contenu de l'onglet Vue d'ensemble
     overview:
       intro: "Vous pouvez choisir quels cookies vous souhaitez accepter. Les cookies nécessaires sont obligatoires pour le bon fonctionnement du site."
       necessary:
@@ -36,7 +36,6 @@ cookie:
         title: "Cookies marketing"
         description: "Ces cookies sont utilisés pour suivre les visiteurs sur les sites web. Ils permettent d'afficher des publicités pertinentes et engageantes pour l'utilisateur."
     
-    # Contenu de l'onglet Détails
     details:
       necessary:
         title: "Cookies nécessaires"
@@ -45,6 +44,7 @@ cookie:
         session_end: "Fin de session"
         consent: "Stockage des préférences de consentement aux cookies"
         year: "an"
+        month: "mois"
       preferences:
         title: "Cookies de préférences"
         description: "Les cookies de préférences permettent à un site web de mémoriser des informations qui modifient la manière dont le site se comporte ou s'affiche, comme votre langue préférée ou la région dans laquelle vous vous trouvez."
@@ -67,7 +67,6 @@ cookie:
         purpose: "Finalité"
         expiry: "Expiration"
     
-    # Contenu de l'onglet À propos
     about:
       what_are:
         title: "Que sont les cookies ?"
@@ -83,6 +82,5 @@ cookie:
         description: "Pour en savoir plus sur notre utilisation des cookies, veuillez consulter notre politique de confidentialité et nos conditions d'utilisation sur"
         terms_link: "notre page des conditions d'utilisation"
 
-  # Lien dans le footer
   footer:
     settings: "Paramètres des cookies"

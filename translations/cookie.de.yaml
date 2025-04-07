@@ -1,7 +1,12 @@
+# À placer dans translations/cookie.de.yaml
 cookie:
+  preferences:
+    title: "Cookie-Einstellungen"
+    intro: "Auf dieser Seite können Sie Ihre Präferenzen bezüglich der Verwendung von Cookies auf unserer Website verwalten."
+  
   banner:
     title: "Diese Website verwendet Cookies"
-    content: "Als Besucher unserer Website bemühen wir uns, Ihnen eine möglichst angenehme Erfahrung zu bieten. Wir verwenden Cookies in erster Linie, um Ihre Benutzererfahrung zu verbessern und den Betrieb unserer Online-Dienste zu optimieren. Darüber hinaus setzen wir Cookies ein, um die Inhalte unserer Websites und mobilen Anwendungen für Sie interessanter zu gestalten. Wir verwenden auch Cookies, um Ihr Surfverhalten zu analysieren. Wie sind Sie auf unsere Website gelangt? Wie lange haben Sie sie genutzt? Mit den gewonnenen Erkenntnissen können wir unsere Websites bei Bedarf verbessern und auf die Vorlieben und Bedürfnisse von Ihnen und all unseren anderen Nutzern eingehen. Schließlich können wir diese Daten auch nutzen, um bestimmte Meldepflichten zu erfüllen."
+    content: "Als Besucher unserer Website bemühen wir uns, Ihnen eine möglichst angenehme Erfahrung zu bieten. Wir verwenden Cookies in erster Linie, um Ihre Benutzererfahrung zu verbessern und den Betrieb unserer Online-Dienste zu optimieren. Darüber hinaus setzen wir Cookies ein, um die Inhalte unserer Websites und mobilen Anwendungen für Sie interessanter zu gestalten. Wir verwenden auch Cookies, um Ihr Surfverhalten zu analysieren."
     customize: "Anpassen"
     necessary_only: "Nur notwendig"
     accept_all: "Alle zulassen und fortfahren"
@@ -40,6 +45,7 @@ cookie:
         session_end: "Sitzungsende"
         consent: "Speicherung der Cookie-Zustimmungseinstellungen"
         year: "Jahr"
+        month: "Monate"
       preferences:
         title: "Präferenz-Cookies"
         description: "Präferenz-Cookies ermöglichen es einer Website, Informationen zu speichern, die das Verhalten oder die Darstellung der Seite verändern, wie z.B. Ihre bevorzugte Sprache oder Region."
@@ -76,6 +82,6 @@ cookie:
         title: "Mehr Informationen"
         description: "Für weitere Informationen über unsere Nutzung von Cookies lesen Sie bitte unsere Datenschutzrichtlinie und Nutzungsbedingungen unter"
         terms_link: "unserer Seite mit den Nutzungsbedingungen"
-    
+
   footer:
     settings: "Cookie-Einstellungen"
