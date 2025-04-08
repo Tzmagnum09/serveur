@@ -12,9 +12,6 @@
         {# Font Awesome #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         
-        {# Cookie Consent CSS #}
-        <link rel="stylesheet" href="{{ asset('css/cookie-consent.css') }}">
-
         {# Custom CSS #}
         <style>
             :root {
@@ -198,7 +195,58 @@
                 font-weight: 700;
                 color: #333;
             }
+            
+            /* Styles pour les modals */
+            .modal-header {
+                background: var(--primary-gradient);
+                color: white;
+                border-bottom: none;
+            }
+            
+            .modal-title {
+                font-weight: 500;
+            }
+            
+            .modal-header .btn-close {
+                color: white;
+                filter: brightness(0) invert(1);
+                opacity: 0.8;
+            }
+            
+            /* Styles spécifiques au modal de cookies */
+            #cookie-modal .nav-tabs .nav-link {
+                color: #495057;
+                transition: color 0.3s, border-color 0.3s;
+            }
+            
+            #cookie-modal .nav-tabs .nav-link.active {
+                font-weight: 600;
+                border-bottom-color: #8e44ad;
+                color: #8e44ad;
+            }
+            
+            #cookie-modal .form-check-input:checked {
+                background-color: #8e44ad;
+                border-color: #8e44ad;
+            }
+            
+            /* Style pour le lien de paramètres dans le footer */
+            .cookie-settings-link {
+                color: #6c757d;
+                text-decoration: none;
+                font-size: 0.8rem;
+                transition: all 0.3s;
+            }
+            
+            .cookie-settings-link:hover {
+                text-decoration: underline;
+                color: #8e44ad;
+                transform: translateY(-2px);
+            }
         </style>
+
+        {# Custom CSS Cookie Consent #}
+        <link rel="stylesheet" href="{{ asset('css/cookie-consent.css') }}">
         
         {% block stylesheets %}{% endblock %}
     </head>
@@ -261,8 +309,8 @@
         <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-              <div class="modal-header text-center">
-                <h5 class="modal-title w-100" id="termsModalLabel">Conditions d'utilisation</h5>
+              <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">{{ 'terms.title'|trans }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -283,7 +331,7 @@
                 </ol>
               </div>
               <div class="modal-footer justify-content-end">
-                <button type="button" class="btn btn-gradient" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-gradient" data-bs-dismiss="modal">{{ 'registration.form.close'|trans }}</button>
               </div>
             </div>
           </div>
@@ -451,8 +499,7 @@
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-statistics" aria-expanded="false">
                                                 {{ 'cookie.modal.details.statistics.title'|trans }}
-                                            </button>
-                                        </h2>
+                                            </button></h2>
                                         <div id="collapse-statistics" class="accordion-collapse collapse" data-bs-parent="#cookie-details-accordion">
                                             <div class="accordion-body">
                                                 <p>{{ 'cookie.modal.details.statistics.description'|trans }}</p>
@@ -548,7 +595,7 @@
                             <button type="button" class="btn btn-outline-secondary" id="necessary-cookies-btn">{{ 'cookie.modal.necessary_only'|trans }}</button>
                             <button type="button" class="btn btn-gradient" id="accept-all-cookies-btn">{{ 'cookie.modal.accept_all'|trans }}</button>
                         {% endif %}
-                        <button type="button" class="btn btn-primary" id="save-preferences-btn">{{ 'cookie.modal.save'|trans }}</button>
+                        <button type="button" class="btn btn-gradient" id="save-preferences-btn">{{ 'cookie.modal.save'|trans }}</button>
                     </div>
                 </div>
             </div>

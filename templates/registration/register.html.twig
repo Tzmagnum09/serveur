@@ -2,6 +2,53 @@
 
 {% block title %}{{ 'registration.title'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    {# Style pour le datepicker #}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        /* Style personnalisé pour améliorer l'espacement et l'apparence des champs */
+        .registration-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .registration-form label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .registration-form .form-control {
+            transition: all 0.3s ease;
+            border: 1px solid #ced4da;
+        }
+        
+        .registration-form .form-control:focus {
+            border-color: #8e44ad;
+            box-shadow: 0 0 0 0.2rem rgba(142, 68, 173, 0.25);
+        }
+        
+        .registration-form .form-control:hover {
+            border-color: #8e44ad;
+        }
+        
+        /* Style pour le groupe d'input avec l'icône de calendrier */
+        .date-picker-group {
+            position: relative;
+        }
+        
+        .date-picker-group .input-group-text {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Assurer que le datepicker reste au-dessus des autres éléments */
+        .flatpickr-calendar {
+            z-index: 9999 !important;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
 <div class="row justify-content-center">
     <div class="col-lg-8">
@@ -10,96 +57,211 @@
                 <h1 class="h4 mb-0">{{ 'registration.header'|trans }}</h1>
             </div>
             <div class="card-body p-4">
-                {{ form_start(registrationForm) }}
+                {{ form_start(registrationForm, {'attr': {'class': 'registration-form'}}) }}
                 {{ form_widget(registrationForm._token) }}
                 
-                <div class="row mb-3">
+                <div class="row mb-4">
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.email, {
-                            'attr': {'placeholder': 'registration.form.email_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.email) }}
+                            {{ form_widget(registrationForm.email, {
+                                'attr': {
+                                    'placeholder': 'registration.form.email_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.email) }}
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.username, {
-                            'attr': {'placeholder': 'registration.form.username_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.username) }}
+                            {{ form_widget(registrationForm.username, {
+                                'attr': {
+                                    'placeholder': 'registration.form.username_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.username) }}
+                        </div>
                     </div>
                 </div>
                 
-                <div class="row mb-3">
+                <div class="row mb-4">
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.firstName, {
-                            'attr': {'placeholder': 'registration.form.first_name_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.firstName) }}
+                            {{ form_widget(registrationForm.firstName, {
+                                'attr': {
+                                    'placeholder': 'registration.form.first_name_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.firstName) }}
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.lastName, {
-                            'attr': {'placeholder': 'registration.form.last_name_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.lastName) }}
+                            {{ form_widget(registrationForm.lastName, {
+                                'attr': {
+                                    'placeholder': 'registration.form.last_name_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.lastName) }}
+                        </div>
                     </div>
                 </div>
                 
-                <div class="row mb-3">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(registrationForm.birthDate) }}
+                            <div class="input-group date-picker-group">
+                                {{ form_widget(registrationForm.birthDate, {
+                                    'attr': {
+                                        'placeholder': 'registration.form.birth_date_placeholder'|trans,
+                                        'class': 'form-control datepicker',
+                                        'autocomplete': 'off'
+                                    }
+                                }) }}
+                                <span class="input-group-text" id="calendar-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            {{ form_errors(registrationForm.birthDate) }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
                     <div class="col-md-8">
-                        {{ form_row(registrationForm.street, {
-                            'attr': {'placeholder': 'registration.form.street_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.street) }}
+                            {{ form_widget(registrationForm.street, {
+                                'attr': {
+                                    'placeholder': 'registration.form.street_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.street) }}
+                        </div>
                     </div>
                     <div class="col-md-2">
-                        {{ form_row(registrationForm.houseNumber, {
-                            'attr': {'placeholder': 'registration.form.house_number_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.houseNumber) }}
+                            {{ form_widget(registrationForm.houseNumber, {
+                                'attr': {
+                                    'placeholder': 'registration.form.house_number_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.houseNumber) }}
+                        </div>
                     </div>
                     <div class="col-md-2">
-                        {{ form_row(registrationForm.boxNumber, {
-                            'attr': {'placeholder': 'registration.form.box_number_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.boxNumber) }}
+                            {{ form_widget(registrationForm.boxNumber, {
+                                'attr': {
+                                    'placeholder': 'registration.form.box_number_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.boxNumber) }}
+                        </div>
                     </div>
                 </div>
                 
-                <div class="row mb-3">
+                <div class="row mb-4">
                     <div class="col-md-3">
-                        {{ form_row(registrationForm.postalCode, {
-                            'attr': {'placeholder': 'registration.form.postal_code_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.postalCode) }}
+                            {{ form_widget(registrationForm.postalCode, {
+                                'attr': {
+                                    'placeholder': 'registration.form.postal_code_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.postalCode) }}
+                        </div>
                     </div>
                     <div class="col-md-5">
-                        {{ form_row(registrationForm.city, {
-                            'attr': {'placeholder': 'registration.form.city_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.city) }}
+                            {{ form_widget(registrationForm.city, {
+                                'attr': {
+                                    'placeholder': 'registration.form.city_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.city) }}
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        {{ form_row(registrationForm.country) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.country) }}
+                            {{ form_widget(registrationForm.country, {
+                                'attr': {'class': 'form-select'}
+                            }) }}
+                            {{ form_errors(registrationForm.country) }}
+                        </div>
                     </div>
                 </div>
                 
-                <div class="row mb-3">
+                <div class="row mb-4">
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.phoneNumber, {
-                            'attr': {'placeholder': 'registration.form.phone_number_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.phoneNumber) }}
+                            {{ form_widget(registrationForm.phoneNumber, {
+                                'attr': {
+                                    'placeholder': 'registration.form.phone_number_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.phoneNumber) }}
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(registrationForm.locale) }}
-                    </div>
-                </div>
-                
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        {{ form_row(registrationForm.plainPassword.first, {
-                            'label': 'registration.form.password'|trans,
-                            'attr': {'placeholder': 'registration.form.password_placeholder'|trans}
-                        }) }}
-                    </div>
-                    <div class="col-md-6">
-                        {{ form_row(registrationForm.plainPassword.second, {
-                            'label': 'registration.form.confirm_password'|trans,
-                            'attr': {'placeholder': 'registration.form.confirm_password_placeholder'|trans}
-                        }) }}
+                        <div class="form-group">
+                            {{ form_label(registrationForm.locale) }}
+                            {{ form_widget(registrationForm.locale, {
+                                'attr': {'class': 'form-select'}
+                            }) }}
+                            {{ form_errors(registrationForm.locale) }}
+                        </div>
                     </div>
                 </div>
                 
-                <div class="mb-3 form-check">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(registrationForm.plainPassword.first) }}
+                            {{ form_widget(registrationForm.plainPassword.first, {
+                                'attr': {
+                                    'placeholder': 'registration.form.password_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.plainPassword.first) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(registrationForm.plainPassword.second) }}
+                            {{ form_widget(registrationForm.plainPassword.second, {
+                                'attr': {
+                                    'placeholder': 'registration.form.confirm_password_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.plainPassword.second) }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4 form-check">
                     {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
                     <label for="{{ registrationForm.agreeTerms.vars.id }}" class="form-check-label">
                         {{ 'registration.form.agree_terms'|trans }}
@@ -108,7 +270,7 @@
                     {{ form_errors(registrationForm.agreeTerms) }}
                 </div>
 
-                <div class="alert alert-info">
+                <div class="alert alert-info mb-4">
                     <i class="fas fa-info-circle me-2"></i>
                     {{ 'registration.info_approval'|trans }}
                 </div>
@@ -186,4 +348,59 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {# Script pour le datepicker #}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/nl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser le datepicker
+            const datepickerElements = document.querySelectorAll('.datepicker');
+            
+            // Déterminer la locale actuelle
+            let locale = 'fr';
+            {% if app.request.locale == 'nl' %}
+                locale = 'nl';
+            {% elseif app.request.locale == 'en' %}
+                locale = 'en';
+            {% elseif app.request.locale == 'de' %}
+                locale = 'de';
+            {% endif %}
+            
+            datepickerElements.forEach(function(element) {
+                const calendarIcon = document.getElementById('calendar-icon');
+                
+                // Initialiser flatpickr
+                const flatpickrInstance = flatpickr(element, {
+                    dateFormat: "d/m/Y",
+                    locale: locale,
+                    maxDate: new Date(),
+                    yearRange: [1900, new Date().getFullYear()],
+                    disableMobile: false,
+                    allowInput: true,
+                    clickOpens: true,
+                    // Permettre la sélection pour les personnes de plus de 13 ans
+                    onReady: function(selectedDates, dateStr, instance) {
+                        // Calculer la date minimum (13 ans avant aujourd'hui)
+                        const today = new Date();
+                        const minDate = new Date();
+                        minDate.setFullYear(today.getFullYear() - 13);
+                        instance.config.maxDate = minDate;
+                    }
+                });
+                
+                // Établir la relation entre l'icône et l'input pour l'accessibilité
+                if (calendarIcon) {
+                    calendarIcon.addEventListener('click', function() {
+                        flatpickrInstance.open();
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}

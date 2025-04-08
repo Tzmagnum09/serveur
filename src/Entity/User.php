@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -13,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-#[UniqueEntity(fields: ['email'], message: 'Cette adresse email est déjà utilisée')]
-#[UniqueEntity(fields: ['username'], message: 'Ce nom d\'utilisateur est déjà utilisé')]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -23,13 +21,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank(message: 'Veuillez entrer une adresse email')]
-    #[Assert\Email(message: 'L\'adresse email {{ value }} n\'est pas valide')]
+    #[Assert\NotBlank(message: 'registration.validation.email_required')]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank(message: 'Veuillez entrer un nom d\'utilisateur')]
-    #[Assert\Length(min: 3, max: 50, minMessage: 'Le nom d\'utilisateur doit contenir au moins {{ limit }} caractères', maxMessage: 'Le nom d\'utilisateur ne peut pas dépasser {{ limit }} caractères')]
+    #[Assert\NotBlank(message: 'registration.validation.username_required')]
+    #[Assert\Length(
+        min: 3,
+        max: 30,
+        minMessage: 'registration.validation.username_min_length',
+        maxMessage: 'registration.validation.username_max_length'
+    )]
     private ?string $username = null;
 
     #[ORM\Column]
@@ -42,66 +45,72 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez entrer votre nom')]
+    #[Assert\NotBlank(message: 'registration.validation.last_name_required')]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez entrer votre prénom')]
+    #[Assert\NotBlank(message: 'registration.validation.first_name_required')]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez entrer votre rue')]
+    #[Assert\NotBlank(message: 'registration.validation.street_required')]
     private ?string $street = null;
 
     #[ORM\Column(length: 20)]
-    #[Assert\NotBlank(message: 'Veuillez entrer votre numéro')]
+    #[Assert\NotBlank(message: 'registration.validation.house_number_required')]
     private ?string $houseNumber = null;
 
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $boxNumber = null;
 
     #[ORM\Column(length: 20)]
-    #[Assert\NotBlank(message: 'Veuillez entrer votre code postal')]
+    #[Assert\NotBlank(message: 'registration.validation.postal_code_required')]
     private ?string $postalCode = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez entrer votre commune')]
+    #[Assert\NotBlank(message: 'registration.validation.city_required')]
     private ?string $city = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez sélectionner votre pays')]
+    #[Assert\NotBlank(message: 'registration.validation.country_required')]
     private ?string $country = null;
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank(message: 'Veuillez entrer votre numéro de téléphone')]
+    #[Assert\NotBlank(message: 'registration.validation.phone_number_required')]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(length: 10)]
-    #[Assert\NotBlank(message: 'Veuillez sélectionner votre langue')]
-    #[Assert\Choice(choices: ['fr', 'nl', 'en', 'de'], message: 'Veuillez sélectionner une langue valide')]
+    #[Assert\NotBlank(message: 'registration.validation.language_required')]
     private ?string $locale = null;
 
-    #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
+    #[ORM\Column]
+    private ?bool $isVerified = false;
 
-    #[ORM\Column(type: 'boolean')]
-    private $isApproved = false;
+    #[ORM\Column]
+    private ?bool $isApproved = false;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private $emailVerifiedAt = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $emailVerifiedAt = null;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private $approvedAt = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $approvedAt = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private $lastLoginAt = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $lastLoginAt = null;
+    
+    #[ORM\Column(type: 'date', nullable: true)]
+    #[Assert\NotBlank(message: 'registration.validation.birth_date_required')]
+    #[Assert\LessThanOrEqual('-13 years', message: 'registration.validation.minimum_age')]
+    private ?\DateTimeInterface $birthDate = null;
 
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->isVerified = false;
+        $this->isApproved = false;
     }
 
     public function getId(): ?int
@@ -306,7 +315,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isVerified(): bool
+    public function isVerified(): ?bool
     {
         return $this->isVerified;
     }
@@ -318,7 +327,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isApproved(): bool
+    public function isApproved(): ?bool
     {
         return $this->isApproved;
     }
@@ -354,9 +363,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): \DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     public function getLastLoginAt(): ?\DateTimeImmutable
@@ -370,18 +386,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    
+    public function getBirthDate(): ?\DateTimeInterface
+    {
+        return $this->birthDate;
+    }
+    
+    public function setBirthDate(?\DateTimeInterface $birthDate): static
+    {
+        $this->birthDate = $birthDate;
+        
+        return $this;
+    }
+    
+    public function getAge(): ?int
+    {
+        if (!$this->birthDate) {
+            return null;
+        }
+        
+        $now = new \DateTime();
+        $interval = $now->diff($this->birthDate);
+        
+        return $interval->y;
+    }
 
+    // Méthode utilitaire pour obtenir le nom complet
     public function getFullName(): string
     {
         return $this->firstName . ' ' . $this->lastName;
     }
 
+    // Méthode utilitaire pour obtenir l'adresse complète
     public function getFullAddress(): string
     {
         $address = $this->street . ' ' . $this->houseNumber;
         
         if ($this->boxNumber) {
-            $address .= ', boîte ' . $this->boxNumber;
+            $address .= '/' . $this->boxNumber;
         }
         
         $address .= ', ' . $this->postalCode . ' ' . $this->city . ', ' . $this->country;
@@ -389,13 +431,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $address;
     }
 
+    // Méthodes d'aide pour les rôles
+    public function isAdmin(): bool
+    {
+        return in_array('ROLE_ADMIN', $this->getRoles());
+    }
+
     public function isSuperAdmin(): bool
     {
         return in_array('ROLE_SUPER_ADMIN', $this->getRoles());
-    }
-
-    public function isAdmin(): bool
-    {
-        return in_array('ROLE_ADMIN', $this->getRoles()) || $this->isSuperAdmin();
     }
 }

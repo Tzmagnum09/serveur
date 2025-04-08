@@ -205,42 +205,70 @@ class __TwigTemplate_1eeb4fe3cf1668dfc9cbddcad9d143ea extends Template
                                 <tr>
                                     <th class=\"ps-0\">";
         // line 60
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.birth_date"), "html", null, true);
+        yield "</th>
+                                    <td>
+                                        ";
+        // line 62
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 62, $this->source); })()), "birthDate", [], "any", false, false, false, 62)) {
+            // line 63
+            yield "                                            ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 63, $this->source); })()), "birthDate", [], "any", false, false, false, 63), "d/m/Y"), "html", null, true);
+            yield "
+                                            <span class=\"text-muted ms-2\">(";
+            // line 64
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 64, $this->source); })()), "age", [], "any", false, false, false, 64), "html", null, true);
+            yield " ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.years_old"), "html", null, true);
+            yield ")</span>
+                                        ";
+        } else {
+            // line 66
+            yield "                                            -
+                                        ";
+        }
+        // line 68
+        yield "                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class=\"ps-0\">";
+        // line 71
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.phone"), "html", null, true);
         yield "</th>
                                     <td>";
-        // line 61
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 61, $this->source); })()), "phoneNumber", [], "any", false, false, false, 61), "html", null, true);
+        // line 72
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 72, $this->source); })()), "phoneNumber", [], "any", false, false, false, 72), "html", null, true);
         yield "</td>
                                 </tr>
                                 <tr>
                                     <th class=\"ps-0\">";
-        // line 64
+        // line 75
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.language"), "html", null, true);
         yield "</th>
                                     <td>
                                         ";
-        // line 66
-        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 66, $this->source); })()), "locale", [], "any", false, false, false, 66) == "fr")) {
-            // line 67
+        // line 77
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 77, $this->source); })()), "locale", [], "any", false, false, false, 77) == "fr")) {
+            // line 78
             yield "                                            Français
                                         ";
-        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 68
-(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 68, $this->source); })()), "locale", [], "any", false, false, false, 68) == "nl")) {
-            // line 69
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 79
+(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 79, $this->source); })()), "locale", [], "any", false, false, false, 79) == "nl")) {
+            // line 80
             yield "                                            Nederlands
                                         ";
-        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 70
-(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 70, $this->source); })()), "locale", [], "any", false, false, false, 70) == "en")) {
-            // line 71
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 81
+(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 81, $this->source); })()), "locale", [], "any", false, false, false, 81) == "en")) {
+            // line 82
             yield "                                            English
                                         ";
-        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 72
-(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 72, $this->source); })()), "locale", [], "any", false, false, false, 72) == "de")) {
-            // line 73
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 83
+(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 83, $this->source); })()), "locale", [], "any", false, false, false, 83) == "de")) {
+            // line 84
             yield "                                            Deutsch
                                         ";
         }
-        // line 75
+        // line 86
         yield "                                    </td>
                                 </tr>
                             </table>
@@ -249,75 +277,75 @@ class __TwigTemplate_1eeb4fe3cf1668dfc9cbddcad9d143ea extends Template
                             <table class=\"table table-borderless\">
                                 <tr>
                                     <th class=\"ps-0\" style=\"width: 40%\">";
-        // line 82
+        // line 93
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.address"), "html", null, true);
         yield "</th>
                                     <td>";
-        // line 83
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 83, $this->source); })()), "fullAddress", [], "any", false, false, false, 83), "html", null, true);
+        // line 94
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 94, $this->source); })()), "fullAddress", [], "any", false, false, false, 94), "html", null, true);
         yield "</td>
                                 </tr>
                                 <tr>
                                     <th class=\"ps-0\">";
-        // line 86
+        // line 97
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.created_at"), "html", null, true);
         yield "</th>
                                     <td>";
-        // line 87
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 87, $this->source); })()), "createdAt", [], "any", false, false, false, 87), "d/m/Y"), "html", null, true);
+        // line 98
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 98, $this->source); })()), "createdAt", [], "any", false, false, false, 98), "d/m/Y"), "html", null, true);
         yield "</td>
                                 </tr>
                                 <tr>
                                     <th class=\"ps-0\">";
-        // line 90
+        // line 101
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.last_login"), "html", null, true);
         yield "</th>
                                     <td>
                                         ";
-        // line 92
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 92, $this->source); })()), "lastLoginAt", [], "any", false, false, false, 92)) {
-            // line 93
+        // line 103
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 103, $this->source); })()), "lastLoginAt", [], "any", false, false, false, 103)) {
+            // line 104
             yield "                                            ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 93, $this->source); })()), "lastLoginAt", [], "any", false, false, false, 93), "d/m/Y H:i"), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 104, $this->source); })()), "lastLoginAt", [], "any", false, false, false, 104), "d/m/Y H:i"), "html", null, true);
             yield "
                                         ";
         } else {
-            // line 95
+            // line 106
             yield "                                            -
                                         ";
         }
-        // line 97
+        // line 108
         yield "                                    </td>
                                 </tr>
                                 <tr>
                                     <th class=\"ps-0\">";
-        // line 100
+        // line 111
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.status"), "html", null, true);
         yield "</th>
                                     <td>
                                         ";
-        // line 102
-        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 102, $this->source); })()), "isVerified", [], "any", false, false, false, 102) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 102, $this->source); })()), "isApproved", [], "any", false, false, false, 102))) {
-            // line 103
+        // line 113
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 113, $this->source); })()), "isVerified", [], "any", false, false, false, 113) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 113, $this->source); })()), "isApproved", [], "any", false, false, false, 113))) {
+            // line 114
             yield "                                            <span class=\"badge bg-success\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.status.active"), "html", null, true);
             yield "</span>
                                         ";
-        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 104
-(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 104, $this->source); })()), "isVerified", [], "any", false, false, false, 104) &&  !CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 104, $this->source); })()), "isApproved", [], "any", false, false, false, 104))) {
-            // line 105
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 115
+(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 115, $this->source); })()), "isVerified", [], "any", false, false, false, 115) &&  !CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 115, $this->source); })()), "isApproved", [], "any", false, false, false, 115))) {
+            // line 116
             yield "                                            <span class=\"badge bg-warning\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.status.pending_approval"), "html", null, true);
             yield "</span>
                                         ";
         } else {
-            // line 107
+            // line 118
             yield "                                            <span class=\"badge bg-danger\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.status.unverified"), "html", null, true);
             yield "</span>
                                         ";
         }
-        // line 109
+        // line 120
         yield "                                    </td>
                                 </tr>
                             </table>
@@ -356,7 +384,7 @@ class __TwigTemplate_1eeb4fe3cf1668dfc9cbddcad9d143ea extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  321 => 109,  315 => 107,  309 => 105,  307 => 104,  302 => 103,  300 => 102,  295 => 100,  290 => 97,  286 => 95,  280 => 93,  278 => 92,  273 => 90,  267 => 87,  263 => 86,  257 => 83,  253 => 82,  244 => 75,  240 => 73,  238 => 72,  235 => 71,  233 => 70,  230 => 69,  228 => 68,  225 => 67,  223 => 66,  218 => 64,  212 => 61,  208 => 60,  202 => 57,  198 => 56,  192 => 53,  188 => 52,  182 => 49,  178 => 48,  168 => 41,  157 => 33,  153 => 32,  149 => 31,  145 => 29,  135 => 28,  121 => 21,  117 => 20,  110 => 16,  106 => 15,  99 => 11,  95 => 10,  89 => 7,  86 => 6,  76 => 5,  59 => 3,  42 => 1,);
+        return array (  349 => 120,  343 => 118,  337 => 116,  335 => 115,  330 => 114,  328 => 113,  323 => 111,  318 => 108,  314 => 106,  308 => 104,  306 => 103,  301 => 101,  295 => 98,  291 => 97,  285 => 94,  281 => 93,  272 => 86,  268 => 84,  266 => 83,  263 => 82,  261 => 81,  258 => 80,  256 => 79,  253 => 78,  251 => 77,  246 => 75,  240 => 72,  236 => 71,  231 => 68,  227 => 66,  220 => 64,  215 => 63,  213 => 62,  208 => 60,  202 => 57,  198 => 56,  192 => 53,  188 => 52,  182 => 49,  178 => 48,  168 => 41,  157 => 33,  153 => 32,  149 => 31,  145 => 29,  135 => 28,  121 => 21,  117 => 20,  110 => 16,  106 => 15,  99 => 11,  95 => 10,  89 => 7,  86 => 6,  76 => 5,  59 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -420,6 +448,17 @@ class __TwigTemplate_1eeb4fe3cf1668dfc9cbddcad9d143ea extends Template
                                     <td>{{ user.fullName }}</td>
                                 </tr>
                                 <tr>
+                                    <th class=\"ps-0\">{{ 'profile.fields.birth_date'|trans }}</th>
+                                    <td>
+                                        {% if user.birthDate %}
+                                            {{ user.birthDate|date('d/m/Y') }}
+                                            <span class=\"text-muted ms-2\">({{ user.age }} {{ 'profile.fields.years_old'|trans }})</span>
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th class=\"ps-0\">{{ 'profile.fields.phone'|trans }}</th>
                                     <td>{{ user.phoneNumber }}</td>
                                 </tr>
@@ -479,7 +518,6 @@ class __TwigTemplate_1eeb4fe3cf1668dfc9cbddcad9d143ea extends Template
         </div>
     </div>
 </div>
-{% endblock %}
-", "profile/index.html.twig", "/var/www/serveur/templates/profile/index.html.twig");
+{% endblock %}", "profile/index.html.twig", "/var/www/serveur/templates/profile/index.html.twig");
     }
 }

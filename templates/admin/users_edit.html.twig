@@ -2,6 +2,29 @@
 
 {% block title %}{{ 'admin.user_edit.title'|trans({'%name%': user.fullName}) }}{% endblock %}
 
+{% block stylesheets %}
+    {# Style pour le datepicker #}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        /* Style pour le groupe d'input avec l'icône de calendrier */
+        .date-picker-group {
+            position: relative;
+        }
+        
+        .date-picker-group .input-group-text {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Assurer que le datepicker reste au-dessus des autres éléments */
+        .flatpickr-calendar {
+            z-index: 9999 !important;
+        }
+    </style>
+{% endblock %}
+
 {% block sidebar %}
 <div class="sidebar">
     <h5 class="mb-4">{{ 'admin.sidebar.title'|trans }}</h5>
@@ -119,6 +142,18 @@
                         </p>
                     </div>
                     
+                    <div class="mb-3">
+                        <div class="fw-bold text-muted mb-1">{{ 'profile.fields.birth_date'|trans }}</div>
+                        <p class="mb-0">
+                            {% if user.birthDate %}
+                                {{ user.birthDate|date('d/m/Y') }}
+                                <span class="text-muted ms-2">({{ user.age }} {{ 'profile.fields.years_old'|trans }})</span>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </p>
+                    </div>
+                    
                     {% if user.isVerified %}
                     <div class="mb-3">
                         <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.verified_on'|trans }}</div>
@@ -158,6 +193,25 @@
                             </div>
                             <div class="col-md-6">
                                 {{ form_row(userForm.lastName) }}
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                {{ form_label(userForm.birthDate) }}
+                                <div class="input-group date-picker-group">
+                                    {{ form_widget(userForm.birthDate, {
+                                        'attr': {
+                                            'placeholder': 'JJ/MM/AAAA',
+                                            'class': 'form-control datepicker',
+                                            'autocomplete': 'off'
+                                        }
+                                    }) }}
+                                    <span class="input-group-text" id="calendar-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                                {{ form_errors(userForm.birthDate) }}
                             </div>
                         </div>
                         
@@ -211,4 +265,51 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {# Script pour le datepicker #}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/nl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser le datepicker
+            const datepickerElements = document.querySelectorAll('.datepicker');
+            
+            // Déterminer la locale actuelle
+            let locale = 'fr';
+            {% if app.request.locale == 'nl' %}
+                locale = 'nl';
+            {% elseif app.request.locale == 'en' %}
+                locale = 'en';
+            {% elseif app.request.locale == 'de' %}
+                locale = 'de';
+            {% endif %}
+            
+            datepickerElements.forEach(function(element) {
+                const calendarIcon = document.getElementById('calendar-icon');
+                
+                // Initialiser flatpickr
+                const flatpickrInstance = flatpickr(element, {
+                    dateFormat: "d/m/Y",
+                    locale: locale,
+                    maxDate: new Date(),
+                    yearRange: [1900, new Date().getFullYear()],
+                    disableMobile: false,
+                    allowInput: true,
+                    clickOpens: true
+                });
+                
+                // Établir la relation entre l'icône et l'input pour l'accessibilité
+                if (calendarIcon) {
+                    calendarIcon.addEventListener('click', function() {
+                        flatpickrInstance.open();
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}

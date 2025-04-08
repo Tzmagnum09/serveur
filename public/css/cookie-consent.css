@@ -1,25 +1,33 @@
 /* Styles pour le popup des cookies */
-.cookie-modal {
-    z-index: 1050;
+.modal-header {
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    color: white;
+    border-bottom: none;
 }
 
-.cookie-modal .modal-header {
-    border-bottom: 1px solid #dee2e6;
-    padding: 1rem;
+.modal-title {
+    font-weight: 500;
 }
 
-.cookie-modal .modal-footer {
-    border-top: 1px solid #dee2e6;
-    padding: 1rem;
+.modal-header .btn-close {
+    color: white;
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
 }
 
-.cookie-modal .nav-tabs .nav-link.active {
+/* Styles spécifiques pour le modal de cookies */
+#cookie-modal .nav-tabs .nav-link {
+    color: #495057;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+#cookie-modal .nav-tabs .nav-link.active {
     font-weight: 600;
     border-bottom-color: #8e44ad;
     color: #8e44ad;
 }
 
-.cookie-modal .form-check-input:checked {
+#cookie-modal .form-check-input:checked {
     background-color: #8e44ad;
     border-color: #8e44ad;
 }
@@ -29,32 +37,91 @@
     color: #6c757d;
     text-decoration: none;
     font-size: 0.8rem;
+    transition: all 0.3s;
 }
 
 .cookie-settings-link:hover {
     text-decoration: underline;
     color: #8e44ad;
+    transform: translateY(-2px);
 }
 
 /* Style pour les accordions */
-.cookie-modal .accordion-button:not(.collapsed) {
+#cookie-modal .accordion-button:not(.collapsed) {
     background-color: rgba(142, 68, 173, 0.1);
     color: #8e44ad;
 }
 
-.cookie-modal .accordion-button:focus {
+#cookie-modal .accordion-button:focus {
     box-shadow: 0 0 0 0.25rem rgba(142, 68, 173, 0.25);
     border-color: #8e44ad;
 }
 
-/* Styles responsive */
+/* Styles pour les boutons du modal de cookies */
+#cookie-modal .btn-cookie-necessary,
+#necessary-cookies-btn {
+    background-color: #6c757d;
+    color: white;
+    transition: all 0.3s;
+}
+
+#cookie-modal .btn-cookie-necessary:hover,
+#necessary-cookies-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+#cookie-modal .btn-primary,
+#save-preferences-btn {
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    border: none;
+    transition: all 0.3s;
+}
+
+#cookie-modal .btn-primary:hover,
+#save-preferences-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#accept-all-cookies-btn {
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    border: none;
+    color: white;
+    transition: all 0.3s;
+}
+
+#accept-all-cookies-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour les tableaux dans le modal */
+#cookie-modal .table {
+    font-size: 0.9rem;
+}
+
+#cookie-modal .table th {
+    background-color: #f8f9fa;
+}
+
+/* Animation pour le modal */
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+}
+
+/* Styles responsives */
 @media (max-width: 576px) {
-    .cookie-modal .modal-footer {
+    #cookie-modal .modal-footer {
         flex-direction: column;
         gap: 0.5rem;
     }
     
-    .cookie-modal .modal-footer button {
+    #cookie-modal .modal-footer button {
         width: 100%;
     }
 }

@@ -76,12 +76,6 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         
         ";
         // line 16
-        yield "        <link rel=\"stylesheet\" href=\"";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/cookie-consent.css"), "html", null, true);
-        yield "\">
-
-        ";
-        // line 19
         yield "        <style>
             :root {
                 --primary-gradient: linear-gradient(135deg, #8e44ad, #3498db);
@@ -264,27 +258,81 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                 font-weight: 700;
                 color: #333;
             }
+            
+            /* Styles pour les modals */
+            .modal-header {
+                background: var(--primary-gradient);
+                color: white;
+                border-bottom: none;
+            }
+            
+            .modal-title {
+                font-weight: 500;
+            }
+            
+            .modal-header .btn-close {
+                color: white;
+                filter: brightness(0) invert(1);
+                opacity: 0.8;
+            }
+            
+            /* Styles spécifiques au modal de cookies */
+            #cookie-modal .nav-tabs .nav-link {
+                color: #495057;
+                transition: color 0.3s, border-color 0.3s;
+            }
+            
+            #cookie-modal .nav-tabs .nav-link.active {
+                font-weight: 600;
+                border-bottom-color: #8e44ad;
+                color: #8e44ad;
+            }
+            
+            #cookie-modal .form-check-input:checked {
+                background-color: #8e44ad;
+                border-color: #8e44ad;
+            }
+            
+            /* Style pour le lien de paramètres dans le footer */
+            .cookie-settings-link {
+                color: #6c757d;
+                text-decoration: none;
+                font-size: 0.8rem;
+                transition: all 0.3s;
+            }
+            
+            .cookie-settings-link:hover {
+                text-decoration: underline;
+                color: #8e44ad;
+                transform: translateY(-2px);
+            }
         </style>
+
+        ";
+        // line 249
+        yield "        <link rel=\"stylesheet\" href=\"";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/cookie-consent.css"), "html", null, true);
+        yield "\">
         
         ";
-        // line 203
+        // line 251
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 204
+        // line 252
         yield "    </head>
     <body>
         ";
-        // line 206
-        yield from $this->loadTemplate("partials/navbar.html.twig", "base.html.twig", 206)->unwrap()->yield($context);
-        // line 207
+        // line 254
+        yield from $this->loadTemplate("partials/navbar.html.twig", "base.html.twig", 254)->unwrap()->yield($context);
+        // line 255
         yield "        
         <div class=\"content-wrapper\">
             ";
-        // line 209
+        // line 257
         yield from $this->unwrap()->yieldBlock('sidebar', $context, $blocks);
-        // line 210
+        // line 258
         yield "            
             <div class=\"main-content p-4 ";
-        // line 211
+        // line 259
         if ( !Twig\Extension\CoreExtension::testEmpty(        $this->unwrap()->renderBlock("sidebar", $context, $blocks))) {
             yield "ps-4";
         } else {
@@ -296,21 +344,21 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         }
         yield "\">
                 ";
-        // line 212
+        // line 260
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 212, $this->source); })()), "flashes", [], "any", false, false, false, 212));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 260, $this->source); })()), "flashes", [], "any", false, false, false, 260));
         foreach ($context['_seq'] as $context["label"] => $context["messages"]) {
-            // line 213
+            // line 261
             yield "                    ";
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable($context["messages"]);
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-                // line 214
+                // line 262
                 yield "                        <div class=\"alert alert-";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["label"], "html", null, true);
                 yield " alert-dismissible fade show\" role=\"alert\">
                             ";
-                // line 215
+                // line 263
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
                 yield "
                             <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
@@ -320,39 +368,39 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 219
+            // line 267
             yield "                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['label'], $context['messages'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 220
+        // line 268
         yield "                
                 ";
-        // line 221
+        // line 269
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 222
+        // line 270
         yield "            </div>
         </div>
 
         <!-- Lien pour les paramètres de cookies dans le footer -->
         <div class=\"text-center mt-3 mb-2\">
             <a href=\"#\" id=\"cookie-settings-link\" class=\"cookie-settings-link\">";
-        // line 227
+        // line 275
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.footer.settings"), "html", null, true);
         yield "</a>
         </div>
         
         ";
-        // line 231
+        // line 279
         yield "        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js\"></script>
         
         ";
-        // line 234
+        // line 282
         yield "        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
         
         ";
-        // line 237
+        // line 285
         yield "        <script>
             // Mobile sidebar toggle
             document.addEventListener('DOMContentLoaded', function() {
@@ -375,16 +423,19 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         </script>
         
         ";
-        // line 258
+        // line 306
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 259
+        // line 307
         yield "        
         <!-- Fenêtre modale des conditions d'utilisation -->
         <div class=\"modal fade\" id=\"termsModal\" tabindex=\"-1\" aria-labelledby=\"termsModalLabel\" aria-hidden=\"true\">
           <div class=\"modal-dialog modal-dialog-scrollable\">
             <div class=\"modal-content\">
-              <div class=\"modal-header text-center\">
-                <h5 class=\"modal-title w-100\" id=\"termsModalLabel\">Conditions d'utilisation</h5>
+              <div class=\"modal-header\">
+                <h5 class=\"modal-title\" id=\"termsModalLabel\">";
+        // line 313
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("terms.title"), "html", null, true);
+        yield "</h5>
                 <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
               </div>
               <div class=\"modal-body\">
@@ -405,7 +456,10 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                 </ol>
               </div>
               <div class=\"modal-footer justify-content-end\">
-                <button type=\"button\" class=\"btn btn-gradient\" data-bs-dismiss=\"modal\">Fermer</button>
+                <button type=\"button\" class=\"btn btn-gradient\" data-bs-dismiss=\"modal\">";
+        // line 334
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("registration.form.close"), "html", null, true);
+        yield "</button>
               </div>
             </div>
           </div>
@@ -418,49 +472,49 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                     <div class=\"modal-header\">
                         <div class=\"d-flex align-items-center\">
                             <h5 class=\"modal-title\" id=\"cookie-modal-label\">";
-        // line 298
+        // line 346
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.title"), "html", null, true);
         yield "</h5>
                             <select id=\"modal-language-selector\" class=\"form-select form-select-sm ms-3\" style=\"width: 120px;\">
                                 <option value=\"fr\" ";
-        // line 300
-        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 300, $this->source); })()), "request", [], "any", false, false, false, 300), "locale", [], "any", false, false, false, 300) == "fr")) {
+        // line 348
+        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 348, $this->source); })()), "request", [], "any", false, false, false, 348), "locale", [], "any", false, false, false, 348) == "fr")) {
             yield "selected";
         }
         yield ">Français</option>
                                 <option value=\"nl\" ";
-        // line 301
-        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 301, $this->source); })()), "request", [], "any", false, false, false, 301), "locale", [], "any", false, false, false, 301) == "nl")) {
+        // line 349
+        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 349, $this->source); })()), "request", [], "any", false, false, false, 349), "locale", [], "any", false, false, false, 349) == "nl")) {
             yield "selected";
         }
         yield ">Nederlands</option>
                                 <option value=\"en\" ";
-        // line 302
-        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 302, $this->source); })()), "request", [], "any", false, false, false, 302), "locale", [], "any", false, false, false, 302) == "en")) {
+        // line 350
+        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 350, $this->source); })()), "request", [], "any", false, false, false, 350), "locale", [], "any", false, false, false, 350) == "en")) {
             yield "selected";
         }
         yield ">English</option>
                                 <option value=\"de\" ";
-        // line 303
-        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 303, $this->source); })()), "request", [], "any", false, false, false, 303), "locale", [], "any", false, false, false, 303) == "de")) {
+        // line 351
+        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 351, $this->source); })()), "request", [], "any", false, false, false, 351), "locale", [], "any", false, false, false, 351) == "de")) {
             yield "selected";
         }
         yield ">Deutsch</option>
                             </select>
                         </div>
                         ";
-        // line 306
-        if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 306, $this->source); })()), "request", [], "any", false, false, false, 306), "cookies", [], "any", false, false, false, 306), "get", ["cookieConsent"], "method", false, false, false, 306)) {
-            // line 307
+        // line 354
+        if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 354, $this->source); })()), "request", [], "any", false, false, false, 354), "cookies", [], "any", false, false, false, 354), "get", ["cookieConsent"], "method", false, false, false, 354)) {
+            // line 355
             yield "                            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
                         ";
         }
-        // line 309
+        // line 357
         yield "                    </div>
                     <div class=\"modal-body\">
                         <div class=\"mb-3\">
                             <p>";
-        // line 312
+        // line 360
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.banner.content"), "html", null, true);
         yield "</p>
                         </div>
@@ -468,19 +522,19 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                         <ul class=\"nav nav-tabs\" id=\"cookie-tabs\" role=\"tablist\">
                             <li class=\"nav-item\" role=\"presentation\">
                                 <button class=\"nav-link active\" id=\"overview-tab\" data-bs-toggle=\"tab\" data-bs-target=\"#overview\" type=\"button\" role=\"tab\" aria-controls=\"overview\" aria-selected=\"true\">";
-        // line 317
+        // line 365
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.tab.overview"), "html", null, true);
         yield "</button>
                             </li>
                             <li class=\"nav-item\" role=\"presentation\">
                                 <button class=\"nav-link\" id=\"details-tab\" data-bs-toggle=\"tab\" data-bs-target=\"#details\" type=\"button\" role=\"tab\" aria-controls=\"details\" aria-selected=\"false\">";
-        // line 320
+        // line 368
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.tab.details"), "html", null, true);
         yield "</button>
                             </li>
                             <li class=\"nav-item\" role=\"presentation\">
                                 <button class=\"nav-link\" id=\"about-tab\" data-bs-toggle=\"tab\" data-bs-target=\"#about\" type=\"button\" role=\"tab\" aria-controls=\"about\" aria-selected=\"false\">";
-        // line 323
+        // line 371
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.tab.about"), "html", null, true);
         yield "</button>
                             </li>
@@ -492,11 +546,11 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                     <div class=\"d-flex justify-content-between align-items-start mb-3\">
                                         <div>
                                             <h6>";
-        // line 332
+        // line 380
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.overview.necessary.title"), "html", null, true);
         yield "</h6>
                                             <p class=\"mb-0 text-muted small\">";
-        // line 333
+        // line 381
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.overview.necessary.description"), "html", null, true);
         yield "</p>
                                         </div>
@@ -508,11 +562,11 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                     <div class=\"d-flex justify-content-between align-items-start mb-3\">
                                         <div>
                                             <h6>";
-        // line 342
+        // line 390
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.overview.preferences.title"), "html", null, true);
         yield "</h6>
                                             <p class=\"mb-0 text-muted small\">";
-        // line 343
+        // line 391
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.overview.preferences.description"), "html", null, true);
         yield "</p>
                                         </div>
@@ -524,11 +578,11 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                     <div class=\"d-flex justify-content-between align-items-start mb-3\">
                                         <div>
                                             <h6>";
-        // line 352
+        // line 400
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.overview.statistics.title"), "html", null, true);
         yield "</h6>
                                             <p class=\"mb-0 text-muted small\">";
-        // line 353
+        // line 401
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.overview.statistics.description"), "html", null, true);
         yield "</p>
                                         </div>
@@ -540,11 +594,11 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                     <div class=\"d-flex justify-content-between align-items-start mb-3\">
                                         <div>
                                             <h6>";
-        // line 362
+        // line 410
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.overview.marketing.title"), "html", null, true);
         yield "</h6>
                                             <p class=\"mb-0 text-muted small\">";
-        // line 363
+        // line 411
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.overview.marketing.description"), "html", null, true);
         yield "</p>
                                         </div>
@@ -563,7 +617,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                         <h2 class=\"accordion-header\">
                                             <button class=\"accordion-button\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse-necessary\" aria-expanded=\"true\">
                                                 ";
-        // line 379
+        // line 427
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.necessary.title"), "html", null, true);
         yield "
                                             </button>
@@ -571,7 +625,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                         <div id=\"collapse-necessary\" class=\"accordion-collapse collapse show\" data-bs-parent=\"#cookie-details-accordion\">
                                             <div class=\"accordion-body\">
                                                 <p>";
-        // line 384
+        // line 432
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.necessary.description"), "html", null, true);
         yield "</p>
                                                 <div class=\"table-responsive\">
@@ -579,19 +633,19 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                                         <thead>
                                                             <tr>
                                                                 <th>";
-        // line 389
+        // line 437
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.name"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 390
+        // line 438
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.provider"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 391
+        // line 439
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.purpose"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 392
+        // line 440
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.expiry"), "html", null, true);
         yield "</th>
                                                             </tr>
@@ -600,30 +654,30 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                                             <tr>
                                                                 <td>PHPSESSID</td>
                                                                 <td>";
-        // line 398
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 398, $this->source); })()), "request", [], "any", false, false, false, 398), "host", [], "any", false, false, false, 398), "html", null, true);
+        // line 446
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 446, $this->source); })()), "request", [], "any", false, false, false, 446), "host", [], "any", false, false, false, 446), "html", null, true);
         yield "</td>
                                                                 <td>";
-        // line 399
+        // line 447
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.necessary.session"), "html", null, true);
         yield "</td>
                                                                 <td>";
-        // line 400
+        // line 448
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.necessary.session_end"), "html", null, true);
         yield "</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>cookieConsent</td>
                                                                 <td>";
-        // line 404
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 404, $this->source); })()), "request", [], "any", false, false, false, 404), "host", [], "any", false, false, false, 404), "html", null, true);
+        // line 452
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 452, $this->source); })()), "request", [], "any", false, false, false, 452), "host", [], "any", false, false, false, 452), "html", null, true);
         yield "</td>
                                                                 <td>";
-        // line 405
+        // line 453
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.necessary.consent"), "html", null, true);
         yield "</td>
                                                                 <td>6 ";
-        // line 406
+        // line 454
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.necessary.month"), "html", null, true);
         yield "</td>
                                                             </tr>
@@ -639,7 +693,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                         <h2 class=\"accordion-header\">
                                             <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse-preferences\" aria-expanded=\"false\">
                                                 ";
-        // line 419
+        // line 467
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.preferences.title"), "html", null, true);
         yield "
                                             </button>
@@ -647,7 +701,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                         <div id=\"collapse-preferences\" class=\"accordion-collapse collapse\" data-bs-parent=\"#cookie-details-accordion\">
                                             <div class=\"accordion-body\">
                                                 <p>";
-        // line 424
+        // line 472
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.preferences.description"), "html", null, true);
         yield "</p>
                                                 <div class=\"table-responsive\">
@@ -655,19 +709,19 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                                         <thead>
                                                             <tr>
                                                                 <th>";
-        // line 429
+        // line 477
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.name"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 430
+        // line 478
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.provider"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 431
+        // line 479
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.purpose"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 432
+        // line 480
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.expiry"), "html", null, true);
         yield "</th>
                                                             </tr>
@@ -676,15 +730,15 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                                             <tr>
                                                                 <td>_locale</td>
                                                                 <td>";
-        // line 438
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 438, $this->source); })()), "request", [], "any", false, false, false, 438), "host", [], "any", false, false, false, 438), "html", null, true);
+        // line 486
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 486, $this->source); })()), "request", [], "any", false, false, false, 486), "host", [], "any", false, false, false, 486), "html", null, true);
         yield "</td>
                                                                 <td>";
-        // line 439
+        // line 487
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.preferences.language"), "html", null, true);
         yield "</td>
                                                                 <td>1 ";
-        // line 440
+        // line 488
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.necessary.year"), "html", null, true);
         yield "</td>
                                                             </tr>
@@ -700,15 +754,14 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                         <h2 class=\"accordion-header\">
                                             <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse-statistics\" aria-expanded=\"false\">
                                                 ";
-        // line 453
+        // line 501
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.statistics.title"), "html", null, true);
         yield "
-                                            </button>
-                                        </h2>
+                                            </button></h2>
                                         <div id=\"collapse-statistics\" class=\"accordion-collapse collapse\" data-bs-parent=\"#cookie-details-accordion\">
                                             <div class=\"accordion-body\">
                                                 <p>";
-        // line 458
+        // line 505
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.statistics.description"), "html", null, true);
         yield "</p>
                                                 <div class=\"table-responsive\">
@@ -716,19 +769,19 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                                         <thead>
                                                             <tr>
                                                                 <th>";
-        // line 463
+        // line 510
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.name"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 464
+        // line 511
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.provider"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 465
+        // line 512
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.purpose"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 466
+        // line 513
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.expiry"), "html", null, true);
         yield "</th>
                                                             </tr>
@@ -738,11 +791,11 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                                                 <td>_ga</td>
                                                                 <td>Google</td>
                                                                 <td>";
-        // line 473
+        // line 520
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.statistics.analytics"), "html", null, true);
         yield "</td>
                                                                 <td>2 ";
-        // line 474
+        // line 521
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.statistics.years"), "html", null, true);
         yield "</td>
                                                             </tr>
@@ -750,11 +803,11 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                                                 <td>_gid</td>
                                                                 <td>Google</td>
                                                                 <td>";
-        // line 479
+        // line 526
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.statistics.user_id"), "html", null, true);
         yield "</td>
                                                                 <td>24 ";
-        // line 480
+        // line 527
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.statistics.hours"), "html", null, true);
         yield "</td>
                                                             </tr>
@@ -770,7 +823,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                         <h2 class=\"accordion-header\">
                                             <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse-marketing\" aria-expanded=\"false\">
                                                 ";
-        // line 493
+        // line 540
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.marketing.title"), "html", null, true);
         yield "
                                             </button>
@@ -778,7 +831,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                         <div id=\"collapse-marketing\" class=\"accordion-collapse collapse\" data-bs-parent=\"#cookie-details-accordion\">
                                             <div class=\"accordion-body\">
                                                 <p>";
-        // line 498
+        // line 545
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.marketing.description"), "html", null, true);
         yield "</p>
                                                 <div class=\"table-responsive\">
@@ -786,19 +839,19 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                                         <thead>
                                                             <tr>
                                                                 <th>";
-        // line 503
+        // line 550
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.name"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 504
+        // line 551
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.provider"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 505
+        // line 552
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.purpose"), "html", null, true);
         yield "</th>
                                                                 <th>";
-        // line 506
+        // line 553
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.table.expiry"), "html", null, true);
         yield "</th>
                                                             </tr>
@@ -808,11 +861,11 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                                                 <td>_fbp</td>
                                                                 <td>Facebook</td>
                                                                 <td>";
-        // line 513
+        // line 560
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.marketing.facebook"), "html", null, true);
         yield "</td>
                                                                 <td>3 ";
-        // line 514
+        // line 561
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.details.marketing.months"), "html", null, true);
         yield "</td>
                                                             </tr>
@@ -829,43 +882,43 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                             <div class=\"tab-pane fade\" id=\"about\" role=\"tabpanel\" aria-labelledby=\"about-tab\">
                                 <div class=\"mt-3\">
                                     <h5>";
-        // line 528
+        // line 575
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.about.what_are.title"), "html", null, true);
         yield "</h5>
                                     <p>";
-        // line 529
+        // line 576
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.about.what_are.description"), "html", null, true);
         yield "</p>
                                     
                                     <h5 class=\"mt-4\">";
-        // line 531
+        // line 578
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.about.how_used.title"), "html", null, true);
         yield "</h5>
                                     <p>";
-        // line 532
+        // line 579
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.about.how_used.description"), "html", null, true);
         yield "</p>
                                     
                                     <h5 class=\"mt-4\">";
-        // line 534
+        // line 581
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.about.how_manage.title"), "html", null, true);
         yield "</h5>
                                     <p>";
-        // line 535
+        // line 582
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.about.how_manage.description"), "html", null, true);
         yield "</p>
                                     
                                     <h5 class=\"mt-4\">";
-        // line 537
+        // line 584
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.about.more_info.title"), "html", null, true);
         yield "</h5>
                                     <p>
                                         ";
-        // line 539
+        // line 586
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.about.more_info.description"), "html", null, true);
         yield " 
                                         <a href=\"";
-        // line 540
+        // line 587
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_terms");
         yield "\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.about.more_info.terms_link"), "html", null, true);
@@ -877,20 +930,20 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                     </div>
                     <div class=\"modal-footer\">
                         ";
-        // line 547
-        if ( !CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 547, $this->source); })()), "request", [], "any", false, false, false, 547), "cookies", [], "any", false, false, false, 547), "get", ["cookieConsent"], "method", false, false, false, 547)) {
-            // line 548
+        // line 594
+        if ( !CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 594, $this->source); })()), "request", [], "any", false, false, false, 594), "cookies", [], "any", false, false, false, 594), "get", ["cookieConsent"], "method", false, false, false, 594)) {
+            // line 595
             yield "                            <button type=\"button\" class=\"btn btn-outline-secondary\" id=\"necessary-cookies-btn\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.necessary_only"), "html", null, true);
             yield "</button>
                             <button type=\"button\" class=\"btn btn-gradient\" id=\"accept-all-cookies-btn\">";
-            // line 549
+            // line 596
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.accept_all"), "html", null, true);
             yield "</button>
                         ";
         }
-        // line 551
-        yield "                        <button type=\"button\" class=\"btn btn-primary\" id=\"save-preferences-btn\">";
+        // line 598
+        yield "                        <button type=\"button\" class=\"btn btn-gradient\" id=\"save-preferences-btn\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("cookie.modal.save"), "html", null, true);
         yield "</button>
                     </div>
@@ -899,7 +952,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         </div>
         
         ";
-        // line 558
+        // line 605
         yield "        <script src=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/cookie-consent.js"), "html", null, true);
         yield "\"></script>
@@ -928,7 +981,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         yield from [];
     }
 
-    // line 203
+    // line 251
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -944,7 +997,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         yield from [];
     }
 
-    // line 209
+    // line 257
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -960,7 +1013,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         yield from [];
     }
 
-    // line 221
+    // line 269
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -976,7 +1029,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         yield from [];
     }
 
-    // line 258
+    // line 306
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -1013,7 +1066,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  980 => 258,  964 => 221,  948 => 209,  932 => 203,  915 => 6,  903 => 558,  893 => 551,  888 => 549,  883 => 548,  881 => 547,  869 => 540,  865 => 539,  860 => 537,  855 => 535,  851 => 534,  846 => 532,  842 => 531,  837 => 529,  833 => 528,  816 => 514,  812 => 513,  802 => 506,  798 => 505,  794 => 504,  790 => 503,  782 => 498,  774 => 493,  758 => 480,  754 => 479,  746 => 474,  742 => 473,  732 => 466,  728 => 465,  724 => 464,  720 => 463,  712 => 458,  704 => 453,  688 => 440,  684 => 439,  680 => 438,  671 => 432,  667 => 431,  663 => 430,  659 => 429,  651 => 424,  643 => 419,  627 => 406,  623 => 405,  619 => 404,  612 => 400,  608 => 399,  604 => 398,  595 => 392,  591 => 391,  587 => 390,  583 => 389,  575 => 384,  567 => 379,  548 => 363,  544 => 362,  532 => 353,  528 => 352,  516 => 343,  512 => 342,  500 => 333,  496 => 332,  484 => 323,  478 => 320,  472 => 317,  464 => 312,  459 => 309,  455 => 307,  453 => 306,  445 => 303,  439 => 302,  433 => 301,  427 => 300,  422 => 298,  381 => 259,  379 => 258,  356 => 237,  352 => 234,  348 => 231,  342 => 227,  335 => 222,  333 => 221,  330 => 220,  324 => 219,  314 => 215,  309 => 214,  304 => 213,  300 => 212,  288 => 211,  285 => 210,  283 => 209,  279 => 207,  277 => 206,  273 => 204,  271 => 203,  85 => 19,  79 => 16,  75 => 13,  71 => 10,  66 => 7,  60 => 6,  53 => 2,  50 => 1,);
+        return array (  1033 => 306,  1017 => 269,  1001 => 257,  985 => 251,  968 => 6,  956 => 605,  946 => 598,  941 => 596,  936 => 595,  934 => 594,  922 => 587,  918 => 586,  913 => 584,  908 => 582,  904 => 581,  899 => 579,  895 => 578,  890 => 576,  886 => 575,  869 => 561,  865 => 560,  855 => 553,  851 => 552,  847 => 551,  843 => 550,  835 => 545,  827 => 540,  811 => 527,  807 => 526,  799 => 521,  795 => 520,  785 => 513,  781 => 512,  777 => 511,  773 => 510,  765 => 505,  758 => 501,  742 => 488,  738 => 487,  734 => 486,  725 => 480,  721 => 479,  717 => 478,  713 => 477,  705 => 472,  697 => 467,  681 => 454,  677 => 453,  673 => 452,  666 => 448,  662 => 447,  658 => 446,  649 => 440,  645 => 439,  641 => 438,  637 => 437,  629 => 432,  621 => 427,  602 => 411,  598 => 410,  586 => 401,  582 => 400,  570 => 391,  566 => 390,  554 => 381,  550 => 380,  538 => 371,  532 => 368,  526 => 365,  518 => 360,  513 => 357,  509 => 355,  507 => 354,  499 => 351,  493 => 350,  487 => 349,  481 => 348,  476 => 346,  461 => 334,  437 => 313,  429 => 307,  427 => 306,  404 => 285,  400 => 282,  396 => 279,  390 => 275,  383 => 270,  381 => 269,  378 => 268,  372 => 267,  362 => 263,  357 => 262,  352 => 261,  348 => 260,  336 => 259,  333 => 258,  331 => 257,  327 => 255,  325 => 254,  321 => 252,  319 => 251,  313 => 249,  79 => 16,  75 => 13,  71 => 10,  66 => 7,  60 => 6,  53 => 2,  50 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1032,9 +1085,6 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         {# Font Awesome #}
         <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\">
         
-        {# Cookie Consent CSS #}
-        <link rel=\"stylesheet\" href=\"{{ asset('css/cookie-consent.css') }}\">
-
         {# Custom CSS #}
         <style>
             :root {
@@ -1218,7 +1268,58 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                 font-weight: 700;
                 color: #333;
             }
+            
+            /* Styles pour les modals */
+            .modal-header {
+                background: var(--primary-gradient);
+                color: white;
+                border-bottom: none;
+            }
+            
+            .modal-title {
+                font-weight: 500;
+            }
+            
+            .modal-header .btn-close {
+                color: white;
+                filter: brightness(0) invert(1);
+                opacity: 0.8;
+            }
+            
+            /* Styles spécifiques au modal de cookies */
+            #cookie-modal .nav-tabs .nav-link {
+                color: #495057;
+                transition: color 0.3s, border-color 0.3s;
+            }
+            
+            #cookie-modal .nav-tabs .nav-link.active {
+                font-weight: 600;
+                border-bottom-color: #8e44ad;
+                color: #8e44ad;
+            }
+            
+            #cookie-modal .form-check-input:checked {
+                background-color: #8e44ad;
+                border-color: #8e44ad;
+            }
+            
+            /* Style pour le lien de paramètres dans le footer */
+            .cookie-settings-link {
+                color: #6c757d;
+                text-decoration: none;
+                font-size: 0.8rem;
+                transition: all 0.3s;
+            }
+            
+            .cookie-settings-link:hover {
+                text-decoration: underline;
+                color: #8e44ad;
+                transform: translateY(-2px);
+            }
         </style>
+
+        {# Custom CSS Cookie Consent #}
+        <link rel=\"stylesheet\" href=\"{{ asset('css/cookie-consent.css') }}\">
         
         {% block stylesheets %}{% endblock %}
     </head>
@@ -1281,8 +1382,8 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
         <div class=\"modal fade\" id=\"termsModal\" tabindex=\"-1\" aria-labelledby=\"termsModalLabel\" aria-hidden=\"true\">
           <div class=\"modal-dialog modal-dialog-scrollable\">
             <div class=\"modal-content\">
-              <div class=\"modal-header text-center\">
-                <h5 class=\"modal-title w-100\" id=\"termsModalLabel\">Conditions d'utilisation</h5>
+              <div class=\"modal-header\">
+                <h5 class=\"modal-title\" id=\"termsModalLabel\">{{ 'terms.title'|trans }}</h5>
                 <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
               </div>
               <div class=\"modal-body\">
@@ -1303,7 +1404,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                 </ol>
               </div>
               <div class=\"modal-footer justify-content-end\">
-                <button type=\"button\" class=\"btn btn-gradient\" data-bs-dismiss=\"modal\">Fermer</button>
+                <button type=\"button\" class=\"btn btn-gradient\" data-bs-dismiss=\"modal\">{{ 'registration.form.close'|trans }}</button>
               </div>
             </div>
           </div>
@@ -1471,8 +1572,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                                         <h2 class=\"accordion-header\">
                                             <button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse-statistics\" aria-expanded=\"false\">
                                                 {{ 'cookie.modal.details.statistics.title'|trans }}
-                                            </button>
-                                        </h2>
+                                            </button></h2>
                                         <div id=\"collapse-statistics\" class=\"accordion-collapse collapse\" data-bs-parent=\"#cookie-details-accordion\">
                                             <div class=\"accordion-body\">
                                                 <p>{{ 'cookie.modal.details.statistics.description'|trans }}</p>
@@ -1568,7 +1668,7 @@ class __TwigTemplate_d5a18e0355fd876876985f12fa4656bf extends Template
                             <button type=\"button\" class=\"btn btn-outline-secondary\" id=\"necessary-cookies-btn\">{{ 'cookie.modal.necessary_only'|trans }}</button>
                             <button type=\"button\" class=\"btn btn-gradient\" id=\"accept-all-cookies-btn\">{{ 'cookie.modal.accept_all'|trans }}</button>
                         {% endif %}
-                        <button type=\"button\" class=\"btn btn-primary\" id=\"save-preferences-btn\">{{ 'cookie.modal.save'|trans }}</button>
+                        <button type=\"button\" class=\"btn btn-gradient\" id=\"save-preferences-btn\">{{ 'cookie.modal.save'|trans }}</button>
                     </div>
                 </div>
             </div>

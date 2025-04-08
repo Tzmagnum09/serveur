@@ -64,6 +64,8 @@ registration:
         first_name_placeholder: "Votre prénom"
         last_name: "Nom"
         last_name_placeholder: "Votre nom"
+        birth_date: "Date de naissance"
+        birth_date_placeholder: "JJ/MM/AAAA"
         street: "Rue"
         street_placeholder: "Nom de la rue"
         house_number: "Numéro"
@@ -97,6 +99,8 @@ registration:
         username_max_length: "Votre nom d'utilisateur ne peut pas dépasser {{ limit }} caractères"
         first_name_required: "Veuillez entrer votre prénom"
         last_name_required: "Veuillez entrer votre nom"
+        birth_date_required: "Veuillez entrer votre date de naissance"
+        minimum_age: "Vous devez avoir au moins 13 ans pour vous inscrire"
         street_required: "Veuillez entrer votre rue"
         house_number_required: "Veuillez entrer votre numéro"
         postal_code_required: "Veuillez entrer votre code postal"
@@ -166,6 +170,8 @@ profile:
         username: "Nom d'utilisateur"
         full_name: "Nom complet"
         phone: "Téléphone"
+        birth_date: "Date de naissance"
+        years_old: "ans"
         language: "Langue"
         address: "Adresse"
         created_at: "Date d'inscription"
@@ -178,6 +184,8 @@ profile:
     flash:
         updated: "Votre profil a été mis à jour avec succès."
         password_changed: "Votre mot de passe a été modifié avec succès."
+        profile_updated: "Votre profil a été mis à jour avec succès."
+        password_updated: "Votre mot de passe a été mis à jour avec succès."
 
 # Administration
 admin:
@@ -244,10 +252,15 @@ admin:
         edit_profile: "Modifier le profil"
         cancel_btn: "Annuler"
         save_btn: "Enregistrer"
+        is_approved: "Compte approuvé"
     user:
         flash:
             updated: "L'utilisateur a été mis à jour avec succès."
             approved: "L'utilisateur a été approuvé avec succès."
+            user_updated: "L'utilisateur a été mis à jour avec succès."
+            user_approved: "L'utilisateur a été approuvé avec succès."
+            user_already_approved: "Cet utilisateur est déjà approuvé."
+            no_permission: "Vous n'avez pas les permissions nécessaires pour effectuer cette action."
     email_templates:
         title: "Gestion des templates d'emails"
         new_btn: "Nouveau template"

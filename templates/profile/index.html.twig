@@ -57,6 +57,17 @@
                                     <td>{{ user.fullName }}</td>
                                 </tr>
                                 <tr>
+                                    <th class="ps-0">{{ 'profile.fields.birth_date'|trans }}</th>
+                                    <td>
+                                        {% if user.birthDate %}
+                                            {{ user.birthDate|date('d/m/Y') }}
+                                            <span class="text-muted ms-2">({{ user.age }} {{ 'profile.fields.years_old'|trans }})</span>
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th class="ps-0">{{ 'profile.fields.phone'|trans }}</th>
                                     <td>{{ user.phoneNumber }}</td>
                                 </tr>

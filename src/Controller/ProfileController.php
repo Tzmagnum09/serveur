@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Form\ProfileFormType;
+use App\Form\ProfileType;
 use App\Form\ChangePasswordFormType;
-use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,84 +19,82 @@ class ProfileController extends AbstractController
     public function index(): Response
     {
         $user = $this->getUser();
-        
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
-        }
-        
+
         return $this->render('profile/index.html.twig', [
             'user' => $user,
         ]);
     }
-    
+
     #[Route('/edit', name: 'app_profile_edit')]
-    public function edit(
-        Request $request,
-        UserRepository $userRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function edit(Request $request, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
+    {
         $user = $this->getUser();
         
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
+        // Formater la date de naissance si elle existe
+        $birthDateFormatted = null;
+        if ($user->getBirthDate()) {
+            $birthDateFormatted = $user->getBirthDate()->format('d/m/Y');
         }
         
-        // Stocker l'ancienne locale avant la mise à jour
-        $oldLocale = $user->getLocale();
-        
-        $form = $this->createForm(ProfileFormType::class, $user);
+        $form = $this->createForm(ProfileType::class, $user, [
+            'birthdate_formatted' => $birthDateFormatted
+        ]);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
-            // Si la locale a changé, mettre à jour la session
-            if ($oldLocale !== $user->getLocale()) {
-                $request->getSession()->set('_locale', $user->getLocale());
-                $request->setLocale($user->getLocale());
+            // Traiter la date de naissance
+            $birthDateString = $form->get('birthDate')->getData();
+            if ($birthDateString) {
+                try {
+                    // Convertir le format DD/MM/YYYY en DateTime
+                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateString);
+                    if ($birthDate) {
+                        $user->setBirthDate($birthDate);
+                    }
+                } catch (\Exception $e) {
+                    // En cas d'erreur, on conserve la date existante ou null
+                }
+            } else {
+                // Si la date est vide, on la met à null
+                $user->setBirthDate(null);
             }
             
-            $userRepository->save($user, true);
-            
-            $this->addFlash('success', $translator->trans('profile.flash.updated'));
-            
+            $entityManager->flush();
+
+            $this->addFlash('success', $translator->trans('profile.flash.profile_updated'));
+
             return $this->redirectToRoute('app_profile');
         }
-        
+
         return $this->render('profile/edit.html.twig', [
             'profileForm' => $form->createView(),
         ]);
     }
-    
+
     #[Route('/change-password', name: 'app_profile_change_password')]
-    public function changePassword(
-        Request $request,
-        UserPasswordHasherInterface $passwordHasher,
-        UserRepository $userRepository,
-        TranslatorInterface $translator
-    ): Response {
+    public function changePassword(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
+    {
         $user = $this->getUser();
-        
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
-        }
         
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
+            // Encode the plain password
             $user->setPassword(
-                $passwordHasher->hashPassword(
+                $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
             );
-            
-            $userRepository->save($user, true);
-            
-            $this->addFlash('success', $translator->trans('profile.flash.password_changed'));
-            
+
+            $entityManager->flush();
+
+            $this->addFlash('success', $translator->trans('profile.flash.password_updated'));
+
             return $this->redirectToRoute('app_profile');
         }
-        
+
         return $this->render('profile/change_password.html.twig', [
             'resetForm' => $form->createView(),
         ]);

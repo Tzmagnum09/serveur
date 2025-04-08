@@ -6,7 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -16,212 +16,184 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use Symfony\Component\Intl\Countries;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationFormType extends AbstractType
 {
     private TranslatorInterface $translator;
-
+    
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
-
+    
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $locale = $this->translator->getLocale();
-
         $builder
             ->add('email', EmailType::class, [
-                'label' => $this->translator->trans('registration.form.email', [], 'messages', $locale),
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.email_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control',
-                ],
+                'label' => 'registration.form.email',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.email_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.email_required',
                     ]),
                 ],
             ])
             ->add('username', TextType::class, [
-                'label' => $this->translator->trans('registration.form.username', [], 'messages', $locale),
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.username_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control',
-                ],
+                'label' => 'registration.form.username',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.username_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.username_required',
                     ]),
                     new Length([
                         'min' => 3,
-                        'minMessage' => $this->translator->trans('registration.validation.username_min_length', [], 'messages', $locale),
-                        'max' => 50,
-                        'maxMessage' => $this->translator->trans('registration.validation.username_max_length', [], 'messages', $locale),
+                        'minMessage' => 'registration.validation.username_min_length',
+                        'max' => 30,
+                        'maxMessage' => 'registration.validation.username_max_length',
                     ]),
                 ],
             ])
             ->add('firstName', TextType::class, [
-                'label' => $this->translator->trans('registration.form.first_name', [], 'messages', $locale),
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.first_name_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control',
-                ],
+                'label' => 'registration.form.first_name',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.first_name_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.first_name_required',
                     ]),
                 ],
             ])
             ->add('lastName', TextType::class, [
-                'label' => $this->translator->trans('registration.form.last_name', [], 'messages', $locale),
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.last_name_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control',
-                ],
+                'label' => 'registration.form.last_name',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.last_name_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.last_name_required',
                     ]),
                 ],
             ])
-            ->add('street', TextType::class, [
-                'label' => $this->translator->trans('registration.form.street', [], 'messages', $locale),
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.street_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control address-autocomplete',
-                ],
+            ->add('birthDate', TextType::class, [
+                'label' => 'registration.form.birth_date',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.street_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.birth_date_required',
+                    ]),
+                    new LessThanOrEqual([
+                        'value' => '-13 years',
+                        'message' => 'registration.validation.minimum_age',
+                    ]),
+                ],
+                'attr' => ['class' => 'datepicker']
+            ])
+            ->add('street', TextType::class, [
+                'label' => 'registration.form.street',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'registration.validation.street_required',
                     ]),
                 ],
             ])
             ->add('houseNumber', TextType::class, [
-                'label' => $this->translator->trans('registration.form.house_number', [], 'messages', $locale),
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.house_number_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control',
-                ],
+                'label' => 'registration.form.house_number',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.house_number_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.house_number_required',
                     ]),
                 ],
             ])
             ->add('boxNumber', TextType::class, [
-                'label' => $this->translator->trans('registration.form.box_number', [], 'messages', $locale),
+                'label' => 'registration.form.box_number',
                 'required' => false,
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.box_number_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control',
-                ],
             ])
             ->add('postalCode', TextType::class, [
-                'label' => $this->translator->trans('registration.form.postal_code', [], 'messages', $locale),
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.postal_code_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control address-autocomplete',
-                ],
+                'label' => 'registration.form.postal_code',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.postal_code_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.postal_code_required',
                     ]),
                 ],
             ])
             ->add('city', TextType::class, [
-                'label' => $this->translator->trans('registration.form.city', [], 'messages', $locale),
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.city_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control address-autocomplete',
-                ],
+                'label' => 'registration.form.city',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.city_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.city_required',
                     ]),
                 ],
             ])
-            ->add('country', CountryType::class, [
-                'label' => $this->translator->trans('registration.form.country', [], 'messages', $locale),
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'preferred_choices' => ['BE', 'FR', 'LU', 'NL', 'DE'],
+            ->add('country', ChoiceType::class, [
+                'label' => 'registration.form.country',
+                'required' => true,
+                'choices' => $this->getCountryChoices(),
+                'placeholder' => 'Sélectionnez un pays',
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.country_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.country_required',
                     ]),
                 ],
+                'choice_translation_domain' => false,
             ])
             ->add('phoneNumber', TextType::class, [
-                'label' => $this->translator->trans('registration.form.phone_number', [], 'messages', $locale),
-                'attr' => [
-                    'placeholder' => $this->translator->trans('registration.form.phone_number_placeholder', [], 'messages', $locale),
-                    'class' => 'form-control',
-                ],
+                'label' => 'registration.form.phone_number',
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.phone_number_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.phone_number_required',
                     ]),
                 ],
             ])
             ->add('locale', ChoiceType::class, [
-                'label' => $this->translator->trans('registration.form.language', [], 'messages', $locale),
+                'label' => 'registration.form.language',
+                'required' => true,
                 'choices' => [
-                    $this->translator->trans('registration.form.language_choices.french', [], 'messages', $locale) => 'fr',
-                    $this->translator->trans('registration.form.language_choices.dutch', [], 'messages', $locale) => 'nl',
-                    $this->translator->trans('registration.form.language_choices.english', [], 'messages', $locale) => 'en',
-                    $this->translator->trans('registration.form.language_choices.german', [], 'messages', $locale) => 'de',
-                ],
-                'attr' => [
-                    'class' => 'form-control',
+                    $this->translator->trans('registration.form.language_choices.french') => 'fr',
+                    $this->translator->trans('registration.form.language_choices.dutch') => 'nl',
+                    $this->translator->trans('registration.form.language_choices.english') => 'en',
+                    $this->translator->trans('registration.form.language_choices.german') => 'de',
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.language_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.language_required',
                     ]),
                 ],
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
                 'first_options' => [
-                    'label' => $this->translator->trans('registration.form.password', [], 'messages', $locale),
-                    'attr' => [
-                        'placeholder' => $this->translator->trans('registration.form.password_placeholder', [], 'messages', $locale),
-                        'class' => 'form-control',
-                    ],
+                    'label' => 'registration.form.password',
                 ],
                 'second_options' => [
-                    'label' => $this->translator->trans('registration.form.confirm_password', [], 'messages', $locale),
-                    'attr' => [
-                        'placeholder' => $this->translator->trans('registration.form.confirm_password_placeholder', [], 'messages', $locale),
-                        'class' => 'form-control',
-                    ],
+                    'label' => 'registration.form.confirm_password',
                 ],
-                'invalid_message' => $this->translator->trans('registration.validation.password_mismatch', [], 'messages', $locale),
+                'invalid_message' => 'registration.validation.password_mismatch',
                 'constraints' => [
                     new NotBlank([
-                        'message' => $this->translator->trans('registration.validation.password_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.password_required',
                     ]),
                     new Length([
                         'min' => 8,
-                        'minMessage' => $this->translator->trans('registration.validation.password_min_length', [], 'messages', $locale),
-                        'max' => 4096,
+                        'minMessage' => 'registration.validation.password_min_length',
                     ]),
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => $this->translator->trans('registration.form.agree_terms', [], 'messages', $locale),
                 'mapped' => false,
+                'label' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => $this->translator->trans('registration.validation.terms_required', [], 'messages', $locale),
+                        'message' => 'registration.validation.terms_required',
                     ]),
                 ],
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -229,9 +201,75 @@ class RegistrationFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
             'translation_domain' => 'messages',
-            'csrf_protection' => true,
-            'csrf_field_name' => '_token',
-            'csrf_token_id' => 'registration_form',
         ]);
+    }
+    
+    private function getCountryChoices(): array
+    {
+        $choices = [];
+        $countries = Countries::getNames();
+        
+        // Pays prioritaires
+        $priorityCountries = [
+            'BE' => $countries['BE'], // Belgique
+            'FR' => $countries['FR'], // France
+            'NL' => $countries['NL'], // Pays-Bas
+            'DE' => $countries['DE'], // Allemagne
+            'LU' => $countries['LU'], // Luxembourg
+        ];
+        
+        // Autres pays européens
+        $europeanCountries = [
+            'AT' => $countries['AT'], // Autriche
+            'BG' => $countries['BG'], // Bulgarie
+            'HR' => $countries['HR'], // Croatie
+            'CY' => $countries['CY'], // Chypre
+            'CZ' => $countries['CZ'], // République tchèque
+            'DK' => $countries['DK'], // Danemark
+            'EE' => $countries['EE'], // Estonie
+            'FI' => $countries['FI'], // Finlande
+            'GR' => $countries['GR'], // Grèce
+            'HU' => $countries['HU'], // Hongrie
+            'IE' => $countries['IE'], // Irlande
+            'IT' => $countries['IT'], // Italie
+            'LV' => $countries['LV'], // Lettonie
+            'LT' => $countries['LT'], // Lituanie
+            'MT' => $countries['MT'], // Malte
+            'PL' => $countries['PL'], // Pologne
+            'PT' => $countries['PT'], // Portugal
+            'RO' => $countries['RO'], // Roumanie
+            'SK' => $countries['SK'], // Slovaquie
+            'SI' => $countries['SI'], // Slovénie
+            'ES' => $countries['ES'], // Espagne
+            'SE' => $countries['SE'], // Suède
+            'GB' => $countries['GB'], // Royaume-Uni
+        ];
+        
+        // Pays prioritaires en premier
+        foreach ($priorityCountries as $code => $name) {
+            $choices[$name] = $code;
+        }
+        
+        // Séparateur
+        $choices['---------------'] = '';
+        
+        // Pays européens ensuite
+        foreach ($europeanCountries as $code => $name) {
+            if (!isset($priorityCountries[$code])) {
+                $choices[$name] = $code;
+            }
+        }
+        
+        // Séparateur
+        $choices['---------------'] = '_';
+        
+        // Tous les autres pays
+        foreach ($countries as $code => $name) {
+            if (!isset($priorityCountries[$code]) && !isset($europeanCountries[$code])) {
+                $choices[$name] = $code;
+            }
+        }
+        
+        return $choices;
     }
 }
