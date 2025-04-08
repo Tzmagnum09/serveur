@@ -222,17 +222,16 @@
             </div>
         </div>
 
-        {% include 'partials/cookie-popup.html.twig' %}
-        {% include 'partials/cookie-link.html.twig' %}
+        <!-- Lien pour les paramÃ¨tres de cookies dans le footer -->
+        <div class="text-center mt-3 mb-2">
+            <a href="#" id="cookie-settings-link" class="cookie-settings-link">{{ 'cookie.footer.settings'|trans }}</a>
+        </div>
         
         {# Bootstrap JS with Popper #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
         
         {# jQuery #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-        {# Cookie Consent JS #}
-        <script src="{{ asset('js/cookie-consent.js') }}"></script>
         
         {# Custom JS #}
         <script>
@@ -258,7 +257,7 @@
         
         {% block javascripts %}{% endblock %}
         
-        <!-- Fenêtre modale des conditions d'utilisation -->
+        <!-- FenÃªtre modale des conditions d'utilisation -->
         <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
@@ -267,20 +266,20 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p>Les présentes conditions d'utilisation sont d'application au site Dmqode.be. Par l'utilisation de ce site, vous acceptez les présentes conditions d'utilisation et vous vous engagez à les respecter.</p>
+                <p>Les prÃ©sentes conditions d'utilisation sont d'application au site Dmqode.be. Par l'utilisation de ce site, vous acceptez les prÃ©sentes conditions d'utilisation et vous vous engagez Ã  les respecter.</p>
                 <ol>
-                  <li>Données enregistrées automatiquement : Ce site web peut collecter des données à caractère non personnel tel que le type de navigateur ou l'adresse IP, le programme d'exploitation que vous utilisez, les pages que vous visitez sur le site web ou le nom de domaine du site web à partir duquel vous êtes arrivé sur le site web ou par lequel vous le quittez.
-                  Durant une visite sur ce site web, des 'cookies' peuvent également être placés automatiquement sur le disque dur de votre ordinateur. Ces données nous aident à améliorer le site web. Avec la plupart des navigateurs, vous pouvez supprimer les cookies de votre disque dur, rejeter des cookies ou recevoir un avertissement avant qu'un cookie ne soit installé.</li>
-                  <li>Informations personnelles : Les données à caractère personnel que vous communiquez à Dmqode.be sont collectées et traitées par Dmqode.be,.
-                  Ce traitement a pour but de conclure un éventuel contrat de confidencialité entre l'utilisateur et Dmqode.be.
-                  Dmqode.be peut également utiliser ces données pour la création de services demandés par vous-même ou encore des campagnes d'information et de promotion.
-                  Conformément à la loi du 8 décembre 1992 relative à la protection de la vie privée, il vous est loisible de demander ces données et, au besoin, de les faire corriger. Vous pouvez également consulter le registre central auprès de la Commission pour la protection de la vie privée.</li>
-                  <li>Droits intellectuels : Dmqode.be apporte le plus grand soin à la création et à l'entretien de son site web. Les textes, dessins, photos, films, lay-out, images, data, noms, dénominations commerciales et noms de domaine, marques, logos et autres éléments de quelque nature que ce soit de ce site sont protégés par des droits intellectuels et sont la propriété de Dmqode.be. L'utilisation, la copie, la traduction, l'adaptation, la modification, la diffusion de tout ou partie de ce site, sous quelque forme que ce soit est prohibée, sauf accord écrit préalable du titulaire de ces droits. Toute infraction à de tels droits intellectuels peut donner lieu à des poursuites civiles et pénales.</li>
-                  <li>Informations sur le site web : Les informations présentées sur ou par le biais de ce site web peuvent contenir des imperfections. Dmqode.be décline également toute responsabilité au titre d'éventuels virus qui se présenteraient sur ce site web.
-                  Dmqode.be se réserve expressément le droit de modifier à tout moment les informations présentées sur le site.</li>
-                  <li>Hyperliens : Ce site web peut contenir des hyperliens vers des sites web de tiers. Dmqode.be n'a aucune autorité sur le contenu de ces sites web et n'est en aucun cas responsable de leur contenu.
-                  L'insertion de liens par Dmqode.be n'implique en aucune manière une approbation implicite du contenu de ces sites web.</li>
-                  <li>Tribunal compétent et loi applicable : Tout différend relatif au site Dmqode.be sera exclusivement régi par le droit belge. Les cours et tribunaux compétent seront seuls compétents en cas de différend.</li>
+                  <li>DonnÃ©es enregistrÃ©es automatiquement : Ce site web peut collecter des donnÃ©es Ã  caractÃ¨re non personnel tel que le type de navigateur ou l'adresse IP, le programme d'exploitation que vous utilisez, les pages que vous visitez sur le site web ou le nom de domaine du site web Ã  partir duquel vous Ãªtes arrivÃ© sur le site web ou par lequel vous le quittez.
+                  Durant une visite sur ce site web, des 'cookies' peuvent Ã©galement Ãªtre placÃ©s automatiquement sur le disque dur de votre ordinateur. Ces donnÃ©es nous aident Ã  amÃ©liorer le site web. Avec la plupart des navigateurs, vous pouvez supprimer les cookies de votre disque dur, rejeter des cookies ou recevoir un avertissement avant qu'un cookie ne soit installÃ©.</li>
+                  <li>Informations personnelles : Les donnÃ©es Ã  caractÃ¨re personnel que vous communiquez Ã  Dmqode.be sont collectÃ©es et traitÃ©es par Dmqode.be,.
+                  Ce traitement a pour but de conclure un Ã©ventuel contrat de confidencialitÃ© entre l'utilisateur et Dmqode.be.
+                  Dmqode.be peut Ã©galement utiliser ces donnÃ©es pour la crÃ©ation de services demandÃ©s par vous-mÃªme ou encore des campagnes d'information et de promotion.
+                  ConformÃ©ment Ã  la loi du 8 dÃ©cembre 1992 relative Ã  la protection de la vie privÃ©e, il vous est loisible de demander ces donnÃ©es et, au besoin, de les faire corriger. Vous pouvez Ã©galement consulter le registre central auprÃ¨s de la Commission pour la protection de la vie privÃ©e.</li>
+                  <li>Droits intellectuels : Dmqode.be apporte le plus grand soin Ã  la crÃ©ation et Ã  l'entretien de son site web. Les textes, dessins, photos, films, lay-out, images, data, noms, dÃ©nominations commerciales et noms de domaine, marques, logos et autres Ã©lÃ©ments de quelque nature que ce soit de ce site sont protÃ©gÃ©s par des droits intellectuels et sont la propriÃ©tÃ© de Dmqode.be. L'utilisation, la copie, la traduction, l'adaptation, la modification, la diffusion de tout ou partie de ce site, sous quelque forme que ce soit est prohibÃ©e, sauf accord Ã©crit prÃ©alable du titulaire de ces droits. Toute infraction Ã  de tels droits intellectuels peut donner lieu Ã  des poursuites civiles et pÃ©nales.</li>
+                  <li>Informations sur le site web : Les informations prÃ©sentÃ©es sur ou par le biais de ce site web peuvent contenir des imperfections. Dmqode.be dÃ©cline Ã©galement toute responsabilitÃ© au titre d'Ã©ventuels virus qui se prÃ©senteraient sur ce site web.
+                  Dmqode.be se rÃ©serve expressÃ©ment le droit de modifier Ã  tout moment les informations prÃ©sentÃ©es sur le site.</li>
+                  <li>Hyperliens : Ce site web peut contenir des hyperliens vers des sites web de tiers. Dmqode.be n'a aucune autoritÃ© sur le contenu de ces sites web et n'est en aucun cas responsable de leur contenu.
+                  L'insertion de liens par Dmqode.be n'implique en aucune maniÃ¨re une approbation implicite du contenu de ces sites web.</li>
+                  <li>Tribunal compÃ©tent et loi applicable : Tout diffÃ©rend relatif au site Dmqode.be sera exclusivement rÃ©gi par le droit belge. Les cours et tribunaux compÃ©tent seront seuls compÃ©tents en cas de diffÃ©rend.</li>
                 </ol>
               </div>
               <div class="modal-footer justify-content-end">
@@ -289,6 +288,273 @@
             </div>
           </div>
         </div>
+
+        <!-- Modal des prÃ©fÃ©rences de cookies -->
+        <div class="modal fade" id="cookie-modal" tabindex="-1" aria-labelledby="cookie-modal-label" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="d-flex align-items-center">
+                            <h5 class="modal-title" id="cookie-modal-label">{{ 'cookie.modal.title'|trans }}</h5>
+                            <select id="modal-language-selector" class="form-select form-select-sm ms-3" style="width: 120px;">
+                                <option value="fr" {% if app.request.locale == 'fr' %}selected{% endif %}>FranÃ§ais</option>
+                                <option value="nl" {% if app.request.locale == 'nl' %}selected{% endif %}>Nederlands</option>
+                                <option value="en" {% if app.request.locale == 'en' %}selected{% endif %}>English</option>
+                                <option value="de" {% if app.request.locale == 'de' %}selected{% endif %}>Deutsch</option>
+                            </select>
+                        </div>
+                        {% if app.request.cookies.get('cookieConsent') %}
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        {% endif %}
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <p>{{ 'cookie.banner.content'|trans }}</p>
+                        </div>
+                        
+                        <ul class="nav nav-tabs" id="cookie-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">{{ 'cookie.modal.tab.overview'|trans }}</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="false">{{ 'cookie.modal.tab.details'|trans }}</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="false">{{ 'cookie.modal.tab.about'|trans }}</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="cookie-tabs-content">
+                            <!-- Onglet Vue d'ensemble -->
+                            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                                <div class="mt-3">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <div>
+                                            <h6>{{ 'cookie.modal.overview.necessary.title'|trans }}</h6>
+                                            <p class="mb-0 text-muted small">{{ 'cookie.modal.overview.necessary.description'|trans }}</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="cookie-necessary" checked disabled>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <div>
+                                            <h6>{{ 'cookie.modal.overview.preferences.title'|trans }}</h6>
+                                            <p class="mb-0 text-muted small">{{ 'cookie.modal.overview.preferences.description'|trans }}</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="cookie-preference">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <div>
+                                            <h6>{{ 'cookie.modal.overview.statistics.title'|trans }}</h6>
+                                            <p class="mb-0 text-muted small">{{ 'cookie.modal.overview.statistics.description'|trans }}</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="cookie-statistics">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <div>
+                                            <h6>{{ 'cookie.modal.overview.marketing.title'|trans }}</h6>
+                                            <p class="mb-0 text-muted small">{{ 'cookie.modal.overview.marketing.description'|trans }}</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="cookie-marketing">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Onglet DÃ©tails -->
+                            <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
+                                <div class="accordion mt-3" id="cookie-details-accordion">
+                                    <!-- Cookies nÃ©cessaires -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-necessary" aria-expanded="true">
+                                                {{ 'cookie.modal.details.necessary.title'|trans }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-necessary" class="accordion-collapse collapse show" data-bs-parent="#cookie-details-accordion">
+                                            <div class="accordion-body">
+                                                <p>{{ 'cookie.modal.details.necessary.description'|trans }}</p>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{ 'cookie.modal.details.table.name'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.provider'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.purpose'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.expiry'|trans }}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>PHPSESSID</td>
+                                                                <td>{{ app.request.host }}</td>
+                                                                <td>{{ 'cookie.modal.details.necessary.session'|trans }}</td>
+                                                                <td>{{ 'cookie.modal.details.necessary.session_end'|trans }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>cookieConsent</td>
+                                                                <td>{{ app.request.host }}</td>
+                                                                <td>{{ 'cookie.modal.details.necessary.consent'|trans }}</td>
+                                                                <td>6 {{ 'cookie.modal.details.necessary.month'|trans }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Cookies de prÃ©fÃ©rences -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-preferences" aria-expanded="false">
+                                                {{ 'cookie.modal.details.preferences.title'|trans }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-preferences" class="accordion-collapse collapse" data-bs-parent="#cookie-details-accordion">
+                                            <div class="accordion-body">
+                                                <p>{{ 'cookie.modal.details.preferences.description'|trans }}</p>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{ 'cookie.modal.details.table.name'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.provider'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.purpose'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.expiry'|trans }}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>_locale</td>
+                                                                <td>{{ app.request.host }}</td>
+                                                                <td>{{ 'cookie.modal.details.preferences.language'|trans }}</td>
+                                                                <td>1 {{ 'cookie.modal.details.necessary.year'|trans }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Cookies statistiques -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-statistics" aria-expanded="false">
+                                                {{ 'cookie.modal.details.statistics.title'|trans }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-statistics" class="accordion-collapse collapse" data-bs-parent="#cookie-details-accordion">
+                                            <div class="accordion-body">
+                                                <p>{{ 'cookie.modal.details.statistics.description'|trans }}</p>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{ 'cookie.modal.details.table.name'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.provider'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.purpose'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.expiry'|trans }}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>_ga</td>
+                                                                <td>Google</td>
+                                                                <td>{{ 'cookie.modal.details.statistics.analytics'|trans }}</td>
+                                                                <td>2 {{ 'cookie.modal.details.statistics.years'|trans }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>_gid</td>
+                                                                <td>Google</td>
+                                                                <td>{{ 'cookie.modal.details.statistics.user_id'|trans }}</td>
+                                                                <td>24 {{ 'cookie.modal.details.statistics.hours'|trans }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Cookies marketing -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-marketing" aria-expanded="false">
+                                                {{ 'cookie.modal.details.marketing.title'|trans }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-marketing" class="accordion-collapse collapse" data-bs-parent="#cookie-details-accordion">
+                                            <div class="accordion-body">
+                                                <p>{{ 'cookie.modal.details.marketing.description'|trans }}</p>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{ 'cookie.modal.details.table.name'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.provider'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.purpose'|trans }}</th>
+                                                                <th>{{ 'cookie.modal.details.table.expiry'|trans }}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>_fbp</td>
+                                                                <td>Facebook</td>
+                                                                <td>{{ 'cookie.modal.details.marketing.facebook'|trans }}</td>
+                                                                <td>3 {{ 'cookie.modal.details.marketing.months'|trans }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Onglet Ã€ propos -->
+                            <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+                                <div class="mt-3">
+                                    <h5>{{ 'cookie.modal.about.what_are.title'|trans }}</h5>
+                                    <p>{{ 'cookie.modal.about.what_are.description'|trans }}</p>
+                                    
+                                    <h5 class="mt-4">{{ 'cookie.modal.about.how_used.title'|trans }}</h5>
+                                    <p>{{ 'cookie.modal.about.how_used.description'|trans }}</p>
+                                    
+                                    <h5 class="mt-4">{{ 'cookie.modal.about.how_manage.title'|trans }}</h5>
+                                    <p>{{ 'cookie.modal.about.how_manage.description'|trans }}</p>
+                                    
+                                    <h5 class="mt-4">{{ 'cookie.modal.about.more_info.title'|trans }}</h5>
+                                    <p>
+                                        {{ 'cookie.modal.about.more_info.description'|trans }} 
+                                        <a href="{{ path('app_terms') }}">{{ 'cookie.modal.about.more_info.terms_link'|trans }}</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        {% if not app.request.cookies.get('cookieConsent') %}
+                            <button type="button" class="btn btn-outline-secondary" id="necessary-cookies-btn">{{ 'cookie.modal.necessary_only'|trans }}</button>
+                            <button type="button" class="btn btn-gradient" id="accept-all-cookies-btn">{{ 'cookie.modal.accept_all'|trans }}</button>
+                        {% endif %}
+                        <button type="button" class="btn btn-primary" id="save-preferences-btn">{{ 'cookie.modal.save'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
+        {# Cookie Consent JS #}
+        <script src="{{ asset('js/cookie-consent.js') }}"></script>
     </body>
 </html>
