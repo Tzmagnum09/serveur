@@ -7,6 +7,25 @@
     {# Style pour le datepicker #}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
+        /* Styles améliorés pour le formulaire de profil */
+        .profile-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-form label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .profile-form .form-control {
+            padding: 0.6rem 0.75rem;
+        }
+        
+        .profile-form .row {
+            margin-bottom: 1rem;
+        }
+        
         /* Style pour le groupe d'input avec l'icône de calendrier */
         .date-picker-group {
             position: relative;
@@ -22,6 +41,19 @@
         /* Assurer que le datepicker reste au-dessus des autres éléments */
         .flatpickr-calendar {
             z-index: 9999 !important;
+        }
+        
+        /* Styles pour les boutons d'année et de mois dans le datepicker */
+        .flatpickr-current-month .flatpickr-monthDropdown-months,
+        .flatpickr-current-month input.cur-year {
+            font-weight: 500;
+            padding: 5px;
+        }
+        
+        /* Message info avec marge */
+        .alert-info {
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
         }
     </style>
 {% endblock %}
@@ -63,84 +95,131 @@
             <h5 class="mb-0">{{ 'profile.edit.form_title'|trans }}</h5>
         </div>
         <div class="card-body">
-            {{ form_start(profileForm) }}
-                <div class="row mb-3">
+            {{ form_start(profileForm, {'attr': {'class': 'profile-form'}}) }}
+                <div class="row mb-4">
                     <div class="col-md-6">
-                        {{ form_row(profileForm.email) }}
-                    </div>
-                    <div class="col-md-6">
-                        {{ form_row(profileForm.username) }}
-                    </div>
-                </div>
-                
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        {{ form_row(profileForm.firstName) }}
-                    </div>
-                    <div class="col-md-6">
-                        {{ form_row(profileForm.lastName) }}
-                    </div>
-                </div>
-                
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        {{ form_label(profileForm.birthDate) }}
-                        <div class="input-group date-picker-group">
-                            {{ form_widget(profileForm.birthDate, {
-                                'attr': {
-                                    'placeholder': 'JJ/MM/AAAA',
-                                    'class': 'form-control datepicker',
-                                    'autocomplete': 'off'
-                                }
-                            }) }}
-                            <span class="input-group-text" id="calendar-icon">
-                                <i class="fas fa-calendar-alt"></i>
-                            </span>
+                        <div class="form-group">
+                            {{ form_label(profileForm.email) }}
+                            {{ form_widget(profileForm.email, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.email) }}
                         </div>
-                        {{ form_errors(profileForm.birthDate) }}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(profileForm.username) }}
+                            {{ form_widget(profileForm.username, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.username) }}
+                        </div>
                     </div>
                 </div>
                 
-                <div class="row mb-3">
-                    <div class="col-md-8">
-                        {{ form_row(profileForm.street) }}
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(profileForm.firstName) }}
+                            {{ form_widget(profileForm.firstName, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.firstName) }}
+                        </div>
                     </div>
-                    <div class="col-md-2">
-                        {{ form_row(profileForm.houseNumber) }}
-                    </div>
-                    <div class="col-md-2">
-                        {{ form_row(profileForm.boxNumber) }}
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(profileForm.lastName) }}
+                            {{ form_widget(profileForm.lastName, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.lastName) }}
+                        </div>
                     </div>
                 </div>
                 
-                <div class="row mb-3">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(profileForm.birthDate) }}
+                            <div class="input-group date-picker-group">
+                                {{ form_widget(profileForm.birthDate, {
+                                    'attr': {
+                                        'placeholder': 'JJ/MM/AAAA',
+                                        'class': 'form-control datepicker',
+                                        'autocomplete': 'off'
+                                    }
+                                }) }}
+                                <span class="input-group-text" id="calendar-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            {{ form_errors(profileForm.birthDate) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(profileForm.phoneNumber) }}
+                            {{ form_widget(profileForm.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.phoneNumber) }}
+                        </div>
+                    </div>
+                </div>
+                
+                {# Regrouper rue, numéro et boîte sur la même ligne #}
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(profileForm.street) }}
+                            {{ form_widget(profileForm.street, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.street) }}
+                        </div>
+                    </div>
                     <div class="col-md-3">
-                        {{ form_row(profileForm.postalCode) }}
+                        <div class="form-group">
+                            {{ form_label(profileForm.houseNumber) }}
+                            {{ form_widget(profileForm.houseNumber, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.houseNumber) }}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{ form_label(profileForm.boxNumber) }}
+                            {{ form_widget(profileForm.boxNumber, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.boxNumber) }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{ form_label(profileForm.postalCode) }}
+                            {{ form_widget(profileForm.postalCode, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.postalCode) }}
+                        </div>
                     </div>
                     <div class="col-md-5">
-                        {{ form_row(profileForm.city) }}
-                    </div>
-                    <div class="col-md-4">
-                        {{ form_row(profileForm.country) }}
-                    </div>
-                </div>
-                
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        {{ form_row(profileForm.phoneNumber) }}
-                    </div>
-                    <div class="col-md-6">
-                        {{ form_row(profileForm.locale) }}
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="alert alert-info">
-                            <i class="fas fa-info-circle me-2"></i>
-                            {{ 'profile.edit.language_info'|trans }}
+                        <div class="form-group">
+                            {{ form_label(profileForm.city) }}
+                            {{ form_widget(profileForm.city, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.city) }}
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            {{ form_label(profileForm.country) }}
+                            {{ form_widget(profileForm.country, {'attr': {'class': 'form-select'}}) }}
+                            {{ form_errors(profileForm.country) }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(profileForm.locale) }}
+                            {{ form_widget(profileForm.locale, {'attr': {'class': 'form-select'}}) }}
+                            {{ form_errors(profileForm.locale) }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    {{ 'profile.edit.language_info'|trans }}
                 </div>
                 
                 <div class="d-flex justify-content-end">
@@ -163,7 +242,7 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialiser le datepicker
+            // Initialiser le datepicker avec des options améliorées
             const datepickerElements = document.querySelectorAll('.datepicker');
             
             // Déterminer la locale actuelle
@@ -179,22 +258,28 @@
             datepickerElements.forEach(function(element) {
                 const calendarIcon = document.getElementById('calendar-icon');
                 
-                // Initialiser flatpickr
+                // Initialiser flatpickr avec des options améliorées
                 const flatpickrInstance = flatpickr(element, {
                     dateFormat: "d/m/Y",
                     locale: locale,
                     maxDate: new Date(),
-                    yearRange: [1900, new Date().getFullYear()],
+                    minDate: '1920-01-01',
                     disableMobile: false,
                     allowInput: true,
                     clickOpens: true,
-                    // Permettre la sélection pour les personnes de plus de 13 ans
-                    onReady: function(selectedDates, dateStr, instance) {
-                        // Calculer la date minimum (13 ans avant aujourd'hui)
-                        const today = new Date();
-                        const minDate = new Date();
-                        minDate.setFullYear(today.getFullYear() - 13);
-                        instance.config.maxDate = minDate;
+                    enableTime: false,
+                    time_24hr: true,
+                    
+                    // Activer la sélection de l'année et du mois
+                    monthSelectorType: 'dropdown',
+                    yearSelectorType: 'dropdown',
+                    
+                    // Fonction pour configurer correctement les années
+                    onOpen: function(selectedDates, dateStr, instance) {
+                        // S'assurer que les années sont correctement sélectionnables
+                        const currentYear = new Date().getFullYear();
+                        instance.set('minDate', new Date('1920-01-01'));
+                        instance.set('maxDate', new Date());
                     }
                 });
                 

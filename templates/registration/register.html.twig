@@ -3,6 +3,7 @@
 {% block title %}{{ 'registration.title'|trans }}{% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     {# Style pour le datepicker #}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
@@ -14,19 +15,24 @@
         .registration-form label {
             margin-bottom: 0.5rem;
             font-weight: 500;
+            display: block;
         }
         
-        .registration-form .form-control {
+        .registration-form .form-control,
+        .registration-form .form-select {
+            padding: 0.6rem 0.75rem;
             transition: all 0.3s ease;
             border: 1px solid #ced4da;
         }
         
-        .registration-form .form-control:focus {
+        .registration-form .form-control:focus,
+        .registration-form .form-select:focus {
             border-color: #8e44ad;
             box-shadow: 0 0 0 0.2rem rgba(142, 68, 173, 0.25);
         }
         
-        .registration-form .form-control:hover {
+        .registration-form .form-control:hover,
+        .registration-form .form-select:hover {
             border-color: #8e44ad;
         }
         
@@ -46,12 +52,29 @@
         .flatpickr-calendar {
             z-index: 9999 !important;
         }
+        
+        /* Styles pour les boutons d'année et de mois dans le datepicker */
+        .flatpickr-current-month .flatpickr-monthDropdown-months,
+        .flatpickr-current-month input.cur-year {
+            font-weight: 500;
+            padding: 5px;
+        }
+        
+        /* Animation sur les boutons */
+        .btn-gradient {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
     </style>
 {% endblock %}
 
 {% block body %}
 <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-10">
         <div class="card shadow-lg">
             <div class="card-header text-center">
                 <h1 class="h4 mb-0">{{ 'registration.header'|trans }}</h1>
@@ -133,10 +156,23 @@
                             {{ form_errors(registrationForm.birthDate) }}
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(registrationForm.phoneNumber) }}
+                            {{ form_widget(registrationForm.phoneNumber, {
+                                'attr': {
+                                    'placeholder': 'registration.form.phone_number_placeholder'|trans,
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                            {{ form_errors(registrationForm.phoneNumber) }}
+                        </div>
+                    </div>
                 </div>
                 
+                {# Regroupement de la rue, numéro et boîte sur la même ligne #}
                 <div class="row mb-4">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <div class="form-group">
                             {{ form_label(registrationForm.street) }}
                             {{ form_widget(registrationForm.street, {
@@ -148,7 +184,7 @@
                             {{ form_errors(registrationForm.street) }}
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             {{ form_label(registrationForm.houseNumber) }}
                             {{ form_widget(registrationForm.houseNumber, {
@@ -160,7 +196,7 @@
                             {{ form_errors(registrationForm.houseNumber) }}
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             {{ form_label(registrationForm.boxNumber) }}
                             {{ form_widget(registrationForm.boxNumber, {
@@ -211,18 +247,6 @@
                 </div>
                 
                 <div class="row mb-4">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {{ form_label(registrationForm.phoneNumber) }}
-                            {{ form_widget(registrationForm.phoneNumber, {
-                                'attr': {
-                                    'placeholder': 'registration.form.phone_number_placeholder'|trans,
-                                    'class': 'form-control'
-                                }
-                            }) }}
-                            {{ form_errors(registrationForm.phoneNumber) }}
-                        </div>
-                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             {{ form_label(registrationForm.locale) }}
@@ -351,6 +375,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     {# Script pour le datepicker #}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
@@ -359,7 +384,7 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialiser le datepicker
+            // Initialiser le datepicker avec des options améliorées
             const datepickerElements = document.querySelectorAll('.datepicker');
             
             // Déterminer la locale actuelle
@@ -375,22 +400,42 @@
             datepickerElements.forEach(function(element) {
                 const calendarIcon = document.getElementById('calendar-icon');
                 
-                // Initialiser flatpickr
+                // Calculer la date minimale (13 ans avant aujourd'hui)
+                const today = new Date();
+                const minDate = new Date();
+                minDate.setFullYear(today.getFullYear() - 13);
+                
+                // Initialiser flatpickr avec des options améliorées
                 const flatpickrInstance = flatpickr(element, {
                     dateFormat: "d/m/Y",
                     locale: locale,
-                    maxDate: new Date(),
-                    yearRange: [1900, new Date().getFullYear()],
+                    maxDate: minDate, // Max date est 13 ans avant aujourd'hui (âge minimum)
+                    minDate: '1920-01-01', // Date raisonnable minimum
                     disableMobile: false,
                     allowInput: true,
                     clickOpens: true,
-                    // Permettre la sélection pour les personnes de plus de 13 ans
-                    onReady: function(selectedDates, dateStr, instance) {
-                        // Calculer la date minimum (13 ans avant aujourd'hui)
-                        const today = new Date();
-                        const minDate = new Date();
-                        minDate.setFullYear(today.getFullYear() - 13);
-                        instance.config.maxDate = minDate;
+                    enableTime: false,
+                    time_24hr: true,
+                    
+                    // Activer la sélection de l'année et du mois
+                    monthSelectorType: 'dropdown',
+                    yearSelectorType: 'dropdown',
+                    
+                    // Année par défaut raisonnable (30 ans avant aujourd'hui)
+                    defaultDate: new Date(today.getFullYear() - 30, today.getMonth(), today.getDate()),
+                    
+                    // S'assurer que l'interface est complètement chargée
+                    onOpen: function(selectedDates, dateStr, instance) {
+                        // Forcer l'affichage des sélecteurs
+                        setTimeout(() => {
+                            const yearInput = instance.yearElements[0];
+                            if (yearInput) {
+                                // S'assurer que le sélecteur d'année est visible et cliquable
+                                yearInput.style.display = 'inline';
+                                yearInput.style.visibility = 'visible';
+                                yearInput.removeAttribute('readonly');
+                            }
+                        }, 100);
                     }
                 });
                 

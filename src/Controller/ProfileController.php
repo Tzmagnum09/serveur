@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Form\ProfileType;
+use App\Entity\User;
+use App\Form\ProfileFormType;
 use App\Form\ChangePasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,20 +16,35 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/profile')]
 class ProfileController extends AbstractController
 {
+    private TranslatorInterface $translator;
+    
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+    
     #[Route('', name: 'app_profile')]
     public function index(): Response
     {
         $user = $this->getUser();
-
+        
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+        
         return $this->render('profile/index.html.twig', [
             'user' => $user,
         ]);
     }
-
+    
     #[Route('/edit', name: 'app_profile_edit')]
-    public function edit(Request $request, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
+        
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
         
         // Formater la date de naissance si elle existe
         $birthDateFormatted = null;
@@ -36,11 +52,12 @@ class ProfileController extends AbstractController
             $birthDateFormatted = $user->getBirthDate()->format('d/m/Y');
         }
         
-        $form = $this->createForm(ProfileType::class, $user, [
+        $form = $this->createForm(ProfileFormType::class, $user, [
             'birthdate_formatted' => $birthDateFormatted
         ]);
+        
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             // Traiter la date de naissance
             $birthDateString = $form->get('birthDate')->getData();
@@ -60,41 +77,48 @@ class ProfileController extends AbstractController
             }
             
             $entityManager->flush();
-
-            $this->addFlash('success', $translator->trans('profile.flash.profile_updated'));
-
+            
+            $this->addFlash('success', $this->translator->trans('profile.flash.profile_updated'));
+            
             return $this->redirectToRoute('app_profile');
         }
-
+        
         return $this->render('profile/edit.html.twig', [
             'profileForm' => $form->createView(),
         ]);
     }
-
+    
     #[Route('/change-password', name: 'app_profile_change_password')]
-    public function changePassword(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
-    {
+    public function changePassword(
+        Request $request,
+        UserPasswordHasherInterface $passwordHasher,
+        EntityManagerInterface $entityManager
+    ): Response {
         $user = $this->getUser();
+        
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
         
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            // Encode the plain password
+            // Encoder le nouveau mot de passe
             $user->setPassword(
-                $userPasswordHasher->hashPassword(
+                $passwordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            
             $entityManager->flush();
-
-            $this->addFlash('success', $translator->trans('profile.flash.password_updated'));
-
+            
+            $this->addFlash('success', $this->translator->trans('profile.flash.password_updated'));
+            
             return $this->redirectToRoute('app_profile');
         }
-
+        
         return $this->render('profile/change_password.html.twig', [
             'resetForm' => $form->createView(),
         ]);

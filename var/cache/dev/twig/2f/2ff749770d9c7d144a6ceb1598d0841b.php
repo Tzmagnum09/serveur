@@ -31,8 +31,10 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
+            'stylesheets' => [$this, 'block_stylesheets'],
             'sidebar' => [$this, 'block_sidebar'],
             'body' => [$this, 'block_body'],
+            'javascripts' => [$this, 'block_javascripts'],
         ];
     }
 
@@ -76,99 +78,138 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
     /**
      * @return iterable<null|scalar|\Stringable>
      */
+    public function block_stylesheets(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        // line 6
+        yield "    ";
+        // line 7
+        yield "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\">
+    <style>
+        /* Style pour le groupe d'input avec l'icône de calendrier */
+        .date-picker-group {
+            position: relative;
+        }
+        
+        .date-picker-group .input-group-text {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Assurer que le datepicker reste au-dessus des autres éléments */
+        .flatpickr-calendar {
+            z-index: 9999 !important;
+        }
+    </style>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        yield from [];
+    }
+
+    // line 28
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
     public function block_sidebar(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "sidebar"));
 
-        // line 6
+        // line 29
         yield "<div class=\"sidebar\">
     <h5 class=\"mb-4\">";
-        // line 7
+        // line 30
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.title"), "html", null, true);
         yield "</h5>
     <ul class=\"nav flex-column\">
         <li class=\"nav-item\">
             <a class=\"nav-link\" href=\"";
-        // line 10
+        // line 33
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_dashboard");
         yield "\">
                 <i class=\"fas fa-tachometer-alt me-2\"></i> ";
-        // line 11
+        // line 34
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.dashboard"), "html", null, true);
         yield "
             </a>
         </li>
         ";
-        // line 14
-        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 14, $this->source); })()), "user", [], "any", false, false, false, 14), "isAdmin", [], "method", false, false, false, 14) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 14, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 14, $this->source); })()), "user", [], "any", false, false, false, 14), "manage_users"], "method", false, false, false, 14)))) {
-            // line 15
+        // line 37
+        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 37, $this->source); })()), "user", [], "any", false, false, false, 37), "isAdmin", [], "method", false, false, false, 37) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 37, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 37, $this->source); })()), "user", [], "any", false, false, false, 37), "manage_users"], "method", false, false, false, 37)))) {
+            // line 38
             yield "        <li class=\"nav-item\">
             <a class=\"nav-link active\" href=\"";
-            // line 16
+            // line 39
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users");
             yield "\">
                 <i class=\"fas fa-users me-2\"></i> ";
-            // line 17
+            // line 40
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.users"), "html", null, true);
             yield "
             </a>
         </li>
         ";
         }
-        // line 21
+        // line 44
         yield "        ";
-        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 21, $this->source); })()), "user", [], "any", false, false, false, 21), "isAdmin", [], "method", false, false, false, 21) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 21, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 21, $this->source); })()), "user", [], "any", false, false, false, 21), "edit_email_templates"], "method", false, false, false, 21)))) {
-            // line 22
+        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 44, $this->source); })()), "user", [], "any", false, false, false, 44), "isAdmin", [], "method", false, false, false, 44) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 44, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 44, $this->source); })()), "user", [], "any", false, false, false, 44), "edit_email_templates"], "method", false, false, false, 44)))) {
+            // line 45
             yield "        <li class=\"nav-item\">
             <a class=\"nav-link\" href=\"";
-            // line 23
+            // line 46
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_templates");
             yield "\">
                 <i class=\"fas fa-envelope me-2\"></i> ";
-            // line 24
+            // line 47
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.email_templates"), "html", null, true);
             yield "
             </a>
         </li>
         ";
         }
-        // line 28
+        // line 51
         yield "        ";
-        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 28, $this->source); })()), "user", [], "any", false, false, false, 28), "isAdmin", [], "method", false, false, false, 28) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 28, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 28, $this->source); })()), "user", [], "any", false, false, false, 28), "translate_content"], "method", false, false, false, 28)))) {
-            // line 29
+        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 51, $this->source); })()), "user", [], "any", false, false, false, 51), "isAdmin", [], "method", false, false, false, 51) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 51, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 51, $this->source); })()), "user", [], "any", false, false, false, 51), "translate_content"], "method", false, false, false, 51)))) {
+            // line 52
             yield "        <li class=\"nav-item\">
             <a class=\"nav-link\" href=\"";
-            // line 30
+            // line 53
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_translations");
             yield "\">
                 <i class=\"fas fa-language me-2\"></i> ";
-            // line 31
+            // line 54
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.translations"), "html", null, true);
             yield "
             </a>
         </li>
         ";
         }
-        // line 35
+        // line 58
         yield "    </ul>
     
     ";
-        // line 37
+        // line 60
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN")) {
-            // line 38
+            // line 61
             yield "    <h5 class=\"mb-3 mt-4\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.super_admin"), "html", null, true);
             yield "</h5>
     <ul class=\"nav flex-column\">
         <li class=\"nav-item\">
             <a class=\"nav-link\" href=\"";
-            // line 41
+            // line 64
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_dashboard");
             yield "\">
                 <i class=\"fas fa-shield-alt me-2\"></i> ";
-            // line 42
+            // line 65
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.super_dashboard"), "html", null, true);
             yield "
             </a>
@@ -176,7 +217,7 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
     </ul>
     ";
         }
-        // line 47
+        // line 70
         yield "</div>
 ";
         
@@ -185,7 +226,7 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
         yield from [];
     }
 
-    // line 50
+    // line 73
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -195,43 +236,43 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 51
+        // line 74
         yield "<div class=\"container-fluid\">
     <div class=\"d-flex justify-content-between align-items-center mb-4\">
         <h1 class=\"h3\">";
-        // line 53
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.title", ["%name%" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 53, $this->source); })()), "fullName", [], "any", false, false, false, 53)]), "html", null, true);
+        // line 76
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.title", ["%name%" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 76, $this->source); })()), "fullName", [], "any", false, false, false, 76)]), "html", null, true);
         yield "</h1>
         <div class=\"d-flex\">
             <a href=\"";
-        // line 55
+        // line 78
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users");
         yield "\" class=\"btn btn-outline-secondary me-2\">
                 <i class=\"fas fa-arrow-left me-1\"></i> ";
-        // line 56
+        // line 79
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.back_btn"), "html", null, true);
         yield "
             </a>
             
             ";
-        // line 59
-        if (((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 59, $this->source); })()), "isVerified", [], "any", false, false, false, 59) &&  !CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 59, $this->source); })()), "isApproved", [], "any", false, false, false, 59)) && ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 59, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 59, $this->source); })()), "user", [], "any", false, false, false, 59), "approve_users"], "method", false, false, false, 59)))) {
-            // line 60
+        // line 82
+        if (((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 82, $this->source); })()), "isVerified", [], "any", false, false, false, 82) &&  !CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 82, $this->source); })()), "isApproved", [], "any", false, false, false, 82)) && ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 82, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 82, $this->source); })()), "user", [], "any", false, false, false, 82), "approve_users"], "method", false, false, false, 82)))) {
+            // line 83
             yield "                <form method=\"post\" action=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_approve", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 60, $this->source); })()), "id", [], "any", false, false, false, 60)]), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_approve", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 83, $this->source); })()), "id", [], "any", false, false, false, 83)]), "html", null, true);
             yield "\" onsubmit=\"return confirm('";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.confirm_approve"), "html", null, true);
             yield "')\">
                     <button type=\"submit\" class=\"btn btn-success\">
                         <i class=\"fas fa-check me-1\"></i> ";
-            // line 62
+            // line 85
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.approve_btn"), "html", null, true);
             yield "
                     </button>
                 </form>
             ";
         }
-        // line 66
+        // line 89
         yield "        </div>
     </div>
     
@@ -240,7 +281,7 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
             <div class=\"card shadow-sm mb-4\">
                 <div class=\"card-header\">
                     <h5 class=\"mb-0\">";
-        // line 73
+        // line 96
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.user_info"), "html", null, true);
         yield "</h5>
                 </div>
@@ -248,152 +289,181 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
                     <div class=\"text-center mb-4\">
                         <div class=\"avatar-circle bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3\" style=\"width: 80px; height: 80px;\">
                             <span class=\"h1 text-white\">";
-        // line 78
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::first($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 78, $this->source); })()), "firstName", [], "any", false, false, false, 78)), "html", null, true);
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::first($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 78, $this->source); })()), "lastName", [], "any", false, false, false, 78)), "html", null, true);
+        // line 101
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::first($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 101, $this->source); })()), "firstName", [], "any", false, false, false, 101)), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::first($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 101, $this->source); })()), "lastName", [], "any", false, false, false, 101)), "html", null, true);
         yield "</span>
                         </div>
                         <h5>";
-        // line 80
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 80, $this->source); })()), "fullName", [], "any", false, false, false, 80), "html", null, true);
+        // line 103
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 103, $this->source); })()), "fullName", [], "any", false, false, false, 103), "html", null, true);
         yield "</h5>
                         <p class=\"text-muted mb-0\">";
-        // line 81
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 81, $this->source); })()), "email", [], "any", false, false, false, 81), "html", null, true);
+        // line 104
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 104, $this->source); })()), "email", [], "any", false, false, false, 104), "html", null, true);
         yield "</p>
                     </div>
                     
                     <div class=\"mb-3\">
                         <div class=\"fw-bold text-muted mb-1\">";
-        // line 85
+        // line 108
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.status"), "html", null, true);
         yield "</div>
                         ";
-        // line 86
-        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 86, $this->source); })()), "isVerified", [], "any", false, false, false, 86) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 86, $this->source); })()), "isApproved", [], "any", false, false, false, 86))) {
-            // line 87
+        // line 109
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 109, $this->source); })()), "isVerified", [], "any", false, false, false, 109) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 109, $this->source); })()), "isApproved", [], "any", false, false, false, 109))) {
+            // line 110
             yield "                            <span class=\"badge bg-success\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.status_active"), "html", null, true);
             yield "</span>
                         ";
-        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 88
-(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 88, $this->source); })()), "isVerified", [], "any", false, false, false, 88) &&  !CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 88, $this->source); })()), "isApproved", [], "any", false, false, false, 88))) {
-            // line 89
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source,         // line 111
+(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 111, $this->source); })()), "isVerified", [], "any", false, false, false, 111) &&  !CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 111, $this->source); })()), "isApproved", [], "any", false, false, false, 111))) {
+            // line 112
             yield "                            <span class=\"badge bg-warning text-dark\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.status_pending"), "html", null, true);
             yield "</span>
                         ";
         } else {
-            // line 91
+            // line 114
             yield "                            <span class=\"badge bg-danger\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.status_unverified"), "html", null, true);
             yield "</span>
                         ";
         }
-        // line 93
+        // line 116
         yield "                    </div>
                     
                     <div class=\"mb-3\">
                         <div class=\"fw-bold text-muted mb-1\">";
-        // line 96
+        // line 119
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.role"), "html", null, true);
         yield "</div>
                         ";
-        // line 97
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 97, $this->source); })()), "isSuperAdmin", [], "any", false, false, false, 97)) {
-            // line 98
+        // line 120
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 120, $this->source); })()), "isSuperAdmin", [], "any", false, false, false, 120)) {
+            // line 121
             yield "                            <span class=\"badge bg-danger\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.role_super_admin"), "html", null, true);
             yield "</span>
                         ";
-        } elseif (CoreExtension::getAttribute($this->env, $this->source,         // line 99
-(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 99, $this->source); })()), "isAdmin", [], "any", false, false, false, 99)) {
-            // line 100
+        } elseif (CoreExtension::getAttribute($this->env, $this->source,         // line 122
+(isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 122, $this->source); })()), "isAdmin", [], "any", false, false, false, 122)) {
+            // line 123
             yield "                            <span class=\"badge bg-primary\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.role_admin"), "html", null, true);
             yield "</span>
                         ";
         } else {
-            // line 102
+            // line 125
             yield "                            <span class=\"badge bg-secondary\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.role_user"), "html", null, true);
             yield "</span>
                         ";
         }
-        // line 104
+        // line 127
         yield "                    </div>
                     
                     <div class=\"mb-3\">
                         <div class=\"fw-bold text-muted mb-1\">";
-        // line 107
+        // line 130
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.registered_on"), "html", null, true);
         yield "</div>
                         <p class=\"mb-0\">";
-        // line 108
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 108, $this->source); })()), "createdAt", [], "any", false, false, false, 108), "d/m/Y H:i"), "html", null, true);
+        // line 131
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 131, $this->source); })()), "createdAt", [], "any", false, false, false, 131), "d/m/Y H:i"), "html", null, true);
         yield "</p>
                     </div>
                     
                     <div class=\"mb-3\">
                         <div class=\"fw-bold text-muted mb-1\">";
-        // line 112
+        // line 135
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.last_login"), "html", null, true);
         yield "</div>
                         <p class=\"mb-0\">
                             ";
-        // line 114
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 114, $this->source); })()), "lastLoginAt", [], "any", false, false, false, 114)) {
-            // line 115
+        // line 137
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 137, $this->source); })()), "lastLoginAt", [], "any", false, false, false, 137)) {
+            // line 138
             yield "                                ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 115, $this->source); })()), "lastLoginAt", [], "any", false, false, false, 115), "d/m/Y H:i"), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 138, $this->source); })()), "lastLoginAt", [], "any", false, false, false, 138), "d/m/Y H:i"), "html", null, true);
             yield "
                             ";
         } else {
-            // line 117
+            // line 140
             yield "                                ";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.never_logged_in"), "html", null, true);
             yield "
                             ";
         }
-        // line 119
+        // line 142
+        yield "                        </p>
+                    </div>
+                    
+                    <div class=\"mb-3\">
+                        <div class=\"fw-bold text-muted mb-1\">";
+        // line 146
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.birth_date"), "html", null, true);
+        yield "</div>
+                        <p class=\"mb-0\">
+                            ";
+        // line 148
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 148, $this->source); })()), "birthDate", [], "any", false, false, false, 148)) {
+            // line 149
+            yield "                                ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 149, $this->source); })()), "birthDate", [], "any", false, false, false, 149), "d/m/Y"), "html", null, true);
+            yield "
+                                <span class=\"text-muted ms-2\">(";
+            // line 150
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 150, $this->source); })()), "age", [], "any", false, false, false, 150), "html", null, true);
+            yield " ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("profile.fields.years_old"), "html", null, true);
+            yield ")</span>
+                            ";
+        } else {
+            // line 152
+            yield "                                -
+                            ";
+        }
+        // line 154
         yield "                        </p>
                     </div>
                     
                     ";
-        // line 122
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 122, $this->source); })()), "isVerified", [], "any", false, false, false, 122)) {
-            // line 123
+        // line 157
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 157, $this->source); })()), "isVerified", [], "any", false, false, false, 157)) {
+            // line 158
             yield "                    <div class=\"mb-3\">
                         <div class=\"fw-bold text-muted mb-1\">";
-            // line 124
+            // line 159
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.verified_on"), "html", null, true);
             yield "</div>
                         <p class=\"mb-0\">";
-            // line 125
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 125, $this->source); })()), "emailVerifiedAt", [], "any", false, false, false, 125), "d/m/Y H:i"), "html", null, true);
+            // line 160
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 160, $this->source); })()), "emailVerifiedAt", [], "any", false, false, false, 160), "d/m/Y H:i"), "html", null, true);
             yield "</p>
                     </div>
                     ";
         }
-        // line 128
+        // line 163
         yield "                    
                     ";
-        // line 129
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 129, $this->source); })()), "isApproved", [], "any", false, false, false, 129)) {
-            // line 130
+        // line 164
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 164, $this->source); })()), "isApproved", [], "any", false, false, false, 164)) {
+            // line 165
             yield "                    <div class=\"mb-3\">
                         <div class=\"fw-bold text-muted mb-1\">";
-            // line 131
+            // line 166
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.approved_on"), "html", null, true);
             yield "</div>
                         <p class=\"mb-0\">";
-            // line 132
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 132, $this->source); })()), "approvedAt", [], "any", false, false, false, 132), "d/m/Y H:i"), "html", null, true);
+            // line 167
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 167, $this->source); })()), "approvedAt", [], "any", false, false, false, 167), "d/m/Y H:i"), "html", null, true);
             yield "</p>
                     </div>
                     ";
         }
-        // line 135
+        // line 170
         yield "                </div>
             </div>
         </div>
@@ -402,26 +472,26 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
             <div class=\"card shadow-sm mb-4\">
                 <div class=\"card-header\">
                     <h5 class=\"mb-0\">";
-        // line 142
+        // line 177
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.edit_profile"), "html", null, true);
         yield "</h5>
                 </div>
                 <div class=\"card-body\">
                     ";
-        // line 145
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 145, $this->source); })()), 'form_start');
+        // line 180
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 180, $this->source); })()), 'form_start');
         yield "
                         <div class=\"row mb-3\">
                             <div class=\"col-md-6\">
                                 ";
-        // line 148
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 148, $this->source); })()), "email", [], "any", false, false, false, 148), 'row');
+        // line 183
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 183, $this->source); })()), "email", [], "any", false, false, false, 183), 'row');
         yield "
                             </div>
                             <div class=\"col-md-6\">
                                 ";
-        // line 151
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 151, $this->source); })()), "username", [], "any", false, false, false, 151), 'row');
+        // line 186
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 186, $this->source); })()), "username", [], "any", false, false, false, 186), 'row');
         yield "
                             </div>
                         </div>
@@ -429,14 +499,37 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
                         <div class=\"row mb-3\">
                             <div class=\"col-md-6\">
                                 ";
-        // line 157
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 157, $this->source); })()), "firstName", [], "any", false, false, false, 157), 'row');
+        // line 192
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 192, $this->source); })()), "firstName", [], "any", false, false, false, 192), 'row');
         yield "
                             </div>
                             <div class=\"col-md-6\">
                                 ";
-        // line 160
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 160, $this->source); })()), "lastName", [], "any", false, false, false, 160), 'row');
+        // line 195
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 195, $this->source); })()), "lastName", [], "any", false, false, false, 195), 'row');
+        yield "
+                            </div>
+                        </div>
+                        
+                        <div class=\"row mb-3\">
+                            <div class=\"col-md-6\">
+                                ";
+        // line 201
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 201, $this->source); })()), "birthDate", [], "any", false, false, false, 201), 'label');
+        yield "
+                                <div class=\"input-group date-picker-group\">
+                                    ";
+        // line 203
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 203, $this->source); })()), "birthDate", [], "any", false, false, false, 203), 'widget', ["attr" => ["placeholder" => "JJ/MM/AAAA", "class" => "form-control datepicker", "autocomplete" => "off"]]);
+        // line 209
+        yield "
+                                    <span class=\"input-group-text\" id=\"calendar-icon\">
+                                        <i class=\"fas fa-calendar-alt\"></i>
+                                    </span>
+                                </div>
+                                ";
+        // line 214
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 214, $this->source); })()), "birthDate", [], "any", false, false, false, 214), 'errors');
         yield "
                             </div>
                         </div>
@@ -444,20 +537,20 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
                         <div class=\"row mb-3\">
                             <div class=\"col-md-8\">
                                 ";
-        // line 166
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 166, $this->source); })()), "street", [], "any", false, false, false, 166), 'row');
+        // line 220
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 220, $this->source); })()), "street", [], "any", false, false, false, 220), 'row');
         yield "
                             </div>
                             <div class=\"col-md-2\">
                                 ";
-        // line 169
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 169, $this->source); })()), "houseNumber", [], "any", false, false, false, 169), 'row');
+        // line 223
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 223, $this->source); })()), "houseNumber", [], "any", false, false, false, 223), 'row');
         yield "
                             </div>
                             <div class=\"col-md-2\">
                                 ";
-        // line 172
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 172, $this->source); })()), "boxNumber", [], "any", false, false, false, 172), 'row');
+        // line 226
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 226, $this->source); })()), "boxNumber", [], "any", false, false, false, 226), 'row');
         yield "
                             </div>
                         </div>
@@ -465,20 +558,20 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
                         <div class=\"row mb-3\">
                             <div class=\"col-md-3\">
                                 ";
-        // line 178
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 178, $this->source); })()), "postalCode", [], "any", false, false, false, 178), 'row');
+        // line 232
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 232, $this->source); })()), "postalCode", [], "any", false, false, false, 232), 'row');
         yield "
                             </div>
                             <div class=\"col-md-5\">
                                 ";
-        // line 181
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 181, $this->source); })()), "city", [], "any", false, false, false, 181), 'row');
+        // line 235
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 235, $this->source); })()), "city", [], "any", false, false, false, 235), 'row');
         yield "
                             </div>
                             <div class=\"col-md-4\">
                                 ";
-        // line 184
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 184, $this->source); })()), "country", [], "any", false, false, false, 184), 'row');
+        // line 238
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 238, $this->source); })()), "country", [], "any", false, false, false, 238), 'row');
         yield "
                             </div>
                         </div>
@@ -486,57 +579,131 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
                         <div class=\"row mb-3\">
                             <div class=\"col-md-6\">
                                 ";
-        // line 190
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 190, $this->source); })()), "phoneNumber", [], "any", false, false, false, 190), 'row');
+        // line 244
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 244, $this->source); })()), "phoneNumber", [], "any", false, false, false, 244), 'row');
         yield "
                             </div>
                             <div class=\"col-md-6\">
                                 ";
-        // line 193
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 193, $this->source); })()), "locale", [], "any", false, false, false, 193), 'row');
+        // line 247
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 247, $this->source); })()), "locale", [], "any", false, false, false, 247), 'row');
         yield "
                             </div>
                         </div>
                         
                         ";
-        // line 197
-        if (CoreExtension::getAttribute($this->env, $this->source, ($context["userForm"] ?? null), "isApproved", [], "any", true, true, false, 197)) {
-            // line 198
+        // line 251
+        if (CoreExtension::getAttribute($this->env, $this->source, ($context["userForm"] ?? null), "isApproved", [], "any", true, true, false, 251)) {
+            // line 252
             yield "                            <div class=\"mb-3 form-check\">
                                 ";
-            // line 199
-            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 199, $this->source); })()), "isApproved", [], "any", false, false, false, 199), 'widget', ["attr" => ["class" => "form-check-input"]]);
+            // line 253
+            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 253, $this->source); })()), "isApproved", [], "any", false, false, false, 253), 'widget', ["attr" => ["class" => "form-check-input"]]);
             yield "
                                 ";
-            // line 200
-            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 200, $this->source); })()), "isApproved", [], "any", false, false, false, 200), 'label', ["label_attr" => ["class" => "form-check-label"]]);
+            // line 254
+            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 254, $this->source); })()), "isApproved", [], "any", false, false, false, 254), 'label', ["label_attr" => ["class" => "form-check-label"]]);
             yield "
                             </div>
                         ";
         }
-        // line 203
+        // line 257
         yield "                        
                         <div class=\"d-flex justify-content-end\">
                             <a href=\"";
-        // line 205
+        // line 259
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users");
         yield "\" class=\"btn btn-outline-secondary me-2\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.cancel_btn"), "html", null, true);
         yield "</a>
                             <button type=\"submit\" class=\"btn btn-gradient\">";
-        // line 206
+        // line 260
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.save_btn"), "html", null, true);
         yield "</button>
                         </div>
                     ";
-        // line 208
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 208, $this->source); })()), 'form_end');
+        // line 262
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 262, $this->source); })()), 'form_end');
         yield "
                 </div>
             </div>
         </div>
     </div>
 </div>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        yield from [];
+    }
+
+    // line 270
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_javascripts(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 271
+        yield "    ";
+        // line 272
+        yield "    <script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/nl.js\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js\"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser le datepicker
+            const datepickerElements = document.querySelectorAll('.datepicker');
+            
+            // Déterminer la locale actuelle
+            let locale = 'fr';
+            ";
+        // line 284
+        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 284, $this->source); })()), "request", [], "any", false, false, false, 284), "locale", [], "any", false, false, false, 284) == "nl")) {
+            // line 285
+            yield "                locale = 'nl';
+            ";
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 286
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 286, $this->source); })()), "request", [], "any", false, false, false, 286), "locale", [], "any", false, false, false, 286) == "en")) {
+            // line 287
+            yield "                locale = 'en';
+            ";
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 288
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 288, $this->source); })()), "request", [], "any", false, false, false, 288), "locale", [], "any", false, false, false, 288) == "de")) {
+            // line 289
+            yield "                locale = 'de';
+            ";
+        }
+        // line 291
+        yield "            
+            datepickerElements.forEach(function(element) {
+                const calendarIcon = document.getElementById('calendar-icon');
+                
+                // Initialiser flatpickr
+                const flatpickrInstance = flatpickr(element, {
+                    dateFormat: \"d/m/Y\",
+                    locale: locale,
+                    maxDate: new Date(),
+                    yearRange: [1900, new Date().getFullYear()],
+                    disableMobile: false,
+                    allowInput: true,
+                    clickOpens: true
+                });
+                
+                // Établir la relation entre l'icône et l'input pour l'accessibilité
+                if (calendarIcon) {
+                    calendarIcon.addEventListener('click', function() {
+                        flatpickrInstance.open();
+                    });
+                }
+            });
+        });
+    </script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -565,7 +732,7 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  533 => 208,  528 => 206,  522 => 205,  518 => 203,  512 => 200,  508 => 199,  505 => 198,  503 => 197,  496 => 193,  490 => 190,  481 => 184,  475 => 181,  469 => 178,  460 => 172,  454 => 169,  448 => 166,  439 => 160,  433 => 157,  424 => 151,  418 => 148,  412 => 145,  406 => 142,  397 => 135,  391 => 132,  387 => 131,  384 => 130,  382 => 129,  379 => 128,  373 => 125,  369 => 124,  366 => 123,  364 => 122,  359 => 119,  353 => 117,  347 => 115,  345 => 114,  340 => 112,  333 => 108,  329 => 107,  324 => 104,  318 => 102,  312 => 100,  310 => 99,  305 => 98,  303 => 97,  299 => 96,  294 => 93,  288 => 91,  282 => 89,  280 => 88,  275 => 87,  273 => 86,  269 => 85,  262 => 81,  258 => 80,  252 => 78,  244 => 73,  235 => 66,  228 => 62,  220 => 60,  218 => 59,  212 => 56,  208 => 55,  203 => 53,  199 => 51,  189 => 50,  180 => 47,  172 => 42,  168 => 41,  161 => 38,  159 => 37,  155 => 35,  148 => 31,  144 => 30,  141 => 29,  138 => 28,  131 => 24,  127 => 23,  124 => 22,  121 => 21,  114 => 17,  110 => 16,  107 => 15,  105 => 14,  99 => 11,  95 => 10,  89 => 7,  86 => 6,  76 => 5,  59 => 3,  42 => 1,);
+        return array (  683 => 291,  679 => 289,  677 => 288,  674 => 287,  672 => 286,  669 => 285,  667 => 284,  653 => 272,  651 => 271,  641 => 270,  626 => 262,  621 => 260,  615 => 259,  611 => 257,  605 => 254,  601 => 253,  598 => 252,  596 => 251,  589 => 247,  583 => 244,  574 => 238,  568 => 235,  562 => 232,  553 => 226,  547 => 223,  541 => 220,  532 => 214,  525 => 209,  523 => 203,  518 => 201,  509 => 195,  503 => 192,  494 => 186,  488 => 183,  482 => 180,  476 => 177,  467 => 170,  461 => 167,  457 => 166,  454 => 165,  452 => 164,  449 => 163,  443 => 160,  439 => 159,  436 => 158,  434 => 157,  429 => 154,  425 => 152,  418 => 150,  413 => 149,  411 => 148,  406 => 146,  400 => 142,  394 => 140,  388 => 138,  386 => 137,  381 => 135,  374 => 131,  370 => 130,  365 => 127,  359 => 125,  353 => 123,  351 => 122,  346 => 121,  344 => 120,  340 => 119,  335 => 116,  329 => 114,  323 => 112,  321 => 111,  316 => 110,  314 => 109,  310 => 108,  303 => 104,  299 => 103,  293 => 101,  285 => 96,  276 => 89,  269 => 85,  261 => 83,  259 => 82,  253 => 79,  249 => 78,  244 => 76,  240 => 74,  230 => 73,  221 => 70,  213 => 65,  209 => 64,  202 => 61,  200 => 60,  196 => 58,  189 => 54,  185 => 53,  182 => 52,  179 => 51,  172 => 47,  168 => 46,  165 => 45,  162 => 44,  155 => 40,  151 => 39,  148 => 38,  146 => 37,  140 => 34,  136 => 33,  130 => 30,  127 => 29,  117 => 28,  90 => 7,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -573,6 +740,29 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
         return new Source("{% extends 'base.html.twig' %}
 
 {% block title %}{{ 'admin.user_edit.title'|trans({'%name%': user.fullName}) }}{% endblock %}
+
+{% block stylesheets %}
+    {# Style pour le datepicker #}
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\">
+    <style>
+        /* Style pour le groupe d'input avec l'icône de calendrier */
+        .date-picker-group {
+            position: relative;
+        }
+        
+        .date-picker-group .input-group-text {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Assurer que le datepicker reste au-dessus des autres éléments */
+        .flatpickr-calendar {
+            z-index: 9999 !important;
+        }
+    </style>
+{% endblock %}
 
 {% block sidebar %}
 <div class=\"sidebar\">
@@ -691,6 +881,18 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
                         </p>
                     </div>
                     
+                    <div class=\"mb-3\">
+                        <div class=\"fw-bold text-muted mb-1\">{{ 'profile.fields.birth_date'|trans }}</div>
+                        <p class=\"mb-0\">
+                            {% if user.birthDate %}
+                                {{ user.birthDate|date('d/m/Y') }}
+                                <span class=\"text-muted ms-2\">({{ user.age }} {{ 'profile.fields.years_old'|trans }})</span>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </p>
+                    </div>
+                    
                     {% if user.isVerified %}
                     <div class=\"mb-3\">
                         <div class=\"fw-bold text-muted mb-1\">{{ 'admin.user_edit.verified_on'|trans }}</div>
@@ -730,6 +932,25 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
                             </div>
                             <div class=\"col-md-6\">
                                 {{ form_row(userForm.lastName) }}
+                            </div>
+                        </div>
+                        
+                        <div class=\"row mb-3\">
+                            <div class=\"col-md-6\">
+                                {{ form_label(userForm.birthDate) }}
+                                <div class=\"input-group date-picker-group\">
+                                    {{ form_widget(userForm.birthDate, {
+                                        'attr': {
+                                            'placeholder': 'JJ/MM/AAAA',
+                                            'class': 'form-control datepicker',
+                                            'autocomplete': 'off'
+                                        }
+                                    }) }}
+                                    <span class=\"input-group-text\" id=\"calendar-icon\">
+                                        <i class=\"fas fa-calendar-alt\"></i>
+                                    </span>
+                                </div>
+                                {{ form_errors(userForm.birthDate) }}
                             </div>
                         </div>
                         
@@ -783,6 +1004,53 @@ class __TwigTemplate_94523933c5849f1beb88da33dceec9b6 extends Template
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {# Script pour le datepicker #}
+    <script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/nl.js\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js\"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser le datepicker
+            const datepickerElements = document.querySelectorAll('.datepicker');
+            
+            // Déterminer la locale actuelle
+            let locale = 'fr';
+            {% if app.request.locale == 'nl' %}
+                locale = 'nl';
+            {% elseif app.request.locale == 'en' %}
+                locale = 'en';
+            {% elseif app.request.locale == 'de' %}
+                locale = 'de';
+            {% endif %}
+            
+            datepickerElements.forEach(function(element) {
+                const calendarIcon = document.getElementById('calendar-icon');
+                
+                // Initialiser flatpickr
+                const flatpickrInstance = flatpickr(element, {
+                    dateFormat: \"d/m/Y\",
+                    locale: locale,
+                    maxDate: new Date(),
+                    yearRange: [1900, new Date().getFullYear()],
+                    disableMobile: false,
+                    allowInput: true,
+                    clickOpens: true
+                });
+                
+                // Établir la relation entre l'icône et l'input pour l'accessibilité
+                if (calendarIcon) {
+                    calendarIcon.addEventListener('click', function() {
+                        flatpickrInstance.open();
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}", "admin/users_edit.html.twig", "/var/www/serveur/templates/admin/users_edit.html.twig");
     }
 }

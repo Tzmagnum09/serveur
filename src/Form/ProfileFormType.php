@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Intl\Countries;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class ProfileType extends AbstractType
+class ProfileFormType extends AbstractType
 {
     private TranslatorInterface $translator;
     
