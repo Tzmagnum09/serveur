@@ -23,6 +23,26 @@
         .flatpickr-calendar {
             z-index: 9999 !important;
         }
+        
+        /* Améliorations pour résoudre le problème de largeur du champ d'année */
+        .flatpickr-current-month .numInputWrapper {
+            width: 7ch !important; /* Largeur fixe suffisante pour afficher 4 chiffres */
+        }
+        
+        .flatpickr-current-month input.cur-year {
+            width: 100% !important; /* Assure que l'input prend toute la largeur disponible */
+            padding: 0 0.5ch !important; /* Réduit le padding pour maximiser l'espace */
+            font-size: 1rem !important; /* Taille de police uniforme */
+            font-weight: 500 !important;
+            height: auto !important;
+            line-height: inherit !important;
+        }
+        
+        /* Styles pour les boutons d'année et de mois dans le datepicker */
+        .flatpickr-current-month .flatpickr-monthDropdown-months {
+            font-weight: 500;
+            padding: 5px;
+        }
     </style>
 {% endblock %}
 
@@ -294,15 +314,42 @@
             datepickerElements.forEach(function(element) {
                 const calendarIcon = document.getElementById('calendar-icon');
                 
-                // Initialiser flatpickr
+                // Initialiser flatpickr avec des options améliorées
                 const flatpickrInstance = flatpickr(element, {
                     dateFormat: "d/m/Y",
                     locale: locale,
                     maxDate: new Date(),
-                    yearRange: [1900, new Date().getFullYear()],
-                    disableMobile: false,
+                    minDate: '1920-01-01',
+                    disableMobile: true, // Important pour la compatibilité mobile
                     allowInput: true,
-                    clickOpens: true
+                    clickOpens: true,
+                    enableTime: false,
+                    time_24hr: true,
+                    
+                    // Activer la sélection de l'année et du mois
+                    monthSelectorType: 'dropdown',
+                    yearSelectorType: 'dropdown',
+                    
+                    // Fonction pour configurer correctement les années
+                    onOpen: function(selectedDates, dateStr, instance) {
+                        // Appliquer des ajustements CSS supplémentaires
+                        setTimeout(function() {
+                            // Ajuster la largeur de l'input d'année
+                            const yearInputs = document.querySelectorAll('.numInputWrapper');
+                            yearInputs.forEach(function(wrapper) {
+                                wrapper.style.width = '7ch';
+                            });
+                            
+                            // Ajuster la largeur de l'input d'année
+                            const yearInput = document.querySelectorAll('.flatpickr-current-month input.cur-year');
+                            yearInput.forEach(function(input) {
+                                input.style.width = '100%';
+                                input.style.display = 'inline';
+                                input.style.fontSize = '1rem';
+                                input.style.padding = '0 0.5ch';
+                            });
+                        }, 10);
+                    }
                 });
                 
                 // Établir la relation entre l'icône et l'input pour l'accessibilité

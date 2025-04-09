@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\ProfileFormType;
 use App\Form\ChangePasswordFormType;
+use App\Form\ProfileFormType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,35 +16,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/profile')]
 class ProfileController extends AbstractController
 {
-    private TranslatorInterface $translator;
-    
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
-    
     #[Route('', name: 'app_profile')]
     public function index(): Response
     {
-        $user = $this->getUser();
-        
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
-        }
-        
         return $this->render('profile/index.html.twig', [
-            'user' => $user,
+            'user' => $this->getUser(),
         ]);
     }
     
     #[Route('/edit', name: 'app_profile_edit')]
-    public function edit(Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
     {
         $user = $this->getUser();
-        
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
-        }
         
         // Formater la date de naissance si elle existe
         $birthDateFormatted = null;
@@ -55,7 +38,6 @@ class ProfileController extends AbstractController
         $form = $this->createForm(ProfileFormType::class, $user, [
             'birthdate_formatted' => $birthDateFormatted
         ]);
-        
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -69,7 +51,7 @@ class ProfileController extends AbstractController
                         $user->setBirthDate($birthDate);
                     }
                 } catch (\Exception $e) {
-                    // En cas d'erreur, on conserve la date existante ou null
+                    // En cas d'erreur, on conserve la date existante
                 }
             } else {
                 // Si la date est vide, on la met à null
@@ -78,7 +60,7 @@ class ProfileController extends AbstractController
             
             $entityManager->flush();
             
-            $this->addFlash('success', $this->translator->trans('profile.flash.profile_updated'));
+            $this->addFlash('success', $translator->trans('profile.flash.profile_updated'));
             
             return $this->redirectToRoute('app_profile');
         }
@@ -90,21 +72,17 @@ class ProfileController extends AbstractController
     
     #[Route('/change-password', name: 'app_profile_change_password')]
     public function changePassword(
-        Request $request,
+        Request $request, 
         UserPasswordHasherInterface $passwordHasher,
-        EntityManagerInterface $entityManager
+        UserRepository $userRepository,
+        TranslatorInterface $translator
     ): Response {
         $user = $this->getUser();
-        
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
-        }
-        
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            // Encoder le nouveau mot de passe
+            // Encodez le nouveau mot de passe
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,
@@ -112,9 +90,9 @@ class ProfileController extends AbstractController
                 )
             );
             
-            $entityManager->flush();
+            $userRepository->save($user, true);
             
-            $this->addFlash('success', $this->translator->trans('profile.flash.password_updated'));
+            $this->addFlash('success', $translator->trans('profile.flash.password_updated'));
             
             return $this->redirectToRoute('app_profile');
         }

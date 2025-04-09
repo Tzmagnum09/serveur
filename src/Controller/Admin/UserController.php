@@ -87,7 +87,7 @@ class UserController extends AbstractController
 
         // Formater la date de naissance si elle existe
         $birthDateFormatted = null;
-        if ($user->getBirthDate()) {
+        if ($user->getBirthDate() instanceof \DateTime) {
             $birthDateFormatted = $user->getBirthDate()->format('d/m/Y');
         }
 

@@ -46,6 +46,20 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Traiter la date de naissance
+            $birthDateString = $form->get('birthDate')->getData();
+            if ($birthDateString) {
+                try {
+                    // Convertir le format DD/MM/YYYY en DateTime
+                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateString);
+                    if ($birthDate) {
+                        $user->setBirthDate($birthDate);
+                    }
+                } catch (\Exception $e) {
+                    // En cas d'erreur, continuer sans enregistrer la date
+                }
+            }
+            
             // Encoder le mot de passe
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

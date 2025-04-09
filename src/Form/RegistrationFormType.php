@@ -6,7 +6,6 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -77,16 +76,16 @@ class RegistrationFormType extends AbstractType
             ->add('birthDate', TextType::class, [
                 'label' => 'registration.form.birth_date',
                 'required' => true,
+                'mapped' => false, // On désactive le mapping automatique
                 'constraints' => [
                     new NotBlank([
                         'message' => 'registration.validation.birth_date_required',
                     ]),
-                    new LessThanOrEqual([
-                        'value' => '-13 years',
-                        'message' => 'registration.validation.minimum_age',
-                    ]),
                 ],
-                'attr' => ['class' => 'datepicker']
+                'attr' => [
+                    'class' => 'datepicker',
+                    'autocomplete' => 'off'
+                ]
             ])
             ->add('street', TextType::class, [
                 'label' => 'registration.form.street',

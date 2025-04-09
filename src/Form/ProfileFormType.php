@@ -56,8 +56,11 @@ class ProfileFormType extends AbstractType
             ->add('birthDate', TextType::class, [
                 'label' => 'registration.form.birth_date',
                 'required' => false,
-                'attr' => ['class' => 'datepicker'],
-                'mapped' => false,
+                'mapped' => false, // On désactive le mapping automatique
+                'attr' => [
+                    'class' => 'datepicker',
+                    'autocomplete' => 'off'
+                ],
                 'data' => $options['birthdate_formatted'] ?? null,
             ])
             ->add('street', TextType::class, [

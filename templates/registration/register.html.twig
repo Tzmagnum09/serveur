@@ -53,9 +53,22 @@
             z-index: 9999 !important;
         }
         
-        /* Styles pour les boutons d'année et de mois dans le datepicker */
-        .flatpickr-current-month .flatpickr-monthDropdown-months,
+        /* Améliorations pour résoudre le problème de largeur du champ d'année */
+        .flatpickr-current-month .numInputWrapper {
+            width: 7ch !important; /* Largeur fixe suffisante pour afficher 4 chiffres */
+        }
+        
         .flatpickr-current-month input.cur-year {
+            width: 100% !important; /* Assure que l'input prend toute la largeur disponible */
+            padding: 0 0.5ch !important; /* Réduit le padding pour maximiser l'espace */
+            font-size: 1rem !important; /* Taille de police uniforme */
+            font-weight: 500 !important;
+            height: auto !important;
+            line-height: inherit !important;
+        }
+        
+        /* Styles pour les boutons d'année et de mois dans le datepicker */
+        .flatpickr-current-month .flatpickr-monthDropdown-months {
             font-weight: 500;
             padding: 5px;
         }
@@ -411,7 +424,7 @@
                     locale: locale,
                     maxDate: minDate, // Max date est 13 ans avant aujourd'hui (âge minimum)
                     minDate: '1920-01-01', // Date raisonnable minimum
-                    disableMobile: false,
+                    disableMobile: true, // Important pour la compatibilité mobile
                     allowInput: true,
                     clickOpens: true,
                     enableTime: false,
@@ -426,16 +439,23 @@
                     
                     // S'assurer que l'interface est complètement chargée
                     onOpen: function(selectedDates, dateStr, instance) {
-                        // Forcer l'affichage des sélecteurs
-                        setTimeout(() => {
-                            const yearInput = instance.yearElements[0];
-                            if (yearInput) {
-                                // S'assurer que le sélecteur d'année est visible et cliquable
-                                yearInput.style.display = 'inline';
-                                yearInput.style.visibility = 'visible';
-                                yearInput.removeAttribute('readonly');
-                            }
-                        }, 100);
+                        // Appliquer des ajustements CSS supplémentaires
+                        setTimeout(function() {
+                            // Ajuster la largeur de l'input d'année
+                            const yearInputs = document.querySelectorAll('.numInputWrapper');
+                            yearInputs.forEach(function(wrapper) {
+                                wrapper.style.width = '7ch';
+                            });
+                            
+                            // Ajuster la largeur de l'input d'année
+                            const yearInput = document.querySelectorAll('.flatpickr-current-month input.cur-year');
+                            yearInput.forEach(function(input) {
+                                input.style.width = '100%';
+                                input.style.display = 'inline';
+                                input.style.fontSize = '1rem';
+                                input.style.padding = '0 0.5ch';
+                            });
+                        }, 10);
                     }
                 });
                 
