@@ -34,6 +34,7 @@ class UserEditType extends AbstractType
                         'message' => 'registration.validation.email_required',
                     ]),
                 ],
+                'disabled' => true, // Email can't be changed by admin
             ])
             ->add('username', TextType::class, [
                 'label' => 'profile.fields.username',
@@ -43,6 +44,7 @@ class UserEditType extends AbstractType
                         'message' => 'registration.validation.username_required',
                     ]),
                 ],
+                'disabled' => true, // Username can't be changed by admin
             ])
             ->add('firstName', TextType::class, [
                 'label' => 'registration.form.first_name',
@@ -65,7 +67,7 @@ class UserEditType extends AbstractType
             ->add('birthDate', TextType::class, [
                 'label' => 'registration.form.birth_date',
                 'required' => false,
-                'mapped' => false, // On désactive le mapping automatique
+                'mapped' => false, // Désactive le mapping automatique
                 'attr' => [
                     'class' => 'datepicker',
                     'autocomplete' => 'off'

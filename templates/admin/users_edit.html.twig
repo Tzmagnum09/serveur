@@ -1,4 +1,3 @@
-```twig
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ 'admin.user_edit.title'|trans({'%name%': user.fullName}) }}{% endblock %}
@@ -220,22 +219,20 @@
                         
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="{{ userForm.birthDate.vars.id }}" class="form-label">{{ 'registration.form.birth_date'|trans }}</label>
-                                    <div class="input-group date-picker-group">
-                                        {{ form_widget(userForm.birthDate, {
-                                            'attr': {
-                                                'placeholder': 'JJ/MM/AAAA',
-                                                'class': 'form-control datepicker',
-                                                'autocomplete': 'off'
-                                            }
-                                        }) }}
-                                        <span class="input-group-text" id="calendar-icon">
-                                            <i class="fas fa-calendar-alt"></i>
-                                        </span>
-                                    </div>
-                                    {{ form_errors(userForm.birthDate) }}
+                                {{ form_label(userForm.birthDate) }}
+                                <div class="input-group date-picker-group">
+                                    {{ form_widget(userForm.birthDate, {
+                                        'attr': {
+                                            'placeholder': 'JJ/MM/AAAA',
+                                            'class': 'form-control datepicker',
+                                            'autocomplete': 'off'
+                                        }
+                                    }) }}
+                                    <span class="input-group-text" id="calendar-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
                                 </div>
+                                {{ form_errors(userForm.birthDate) }}
                             </div>
                         </div>
                         

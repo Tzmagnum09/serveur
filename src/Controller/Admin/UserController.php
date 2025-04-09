@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserEditType;
 use App\Repository\UserRepository;
 use App\Service\AdminPermissionService;
+use App\Service\EmailTemplateService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,15 +20,18 @@ class UserController extends AbstractController
     private UserRepository $userRepository;
     private AdminPermissionService $permissionService;
     private TranslatorInterface $translator;
+    private ?EmailTemplateService $emailService;
 
     public function __construct(
         UserRepository $userRepository,
         AdminPermissionService $permissionService,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        ?EmailTemplateService $emailService = null
     ) {
         $this->userRepository = $userRepository;
         $this->permissionService = $permissionService;
         $this->translator = $translator;
+        $this->emailService = $emailService;
     }
 
     #[Route('', name: 'app_admin_users')]
@@ -91,9 +95,9 @@ class UserController extends AbstractController
             $birthDateFormatted = $user->getBirthDate()->format('d/m/Y');
         }
 
-        // Créer le formulaire
+        // Créer le formulaire avec la date de naissance formatée
         $form = $this->createForm(UserEditType::class, $user, [
-            'is_admin' => true, // Pour afficher les champs d'administration
+            'is_admin' => true,
             'birthdate_formatted' => $birthDateFormatted
         ]);
         
@@ -110,7 +114,7 @@ class UserController extends AbstractController
                         $user->setBirthDate($birthDate);
                     }
                 } catch (\Exception $e) {
-                    // En cas d'erreur, on conserve la date existante ou null
+                    // En cas d'erreur, on conserve la date existante
                 }
             } else {
                 // Si la date est vide, on la met à null
@@ -120,12 +124,15 @@ class UserController extends AbstractController
             // Si l'utilisateur est approuvé mais que la date d'approbation n'est pas définie
             if ($user->isApproved() && $user->getApprovedAt() === null) {
                 $user->setApprovedAt(new \DateTimeImmutable());
+                
+                // Envoyer un email de notification si le service est disponible
+                if ($this->emailService !== null && $user->isVerified()) {
+                    $this->emailService->sendEmailToUser('account_approved', $user);
+                }
             }
 
             $entityManager->flush();
-
             $this->addFlash('success', $this->translator->trans('admin.flash.user_updated'));
-
             return $this->redirectToRoute('app_admin_users');
         }
 
@@ -150,8 +157,12 @@ class UserController extends AbstractController
         if ($user->isVerified() && !$user->isApproved()) {
             $user->setIsApproved(true);
             $user->setApprovedAt(new \DateTimeImmutable());
-
             $entityManager->flush();
+
+            // Envoyer un email de notification si le service est disponible
+            if ($this->emailService !== null) {
+                $this->emailService->sendEmailToUser('account_approved', $user);
+            }
 
             $this->addFlash('success', $this->translator->trans('admin.flash.user_approved'));
         } else {

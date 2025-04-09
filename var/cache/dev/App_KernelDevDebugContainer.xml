@@ -375,6 +375,7 @@
       <argument type="service" id="App\Repository\UserRepository"/>
       <argument type="service" id="App\Service\AdminPermissionService"/>
       <argument type="service" id="translator.default"/>
+      <argument type="service" id="App\Service\EmailTemplateService"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\Admin\UserController"/>
       </call>
@@ -3114,14 +3115,6 @@
           <argument>onMessageFailed</argument>
         </argument>
         <argument>200</argument>
-      </call>
-      <call method="addListener">
-        <argument>Symfony\Component\Messenger\Event\WorkerRunningEvent</argument>
-        <argument type="collection">
-          <argument type="service_closure" id="messenger.listener.dispatch_pcntl_signal_listener"/>
-          <argument>onWorkerRunning</argument>
-        </argument>
-        <argument>100</argument>
       </call>
       <call method="addListener">
         <argument>Symfony\Component\Messenger\Event\WorkerStartedEvent</argument>
