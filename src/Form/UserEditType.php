@@ -8,8 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Intl\Countries;
@@ -65,12 +66,10 @@ class UserEditType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('birthDate', DateType::class, [
+            ->add('birthDateInput', TextType::class, [
                 'label' => 'registration.form.birth_date',
                 'required' => false,
-                'widget' => 'single_text',
-                'format' => 'dd/MM/yyyy',
-                'html5' => false,
+                'mapped' => false,
                 'attr' => [
                     'class' => 'datepicker form-control',
                     'autocomplete' => 'off',
@@ -152,8 +151,7 @@ class UserEditType extends AbstractType
                         'message' => 'registration.validation.language_required',
                     ]),
                 ],
-            ])
-        ;
+            ]);
 
         // Ajouter des champs supplémentaires pour les administrateurs
         if ($options['is_admin']) {
@@ -162,6 +160,35 @@ class UserEditType extends AbstractType
                 'required' => false,
             ]);
         }
+
+        // Ajout d'un écouteur d'événement pour gérer la date de naissance
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $user = $event->getData();
+            $form = $event->getForm();
+
+            // Définir la valeur du champ de saisie de la date de naissance
+            if ($user && $user->getBirthDate()) {
+                $form->get('birthDateInput')->setData($user->getBirthDate()->format('d/m/Y'));
+            }
+        });
+
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            $user = $event->getData();
+            $form = $event->getForm();
+
+            // Récupérer la date de naissance du champ de saisie
+            $birthDateInput = $form->get('birthDateInput')->getData();
+            if ($birthDateInput) {
+                try {
+                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateInput);
+                    if ($birthDate) {
+                        $user->setBirthDate($birthDate);
+                    }
+                } catch (\Exception $e) {
+                    // Gestion des erreurs si nécessaire
+                }
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -175,9 +202,72 @@ class UserEditType extends AbstractType
         $resolver->setAllowedTypes('is_admin', 'bool');
     }
     
-    // La méthode getCountryChoices reste inchangée
     private function getCountryChoices(): array
     {
-        // ... (code précédent)
+        $choices = [];
+        $countries = Countries::getNames();
+        
+        // Pays prioritaires
+        $priorityCountries = [
+            'BE' => $countries['BE'], // Belgique
+            'FR' => $countries['FR'], // France
+            'NL' => $countries['NL'], // Pays-Bas
+            'DE' => $countries['DE'], // Allemagne
+            'LU' => $countries['LU'], // Luxembourg
+        ];
+        
+        // Autres pays européens
+        $europeanCountries = [
+            'AT' => $countries['AT'], // Autriche
+            'BG' => $countries['BG'], // Bulgarie
+            'HR' => $countries['HR'], // Croatie
+            'CY' => $countries['CY'], // Chypre
+            'CZ' => $countries['CZ'], // République tchèque
+            'DK' => $countries['DK'], // Danemark
+            'EE' => $countries['EE'], // Estonie
+            'FI' => $countries['FI'], // Finlande
+            'GR' => $countries['GR'], // Grèce
+            'HU' => $countries['HU'], // Hongrie
+            'IE' => $countries['IE'], // Irlande
+            'IT' => $countries['IT'], // Italie
+            'LV' => $countries['LV'], // Lettonie
+            'LT' => $countries['LT'], // Lituanie
+            'MT' => $countries['MT'], // Malte
+            'PL' => $countries['PL'], // Pologne
+            'PT' => $countries['PT'], // Portugal
+            'RO' => $countries['RO'], // Roumanie
+            'SK' => $countries['SK'], // Slovaquie
+            'SI' => $countries['SI'], // Slovénie
+            'ES' => $countries['ES'], // Espagne
+            'SE' => $countries['SE'], // Suède
+            'GB' => $countries['GB'], // Royaume-Uni
+        ];
+        
+        // Pays prioritaires en premier
+        foreach ($priorityCountries as $code => $name) {
+            $choices[$name] = $code;
+        }
+        
+        // Séparateur
+        $choices['---------------'] = '';
+        
+        // Pays européens ensuite
+        foreach ($europeanCountries as $code => $name) {
+            if (!isset($priorityCountries[$code])) {
+                $choices[$name] = $code;
+            }
+        }
+        
+        // Séparateur
+        $choices['---------------'] = '_';
+        
+        // Tous les autres pays
+        foreach ($countries as $code => $name) {
+            if (!isset($priorityCountries[$code]) && !isset($europeanCountries[$code])) {
+                $choices[$name] = $code;
+            }
+        }
+        
+        return $choices;
     }
 }

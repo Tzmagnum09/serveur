@@ -66,9 +66,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ path('app_admin_email_templates') }}">
                 <i class="fas fa-envelope me-2"></i> {{ 'admin.sidebar.email_templates'|trans }}
-            </a>
-        </li>
-        {% endif %}
+            </a>{% endif %}
         {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
         <li class="nav-item">
             <a class="nav-link" href="{{ path('app_admin_translations') }}">
@@ -219,9 +217,9 @@
                         
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                {{ form_label(userForm.birthDate) }}
+                                {{ form_label(userForm.birthDateInput) }}
                                 <div class="input-group date-picker-group">
-                                    {{ form_widget(userForm.birthDate, {
+                                    {{ form_widget(userForm.birthDateInput, {
                                         'attr': {
                                             'placeholder': 'JJ/MM/AAAA',
                                             'class': 'form-control datepicker',
@@ -232,7 +230,7 @@
                                         <i class="fas fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                {{ form_errors(userForm.birthDate) }}
+                                {{ form_errors(userForm.birthDateInput) }}
                             </div>
                         </div>
                         
