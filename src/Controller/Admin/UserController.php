@@ -89,38 +89,14 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_admin_dashboard');
         }
 
-        // Formater la date de naissance si elle existe
-        $birthDateFormatted = null;
-        if ($user->getBirthDate() instanceof \DateTime) {
-            $birthDateFormatted = $user->getBirthDate()->format('d/m/Y');
-        }
-
-        // Créer le formulaire avec la date de naissance formatée
+        // Créer le formulaire
         $form = $this->createForm(UserEditType::class, $user, [
             'is_admin' => true,
-            'birthdate_formatted' => $birthDateFormatted
         ]);
         
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Traiter la date de naissance
-            $birthDateString = $form->get('birthDate')->getData();
-            if ($birthDateString) {
-                try {
-                    // Convertir le format DD/MM/YYYY en DateTime
-                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateString);
-                    if ($birthDate) {
-                        $user->setBirthDate($birthDate);
-                    }
-                } catch (\Exception $e) {
-                    // En cas d'erreur, on conserve la date existante
-                }
-            } else {
-                // Si la date est vide, on la met à null
-                $user->setBirthDate(null);
-            }
-
             // Si l'utilisateur est approuvé mais que la date d'approbation n'est pas définie
             if ($user->isApproved() && $user->getApprovedAt() === null) {
                 $user->setApprovedAt(new \DateTimeImmutable());
