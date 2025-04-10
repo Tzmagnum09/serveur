@@ -536,44 +536,43 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
                         
                         <div class=\"row mb-3\">
                             <div class=\"col-md-6\">
-                                ";
-        // line 222
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 222, $this->source); })()), "birthDate", [], "any", false, false, false, 222), 'label');
-        yield "
-                                <div class=\"input-group date-picker-group\">
-                                    ";
-        // line 224
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 224, $this->source); })()), "birthDate", [], "any", false, false, false, 224), 'widget', ["attr" => ["placeholder" => "JJ/MM/AAAA", "class" => "form-control datepicker", "autocomplete" => "off"]]);
-        // line 230
-        yield "
-                                    <span class=\"input-group-text\" id=\"calendar-icon\">
-                                        <i class=\"fas fa-calendar-alt\"></i>
-                                    </span>
+                                <div class=\"form-group\">
+                                    <label class=\"form-label\" for=\"birth_date_input\">";
+        // line 223
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("registration.form.birth_date"), "html", null, true);
+        yield "</label>
+                                    <div class=\"input-group date-picker-group\">
+                                        <input type=\"text\" id=\"birth_date_input\" name=\"birth_date\" class=\"form-control datepicker\" 
+                                            placeholder=\"JJ/MM/AAAA\" autocomplete=\"off\" 
+                                            value=\"";
+        // line 227
+        yield ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 227, $this->source); })()), "birthDate", [], "any", false, false, false, 227)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 227, $this->source); })()), "birthDate", [], "any", false, false, false, 227), "d/m/Y"), "html", null, true)) : (""));
+        yield "\">
+                                        <span class=\"input-group-text\" id=\"calendar-icon\">
+                                            <i class=\"fas fa-calendar-alt\"></i>
+                                        </span>
+                                    </div>
                                 </div>
-                                ";
-        // line 235
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 235, $this->source); })()), "birthDate", [], "any", false, false, false, 235), 'errors');
-        yield "
                             </div>
                         </div>
                         
                         <div class=\"row mb-3\">
                             <div class=\"col-md-8\">
                                 ";
+        // line 238
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 238, $this->source); })()), "street", [], "any", false, false, false, 238), 'row');
+        yield "
+                            </div>
+                            <div class=\"col-md-2\">
+                                ";
         // line 241
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 241, $this->source); })()), "street", [], "any", false, false, false, 241), 'row');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 241, $this->source); })()), "houseNumber", [], "any", false, false, false, 241), 'row');
         yield "
                             </div>
                             <div class=\"col-md-2\">
                                 ";
         // line 244
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 244, $this->source); })()), "houseNumber", [], "any", false, false, false, 244), 'row');
-        yield "
-                            </div>
-                            <div class=\"col-md-2\">
-                                ";
-        // line 247
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 247, $this->source); })()), "boxNumber", [], "any", false, false, false, 247), 'row');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 244, $this->source); })()), "boxNumber", [], "any", false, false, false, 244), 'row');
         yield "
                             </div>
                         </div>
@@ -581,20 +580,20 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
                         <div class=\"row mb-3\">
                             <div class=\"col-md-3\">
                                 ";
-        // line 253
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 253, $this->source); })()), "postalCode", [], "any", false, false, false, 253), 'row');
+        // line 250
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 250, $this->source); })()), "postalCode", [], "any", false, false, false, 250), 'row');
         yield "
                             </div>
                             <div class=\"col-md-5\">
                                 ";
-        // line 256
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 256, $this->source); })()), "city", [], "any", false, false, false, 256), 'row');
+        // line 253
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 253, $this->source); })()), "city", [], "any", false, false, false, 253), 'row');
         yield "
                             </div>
                             <div class=\"col-md-4\">
                                 ";
-        // line 259
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 259, $this->source); })()), "country", [], "any", false, false, false, 259), 'row');
+        // line 256
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 256, $this->source); })()), "country", [], "any", false, false, false, 256), 'row');
         yield "
                             </div>
                         </div>
@@ -602,51 +601,51 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
                         <div class=\"row mb-3\">
                             <div class=\"col-md-6\">
                                 ";
-        // line 265
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 265, $this->source); })()), "phoneNumber", [], "any", false, false, false, 265), 'row');
+        // line 262
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 262, $this->source); })()), "phoneNumber", [], "any", false, false, false, 262), 'row');
         yield "
                             </div>
                             <div class=\"col-md-6\">
                                 ";
-        // line 268
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 268, $this->source); })()), "locale", [], "any", false, false, false, 268), 'row');
+        // line 265
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 265, $this->source); })()), "locale", [], "any", false, false, false, 265), 'row');
         yield "
                             </div>
                         </div>
                         
                         ";
-        // line 272
-        if (CoreExtension::getAttribute($this->env, $this->source, ($context["userForm"] ?? null), "isApproved", [], "any", true, true, false, 272)) {
-            // line 273
+        // line 269
+        if (CoreExtension::getAttribute($this->env, $this->source, ($context["userForm"] ?? null), "isApproved", [], "any", true, true, false, 269)) {
+            // line 270
             yield "                            <div class=\"mb-3 form-check\">
                                 ";
-            // line 274
-            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 274, $this->source); })()), "isApproved", [], "any", false, false, false, 274), 'widget', ["attr" => ["class" => "form-check-input"]]);
+            // line 271
+            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 271, $this->source); })()), "isApproved", [], "any", false, false, false, 271), 'widget', ["attr" => ["class" => "form-check-input"]]);
             yield "
                                 ";
-            // line 275
-            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 275, $this->source); })()), "isApproved", [], "any", false, false, false, 275), 'label', ["label_attr" => ["class" => "form-check-label"]]);
+            // line 272
+            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 272, $this->source); })()), "isApproved", [], "any", false, false, false, 272), 'label', ["label_attr" => ["class" => "form-check-label"]]);
             yield "
                             </div>
                         ";
         }
-        // line 278
+        // line 275
         yield "                        
                         <div class=\"d-flex justify-content-end\">
                             <a href=\"";
-        // line 280
+        // line 277
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users");
         yield "\" class=\"btn btn-outline-secondary me-2\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.cancel_btn"), "html", null, true);
         yield "</a>
                             <button type=\"submit\" class=\"btn btn-gradient\">";
-        // line 281
+        // line 278
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.user_edit.save_btn"), "html", null, true);
         yield "</button>
                         </div>
                     ";
-        // line 283
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 283, $this->source); })()), 'form_end');
+        // line 280
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 280, $this->source); })()), 'form_end');
         yield "
                 </div>
             </div>
@@ -660,7 +659,7 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
         yield from [];
     }
 
-    // line 291
+    // line 288
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -670,12 +669,12 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 292
+        // line 289
         yield "    ";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
     ";
-        // line 294
+        // line 291
         yield "    <script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>
     <script src=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js\"></script>
     <script src=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/nl.js\"></script>
@@ -689,23 +688,23 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
             // Déterminer la locale actuelle
             let locale = 'fr';
             ";
-        // line 306
-        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 306, $this->source); })()), "request", [], "any", false, false, false, 306), "locale", [], "any", false, false, false, 306) == "nl")) {
-            // line 307
+        // line 303
+        if ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 303, $this->source); })()), "request", [], "any", false, false, false, 303), "locale", [], "any", false, false, false, 303) == "nl")) {
+            // line 304
             yield "                locale = 'nl';
             ";
-        } elseif ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 308
-(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 308, $this->source); })()), "request", [], "any", false, false, false, 308), "locale", [], "any", false, false, false, 308) == "en")) {
-            // line 309
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 305
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 305, $this->source); })()), "request", [], "any", false, false, false, 305), "locale", [], "any", false, false, false, 305) == "en")) {
+            // line 306
             yield "                locale = 'en';
             ";
-        } elseif ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 310
-(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 310, $this->source); })()), "request", [], "any", false, false, false, 310), "locale", [], "any", false, false, false, 310) == "de")) {
-            // line 311
+        } elseif ((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source,         // line 307
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 307, $this->source); })()), "request", [], "any", false, false, false, 307), "locale", [], "any", false, false, false, 307) == "de")) {
+            // line 308
             yield "                locale = 'de';
             ";
         }
-        // line 313
+        // line 310
         yield "            
             datepickerElements.forEach(function(element) {
                 const calendarIcon = document.getElementById('calendar-icon');
@@ -785,7 +784,7 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  709 => 313,  705 => 311,  703 => 310,  700 => 309,  698 => 308,  695 => 307,  693 => 306,  679 => 294,  674 => 292,  664 => 291,  649 => 283,  644 => 281,  638 => 280,  634 => 278,  628 => 275,  624 => 274,  621 => 273,  619 => 272,  612 => 268,  606 => 265,  597 => 259,  591 => 256,  585 => 253,  576 => 247,  570 => 244,  564 => 241,  555 => 235,  548 => 230,  546 => 224,  541 => 222,  532 => 216,  526 => 213,  517 => 207,  511 => 204,  505 => 201,  499 => 198,  490 => 191,  484 => 188,  480 => 187,  477 => 186,  475 => 185,  472 => 184,  466 => 181,  462 => 180,  459 => 179,  457 => 178,  452 => 175,  448 => 173,  441 => 171,  436 => 170,  434 => 169,  429 => 167,  423 => 163,  417 => 161,  411 => 159,  409 => 158,  404 => 156,  397 => 152,  393 => 151,  388 => 148,  382 => 146,  376 => 144,  374 => 143,  369 => 142,  367 => 141,  363 => 140,  358 => 137,  352 => 135,  346 => 133,  344 => 132,  339 => 131,  337 => 130,  333 => 129,  326 => 125,  322 => 124,  316 => 122,  308 => 117,  299 => 110,  292 => 106,  284 => 104,  282 => 103,  276 => 100,  272 => 99,  267 => 97,  263 => 95,  253 => 94,  244 => 91,  236 => 86,  232 => 85,  225 => 82,  223 => 81,  219 => 79,  212 => 75,  208 => 74,  205 => 73,  202 => 72,  195 => 68,  191 => 67,  188 => 66,  185 => 65,  178 => 61,  174 => 60,  171 => 59,  169 => 58,  163 => 55,  159 => 54,  153 => 51,  150 => 50,  140 => 49,  93 => 8,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  708 => 310,  704 => 308,  702 => 307,  699 => 306,  697 => 305,  694 => 304,  692 => 303,  678 => 291,  673 => 289,  663 => 288,  648 => 280,  643 => 278,  637 => 277,  633 => 275,  627 => 272,  623 => 271,  620 => 270,  618 => 269,  611 => 265,  605 => 262,  596 => 256,  590 => 253,  584 => 250,  575 => 244,  569 => 241,  563 => 238,  549 => 227,  542 => 223,  532 => 216,  526 => 213,  517 => 207,  511 => 204,  505 => 201,  499 => 198,  490 => 191,  484 => 188,  480 => 187,  477 => 186,  475 => 185,  472 => 184,  466 => 181,  462 => 180,  459 => 179,  457 => 178,  452 => 175,  448 => 173,  441 => 171,  436 => 170,  434 => 169,  429 => 167,  423 => 163,  417 => 161,  411 => 159,  409 => 158,  404 => 156,  397 => 152,  393 => 151,  388 => 148,  382 => 146,  376 => 144,  374 => 143,  369 => 142,  367 => 141,  363 => 140,  358 => 137,  352 => 135,  346 => 133,  344 => 132,  339 => 131,  337 => 130,  333 => 129,  326 => 125,  322 => 124,  316 => 122,  308 => 117,  299 => 110,  292 => 106,  284 => 104,  282 => 103,  276 => 100,  272 => 99,  267 => 97,  263 => 95,  253 => 94,  244 => 91,  236 => 86,  232 => 85,  225 => 82,  223 => 81,  219 => 79,  212 => 75,  208 => 74,  205 => 73,  202 => 72,  195 => 68,  191 => 67,  188 => 66,  185 => 65,  178 => 61,  174 => 60,  171 => 59,  169 => 58,  163 => 55,  159 => 54,  153 => 51,  150 => 50,  140 => 49,  93 => 8,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1011,20 +1010,17 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
                         
                         <div class=\"row mb-3\">
                             <div class=\"col-md-6\">
-                                {{ form_label(userForm.birthDate) }}
-                                <div class=\"input-group date-picker-group\">
-                                    {{ form_widget(userForm.birthDate, {
-                                        'attr': {
-                                            'placeholder': 'JJ/MM/AAAA',
-                                            'class': 'form-control datepicker',
-                                            'autocomplete': 'off'
-                                        }
-                                    }) }}
-                                    <span class=\"input-group-text\" id=\"calendar-icon\">
-                                        <i class=\"fas fa-calendar-alt\"></i>
-                                    </span>
+                                <div class=\"form-group\">
+                                    <label class=\"form-label\" for=\"birth_date_input\">{{ 'registration.form.birth_date'|trans }}</label>
+                                    <div class=\"input-group date-picker-group\">
+                                        <input type=\"text\" id=\"birth_date_input\" name=\"birth_date\" class=\"form-control datepicker\" 
+                                            placeholder=\"JJ/MM/AAAA\" autocomplete=\"off\" 
+                                            value=\"{{ user.birthDate ? user.birthDate|date('d/m/Y') : '' }}\">
+                                        <span class=\"input-group-text\" id=\"calendar-icon\">
+                                            <i class=\"fas fa-calendar-alt\"></i>
+                                        </span>
+                                    </div>
                                 </div>
-                                {{ form_errors(userForm.birthDate) }}
                             </div>
                         </div>
                         

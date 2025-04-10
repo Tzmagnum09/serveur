@@ -107,6 +107,32 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            // Traiter la date de naissance
+            $birthDateStr = $request->request->get('birth_date');
+            if ($birthDateStr) {
+                try {
+                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateStr);
+                    if ($birthDate instanceof \DateTime) {
+                        $user->setBirthDate($birthDate);
+                    }
+                } catch (\Exception $e) {
+                    // En cas d'erreur, on ne fait rien
+                }
+            } else {
+                // Si le champ est vide, on met la date de naissance à null
+                $user->setBirthDate(null);
+            }
+            
+            // Si l'utilisateur est approuvé mais que la date d'approbation n'est pas définie
+            if ($user->isApproved() && $user->getApprovedAt() === null) {
+                $user->setApprovedAt(new \DateTimeImmutable());
+                
+                // Envoyer un email de notification si le service est disponible
+                if ($this->emailService !== null && $user->isVerified()) {
+                    $this->emailService->sendEmailToUser('account_approved', $user);
+                }
+            }
+            
             $userRepository->save($user, true);
             
             $this->addFlash('success', $translator->trans('admin.user.flash.updated'));

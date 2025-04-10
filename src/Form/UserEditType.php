@@ -66,12 +66,12 @@ class UserEditType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('birthDateInput', TextType::class, [
+            ->add('birthDate', TextType::class, [
                 'label' => 'registration.form.birth_date',
                 'required' => false,
                 'mapped' => false,
                 'attr' => [
-                    'class' => 'datepicker form-control',
+                    'class' => 'datepicker',
                     'autocomplete' => 'off',
                     'placeholder' => 'JJ/MM/AAAA'
                 ],
@@ -166,18 +166,16 @@ class UserEditType extends AbstractType
             $user = $event->getData();
             $form = $event->getForm();
 
-            // Définir la valeur du champ de saisie de la date de naissance
             if ($user && $user->getBirthDate()) {
-                $form->get('birthDateInput')->setData($user->getBirthDate()->format('d/m/Y'));
+                $form->get('birthDate')->setData($user->getBirthDate()->format('d/m/Y'));
             }
         });
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
             $user = $event->getData();
             $form = $event->getForm();
-
-            // Récupérer la date de naissance du champ de saisie
-            $birthDateInput = $form->get('birthDateInput')->getData();
+            
+            $birthDateInput = $form->get('birthDate')->getData();
             if ($birthDateInput) {
                 try {
                     $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateInput);
@@ -187,6 +185,9 @@ class UserEditType extends AbstractType
                 } catch (\Exception $e) {
                     // Gestion des erreurs si nécessaire
                 }
+            } else {
+                // Si le champ est vide, on peut vider la date de naissance
+                $user->setBirthDate(null);
             }
         });
     }

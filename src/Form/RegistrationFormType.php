@@ -15,7 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Intl\Countries;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -76,7 +75,7 @@ class RegistrationFormType extends AbstractType
             ->add('birthDate', TextType::class, [
                 'label' => 'registration.form.birth_date',
                 'required' => true,
-                'mapped' => false, // On désactive le mapping automatique
+                'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'registration.validation.birth_date_required',
@@ -168,24 +167,31 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'first_options' => [
                     'label' => 'registration.form.password',
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                        'class' => 'form-control'
+                    ],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'registration.validation.password_required',
+                        ]),
+                        new Length([
+                            'min' => 8,
+                            'minMessage' => 'registration.validation.password_min_length',
+                        ]),
+                    ],
                 ],
                 'second_options' => [
                     'label' => 'registration.form.confirm_password',
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                        'class' => 'form-control'
+                    ],
                 ],
                 'invalid_message' => 'registration.validation.password_mismatch',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'registration.validation.password_required',
-                    ]),
-                    new Length([
-                        'min' => 8,
-                        'minMessage' => 'registration.validation.password_min_length',
-                    ]),
-                ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'registration.validation.terms_required',
@@ -255,8 +261,7 @@ class RegistrationFormType extends AbstractType
         // Pays européens ensuite
         foreach ($europeanCountries as $code => $name) {
             if (!isset($priorityCountries[$code])) {
-                $choices[$name] = $code;
-            }
+                $choices[$name] = $code;}
         }
         
         // Séparateur

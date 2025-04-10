@@ -66,7 +66,9 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ path('app_admin_email_templates') }}">
                 <i class="fas fa-envelope me-2"></i> {{ 'admin.sidebar.email_templates'|trans }}
-            </a>{% endif %}
+            </a>
+        </li>
+        {% endif %}
         {% if is_granted('ROLE_SUPER_ADMIN') or app.user.isAdmin() and permission_service.hasPermission(app.user, 'translate_content') %}
         <li class="nav-item">
             <a class="nav-link" href="{{ path('app_admin_translations') }}">
@@ -217,20 +219,17 @@
                         
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                {{ form_label(userForm.birthDateInput) }}
-                                <div class="input-group date-picker-group">
-                                    {{ form_widget(userForm.birthDateInput, {
-                                        'attr': {
-                                            'placeholder': 'JJ/MM/AAAA',
-                                            'class': 'form-control datepicker',
-                                            'autocomplete': 'off'
-                                        }
-                                    }) }}
-                                    <span class="input-group-text" id="calendar-icon">
-                                        <i class="fas fa-calendar-alt"></i>
-                                    </span>
+                                <div class="form-group">
+                                    <label class="form-label" for="birth_date_input">{{ 'registration.form.birth_date'|trans }}</label>
+                                    <div class="input-group date-picker-group">
+                                        <input type="text" id="birth_date_input" name="birth_date" class="form-control datepicker" 
+                                            placeholder="JJ/MM/AAAA" autocomplete="off" 
+                                            value="{{ user.birthDate ? user.birthDate|date('d/m/Y') : '' }}">
+                                        <span class="input-group-text" id="calendar-icon">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
                                 </div>
-                                {{ form_errors(userForm.birthDateInput) }}
                             </div>
                         </div>
                         
