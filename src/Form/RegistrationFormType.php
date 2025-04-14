@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
@@ -74,11 +76,12 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('birthDate', TextType::class, [
                 'label' => 'registration.form.birth_date',
-                'required' => false, // Changer à false pour éviter l'erreur
+                'required' => false, 
                 'mapped' => false,
                 'attr' => [
                     'class' => 'datepicker',
-                    'autocomplete' => 'off'
+                    'autocomplete' => 'off',
+                    'placeholder' => 'JJ/MM/AAAA'
                 ]
             ])
             ->add('street', TextType::class, [
@@ -194,6 +197,26 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
         ;
+
+        // Ajout de l'événement pour gérer la date de naissance
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            $form = $event->getForm();
+            $user = $event->getData();
+            
+            $birthDateInput = $form->get('birthDate')->getData();
+            
+            if ($birthDateInput) {
+                try {
+                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateInput);
+                    
+                    if ($birthDate) {
+                        $user->setBirthDate($birthDate);
+                    }
+                } catch (\Exception $e) {
+                    // Gestion silencieuse des erreurs de parsing de date
+                }
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -206,7 +229,6 @@ class RegistrationFormType extends AbstractType
     
     private function getCountryChoices(): array
     {
-        // Le reste du code inchangé
         $choices = [];
         $countries = Countries::getNames();
         
@@ -257,7 +279,8 @@ class RegistrationFormType extends AbstractType
         // Pays européens ensuite
         foreach ($europeanCountries as $code => $name) {
             if (!isset($priorityCountries[$code])) {
-                $choices[$name] = $code;}
+                $choices[$name] = $code;
+            }
         }
         
         // Séparateur

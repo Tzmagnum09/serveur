@@ -47,16 +47,15 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Traiter la date de naissance
-            $birthDateString = $form->get('birthDate')->getData();
-            if ($birthDateString) {
+            $birthDateStr = $form->get('birthDate')->getData();
+            if (!empty($birthDateStr)) {
                 try {
-                    // Convertir le format DD/MM/YYYY en DateTime
-                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateString);
+                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateStr);
                     if ($birthDate) {
                         $user->setBirthDate($birthDate);
                     }
                 } catch (\Exception $e) {
-                    // En cas d'erreur, continuer sans enregistrer la date
+                    // En cas d'erreur, continuer sans la date de naissance
                 }
             }
             
@@ -71,14 +70,17 @@ class RegistrationController extends AbstractController
             // Définir les rôles par défaut
             $user->setRoles(['ROLE_USER']);
             
+            // Définir la date de création
+            $user->setCreatedAt(new \DateTimeImmutable());
+
             try {
                 $entityManager->persist($user);
                 $entityManager->flush();
 
                 // Générer la signature pour la vérification d'email
                 $signatureComponents = $this->emailVerifier->generateSignature(
-                    'app_verify_email',  // Nom de route exact
-                    (string)$user->getId(), // Conversion en string pour être sûr
+                    'app_verify_email',
+                    (string)$user->getId(),
                     $user->getEmail(),
                     ['id' => $user->getId()]
                 );
@@ -138,6 +140,7 @@ class RegistrationController extends AbstractController
         }
         
         // Mettre à jour le timestamp de vérification
+        $user->setIsVerified(true);
         $user->setEmailVerifiedAt(new \DateTimeImmutable());
         $userRepository->save($user, true);
 

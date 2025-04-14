@@ -423,8 +423,6 @@
     <service id="App\Controller\ProfileController" class="App\Controller\ProfileController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
-      <argument type="service" id="App\Repository\UserRepository"/>
-      <argument type="service" id="translator.default"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\ProfileController"/>
       </call>
@@ -624,7 +622,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.CqRPKrJ"/>
+      <argument type="service" id=".service_locator.nI6CFwh"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3372,7 +3370,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.CqRPKrJ"/>
+      <argument type="service" id=".service_locator.nI6CFwh"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7741,31 +7739,18 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.PUsP4l5" method="withContext"/>
     </service>
-    <service id=".service_locator.egipcEH" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.518uXiN" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="translator" type="service_closure" id="translator.default"/>
       </argument>
     </service>
-    <service id=".service_locator.egipcEH.App\Controller\ProfileController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.518uXiN.App\Controller\ProfileController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ProfileController::edit()"/>
       <argument>App\Controller\ProfileController::edit()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.egipcEH" method="withContext"/>
-    </service>
-    <service id=".service_locator.ED6v._R" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="user" type="service_closure" id=".errored..service_locator.ED6v._R.Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface"/>
-        <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
-    <service id=".service_locator.ED6v._R.App\Controller\ProfileController::changePassword()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ProfileController::changePassword()"/>
-      <argument>App\Controller\ProfileController::changePassword()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.ED6v._R" method="withContext"/>
+      <factory service=".service_locator.518uXiN" method="withContext"/>
     </service>
     <service id=".service_locator.iWwUsxu" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -7774,6 +7759,12 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="translator" type="service_closure" id="translator.default"/>
       </argument>
+    </service>
+    <service id=".service_locator.iWwUsxu.App\Controller\ProfileController::changePassword()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProfileController::changePassword()"/>
+      <argument>App\Controller\ProfileController::changePassword()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.iWwUsxu" method="withContext"/>
     </service>
     <service id=".service_locator.iWwUsxu.App\Controller\RegistrationController::register()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\RegistrationController::register()"/>
@@ -7875,7 +7866,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.Dw6dywA" method="withContext"/>
     </service>
-    <service id=".service_locator.CqRPKrJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.nI6CFwh" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -7893,8 +7884,8 @@
         <argument key="App\Controller\EmailTemplateController::edit" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::edit()"/>
         <argument key="App\Controller\EmailTemplateController::preview" type="service_closure" id=".service_locator.vOrWoox.App\Controller\EmailTemplateController::preview()"/>
         <argument key="App\Controller\EmailTemplateController::delete" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::delete()"/>
-        <argument key="App\Controller\ProfileController::edit" type="service_closure" id=".service_locator.egipcEH.App\Controller\ProfileController::edit()"/>
-        <argument key="App\Controller\ProfileController::changePassword" type="service_closure" id=".service_locator.ED6v._R.App\Controller\ProfileController::changePassword()"/>
+        <argument key="App\Controller\ProfileController::edit" type="service_closure" id=".service_locator.518uXiN.App\Controller\ProfileController::edit()"/>
+        <argument key="App\Controller\ProfileController::changePassword" type="service_closure" id=".service_locator.iWwUsxu.App\Controller\ProfileController::changePassword()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.iWwUsxu.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.vPVKT.B.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\ResetPasswordController::request" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\ResetPasswordController::request()"/>
@@ -7919,8 +7910,8 @@
         <argument key="App\Controller\EmailTemplateController:edit" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::edit()"/>
         <argument key="App\Controller\EmailTemplateController:preview" type="service_closure" id=".service_locator.vOrWoox.App\Controller\EmailTemplateController::preview()"/>
         <argument key="App\Controller\EmailTemplateController:delete" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::delete()"/>
-        <argument key="App\Controller\ProfileController:edit" type="service_closure" id=".service_locator.egipcEH.App\Controller\ProfileController::edit()"/>
-        <argument key="App\Controller\ProfileController:changePassword" type="service_closure" id=".service_locator.ED6v._R.App\Controller\ProfileController::changePassword()"/>
+        <argument key="App\Controller\ProfileController:edit" type="service_closure" id=".service_locator.518uXiN.App\Controller\ProfileController::edit()"/>
+        <argument key="App\Controller\ProfileController:changePassword" type="service_closure" id=".service_locator.iWwUsxu.App\Controller\ProfileController::changePassword()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.iWwUsxu.App\Controller\RegistrationController::register()"/>
         <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.vPVKT.B.App\Controller\RegistrationController::verifyUserEmail()"/>
         <argument key="App\Controller\ResetPasswordController:request" type="service_closure" id=".service_locator.KHhLDTq.App\Controller\ResetPasswordController::request()"/>
@@ -8813,9 +8804,6 @@
     </service>
     <service id=".errored..service_locator.vOrWoox.App\Entity\EmailTemplate" class="App\Entity\EmailTemplate">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.vOrWoox&quot;: it needs an instance of &quot;App\Entity\EmailTemplate&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
-    </service>
-    <service id=".errored..service_locator.ED6v._R.Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface" class="Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.ED6v._R&quot;: it references interface &quot;Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface&quot; but no such service exists. Did you create an instantiable class that implements this interface?"/>
     </service>
     <service id=".errored..service_locator.E0eIVeV.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.E0eIVeV&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
@@ -9766,7 +9754,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.CqRPKrJ"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.nI6CFwh"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9803,8 +9791,7 @@
     <service id=".service_locator.T0cBAxC" alias=".service_locator.suHSJ1C"/>
     <service id=".service_locator.55zciyI" alias=".service_locator.PUsP4l5"/>
     <service id=".service_locator.XssToh1" alias=".service_locator.vOrWoox"/>
-    <service id=".service_locator.5Vd5JYV" alias=".service_locator.egipcEH"/>
-    <service id=".service_locator.D9LF5ok" alias=".service_locator.ED6v._R"/>
+    <service id=".service_locator.MDBPzv8" alias=".service_locator.518uXiN"/>
     <service id=".service_locator.mNg1H.S" alias=".service_locator.iWwUsxu"/>
     <service id=".service_locator.yqU4mSg" alias=".service_locator.vPVKT.B"/>
     <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>

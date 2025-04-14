@@ -7,10 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
+#[ORM\HasLifecycleCallbacks]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -21,18 +20,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank(message: 'registration.validation.email_required')]
-    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank(message: 'registration.validation.username_required')]
-    #[Assert\Length(
-        min: 3,
-        max: 30,
-        minMessage: 'registration.validation.username_min_length',
-        maxMessage: 'registration.validation.username_max_length'
-    )]
     private ?string $username = null;
 
     #[ORM\Column]
@@ -45,42 +35,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'registration.validation.last_name_required')]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'registration.validation.first_name_required')]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'registration.validation.street_required')]
     private ?string $street = null;
 
     #[ORM\Column(length: 20)]
-    #[Assert\NotBlank(message: 'registration.validation.house_number_required')]
     private ?string $houseNumber = null;
 
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $boxNumber = null;
 
     #[ORM\Column(length: 20)]
-    #[Assert\NotBlank(message: 'registration.validation.postal_code_required')]
     private ?string $postalCode = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'registration.validation.city_required')]
     private ?string $city = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'registration.validation.country_required')]
     private ?string $country = null;
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank(message: 'registration.validation.phone_number_required')]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(length: 10)]
-    #[Assert\NotBlank(message: 'registration.validation.language_required')]
     private ?string $locale = null;
 
     #[ORM\Column]
@@ -100,17 +81,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $lastLoginAt = null;
-    
-    #[ORM\Column(type: 'date', nullable: true)]
-    #[Assert\NotBlank(message: 'registration.validation.birth_date_required')]
-    #[Assert\LessThanOrEqual('-13 years', message: 'registration.validation.minimum_age')]
-    private ?\DateTimeInterface $birthDate = null;
+
+    #[ORM\Column(type: "date", nullable: true)]
+    private ?\DateTime $birthDate = null;
 
     public function __construct()
     {
-        $this->createdAt = new \DateTimeImmutable();
+        $this->roles = ['ROLE_USER'];
         $this->isVerified = false;
         $this->isApproved = false;
+        $this->locale = 'fr';
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -386,19 +373,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
-    public function getBirthDate(): ?\DateTimeInterface
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getBirthDate(): ?\DateTime
     {
         return $this->birthDate;
     }
-    
-    public function setBirthDate(?\DateTimeInterface $birthDate): static
+
+    /**
+     * @param \DateTime|null $birthDate
+     * @return $this
+     */
+    public function setBirthDate(?\DateTime $birthDate): self
     {
         $this->birthDate = $birthDate;
-        
+
         return $this;
     }
-    
+
+    /**
+     * Calcule l'âge de l'utilisateur
+     * 
+     * @return int|null
+     */
     public function getAge(): ?int
     {
         if (!$this->birthDate) {
@@ -411,19 +410,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $interval->y;
     }
 
-    // Méthode utilitaire pour obtenir le nom complet
+    /**
+     * Retourne le nom complet de l'utilisateur
+     * 
+     * @return string
+     */
     public function getFullName(): string
     {
         return $this->firstName . ' ' . $this->lastName;
     }
 
-    // Méthode utilitaire pour obtenir l'adresse complète
+    /**
+     * Retourne l'adresse complète de l'utilisateur
+     * 
+     * @return string
+     */
     public function getFullAddress(): string
     {
         $address = $this->street . ' ' . $this->houseNumber;
         
         if ($this->boxNumber) {
-            $address .= '/' . $this->boxNumber;
+            $address .= ' (boîte ' . $this->boxNumber . ')';
         }
         
         $address .= ', ' . $this->postalCode . ' ' . $this->city . ', ' . $this->country;
@@ -431,14 +438,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $address;
     }
 
-    // Méthodes d'aide pour les rôles
-    public function isAdmin(): bool
-    {
-        return in_array('ROLE_ADMIN', $this->getRoles());
-    }
-
+    /**
+     * Vérifie si l'utilisateur est un super admin
+     * 
+     * @return bool
+     */
     public function isSuperAdmin(): bool
     {
-        return in_array('ROLE_SUPER_ADMIN', $this->getRoles());
+        return in_array('ROLE_SUPER_ADMIN', $this->roles);
+    }
+
+    /**
+     * Vérifie si l'utilisateur est un admin
+     * 
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return in_array('ROLE_ADMIN', $this->roles) || $this->isSuperAdmin();
     }
 }

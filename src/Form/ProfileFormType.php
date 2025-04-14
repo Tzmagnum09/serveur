@@ -140,8 +140,7 @@ class ProfileFormType extends AbstractType
                         'message' => 'registration.validation.language_required',
                     ]),
                 ],
-            ])
-        ;
+            ]);
         
         // Ajout d'un écouteur d'événement pour pré-remplir la date de naissance
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
