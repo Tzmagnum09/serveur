@@ -348,10 +348,8 @@ class __TwigTemplate_98bcd44d90d9c4eacdee4e570a15fc8d extends Template
                                 </span>
                             </div>
                             ";
-        // line 162
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["profileForm"]) || array_key_exists("profileForm", $context) ? $context["profileForm"] : (function () { throw new RuntimeError('Variable "profileForm" does not exist.', 162, $this->source); })()), "birthDate", [], "any", false, false, false, 162), 'errors');
-        yield "
-                        </div>
+        // line 163
+        yield "                        </div>
                     </div>
                     <div class=\"col-md-6\">
                         <div class=\"form-group\">
@@ -653,7 +651,7 @@ class __TwigTemplate_98bcd44d90d9c4eacdee4e570a15fc8d extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  577 => 270,  573 => 268,  571 => 267,  568 => 266,  566 => 265,  563 => 264,  561 => 263,  547 => 251,  542 => 249,  532 => 248,  519 => 242,  514 => 240,  508 => 239,  501 => 235,  491 => 228,  487 => 227,  483 => 226,  472 => 218,  468 => 217,  464 => 216,  456 => 211,  452 => 210,  448 => 209,  440 => 204,  436 => 203,  432 => 202,  421 => 194,  417 => 193,  413 => 192,  405 => 187,  401 => 186,  397 => 185,  389 => 180,  385 => 179,  381 => 178,  376 => 175,  368 => 169,  364 => 168,  360 => 167,  352 => 162,  345 => 157,  343 => 151,  338 => 149,  327 => 141,  323 => 140,  319 => 139,  311 => 134,  307 => 133,  303 => 132,  292 => 124,  288 => 123,  284 => 122,  276 => 117,  272 => 116,  268 => 115,  261 => 111,  255 => 108,  246 => 102,  242 => 101,  238 => 100,  234 => 98,  224 => 97,  210 => 90,  206 => 89,  199 => 85,  195 => 84,  188 => 80,  184 => 79,  178 => 76,  175 => 75,  165 => 74,  93 => 8,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  575 => 270,  571 => 268,  569 => 267,  566 => 266,  564 => 265,  561 => 264,  559 => 263,  545 => 251,  540 => 249,  530 => 248,  517 => 242,  512 => 240,  506 => 239,  499 => 235,  489 => 228,  485 => 227,  481 => 226,  470 => 218,  466 => 217,  462 => 216,  454 => 211,  450 => 210,  446 => 209,  438 => 204,  434 => 203,  430 => 202,  419 => 194,  415 => 193,  411 => 192,  403 => 187,  399 => 186,  395 => 185,  387 => 180,  383 => 179,  379 => 178,  374 => 175,  366 => 169,  362 => 168,  358 => 167,  352 => 163,  345 => 157,  343 => 151,  338 => 149,  327 => 141,  323 => 140,  319 => 139,  311 => 134,  307 => 133,  303 => 132,  292 => 124,  288 => 123,  284 => 122,  276 => 117,  272 => 116,  268 => 115,  261 => 111,  255 => 108,  246 => 102,  242 => 101,  238 => 100,  234 => 98,  224 => 97,  210 => 90,  206 => 89,  199 => 85,  195 => 84,  188 => 80,  184 => 79,  178 => 76,  175 => 75,  165 => 74,  93 => 8,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -819,7 +817,7 @@ class __TwigTemplate_98bcd44d90d9c4eacdee4e570a15fc8d extends Template
                                     <i class=\"fas fa-calendar-alt\"></i>
                                 </span>
                             </div>
-                            {{ form_errors(profileForm.birthDate) }}
+                            {# Ne pas afficher les erreurs du champ birthDate #}
                         </div>
                     </div>
                     <div class=\"col-md-6\">

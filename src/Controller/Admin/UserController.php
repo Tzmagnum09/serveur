@@ -106,6 +106,22 @@ class UserController extends AbstractController
                     $this->emailService->sendEmailToUser('account_approved', $user);
                 }
             }
+            
+            // Traitement manuel de la date de naissance depuis le champ caché
+            $birthDateStr = $request->request->get('birth_date');
+            if (!empty($birthDateStr)) {
+                try {
+                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateStr);
+                    if ($birthDate) {
+                        $user->setBirthDate($birthDate);
+                    }
+                } catch (\Exception $e) {
+                    // En cas d'erreur, on ne fait rien
+                }
+            } else {
+                // Si le champ est vide, on met la date de naissance à null
+                $user->setBirthDate(null);
+            }
 
             $entityManager->flush();
             $this->addFlash('success', $this->translator->trans('admin.flash.user_updated'));

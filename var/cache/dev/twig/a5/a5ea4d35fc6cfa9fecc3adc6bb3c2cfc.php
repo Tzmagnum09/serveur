@@ -714,7 +714,7 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
                     dateFormat: \"d/m/Y\",
                     locale: locale,
                     maxDate: new Date(),
-                    minDate: '1920-01-01',
+                    minDate: new Date(1900, 0, 1), // Date minimum: 1er janvier 1900
                     disableMobile: true, // Important pour la compatibilité mobile
                     allowInput: true,
                     clickOpens: true,
@@ -1107,7 +1107,7 @@ class __TwigTemplate_626a8e24728eed0ad1c9924318358d2f extends Template
                     dateFormat: \"d/m/Y\",
                     locale: locale,
                     maxDate: new Date(),
-                    minDate: '1920-01-01',
+                    minDate: new Date(1900, 0, 1), // Date minimum: 1er janvier 1900
                     disableMobile: true, // Important pour la compatibilité mobile
                     allowInput: true,
                     clickOpens: true,

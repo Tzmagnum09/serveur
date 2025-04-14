@@ -109,7 +109,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Traiter la date de naissance
             $birthDateStr = $request->request->get('birth_date');
-            if ($birthDateStr) {
+            if (!empty($birthDateStr)) {
                 try {
                     $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateStr);
                     if ($birthDate instanceof \DateTime) {

@@ -74,13 +74,8 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('birthDate', TextType::class, [
                 'label' => 'registration.form.birth_date',
-                'required' => true,
+                'required' => false, // Changer à false pour éviter l'erreur
                 'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'registration.validation.birth_date_required',
-                    ]),
-                ],
                 'attr' => [
                     'class' => 'datepicker',
                     'autocomplete' => 'off'
@@ -211,6 +206,7 @@ class RegistrationFormType extends AbstractType
     
     private function getCountryChoices(): array
     {
+        // Le reste du code inchangé
         $choices = [];
         $countries = Countries::getNames();
         

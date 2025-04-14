@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Intl\Countries;
@@ -55,13 +57,13 @@ class ProfileFormType extends AbstractType
             ])
             ->add('birthDate', TextType::class, [
                 'label' => 'registration.form.birth_date',
-                'required' => false,
-                'mapped' => false, 
+                'required' => false, // Changer à false pour éviter l'erreur
+                'mapped' => false,
+                'constraints' => [], // Supprimer la contrainte NotBlank
                 'attr' => [
                     'class' => 'datepicker',
                     'autocomplete' => 'off'
                 ],
-                'data' => $options['birthdate_formatted'] ?? null,
             ])
             ->add('street', TextType::class, [
                 'label' => 'registration.form.street',
@@ -140,6 +142,14 @@ class ProfileFormType extends AbstractType
                 ],
             ])
         ;
+        
+        // Ajout d'un écouteur d'événement pour pré-remplir la date de naissance
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
+            $form = $event->getForm();
+            if (isset($options['birthdate_formatted']) && $options['birthdate_formatted']) {
+                $form->get('birthDate')->setData($options['birthdate_formatted']);
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

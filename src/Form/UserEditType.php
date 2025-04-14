@@ -68,7 +68,7 @@ class UserEditType extends AbstractType
             ])
             ->add('birthDate', TextType::class, [
                 'label' => 'registration.form.birth_date',
-                'required' => false,
+                'required' => false, // Changer à false pour éviter l'erreur
                 'mapped' => false,
                 'attr' => [
                     'class' => 'datepicker',
@@ -205,6 +205,7 @@ class UserEditType extends AbstractType
     
     private function getCountryChoices(): array
     {
+        // Le reste du code inchangé
         $choices = [];
         $countries = Countries::getNames();
         
