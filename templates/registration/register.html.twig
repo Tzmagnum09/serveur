@@ -415,15 +415,15 @@
                 
                 // Calculer la date minimale (13 ans avant aujourd'hui)
                 const today = new Date();
-                const minDate = new Date();
-                minDate.setFullYear(today.getFullYear() - 13);
+                const minAge = new Date();
+                minAge.setFullYear(today.getFullYear() - 13);
                 
                 // Initialiser flatpickr avec des options améliorées
                 const flatpickrInstance = flatpickr(element, {
                     dateFormat: "d/m/Y",
                     locale: locale,
-                    maxDate: minDate, // Max date est 13 ans avant aujourd'hui (âge minimum)
-                    minDate: '1920-01-01', // Date raisonnable minimum
+                    maxDate: minAge, // Max date est 13 ans avant aujourd'hui (âge minimum)
+                    minDate: new Date(1900, 0, 1), // Date minimum: 1er janvier 1900
                     disableMobile: true, // Important pour la compatibilité mobile
                     allowInput: true,
                     clickOpens: true,
