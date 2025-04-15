@@ -47,6 +47,7 @@ class EmailTemplateController extends AbstractController
 
         return $this->render('admin/email_templates/index.html.twig', [
             'templates' => $templates,
+            'permission_service' => $this->permissionService
         ]);
     }
 
@@ -66,6 +67,19 @@ class EmailTemplateController extends AbstractController
         }
 
         $template = new EmailTemplate();
+        
+        // Préremplir les champs si les paramètres sont fournis
+        $code = $request->query->get('code');
+        $locale = $request->query->get('locale');
+        
+        if ($code) {
+            $template->setCode($code);
+        }
+        
+        if ($locale) {
+            $template->setLocale($locale);
+        }
+        
         $form = $this->createForm(EmailTemplateFormType::class, $template);
         $form->handleRequest($request);
 
@@ -79,6 +93,7 @@ class EmailTemplateController extends AbstractController
 
         return $this->render('admin/email_templates/new.html.twig', [
             'form' => $form->createView(),
+            'permission_service' => $this->permissionService
         ]);
     }
 
@@ -91,7 +106,7 @@ class EmailTemplateController extends AbstractController
     ): Response {
         $admin = $this->getUser();
 
-        if (!$admin || !$admin.isAdmin()) {
+        if (!$admin || !$admin->isAdmin()) {
             return $this->redirectToRoute('app_login');
         }
 
@@ -105,7 +120,7 @@ class EmailTemplateController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $template->setUpdatedAt();
+            $template->setUpdatedAt(new \DateTimeImmutable());
             $templateRepository->save($template, true);
 
             $this->addFlash('success', $translator->trans('admin.email_template.flash.updated'));
@@ -116,6 +131,7 @@ class EmailTemplateController extends AbstractController
         return $this->render('admin/email_templates/edit.html.twig', [
             'template' => $template,
             'form' => $form->createView(),
+            'permission_service' => $this->permissionService
         ]);
     }
 
@@ -124,18 +140,18 @@ class EmailTemplateController extends AbstractController
     {
         $admin = $this->getUser();
 
-        if (!$admin || !$admin.isAdmin()) {
+        if (!$admin || !$admin->isAdmin()) {
             return $this->redirectToRoute('app_login');
         }
 
         // Check if admin has permission
-        if (!$this->permissionService.hasPermission($admin, 'preview_email_templates')) {
+        if (!$this->permissionService->hasPermission($admin, 'preview_email_templates')) {
             $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
             return $this->redirectToRoute('app_admin_dashboard');
         }
 
         // Preview template with sample data
-        $htmlContent = $this->emailService.previewTemplate($template);
+        $htmlContent = $this->emailService->previewTemplate($template);
 
         return new Response($htmlContent);
     }
@@ -149,20 +165,20 @@ class EmailTemplateController extends AbstractController
     ): Response {
         $admin = $this->getUser();
 
-        if (!$admin || !$admin.isAdmin()) {
+        if (!$admin || !$admin->isAdmin()) {
             return $this->redirectToRoute('app_login');
         }
 
         // Check if admin has permission
-        if (!$this->permissionService.hasPermission($admin, 'edit_email_templates')) {
+        if (!$this->permissionService->hasPermission($admin, 'edit_email_templates')) {
             $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
             return $this->redirectToRoute('app_admin_dashboard');
         }
 
-        if ($this->isCsrfTokenValid('delete'.$template.getId(), $request.request.get('_token'))) {
-            $templateRepository.remove($template, true);
+        if ($this->isCsrfTokenValid('delete'.$template->getId(), $request->request->get('_token'))) {
+            $templateRepository->remove($template, true);
 
-            $this->addFlash('success', $translator.trans('admin.email_template.flash.deleted'));
+            $this->addFlash('success', $translator->trans('admin.email_template.flash.deleted'));
         }
 
         return $this->redirectToRoute('app_admin_email_templates');

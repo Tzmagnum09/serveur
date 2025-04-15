@@ -603,17 +603,22 @@
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <argument type="service" id="request_stack"/>
     </service>
+    <service id="App\Service\DefaultEmailTemplateFactory" class="App\Service\DefaultEmailTemplateFactory" autowire="true" autoconfigure="true"/>
     <service id="App\Service\DynamicTranslatorService" class="App\Service\DynamicTranslatorService" autowire="true" autoconfigure="true">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <argument type="service" id="translator.default"/>
       <argument>fr</argument>
+    </service>
+    <service id="App\Service\EmailRendererService" class="App\Service\EmailRendererService" autowire="true" autoconfigure="true">
+      <argument type="service" id="twig"/>
+      <argument type="service" id="parameter_bag"/>
     </service>
     <service id="App\Service\EmailTemplateService" class="App\Service\EmailTemplateService" autowire="true" autoconfigure="true">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <argument type="service" id="App\Repository\EmailTemplateRepository"/>
       <argument type="service" id="messenger.bus.default"/>
       <argument type="service" id="parameter_bag"/>
-      <argument type="service" id="twig"/>
+      <argument type="service" id="App\Service\EmailRendererService"/>
       <argument type="service" id="translator.default"/>
     </service>
     <service id="App\Service\StaticTranslationService" class="App\Service\StaticTranslationService" autowire="true" autoconfigure="true">

@@ -36,15 +36,24 @@ services:
             $mailer: '@mailer.mailer'
             $manager: '@doctrine.orm.entity_manager'
     
+    # Configuration des services d'e-mail
+    App\Service\EmailRendererService:
+        arguments:
+            $twig: '@twig'
+            $params: '@parameter_bag'
+    
+    App\Service\DefaultEmailTemplateFactory:
+        autowire: true
+    
     # Service for email templates management
     App\Service\EmailTemplateService:
         arguments:
-            $emailTemplateRepository: '@App\Repository\EmailTemplateRepository'
             $entityManager: '@doctrine.orm.entity_manager'
+            $emailTemplateRepository: '@App\Repository\EmailTemplateRepository'
             $messageBus: '@messenger.default_bus'
-            $twig: '@twig'
-            $translator: '@translator'
             $params: '@parameter_bag'
+            $emailRenderer: '@App\Service\EmailRendererService'
+            $translator: '@translator'
             
     # Service for admin permissions management
     App\Service\AdminPermissionService:

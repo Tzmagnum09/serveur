@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : lun. 14 avr. 2025 à 17:56
+-- Généré le : mar. 15 avr. 2025 à 19:14
 -- Version du serveur : 8.0.41-0ubuntu0.24.04.1
 -- Version de PHP : 8.2.28
 
@@ -39,6 +39,21 @@ CREATE TABLE `admin_permission` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `audit_log`
+--
+
+CREATE TABLE `audit_log` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `action` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `details` longtext COLLATE utf8mb4_unicode_ci,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `doctrine_migration_versions`
 --
 
@@ -57,7 +72,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20250405001309', '2025-04-05 00:13:28', 6085),
 ('DoctrineMigrations\\Version20250405171448', '2025-04-05 17:15:17', 1708),
 ('DoctrineMigrations\\Version20250405205009', '2025-04-05 20:51:33', 2136),
-('DoctrineMigrations\\Version20250408130742', '2025-04-08 13:07:54', 1862);
+('DoctrineMigrations\\Version20250408130742', '2025-04-08 13:07:54', 1862),
+('DoctrineMigrations\\Version20250415162337', '2025-04-15 16:24:12', 3392);
 
 -- --------------------------------------------------------
 
@@ -161,9 +177,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `username`, `roles`, `password`, `last_name`, `first_name`, `street`, `house_number`, `box_number`, `postal_code`, `city`, `country`, `phone_number`, `locale`, `is_verified`, `is_approved`, `email_verified_at`, `approved_at`, `created_at`, `last_login_at`, `birth_date`) VALUES
-(5, 'admin@dmqode.be', 'superadmin', '[\"ROLE_SUPER_ADMIN\", \"ROLE_ADMIN\", \"ROLE_USER\"]', '$2y$13$G1vRLxyi.dRd0lymNZr68uzfXwMNdyZNoR48aJz3mC0gdNJQpmDum', 'Tziolopoulos', 'Kevin', 'Avenue Charles Gilisquet', '147', '4', '1030', 'Schaerbeek', 'BE', '+32466904419', 'fr', 1, 1, '2025-04-04 20:08:51', '2025-04-04 20:08:51', '2025-04-04 20:08:50', '2025-04-14 17:38:17', NULL),
-(6, 'user1@dmqode.be', 'user1', '[\"ROLE_USER\"]', '$2y$13$NEYG1p5JvStQcbbi22tdXu0xNeN8OR7lMEJAK5DblogVo5zWgeDM2', 'Dupont', 'Jean', 'Rue de Test 2', '42', '3', '1050', 'Ville de Test', 'BE', '+32987654321', 'fr', 1, 1, '2025-04-04 20:08:51', '2025-04-04 20:08:51', '2025-04-04 20:08:51', NULL, '1985-11-09'),
-(7, 'admin1@dmqode.be', 'admin1', '[\"ROLE_ADMIN\", \"ROLE_USER\"]', '$2y$13$omUT17SL35cn2lKf5dSl5ONRXTfGEaQLiNIHT0u1AdNH01lFfnkj.', 'Durand', 'Marie', 'Rue de Test', '42', '7', '1050', 'Ville de Test', 'BE', '+32987654321', 'fr', 1, 1, '2025-04-04 20:08:51', '2025-04-04 20:08:51', '2025-04-04 20:08:51', NULL, NULL);
+(5, 'admin@dmqode.be', 'superadmin', '[\"ROLE_SUPER_ADMIN\", \"ROLE_ADMIN\", \"ROLE_USER\"]', '$2y$13$G1vRLxyi.dRd0lymNZr68uzfXwMNdyZNoR48aJz3mC0gdNJQpmDum', 'Tziolopoulos', 'Kevin', 'Avenue Charles Gilisquet', '147', '4', '1030', 'Schaerbeek', 'BE', '+32466904419', 'fr', 1, 1, '2025-04-04 20:08:51', '2025-04-04 20:08:51', '2025-04-04 20:08:50', '2025-04-15 18:24:29', '1985-11-09'),
+(6, 'user1@dmqode.be', 'user1', '[\"ROLE_USER\"]', '$2y$13$NEYG1p5JvStQcbbi22tdXu0xNeN8OR7lMEJAK5DblogVo5zWgeDM2', 'Dupont', 'Jean', 'Rue de Test 2', '42', '3', '1050', 'Ville de Test', 'BE', '+32987654321', 'fr', 1, 1, '2025-04-04 20:08:51', '2025-04-04 20:08:51', '2025-04-04 20:08:51', NULL, '1952-03-16'),
+(7, 'admin1@dmqode.be', 'admin1', '[\"ROLE_ADMIN\", \"ROLE_USER\"]', '$2y$13$omUT17SL35cn2lKf5dSl5ONRXTfGEaQLiNIHT0u1AdNH01lFfnkj.', 'Durand', 'Marie', 'Rue de Test', '42', '7', '1050', 'Ville de Test', 'BE', '+32987654321', 'fr', 1, 1, '2025-04-04 20:08:51', '2025-04-04 20:08:51', '2025-04-04 20:08:51', NULL, '1981-01-28'),
+(11, 'sev.hend27@gmail.com', 'Sev', '[\"ROLE_USER\"]', '$2y$13$cuVS0pplmM6AnPKLoS1HT.M7p.T5deGPsRHz6tquENfBinc1aM6iC', 'Hendrickx', 'Séverine', 'Avenue Charles gilisquet', '147', '4', '1030', 'Bruxelles', 'BE', '+32 470 57 26 64', 'fr', 1, 1, '2025-04-14 18:53:03', '2025-04-14 18:53:23', '2025-04-14 18:52:32', '2025-04-14 19:36:00', '1981-01-27');
 
 --
 -- Index pour les tables déchargées
@@ -175,6 +192,13 @@ INSERT INTO `user` (`id`, `email`, `username`, `roles`, `password`, `last_name`,
 ALTER TABLE `admin_permission`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_2877342F642B8210` (`admin_id`);
+
+--
+-- Index pour la table `audit_log`
+--
+ALTER TABLE `audit_log`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_F6E1C0F5A76ED395` (`user_id`);
 
 --
 -- Index pour la table `doctrine_migration_versions`
@@ -223,6 +247,12 @@ ALTER TABLE `admin_permission`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `audit_log`
+--
+ALTER TABLE `audit_log`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `email_template`
 --
 ALTER TABLE `email_template`
@@ -238,13 +268,13 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT pour la table `reset_password_request`
 --
 ALTER TABLE `reset_password_request`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Contraintes pour les tables déchargées
@@ -255,6 +285,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `admin_permission`
   ADD CONSTRAINT `FK_2877342F642B8210` FOREIGN KEY (`admin_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `audit_log`
+--
+ALTER TABLE `audit_log`
+  ADD CONSTRAINT `FK_F6E1C0F5A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `reset_password_request`
