@@ -382,206 +382,213 @@ $context["localeTemplates"])) {
         yield "</h5>
         </div>
         <div class=\"card-body\">
-            <div class=\"row\">
-                <div class=\"col-md-6\">
-                    <div class=\"card mb-3\">
-                        <div class=\"card-header bg-light\">
-                            <h6 class=\"mb-0\">";
+            <div class=\"alert alert-info mb-0\">
+                <h5 class=\"alert-heading\">";
+        // line 128
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.title"), "html", null, true);
+        yield "</h5>
+                <p>";
+        // line 129
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.description"), "html", null, true);
+        yield "</p>
+                <hr>
+                <h6>";
         // line 131
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.categories.personal"), "Informations personnelles"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.user_info"), "html", null, true);
         yield "</h6>
-                        </div>
-                        <div class=\"card-body\">
-                            <ul class=\"mb-0 ps-3\">
-                                <li><code>";
+                <div class=\"row mb-3\">
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>";
         // line 135
         yield "{{ firstName }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.firstName"), "html", null, true);
         yield "</li>
-                                <li><code>";
+                            <li><code>";
         // line 136
         yield "{{ lastName }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.lastName"), "html", null, true);
         yield "</li>
-                                <li><code>";
+                            <li><code>";
         // line 137
         yield "{{ fullName }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.fullName"), "html", null, true);
         yield "</li>
-                                <li><code>";
+                            <li><code>";
         // line 138
         yield "{{ email }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.email"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 139
+                        </ul>
+                    </div>
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>";
+        // line 143
+        yield "{{ username }}";
+        yield "</code> - ";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.username"), "html", null, true);
+        yield "</li>
+                            <li><code>";
+        // line 144
         yield "{{ phoneNumber }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.phoneNumber"), "Téléphone"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.phoneNumber"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 140
+                            <li><code>";
+        // line 145
         yield "{{ birthDate }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.birthDate"), "Date de naissance"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.birthDate"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 141
+                            <li><code>";
+        // line 146
         yield "{{ age }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.age"), "Âge"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.age"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 142
-        yield "{{ locale }}";
-        yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.locale"), "Langue"), "html", null, true);
-        yield "</li>
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class=\"col-md-6\">
-                    <div class=\"card mb-3\">
-                        <div class=\"card-header bg-light\">
-                            <h6 class=\"mb-0\">";
+                <h6>";
         // line 151
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.categories.address"), "Adresse"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.address"), "html", null, true);
         yield "</h6>
-                        </div>
-                        <div class=\"card-body\">
-                            <ul class=\"mb-0 ps-3\">
-                                <li><code>";
+                <div class=\"row mb-3\">
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>";
         // line 155
-        yield "{{ fullAddress }}";
-        yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.fullAddress"), "Adresse complète"), "html", null, true);
-        yield "</li>
-                                <li><code>";
-        // line 156
         yield "{{ street }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.street"), "Rue"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.street"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 157
+                            <li><code>";
+        // line 156
         yield "{{ houseNumber }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.houseNumber"), "Numéro"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.houseNumber"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 158
+                            <li><code>";
+        // line 157
         yield "{{ boxNumber }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.boxNumber"), "Boîte"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.boxNumber"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 159
+                        </ul>
+                    </div>
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>";
+        // line 162
         yield "{{ postalCode }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.postalCode"), "Code postal"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.postalCode"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 160
+                            <li><code>";
+        // line 163
         yield "{{ city }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.city"), "Ville"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.city"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 161
+                            <li><code>";
+        // line 164
         yield "{{ country }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.country"), "Pays"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.country"), "html", null, true);
         yield "</li>
-                            </ul>
-                        </div>
+                            <li><code>";
+        // line 165
+        yield "{{ fullAddress }}";
+        yield "</code> - ";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.fullAddress"), "html", null, true);
+        yield "</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class=\"col-md-6\">
-                    <div class=\"card mb-3\">
-                        <div class=\"card-header bg-light\">
-                            <h6 class=\"mb-0\">";
+                <h6>";
         // line 170
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.categories.system"), "Système"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.system"), "html", null, true);
         yield "</h6>
-                        </div>
-                        <div class=\"card-body\">
-                            <ul class=\"mb-0 ps-3\">
-                                <li><code>";
+                <div class=\"row mb-3\">
+                    <div class=\"col-md-6\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>";
         // line 174
+        yield "{{ locale }}";
+        yield "</code> - ";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.locale"), "html", null, true);
+        yield "</li>
+                            <li><code>";
+        // line 175
         yield "{{ domain }}";
         yield "</code> - ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.domain"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 175
+                            <li><code>";
+        // line 176
+        yield "{{ createdAt }}";
+        yield "</code> - ";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.createdAt"), "html", null, true);
+        yield "</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h6>";
+        // line 181
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.specific"), "html", null, true);
+        yield "</h6>
+                <div class=\"row\">
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>";
+        // line 185
         yield "{{ signedUrl }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.signedUrl"), "URL de vérification"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.signedUrl"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 176
+                            <li><code>";
+        // line 186
         yield "{{ resetToken }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.resetToken"), "Token de réinitialisation"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.resetToken"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 177
+                        </ul>
+                    </div>
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>";
+        // line 191
         yield "{{ tokenLifetime }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.tokenLifetime"), "Durée de vie du token"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.tokenLifetime"), "html", null, true);
         yield "</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class=\"col-md-6\">
-                    <div class=\"card mb-3\">
-                        <div class=\"card-header bg-light\">
-                            <h6 class=\"mb-0\">";
-        // line 186
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.categories.specific"), "Variables spécifiques"), "html", null, true);
-        yield "</h6>
-                        </div>
-                        <div class=\"card-body\">
-                            <ul class=\"mb-0 ps-3\">
-                                <li><code>";
-        // line 190
-        yield "{{ permissionChanges }}";
-        yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.permissionChanges"), "Modifications des permissions"), "html", null, true);
-        yield "</li>
-                                <li><code>";
-        // line 191
+                            <li><code>";
+        // line 192
         yield "{{ previousRole }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.previousRole"), "Rôle précédent"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.previousRole"), "html", null, true);
         yield "</li>
-                                <li><code>";
-        // line 192
+                            <li><code>";
+        // line 193
         yield "{{ newRole }}";
         yield "</code> - ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.newRole"), "Nouveau rôle"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.newRole"), "html", null, true);
         yield "</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class=\"col-12\">
-                    <div class=\"alert alert-info mb-0\">
-                        <i class=\"fas fa-info-circle me-2\"></i>
-                        ";
-        // line 201
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.description"), "html", null, true);
-        yield "
+                            <li><code>";
+        // line 194
+        yield "{{ permissionChanges }}";
+        yield "</code> - ";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.permissionChanges"), "html", null, true);
+        yield "</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -616,7 +623,7 @@ $context["localeTemplates"])) {
      */
     public function getDebugInfo(): array
     {
-        return array (  583 => 201,  569 => 192,  563 => 191,  557 => 190,  550 => 186,  536 => 177,  530 => 176,  524 => 175,  518 => 174,  511 => 170,  497 => 161,  491 => 160,  485 => 159,  479 => 158,  473 => 157,  467 => 156,  461 => 155,  454 => 151,  440 => 142,  434 => 141,  428 => 140,  422 => 139,  416 => 138,  410 => 137,  404 => 136,  398 => 135,  391 => 131,  381 => 124,  371 => 116,  362 => 113,  359 => 112,  357 => 111,  351 => 109,  345 => 106,  340 => 105,  337 => 104,  335 => 103,  330 => 100,  324 => 98,  322 => 97,  317 => 96,  315 => 95,  310 => 94,  308 => 93,  304 => 91,  299 => 90,  294 => 89,  289 => 88,  285 => 87,  281 => 85,  275 => 83,  273 => 82,  268 => 81,  266 => 80,  261 => 78,  258 => 77,  253 => 76,  246 => 72,  242 => 71,  238 => 70,  234 => 69,  230 => 68,  220 => 61,  211 => 55,  207 => 54,  203 => 53,  199 => 51,  189 => 50,  180 => 47,  172 => 42,  168 => 41,  161 => 38,  159 => 37,  155 => 35,  148 => 31,  144 => 30,  141 => 29,  138 => 28,  131 => 24,  127 => 23,  124 => 22,  121 => 21,  114 => 17,  110 => 16,  107 => 15,  105 => 14,  99 => 11,  95 => 10,  89 => 7,  86 => 6,  76 => 5,  59 => 3,  42 => 1,);
+        return array (  587 => 194,  581 => 193,  575 => 192,  569 => 191,  559 => 186,  553 => 185,  546 => 181,  536 => 176,  530 => 175,  524 => 174,  517 => 170,  507 => 165,  501 => 164,  495 => 163,  489 => 162,  479 => 157,  473 => 156,  467 => 155,  460 => 151,  450 => 146,  444 => 145,  438 => 144,  432 => 143,  422 => 138,  416 => 137,  410 => 136,  404 => 135,  397 => 131,  392 => 129,  388 => 128,  381 => 124,  371 => 116,  362 => 113,  359 => 112,  357 => 111,  351 => 109,  345 => 106,  340 => 105,  337 => 104,  335 => 103,  330 => 100,  324 => 98,  322 => 97,  317 => 96,  315 => 95,  310 => 94,  308 => 93,  304 => 91,  299 => 90,  294 => 89,  289 => 88,  285 => 87,  281 => 85,  275 => 83,  273 => 82,  268 => 81,  266 => 80,  261 => 78,  258 => 77,  253 => 76,  246 => 72,  242 => 71,  238 => 70,  234 => 69,  230 => 68,  220 => 61,  211 => 55,  207 => 54,  203 => 53,  199 => 51,  189 => 50,  180 => 47,  172 => 42,  168 => 41,  161 => 38,  159 => 37,  155 => 35,  148 => 31,  144 => 30,  141 => 29,  138 => 28,  131 => 24,  127 => 23,  124 => 22,  121 => 21,  114 => 17,  110 => 16,  107 => 15,  105 => 14,  99 => 11,  95 => 10,  89 => 7,  86 => 6,  76 => 5,  59 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -747,81 +754,75 @@ $context["localeTemplates"])) {
             <h5 class=\"mb-0\">{{ 'admin.email_templates.about'|trans }}</h5>
         </div>
         <div class=\"card-body\">
-            <div class=\"row\">
-                <div class=\"col-md-6\">
-                    <div class=\"card mb-3\">
-                        <div class=\"card-header bg-light\">
-                            <h6 class=\"mb-0\">{{ 'admin.email_templates.variables.categories.personal'|trans|default('Informations personnelles') }}</h6>
-                        </div>
-                        <div class=\"card-body\">
-                            <ul class=\"mb-0 ps-3\">
-                                <li><code>{{ '{{ firstName }}' }}</code> - {{ 'admin.email_templates.variables.firstName'|trans }}</li>
-                                <li><code>{{ '{{ lastName }}' }}</code> - {{ 'admin.email_templates.variables.lastName'|trans }}</li>
-                                <li><code>{{ '{{ fullName }}' }}</code> - {{ 'admin.email_templates.variables.fullName'|trans }}</li>
-                                <li><code>{{ '{{ email }}' }}</code> - {{ 'admin.email_templates.variables.email'|trans }}</li>
-                                <li><code>{{ '{{ phoneNumber }}' }}</code> - {{ 'admin.email_templates.variables.phoneNumber'|trans|default('Téléphone') }}</li>
-                                <li><code>{{ '{{ birthDate }}' }}</code> - {{ 'admin.email_templates.variables.birthDate'|trans|default('Date de naissance') }}</li>
-                                <li><code>{{ '{{ age }}' }}</code> - {{ 'admin.email_templates.variables.age'|trans|default('Âge') }}</li>
-                                <li><code>{{ '{{ locale }}' }}</code> - {{ 'admin.email_templates.variables.locale'|trans|default('Langue') }}</li>
-                            </ul>
-                        </div>
+            <div class=\"alert alert-info mb-0\">
+                <h5 class=\"alert-heading\">{{ 'admin.email_templates.variables.title'|trans }}</h5>
+                <p>{{ 'admin.email_templates.variables.description'|trans }}</p>
+                <hr>
+                <h6>{{ 'admin.email_templates.variables.user_info'|trans }}</h6>
+                <div class=\"row mb-3\">
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>{{ '{{ firstName }}' }}</code> - {{ 'admin.email_templates.variables.firstName'|trans }}</li>
+                            <li><code>{{ '{{ lastName }}' }}</code> - {{ 'admin.email_templates.variables.lastName'|trans }}</li>
+                            <li><code>{{ '{{ fullName }}' }}</code> - {{ 'admin.email_templates.variables.fullName'|trans }}</li>
+                            <li><code>{{ '{{ email }}' }}</code> - {{ 'admin.email_templates.variables.email'|trans }}</li>
+                        </ul>
+                    </div>
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>{{ '{{ username }}' }}</code> - {{ 'admin.email_templates.variables.username'|trans }}</li>
+                            <li><code>{{ '{{ phoneNumber }}' }}</code> - {{ 'admin.email_templates.variables.phoneNumber'|trans }}</li>
+                            <li><code>{{ '{{ birthDate }}' }}</code> - {{ 'admin.email_templates.variables.birthDate'|trans }}</li>
+                            <li><code>{{ '{{ age }}' }}</code> - {{ 'admin.email_templates.variables.age'|trans }}</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class=\"col-md-6\">
-                    <div class=\"card mb-3\">
-                        <div class=\"card-header bg-light\">
-                            <h6 class=\"mb-0\">{{ 'admin.email_templates.variables.categories.address'|trans|default('Adresse') }}</h6>
-                        </div>
-                        <div class=\"card-body\">
-                            <ul class=\"mb-0 ps-3\">
-                                <li><code>{{ '{{ fullAddress }}' }}</code> - {{ 'admin.email_templates.variables.fullAddress'|trans|default('Adresse complète') }}</li>
-                                <li><code>{{ '{{ street }}' }}</code> - {{ 'admin.email_templates.variables.street'|trans|default('Rue') }}</li>
-                                <li><code>{{ '{{ houseNumber }}' }}</code> - {{ 'admin.email_templates.variables.houseNumber'|trans|default('Numéro') }}</li>
-                                <li><code>{{ '{{ boxNumber }}' }}</code> - {{ 'admin.email_templates.variables.boxNumber'|trans|default('Boîte') }}</li>
-                                <li><code>{{ '{{ postalCode }}' }}</code> - {{ 'admin.email_templates.variables.postalCode'|trans|default('Code postal') }}</li>
-                                <li><code>{{ '{{ city }}' }}</code> - {{ 'admin.email_templates.variables.city'|trans|default('Ville') }}</li>
-                                <li><code>{{ '{{ country }}' }}</code> - {{ 'admin.email_templates.variables.country'|trans|default('Pays') }}</li>
-                            </ul>
-                        </div>
+                <h6>{{ 'admin.email_templates.variables.address'|trans }}</h6>
+                <div class=\"row mb-3\">
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>{{ '{{ street }}' }}</code> - {{ 'admin.email_templates.variables.street'|trans }}</li>
+                            <li><code>{{ '{{ houseNumber }}' }}</code> - {{ 'admin.email_templates.variables.houseNumber'|trans }}</li>
+                            <li><code>{{ '{{ boxNumber }}' }}</code> - {{ 'admin.email_templates.variables.boxNumber'|trans }}</li>
+                        </ul>
+                    </div>
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>{{ '{{ postalCode }}' }}</code> - {{ 'admin.email_templates.variables.postalCode'|trans }}</li>
+                            <li><code>{{ '{{ city }}' }}</code> - {{ 'admin.email_templates.variables.city'|trans }}</li>
+                            <li><code>{{ '{{ country }}' }}</code> - {{ 'admin.email_templates.variables.country'|trans }}</li>
+                            <li><code>{{ '{{ fullAddress }}' }}</code> - {{ 'admin.email_templates.variables.fullAddress'|trans }}</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class=\"col-md-6\">
-                    <div class=\"card mb-3\">
-                        <div class=\"card-header bg-light\">
-                            <h6 class=\"mb-0\">{{ 'admin.email_templates.variables.categories.system'|trans|default('Système') }}</h6>
-                        </div>
-                        <div class=\"card-body\">
-                            <ul class=\"mb-0 ps-3\">
-                                <li><code>{{ '{{ domain }}' }}</code> - {{ 'admin.email_templates.variables.domain'|trans }}</li>
-                                <li><code>{{ '{{ signedUrl }}' }}</code> - {{ 'admin.email_templates.variables.signedUrl'|trans|default('URL de vérification') }}</li>
-                                <li><code>{{ '{{ resetToken }}' }}</code> - {{ 'admin.email_templates.variables.resetToken'|trans|default('Token de réinitialisation') }}</li>
-                                <li><code>{{ '{{ tokenLifetime }}' }}</code> - {{ 'admin.email_templates.variables.tokenLifetime'|trans|default('Durée de vie du token') }}</li>
-                            </ul>
-                        </div>
+                <h6>{{ 'admin.email_templates.variables.system'|trans }}</h6>
+                <div class=\"row mb-3\">
+                    <div class=\"col-md-6\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>{{ '{{ locale }}' }}</code> - {{ 'admin.email_templates.variables.locale'|trans }}</li>
+                            <li><code>{{ '{{ domain }}' }}</code> - {{ 'admin.email_templates.variables.domain'|trans }}</li>
+                            <li><code>{{ '{{ createdAt }}' }}</code> - {{ 'admin.email_templates.variables.createdAt'|trans }}</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class=\"col-md-6\">
-                    <div class=\"card mb-3\">
-                        <div class=\"card-header bg-light\">
-                            <h6 class=\"mb-0\">{{ 'admin.email_templates.variables.categories.specific'|trans|default('Variables spécifiques') }}</h6>
-                        </div>
-                        <div class=\"card-body\">
-                            <ul class=\"mb-0 ps-3\">
-                                <li><code>{{ '{{ permissionChanges }}' }}</code> - {{ 'admin.email_templates.variables.permissionChanges'|trans|default('Modifications des permissions') }}</li>
-                                <li><code>{{ '{{ previousRole }}' }}</code> - {{ 'admin.email_templates.variables.previousRole'|trans|default('Rôle précédent') }}</li>
-                                <li><code>{{ '{{ newRole }}' }}</code> - {{ 'admin.email_templates.variables.newRole'|trans|default('Nouveau rôle') }}</li>
-                            </ul>
-                        </div>
+                <h6>{{ 'admin.email_templates.variables.specific'|trans }}</h6>
+                <div class=\"row\">
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>{{ '{{ signedUrl }}' }}</code> - {{ 'admin.email_templates.variables.signedUrl'|trans }}</li>
+                            <li><code>{{ '{{ resetToken }}' }}</code> - {{ 'admin.email_templates.variables.resetToken'|trans }}</li>
+                        </ul>
                     </div>
-                </div>
-                
-                <div class=\"col-12\">
-                    <div class=\"alert alert-info mb-0\">
-                        <i class=\"fas fa-info-circle me-2\"></i>
-                        {{ 'admin.email_templates.variables.description'|trans }}
+                    <div class=\"col-md-4\">
+                        <ul class=\"mb-0 ps-3\">
+                            <li><code>{{ '{{ tokenLifetime }}' }}</code> - {{ 'admin.email_templates.variables.tokenLifetime'|trans }}</li>
+                            <li><code>{{ '{{ previousRole }}' }}</code> - {{ 'admin.email_templates.variables.previousRole'|trans }}</li>
+                            <li><code>{{ '{{ newRole }}' }}</code> - {{ 'admin.email_templates.variables.newRole'|trans }}</li>
+                            <li><code>{{ '{{ permissionChanges }}' }}</code> - {{ 'admin.email_templates.variables.permissionChanges'|trans }}</li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -467,75 +467,236 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         yield "
                 </div>
                 
-                ";
-        // line 200
-        yield "                ";
-        if (CoreExtension::getAttribute($this->env, $this->source, ($context["form"] ?? null), "textContent", [], "any", true, true, false, 200)) {
-            // line 201
-            yield "                <div class=\"mb-3\">
+                <div class=\"mb-3\">
                     ";
-            // line 202
-            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 202, $this->source); })()), "textContent", [], "any", false, false, false, 202), 'row');
-            yield "
+        // line 200
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 200, $this->source); })()), "textContent", [], "any", false, false, false, 200), 'row');
+        yield "
                 </div>
-                ";
-        }
-        // line 205
-        yield "                
+                
                 <div class=\"card mb-3\">
                     <div class=\"card-header\">
                         <h6 class=\"mb-0\">";
-        // line 208
+        // line 205
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.title"), "html", null, true);
         yield "</h6>
                     </div>
                     <div class=\"card-body\">
-                        <div class=\"row\">
-                            <div class=\"col-md-4 mb-2\">
+                        <h6 class=\"mb-2\">";
+        // line 208
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.user_info"), "html", null, true);
+        yield "</h6>
+                        <div class=\"row mb-3\">
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"firstName\">
                                     ";
-        // line 214
+        // line 212
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.firstName"), "html", null, true);
         yield "
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"lastName\">
                                     ";
-        // line 219
+        // line 217
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.lastName"), "html", null, true);
         yield "
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"fullName\">
                                     ";
-        // line 224
+        // line 222
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.fullName"), "html", null, true);
         yield "
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"email\">
                                     ";
-        // line 229
+        // line 227
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.email"), "html", null, true);
         yield "
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"username\">
+                                    ";
+        // line 232
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.username"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"phoneNumber\">
+                                    ";
+        // line 237
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.phoneNumber"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"birthDate\">
+                                    ";
+        // line 242
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.birthDate"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"age\">
+                                    ";
+        // line 247
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.age"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <h6 class=\"mb-2\">";
+        // line 252
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.address"), "html", null, true);
+        yield "</h6>
+                        <div class=\"row mb-3\">
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"street\">
+                                    ";
+        // line 256
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.street"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"houseNumber\">
+                                    ";
+        // line 261
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.houseNumber"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"boxNumber\">
+                                    ";
+        // line 266
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.boxNumber"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"postalCode\">
+                                    ";
+        // line 271
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.postalCode"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"city\">
+                                    ";
+        // line 276
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.city"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"country\">
+                                    ";
+        // line 281
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.country"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"fullAddress\">
+                                    ";
+        // line 286
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.fullAddress"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <h6 class=\"mb-2\">";
+        // line 291
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.system"), "html", null, true);
+        yield "</h6>
+                        <div class=\"row mb-3\">
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"locale\">
+                                    ";
+        // line 295
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.locale"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"domain\">
                                     ";
-        // line 234
+        // line 300
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.domain"), "html", null, true);
         yield "
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
-                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"token\">
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"createdAt\">
                                     ";
-        // line 239
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.token"), "html", null, true);
+        // line 305
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.createdAt"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <h6 class=\"mb-2\">";
+        // line 310
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.specific"), "html", null, true);
+        yield "</h6>
+                        <div class=\"row\">
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"signedUrl\">
+                                    ";
+        // line 314
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.signedUrl"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"resetToken\">
+                                    ";
+        // line 319
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.resetToken"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"tokenLifetime\">
+                                    ";
+        // line 324
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.tokenLifetime"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"previousRole\">
+                                    ";
+        // line 329
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.previousRole"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"newRole\">
+                                    ";
+        // line 334
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.newRole"), "html", null, true);
+        yield "
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"permissionChanges\">
+                                    ";
+        // line 339
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.permissionChanges"), "html", null, true);
         yield "
                                 </button>
                             </div>
@@ -545,19 +706,19 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                 
                 <div class=\"d-flex justify-content-end\">
                     <a href=\"";
-        // line 247
+        // line 347
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_templates");
         yield "\" class=\"btn btn-outline-secondary me-2\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.cancel_btn"), "html", null, true);
         yield "</a>
                     <button type=\"submit\" class=\"btn btn-gradient\">";
-        // line 248
+        // line 348
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.save_btn"), "html", null, true);
         yield "</button>
                 </div>
             ";
-        // line 250
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 250, $this->source); })()), 'form_end');
+        // line 350
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 350, $this->source); })()), 'form_end');
         yield "
         </div>
     </div>
@@ -569,7 +730,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         <div class=\"modal-content\">
             <div class=\"modal-header\">
                 <h5 class=\"modal-title\" id=\"previewModalLabel\">";
-        // line 260
+        // line 360
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.preview_title"), "html", null, true);
         yield "</h5>
                 <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
@@ -580,7 +741,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                         <span class=\"visually-hidden\">Loading...</span>
                     </div>
                     <p class=\"mt-2\">";
-        // line 268
+        // line 368
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.loading"), "html", null, true);
         yield "</p>
                 </div>
@@ -588,7 +749,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
             </div>
             <div class=\"modal-footer\">
                 <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">";
-        // line 273
+        // line 373
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.close_btn"), "html", null, true);
         yield "</button>
             </div>
@@ -602,7 +763,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         yield from [];
     }
 
-    // line 280
+    // line 380
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -612,7 +773,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 281
+        // line 381
         yield "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js\"></script>
     
     <script>
@@ -621,7 +782,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
             \$('.html-editor').summernote({
                 height: 300,
                 placeholder: '";
-        // line 288
+        // line 388
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.editor.placeholder"), "html", null, true);
         yield "',
                 toolbar: [
@@ -636,7 +797,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                 callbacks: {
                     onImageUpload: function(files) {
                         alert('";
-        // line 300
+        // line 400
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.editor.no_image_upload"), "html", null, true);
         yield "');
                     },
@@ -654,13 +815,13 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                 localeSelector.addEventListener('change', function() {
                     const selectedLocale = this.value;
                     const templateId = '";
-        // line 315
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 315, $this->source); })()), "id", [], "any", false, false, false, 315), "html", null, true);
+        // line 415
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 415, $this->source); })()), "id", [], "any", false, false, false, 415), "html", null, true);
         yield "';
                     // Rediriger vers la version du template dans la langue sélectionnée
                     window.location.href = '";
-        // line 317
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_edit_locale", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 317, $this->source); })()), "id", [], "any", false, false, false, 317), "locale" => "__locale__"]), "html", null, true);
+        // line 417
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_edit_locale", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 417, $this->source); })()), "id", [], "any", false, false, false, 417), "locale" => "__locale__"]), "html", null, true);
         yield "'.replace('__locale__', selectedLocale);
                 });
             }
@@ -669,7 +830,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
             \$('.variable-btn').on('click', function() {
                 const variable = \$(this).data('variable');
                 \$('.html-editor').summernote('insertText', '";
-        // line 324
+        // line 424
         yield "{{";
         yield " ' + variable + ' ";
         yield "}}";
@@ -694,8 +855,8 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                     
                     // Charger le contenu
                     const previewUrl = '";
-        // line 344
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_preview", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 344, $this->source); })()), "id", [], "any", false, false, false, 344)]), "html", null, true);
+        // line 444
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_preview", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 444, $this->source); })()), "id", [], "any", false, false, false, 444)]), "html", null, true);
         yield "';
                     
                     // Charger l'URL dans l'iframe
@@ -740,7 +901,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  698 => 344,  673 => 324,  663 => 317,  658 => 315,  640 => 300,  625 => 288,  616 => 281,  606 => 280,  592 => 273,  584 => 268,  573 => 260,  560 => 250,  555 => 248,  549 => 247,  538 => 239,  530 => 234,  522 => 229,  514 => 224,  506 => 219,  498 => 214,  489 => 208,  484 => 205,  478 => 202,  475 => 201,  472 => 200,  466 => 196,  462 => 195,  458 => 194,  454 => 193,  447 => 189,  439 => 184,  433 => 181,  427 => 178,  424 => 177,  420 => 175,  414 => 174,  408 => 171,  404 => 170,  400 => 169,  395 => 168,  389 => 165,  385 => 164,  381 => 163,  376 => 162,  374 => 161,  371 => 160,  368 => 159,  365 => 158,  361 => 157,  357 => 156,  354 => 155,  352 => 154,  346 => 151,  335 => 143,  330 => 141,  324 => 140,  321 => 139,  315 => 136,  312 => 135,  310 => 134,  304 => 131,  300 => 130,  295 => 128,  291 => 126,  281 => 125,  272 => 122,  264 => 117,  260 => 116,  253 => 113,  251 => 112,  247 => 110,  240 => 106,  236 => 105,  233 => 104,  230 => 103,  223 => 99,  219 => 98,  216 => 97,  213 => 96,  206 => 92,  202 => 91,  199 => 90,  197 => 89,  191 => 86,  187 => 85,  181 => 82,  178 => 81,  168 => 80,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  859 => 444,  834 => 424,  824 => 417,  819 => 415,  801 => 400,  786 => 388,  777 => 381,  767 => 380,  753 => 373,  745 => 368,  734 => 360,  721 => 350,  716 => 348,  710 => 347,  699 => 339,  691 => 334,  683 => 329,  675 => 324,  667 => 319,  659 => 314,  652 => 310,  644 => 305,  636 => 300,  628 => 295,  621 => 291,  613 => 286,  605 => 281,  597 => 276,  589 => 271,  581 => 266,  573 => 261,  565 => 256,  558 => 252,  550 => 247,  542 => 242,  534 => 237,  526 => 232,  518 => 227,  510 => 222,  502 => 217,  494 => 212,  487 => 208,  481 => 205,  473 => 200,  466 => 196,  462 => 195,  458 => 194,  454 => 193,  447 => 189,  439 => 184,  433 => 181,  427 => 178,  424 => 177,  420 => 175,  414 => 174,  408 => 171,  404 => 170,  400 => 169,  395 => 168,  389 => 165,  385 => 164,  381 => 163,  376 => 162,  374 => 161,  371 => 160,  368 => 159,  365 => 158,  361 => 157,  357 => 156,  354 => 155,  352 => 154,  346 => 151,  335 => 143,  330 => 141,  324 => 140,  321 => 139,  315 => 136,  312 => 135,  310 => 134,  304 => 131,  300 => 130,  295 => 128,  291 => 126,  281 => 125,  272 => 122,  264 => 117,  260 => 116,  253 => 113,  251 => 112,  247 => 110,  240 => 106,  236 => 105,  233 => 104,  230 => 103,  223 => 99,  219 => 98,  216 => 97,  213 => 96,  206 => 92,  202 => 91,  199 => 90,  197 => 89,  191 => 86,  187 => 85,  181 => 82,  178 => 81,  168 => 80,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -943,47 +1104,147 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                     {{ form_errors(form.htmlContent) }}
                 </div>
                 
-                {# Ne pas inclure de champ textContent s'il n'existe pas dans le formulaire #}
-                {% if form.textContent is defined %}
                 <div class=\"mb-3\">
                     {{ form_row(form.textContent) }}
                 </div>
-                {% endif %}
                 
                 <div class=\"card mb-3\">
                     <div class=\"card-header\">
                         <h6 class=\"mb-0\">{{ 'admin.email_templates.variables.title'|trans }}</h6>
                     </div>
                     <div class=\"card-body\">
-                        <div class=\"row\">
-                            <div class=\"col-md-4 mb-2\">
+                        <h6 class=\"mb-2\">{{ 'admin.email_templates.variables.user_info'|trans }}</h6>
+                        <div class=\"row mb-3\">
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"firstName\">
                                     {{ 'admin.email_templates.variables.firstName'|trans }}
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"lastName\">
                                     {{ 'admin.email_templates.variables.lastName'|trans }}
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"fullName\">
                                     {{ 'admin.email_templates.variables.fullName'|trans }}
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"email\">
                                     {{ 'admin.email_templates.variables.email'|trans }}
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"username\">
+                                    {{ 'admin.email_templates.variables.username'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"phoneNumber\">
+                                    {{ 'admin.email_templates.variables.phoneNumber'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"birthDate\">
+                                    {{ 'admin.email_templates.variables.birthDate'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"age\">
+                                    {{ 'admin.email_templates.variables.age'|trans }}
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <h6 class=\"mb-2\">{{ 'admin.email_templates.variables.address'|trans }}</h6>
+                        <div class=\"row mb-3\">
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"street\">
+                                    {{ 'admin.email_templates.variables.street'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"houseNumber\">
+                                    {{ 'admin.email_templates.variables.houseNumber'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"boxNumber\">
+                                    {{ 'admin.email_templates.variables.boxNumber'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"postalCode\">
+                                    {{ 'admin.email_templates.variables.postalCode'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"city\">
+                                    {{ 'admin.email_templates.variables.city'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"country\">
+                                    {{ 'admin.email_templates.variables.country'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"fullAddress\">
+                                    {{ 'admin.email_templates.variables.fullAddress'|trans }}
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <h6 class=\"mb-2\">{{ 'admin.email_templates.variables.system'|trans }}</h6>
+                        <div class=\"row mb-3\">
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"locale\">
+                                    {{ 'admin.email_templates.variables.locale'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"domain\">
                                     {{ 'admin.email_templates.variables.domain'|trans }}
                                 </button>
                             </div>
-                            <div class=\"col-md-4 mb-2\">
-                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"token\">
-                                    {{ 'admin.email_templates.variables.token'|trans }}
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"createdAt\">
+                                    {{ 'admin.email_templates.variables.createdAt'|trans }}
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <h6 class=\"mb-2\">{{ 'admin.email_templates.variables.specific'|trans }}</h6>
+                        <div class=\"row\">
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"signedUrl\">
+                                    {{ 'admin.email_templates.variables.signedUrl'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"resetToken\">
+                                    {{ 'admin.email_templates.variables.resetToken'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"tokenLifetime\">
+                                    {{ 'admin.email_templates.variables.tokenLifetime'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"previousRole\">
+                                    {{ 'admin.email_templates.variables.previousRole'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"newRole\">
+                                    {{ 'admin.email_templates.variables.newRole'|trans }}
+                                </button>
+                            </div>
+                            <div class=\"col-md-3 mb-2\">
+                                <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"permissionChanges\">
+                                    {{ 'admin.email_templates.variables.permissionChanges'|trans }}
                                 </button>
                             </div>
                         </div>
