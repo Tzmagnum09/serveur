@@ -4,12 +4,13 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    app.locales: ['fr', 'en', 'nl', 'de']
+    app.locales: ['fr', 'nl', 'en', 'de']
     app.default_locale: 'fr'
     app.email_sender: '%env(APP_EMAIL)%'
     app.domain: '%env(APP_DOMAIN)%'
     app.sender_name: 'Administrateur Serveur Dmqode.be'
     app.logo_directory: '%kernel.project_dir%/public/images'
+    app.email: '%env(APP_EMAIL)%'
 
 services:
     # default configuration for services in *this* file
@@ -38,17 +39,20 @@ services:
     # Service for email templates management
     App\Service\EmailTemplateService:
         arguments:
-            $templateRepository: '@App\Repository\EmailTemplateRepository'
+            $emailTemplateRepository: '@App\Repository\EmailTemplateRepository'
+            $entityManager: '@doctrine.orm.entity_manager'
+            $messageBus: '@messenger.default_bus'
+            $twig: '@twig'
             $translator: '@translator'
-            $defaultLocale: '%app.default_locale%'
-            $emailSender: '%app.email_sender%'
-            $domain: '%app.domain%'
-            $senderName: '%app.sender_name%'
+            $params: '@parameter_bag'
             
     # Service for admin permissions management
     App\Service\AdminPermissionService:
         arguments:
             $permissionRepository: '@App\Repository\AdminPermissionRepository'
+            $entityManager: '@doctrine.orm.entity_manager'
+            $emailService: '@App\Service\EmailTemplateService'
+            $auditLogService: '@App\Service\AuditLogService'
     
     # Service for dynamic translations
     App\Service\DynamicTranslatorService:
@@ -60,6 +64,12 @@ services:
         arguments:
             $projectDir: '%kernel.project_dir%'
             $availableLocales: '%app.locales%'
+    
+    # Service for audit logging
+    App\Service\AuditLogService:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+            $requestStack: '@request_stack'
     
     # Locale listeners and subscribers
     App\EventListener\UserLocaleListener:
@@ -73,7 +83,9 @@ services:
     
     App\EventSubscriber\LocaleSubscriber:
         arguments:
-            $defaultLocale: '%app.default_locale%'
+            $requestStack: '@request_stack'
+            $tokenStorage: '@security.token_storage'
+            $defaultLocale: '%kernel.default_locale%'
     
     # Locale Controller
     App\Controller\LocaleController:

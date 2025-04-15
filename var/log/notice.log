@@ -1,0 +1,1 @@
+[2025-04-15T18:24:45.738271+02:00] request.CRITICAL: Uncaught PHP Exception Twig\Error\RuntimeError: "Variable "search" does not exist." at users.html.twig line 160 {"exception":"[object] (Twig\\Error\\RuntimeError(code: 0): Variable \"search\" does not exist. at /var/www/serveur/templates/admin/users.html.twig:160)"} []
