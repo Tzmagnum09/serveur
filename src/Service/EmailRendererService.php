@@ -35,7 +35,7 @@ class EmailRendererService
             'fullName' => $user->getFullName(),
             'email' => $user->getEmail(),
             'domain' => $this->params->get('app.domain') ?? $_SERVER['HTTP_HOST'] ?? 'dmqode.be',
-            'locale' => $user->getLocale()
+            'locale' => $template->getLocale() // Utiliser la locale du template, pas celle de l'utilisateur
         ]);
         
         // Générer le contenu

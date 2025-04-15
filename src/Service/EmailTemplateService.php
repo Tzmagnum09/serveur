@@ -63,6 +63,16 @@ class EmailTemplateService
             $template = $this->emailTemplateRepository->findByCodeAndLocale($templateCode, 'en');
         }
         
+        // Si toujours pas de template, essayer en néerlandais
+        if (!$template && $locale !== 'nl') {
+            $template = $this->emailTemplateRepository->findByCodeAndLocale($templateCode, 'nl');
+        }
+        
+        // Si toujours pas de template, essayer en allemand
+        if (!$template && $locale !== 'de') {
+            $template = $this->emailTemplateRepository->findByCodeAndLocale($templateCode, 'de');
+        }
+        
         // Si aucun template n'est trouvé
         if (!$template) {
             return false;

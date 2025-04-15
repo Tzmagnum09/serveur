@@ -117,65 +117,65 @@ class EmailTemplateController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_admin_email_template_edit')]
-    public function edit(
-        EmailTemplate $template,
-        Request $request,
-        EmailTemplateRepository $templateRepository,
-        TranslatorInterface $translator
-    ): Response {
-        $admin = $this->getUser();
+public function edit(
+    EmailTemplate $template,
+    Request $request,
+    EmailTemplateRepository $templateRepository,
+    TranslatorInterface $translator
+): Response {
+    $admin = $this->getUser();
 
-        if (!$admin || !$admin->isAdmin()) {
-            return $this->redirectToRoute('app_login');
-        }
-
-        // Check if admin has permission
-        if (!$this->permissionService->hasPermission($admin, 'edit_email_templates')) {
-            $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
-            return $this->redirectToRoute('app_admin_dashboard');
-        }
-
-        $form = $this->createForm(EmailTemplateFormType::class, $template);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $template->setUpdatedAt(new \DateTimeImmutable());
-            $templateRepository->save($template, true);
-
-            // Log action
-            $this->auditLogService->log(
-                $admin,
-                'update_email_template',
-                sprintf('Modification du template d\'email "%s" pour la langue "%s" (ID: %d)', 
-                    $template->getCode(), 
-                    $template->getLocale(),
-                    $template->getId()
-                )
-            );
-
-            $this->addFlash('success', $translator->trans('admin.email_template.flash.updated'));
-
-            return $this->redirectToRoute('app_admin_email_templates');
-        }
-
-        // Récupérer les langues disponibles
-        $availableLocales = $this->getParameter('app.locales') ?? ['fr', 'en', 'nl', 'de'];
-        
-        // Récupérer les langues déjà existantes pour ce template (code)
-        $existingTemplates = $templateRepository->findByCode($template->getCode());
-        $existingLocales = array_map(function($t) {
-            return $t->getLocale();
-        }, $existingTemplates);
-
-        return $this->render('admin/email_templates/edit.html.twig', [
-            'template' => $template,
-            'form' => $form->createView(),
-            'availableLocales' => $availableLocales,
-            'existingLocales' => $existingLocales,
-            'permission_service' => $this->permissionService
-        ]);
+    if (!$admin || !$admin->isAdmin()) {
+        return $this->redirectToRoute('app_login');
     }
 
+    // Check if admin has permission
+    if (!$this->permissionService->hasPermission($admin, 'edit_email_templates')) {
+        $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
+        return $this->redirectToRoute('app_admin_dashboard');
+    }
+
+    // Créer le formulaire avec l'option is_edit à true
+    $form = $this->createForm(EmailTemplateFormType::class, $template, ['is_edit' => true]);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $template->setUpdatedAt(new \DateTimeImmutable());
+        $templateRepository->save($template, true);
+
+        // Log action
+        $this->auditLogService->log(
+            $admin,
+            'update_email_template',
+            sprintf('Modification du template d\'email "%s" pour la langue "%s" (ID: %d)', 
+                $template->getCode(), 
+                $template->getLocale(),
+                $template->getId()
+            )
+        );
+
+        $this->addFlash('success', $translator->trans('admin.email_template.flash.updated'));
+
+        return $this->redirectToRoute('app_admin_email_templates');
+    }
+
+    // Récupérer les langues disponibles
+    $availableLocales = $this->getParameter('app.locales') ?? ['fr', 'en', 'nl', 'de'];
+    
+    // Récupérer les langues déjà existantes pour ce template (code)
+    $existingTemplates = $templateRepository->findByCode($template->getCode());
+    $existingLocales = array_map(function($t) {
+        return $t->getLocale();
+    }, $existingTemplates);
+
+    return $this->render('admin/email_templates/edit.html.twig', [
+        'template' => $template,
+        'form' => $form->createView(),
+        'availableLocales' => $availableLocales,
+        'existingLocales' => $existingLocales,
+        'permission_service' => $this->permissionService
+    ]);
+}
     #[Route('/{id}/edit/{locale}', name: 'app_admin_email_template_edit_locale')]
     public function editLocale(
         EmailTemplate $template,
