@@ -895,4 +895,4 @@ class DefaultEmailTemplateFactory
             default: // fr
                 return 'Détails des modifications';
         }
-    }
+    }    }
