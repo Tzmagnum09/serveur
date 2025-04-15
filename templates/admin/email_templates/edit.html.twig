@@ -74,27 +74,6 @@
             margin-bottom: 20px;
             border-radius: 5px;
         }
-        
-        /* Style pour les variables */
-        .variables-container {
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            padding: 10px;
-        }
-        
-        .var-category {
-            margin-bottom: 15px;
-        }
-        
-        .var-category-title {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
     </style>
 {% endblock %}
 
@@ -217,154 +196,51 @@
                     {{ form_errors(form.htmlContent) }}
                 </div>
                 
+                {# Ne pas inclure de champ textContent s'il n'existe pas dans le formulaire #}
+                {% if form.textContent is defined %}
                 <div class="mb-3">
                     {{ form_row(form.textContent) }}
                 </div>
+                {% endif %}
                 
                 <div class="card mb-3">
                     <div class="card-header">
                         <h6 class="mb-0">{{ 'admin.email_templates.variables.title'|trans }}</h6>
                     </div>
                     <div class="card-body">
-                        <div class="variables-container">
-                            <!-- Variables personnelles -->
-                            <div class="var-category">
-                                <div class="var-category-title">{{ 'admin.email_templates.variables.categories.personal'|trans|default('Informations personnelles') }}</div>
-                                <div class="row">
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="firstName">
-                                            {{ 'admin.email_templates.variables.firstName'|trans }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="lastName">
-                                            {{ 'admin.email_templates.variables.lastName'|trans }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="fullName">
-                                            {{ 'admin.email_templates.variables.fullName'|trans }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="email">
-                                            {{ 'admin.email_templates.variables.email'|trans }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="phoneNumber">
-                                            {{ 'admin.email_templates.variables.phoneNumber'|trans|default('Téléphone') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="birthDate">
-                                            {{ 'admin.email_templates.variables.birthDate'|trans|default('Date de naissance') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="age">
-                                            {{ 'admin.email_templates.variables.age'|trans|default('Âge') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="locale">
-                                            {{ 'admin.email_templates.variables.locale'|trans|default('Langue') }}
-                                        </button>
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="firstName">
+                                    {{ 'admin.email_templates.variables.firstName'|trans }}
+                                </button>
                             </div>
-                            
-                            <!-- Variables d'adresse -->
-                            <div class="var-category">
-                                <div class="var-category-title">{{ 'admin.email_templates.variables.categories.address'|trans|default('Adresse') }}</div>
-                                <div class="row">
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="fullAddress">
-                                            {{ 'admin.email_templates.variables.fullAddress'|trans|default('Adresse complète') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="street">
-                                            {{ 'admin.email_templates.variables.street'|trans|default('Rue') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="houseNumber">
-                                            {{ 'admin.email_templates.variables.houseNumber'|trans|default('Numéro') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="boxNumber">
-                                            {{ 'admin.email_templates.variables.boxNumber'|trans|default('Boîte') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="postalCode">
-                                            {{ 'admin.email_templates.variables.postalCode'|trans|default('Code postal') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="city">
-                                            {{ 'admin.email_templates.variables.city'|trans|default('Ville') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="country">
-                                            {{ 'admin.email_templates.variables.country'|trans|default('Pays') }}
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="lastName">
+                                    {{ 'admin.email_templates.variables.lastName'|trans }}
+                                </button>
                             </div>
-                            
-                            <!-- Variables système -->
-                            <div class="var-category">
-                                <div class="var-category-title">{{ 'admin.email_templates.variables.categories.system'|trans|default('Système') }}</div>
-                                <div class="row">
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="domain">
-                                            {{ 'admin.email_templates.variables.domain'|trans }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="signedUrl">
-                                            {{ 'admin.email_templates.variables.signedUrl'|trans|default('URL de vérification') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="resetToken">
-                                            {{ 'admin.email_templates.variables.resetToken'|trans|default('Token de réinitialisation') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="tokenLifetime">
-                                            {{ 'admin.email_templates.variables.tokenLifetime'|trans|default('Durée de vie du token') }}
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="fullName">
+                                    {{ 'admin.email_templates.variables.fullName'|trans }}
+                                </button>
                             </div>
-                            
-                            <!-- Variables spécifiques -->
-                            <div class="var-category">
-                                <div class="var-category-title">{{ 'admin.email_templates.variables.categories.specific'|trans|default('Variables spécifiques') }}</div>
-                                <div class="row">
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="permissionChanges">
-                                            {{ 'admin.email_templates.variables.permissionChanges'|trans|default('Modifications des permissions') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="previousRole">
-                                            {{ 'admin.email_templates.variables.previousRole'|trans|default('Rôle précédent') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="newRole">
-                                            {{ 'admin.email_templates.variables.newRole'|trans|default('Nouveau rôle') }}
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="email">
+                                    {{ 'admin.email_templates.variables.email'|trans }}
+                                </button>
                             </div>
-                        </div></div>
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="domain">
+                                    {{ 'admin.email_templates.variables.domain'|trans }}
+                                </button>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 variable-btn" data-variable="token">
+                                    {{ 'admin.email_templates.variables.token'|trans }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="d-flex justify-content-end">
