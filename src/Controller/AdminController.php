@@ -77,7 +77,7 @@ class AdminController extends AbstractController
     }
     
     #[Route('/users', name: 'app_admin_users')]
-    public function users(UserRepository $userRepository): Response
+    public function users(Request $request, UserRepository $userRepository): Response
     {
         $admin = $this->getUser();
         
@@ -90,8 +90,14 @@ class AdminController extends AbstractController
             $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
             return $this->redirectToRoute('app_admin_dashboard');
         }
+
+        // Récupérer les paramètres de recherche, filtrage et tri
+        $search = $request->query->get('q', '');
+        $filter = $request->query->get('filter', '');
+        $sort = $request->query->get('sort', 'lastName');
+        $direction = $request->query->get('direction', 'ASC');
         
-        $users = $userRepository->findBy([], ['lastName' => 'ASC', 'firstName' => 'ASC']);
+        $users = $userRepository->findBy([], [$sort => $direction]);
         
         // Logger la consultation de la liste des utilisateurs
         $this->logger->info('User list viewed', [
@@ -101,7 +107,11 @@ class AdminController extends AbstractController
         
         return $this->render('admin/users.html.twig', [
             'users' => $users,
-            'permission_service' => $this->permissionService
+            'permission_service' => $this->permissionService,
+            'search' => $search,
+            'filter' => $filter,
+            'sort' => $sort,
+            'direction' => $direction
         ]);
     }
     

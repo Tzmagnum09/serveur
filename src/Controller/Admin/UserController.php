@@ -51,8 +51,8 @@ class UserController extends AbstractController
         // Récupérer les paramètres de filtrage et de recherche
         $filter = $request->query->get('filter', '');
         $search = $request->query->get('q', '');
-        $sortField = $request->query->get('sort', 'createdAt');
-        $sortDirection = $request->query->get('direction', 'DESC');
+        $sortField = $request->query->get('sort', 'lastName');
+        $sortDirection = $request->query->get('direction', 'ASC');
 
         // Construire la requête avec les filtres et la recherche
         $queryBuilder = $this->userRepository->createQueryBuilder('u');
@@ -60,11 +60,7 @@ class UserController extends AbstractController
         // Appliquer la recherche si présente
         if (!empty($search)) {
             $queryBuilder
-                ->where('u.email LIKE :search')
-                ->orWhere('u.username LIKE :search')
-                ->orWhere('u.firstName LIKE :search')
-                ->orWhere('u.lastName LIKE :search')
-                ->orWhere('CONCAT(u.firstName, \' \', u.lastName) LIKE :search')
+                ->andWhere('(u.email LIKE :search OR u.username LIKE :search OR u.firstName LIKE :search OR u.lastName LIKE :search OR CONCAT(u.firstName, \' \', u.lastName) LIKE :search)')
                 ->setParameter('search', '%' . $search . '%');
         }
 
@@ -91,15 +87,26 @@ class UserController extends AbstractController
                     ->setParameter('role', '"ROLE_SUPER_ADMIN"');
                 break;
             case 'users':
-                $queryBuilder->andWhere('JSON_CONTAINS(u.roles, :role) = 0 AND JSON_CONTAINS(u.roles, :role2) = 0')
-                    ->setParameter('role', '"ROLE_ADMIN"')
+                $queryBuilder->andWhere('NOT JSON_CONTAINS(u.roles, :role1) AND NOT JSON_CONTAINS(u.roles, :role2)')
+                    ->setParameter('role1', '"ROLE_ADMIN"')
                     ->setParameter('role2', '"ROLE_SUPER_ADMIN"');
                 break;
         }
 
-        // Appliquer le tri
+        // Appliquer le tri (avec vérification pour éviter les injections SQL)
+        $allowedFields = ['lastName', 'firstName', 'email', 'username', 'createdAt', 'lastLoginAt'];
+        if (!in_array($sortField, $allowedFields)) {
+            $sortField = 'lastName';
+        }
+        
+        $allowedDirections = ['ASC', 'DESC'];
+        if (!in_array($sortDirection, $allowedDirections)) {
+            $sortDirection = 'ASC';
+        }
+
         $queryBuilder->orderBy('u.' . $sortField, $sortDirection);
 
+        // Exécuter la requête
         $users = $queryBuilder->getQuery()->getResult();
 
         // Log des vues des utilisateurs par l'admin
@@ -253,6 +260,7 @@ class UserController extends AbstractController
 
                 // Envoyer un email de notification
                 $this->emailService->sendEmailToUser('role_change', $user, [
+                    'previousRole' => 'Utilisateur',
                     'newRole' => 'Administrateur',
                     'promotedBy' => $admin->getFullName()
                 ]);
@@ -297,6 +305,7 @@ class UserController extends AbstractController
 
                 // Envoyer un email de notification
                 $this->emailService->sendEmailToUser('role_change', $user, [
+                    'previousRole' => 'Administrateur',
                     'newRole' => 'Utilisateur',
                     'demotedBy' => $admin->getFullName()
                 ]);
@@ -339,6 +348,7 @@ class UserController extends AbstractController
 
                 // Envoyer un email de notification
                 $this->emailService->sendEmailToUser('role_change', $user, [
+                    'previousRole' => 'Administrateur',
                     'newRole' => 'Super Administrateur',
                     'promotedBy' => $admin->getFullName()
                 ]);
@@ -383,6 +393,7 @@ class UserController extends AbstractController
 
                 // Envoyer un email de notification
                 $this->emailService->sendEmailToUser('role_change', $user, [
+                    'previousRole' => 'Super Administrateur',
                     'newRole' => 'Administrateur',
                     'demotedBy' => $admin->getFullName()
                 ]);

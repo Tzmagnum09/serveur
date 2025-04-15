@@ -340,7 +340,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         // line 160
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.search_placeholder"), "html", null, true);
         yield "\" value=\"";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 160, $this->source); })()), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 160, $this->source); })()), "")) : ("")), "html", null, true);
         yield "\">
                         <button type=\"submit\" class=\"btn btn-gradient\">
                             ";
@@ -361,7 +361,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
                     <select class=\"form-select\" id=\"sort-select\">
                         <option value=\"lastName\" ";
         // line 172
-        if (((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 172, $this->source); })()) == "lastName")) {
+        if ((((array_key_exists("sort", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 172, $this->source); })()), "lastName")) : ("lastName")) == "lastName")) {
             yield "selected";
         }
         yield ">";
@@ -369,7 +369,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         yield "</option>
                         <option value=\"createdAt\" ";
         // line 173
-        if (((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 173, $this->source); })()) == "createdAt")) {
+        if ((((array_key_exists("sort", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 173, $this->source); })()), "lastName")) : ("lastName")) == "createdAt")) {
             yield "selected";
         }
         yield ">";
@@ -377,7 +377,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         yield "</option>
                         <option value=\"lastLoginAt\" ";
         // line 174
-        if (((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 174, $this->source); })()) == "lastLoginAt")) {
+        if ((((array_key_exists("sort", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 174, $this->source); })()), "lastName")) : ("lastName")) == "lastLoginAt")) {
             yield "selected";
         }
         yield ">";
@@ -386,11 +386,11 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
                     </select>
                     <button class=\"btn btn-outline-secondary ms-2\" id=\"sort-direction-btn\" title=\"";
         // line 176
-        yield ((((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 176, $this->source); })()) == "ASC")) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.sort_desc"), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.sort_asc"), "html", null, true)));
+        yield (((((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 176, $this->source); })()), "ASC")) : ("ASC")) == "ASC")) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.sort_desc"), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.sort_asc"), "html", null, true)));
         yield "\">
                         <i class=\"fas fa-sort-";
         // line 177
-        yield ((((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 177, $this->source); })()) == "ASC")) ? ("down") : ("up"));
+        yield (((((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 177, $this->source); })()), "ASC")) : ("ASC")) == "ASC")) ? ("down") : ("up"));
         yield "\"></i>
                     </button>
                 </div>
@@ -402,7 +402,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         // line 184
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users");
         yield "\" class=\"filter-badge ";
-        yield ((((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 184, $this->source); })()) == "")) ? ("active") : (""));
+        yield (((((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 184, $this->source); })()), "")) : ("")) == "")) ? ("active") : (""));
         yield "\">
                 ";
         // line 185
@@ -413,7 +413,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         // line 187
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["filter" => "verified"]);
         yield "\" class=\"filter-badge ";
-        yield ((((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 187, $this->source); })()) == "verified")) ? ("active") : (""));
+        yield (((((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 187, $this->source); })()), "")) : ("")) == "verified")) ? ("active") : (""));
         yield "\">
                 ";
         // line 188
@@ -424,7 +424,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         // line 190
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["filter" => "unverified"]);
         yield "\" class=\"filter-badge ";
-        yield ((((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 190, $this->source); })()) == "unverified")) ? ("active") : (""));
+        yield (((((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 190, $this->source); })()), "")) : ("")) == "unverified")) ? ("active") : (""));
         yield "\">
                 ";
         // line 191
@@ -435,7 +435,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         // line 193
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["filter" => "approved"]);
         yield "\" class=\"filter-badge ";
-        yield ((((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 193, $this->source); })()) == "approved")) ? ("active") : (""));
+        yield (((((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 193, $this->source); })()), "")) : ("")) == "approved")) ? ("active") : (""));
         yield "\">
                 ";
         // line 194
@@ -446,7 +446,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         // line 196
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["filter" => "pending"]);
         yield "\" class=\"filter-badge ";
-        yield ((((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 196, $this->source); })()) == "pending")) ? ("active") : (""));
+        yield (((((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 196, $this->source); })()), "")) : ("")) == "pending")) ? ("active") : (""));
         yield "\">
                 ";
         // line 197
@@ -457,7 +457,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         // line 199
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["filter" => "admins"]);
         yield "\" class=\"filter-badge ";
-        yield ((((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 199, $this->source); })()) == "admins")) ? ("active") : (""));
+        yield (((((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 199, $this->source); })()), "")) : ("")) == "admins")) ? ("active") : (""));
         yield "\">
                 ";
         // line 200
@@ -468,7 +468,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         // line 202
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["filter" => "super_admins"]);
         yield "\" class=\"filter-badge ";
-        yield ((((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 202, $this->source); })()) == "super_admins")) ? ("active") : (""));
+        yield (((((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 202, $this->source); })()), "")) : ("")) == "super_admins")) ? ("active") : (""));
         yield "\">
                 ";
         // line 203
@@ -479,7 +479,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         // line 205
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["filter" => "users"]);
         yield "\" class=\"filter-badge ";
-        yield ((((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 205, $this->source); })()) == "users")) ? ("active") : (""));
+        yield (((((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 205, $this->source); })()), "")) : ("")) == "users")) ? ("active") : (""));
         yield "\">
                 ";
         // line 206
@@ -498,7 +498,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         yield "
                 ";
         // line 215
-        if ((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 215, $this->source); })())) {
+        if (((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 215, $this->source); })()), "")) : (""))) {
             // line 216
             yield "                    <span class=\"ms-2 text-muted fs-6\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.search_results", ["%query%" => (isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 216, $this->source); })())]), "html", null, true);
@@ -507,7 +507,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         }
         // line 218
         yield "                ";
-        if ((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 218, $this->source); })())) {
+        if (((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 218, $this->source); })()), "")) : (""))) {
             // line 219
             yield "                    <span class=\"ms-2 text-muted fs-6\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(("admin.users.filtered_by_" . (isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 219, $this->source); })()))), "html", null, true);
@@ -538,7 +538,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
                             <th>
                                 <a href=\"";
         // line 233
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["sort" => "lastName", "direction" => (((((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 233, $this->source); })()) == "lastName") && ((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 233, $this->source); })()) == "ASC"))) ? ("DESC") : ("ASC")), "q" => (isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 233, $this->source); })()), "filter" => (isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 233, $this->source); })())]), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["sort" => "lastName", "direction" => ((((((array_key_exists("sort", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 233, $this->source); })()), "lastName")) : ("lastName")) == "lastName") && (((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 233, $this->source); })()), "ASC")) : ("ASC")) == "ASC"))) ? ("DESC") : ("ASC")), "q" => ((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 233, $this->source); })()), "")) : ("")), "filter" => ((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 233, $this->source); })()), "")) : (""))]), "html", null, true);
         yield "\" class=\"sort-link\">
                                     ";
         // line 234
@@ -546,10 +546,10 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         yield "
                                     ";
         // line 235
-        if (((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 235, $this->source); })()) == "lastName")) {
+        if ((((array_key_exists("sort", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 235, $this->source); })()), "lastName")) : ("lastName")) == "lastName")) {
             // line 236
             yield "                                        <i class=\"fas fa-sort-";
-            yield ((((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 236, $this->source); })()) == "ASC")) ? ("down") : ("up"));
+            yield (((((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 236, $this->source); })()), "ASC")) : ("ASC")) == "ASC")) ? ("down") : ("up"));
             yield "\"></i>
                                     ";
         }
@@ -567,7 +567,7 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
                             <th>
                                 <a href=\"";
         // line 243
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["sort" => "createdAt", "direction" => (((((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 243, $this->source); })()) == "createdAt") && ((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 243, $this->source); })()) == "ASC"))) ? ("DESC") : ("ASC")), "q" => (isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 243, $this->source); })()), "filter" => (isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 243, $this->source); })())]), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users", ["sort" => "createdAt", "direction" => ((((((array_key_exists("sort", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 243, $this->source); })()), "lastName")) : ("lastName")) == "createdAt") && (((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 243, $this->source); })()), "ASC")) : ("ASC")) == "ASC"))) ? ("DESC") : ("ASC")), "q" => ((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 243, $this->source); })()), "")) : ("")), "filter" => ((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 243, $this->source); })()), "")) : (""))]), "html", null, true);
         yield "\" class=\"sort-link\">
                                     ";
         // line 244
@@ -575,10 +575,10 @@ class __TwigTemplate_b47d347e7b4b15ee84c1b6059a482a64 extends Template
         yield "
                                     ";
         // line 245
-        if (((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 245, $this->source); })()) == "createdAt")) {
+        if ((((array_key_exists("sort", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["sort"]) || array_key_exists("sort", $context) ? $context["sort"] : (function () { throw new RuntimeError('Variable "sort" does not exist.', 245, $this->source); })()), "lastName")) : ("lastName")) == "createdAt")) {
             // line 246
             yield "                                        <i class=\"fas fa-sort-";
-            yield ((((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 246, $this->source); })()) == "ASC")) ? ("down") : ("up"));
+            yield (((((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 246, $this->source); })()), "ASC")) : ("ASC")) == "ASC")) ? ("down") : ("up"));
             yield "\"></i>
                                     ";
         }
@@ -839,7 +839,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
             yield "</p>
                                     ";
             // line 350
-            if ((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 350, $this->source); })())) {
+            if (((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 350, $this->source); })()), "")) : (""))) {
                 // line 351
                 yield "                                        <p class=\"mt-2\">
                                             <a href=\"";
@@ -905,7 +905,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
                     // Inverser la direction
                     const currentDirection = '";
         // line 383
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 383, $this->source); })()), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 383, $this->source); })()), "ASC")) : ("ASC")), "html", null, true);
         yield "';
                     const newDirection = currentDirection === 'ASC' ? 'DESC' : 'ASC';
                     
@@ -920,16 +920,16 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
                 
                 function updateSortUrl(direction = '";
         // line 395
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 395, $this->source); })()), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 395, $this->source); })()), "ASC")) : ("ASC")), "html", null, true);
         yield "') {
                     const sort = sortSelect.value;
                     const search = '";
         // line 397
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 397, $this->source); })()), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 397, $this->source); })()), "")) : ("")), "html", null, true);
         yield "';
                     const filter = '";
         // line 398
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 398, $this->source); })()), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 398, $this->source); })()), "")) : ("")), "html", null, true);
         yield "';
                     
                     let url = '";
@@ -1142,7 +1142,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
                         <span class=\"input-group-text bg-white\">
                             <i class=\"fas fa-search text-muted\"></i>
                         </span>
-                        <input type=\"text\" name=\"q\" class=\"form-control form-control-lg border-start-0\" placeholder=\"{{ 'admin.users.search_placeholder'|trans }}\" value=\"{{ search }}\">
+                        <input type=\"text\" name=\"q\" class=\"form-control form-control-lg border-start-0\" placeholder=\"{{ 'admin.users.search_placeholder'|trans }}\" value=\"{{ search|default('') }}\">
                         <button type=\"submit\" class=\"btn btn-gradient\">
                             {{ 'admin.users.search_btn'|trans }}
                         </button>
@@ -1154,40 +1154,40 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
                 <div class=\"d-flex align-items-center justify-content-md-end mt-3 mt-md-0\">
                     <span class=\"text-muted me-2\">{{ 'admin.users.sort_by'|trans }}:</span>
                     <select class=\"form-select\" id=\"sort-select\">
-                        <option value=\"lastName\" {% if sort == 'lastName' %}selected{% endif %}>{{ 'admin.users.sort_name'|trans }}</option>
-                        <option value=\"createdAt\" {% if sort == 'createdAt' %}selected{% endif %}>{{ 'admin.users.sort_date'|trans }}</option>
-                        <option value=\"lastLoginAt\" {% if sort == 'lastLoginAt' %}selected{% endif %}>{{ 'admin.users.sort_login'|trans }}</option>
+                        <option value=\"lastName\" {% if sort|default('lastName') == 'lastName' %}selected{% endif %}>{{ 'admin.users.sort_name'|trans }}</option>
+                        <option value=\"createdAt\" {% if sort|default('lastName') == 'createdAt' %}selected{% endif %}>{{ 'admin.users.sort_date'|trans }}</option>
+                        <option value=\"lastLoginAt\" {% if sort|default('lastName') == 'lastLoginAt' %}selected{% endif %}>{{ 'admin.users.sort_login'|trans }}</option>
                     </select>
-                    <button class=\"btn btn-outline-secondary ms-2\" id=\"sort-direction-btn\" title=\"{{ direction == 'ASC' ? 'admin.users.sort_desc'|trans : 'admin.users.sort_asc'|trans }}\">
-                        <i class=\"fas fa-sort-{{ direction == 'ASC' ? 'down' : 'up' }}\"></i>
+                    <button class=\"btn btn-outline-secondary ms-2\" id=\"sort-direction-btn\" title=\"{{ direction|default('ASC') == 'ASC' ? 'admin.users.sort_desc'|trans : 'admin.users.sort_asc'|trans }}\">
+                        <i class=\"fas fa-sort-{{ direction|default('ASC') == 'ASC' ? 'down' : 'up' }}\"></i>
                     </button>
                 </div>
             </div>
         </div>
         
         <div class=\"filter-badges d-flex flex-wrap\">
-            <a href=\"{{ path('app_admin_users') }}\" class=\"filter-badge {{ filter == '' ? 'active' : '' }}\">
+            <a href=\"{{ path('app_admin_users') }}\" class=\"filter-badge {{ filter|default('') == '' ? 'active' : '' }}\">
                 {{ 'admin.users.filter_all'|trans }}
             </a>
-            <a href=\"{{ path('app_admin_users', {'filter': 'verified'}) }}\" class=\"filter-badge {{ filter == 'verified' ? 'active' : '' }}\">
+            <a href=\"{{ path('app_admin_users', {'filter': 'verified'}) }}\" class=\"filter-badge {{ filter|default('') == 'verified' ? 'active' : '' }}\">
                 {{ 'admin.users.filter_verified'|trans }}
             </a>
-            <a href=\"{{ path('app_admin_users', {'filter': 'unverified'}) }}\" class=\"filter-badge {{ filter == 'unverified' ? 'active' : '' }}\">
+            <a href=\"{{ path('app_admin_users', {'filter': 'unverified'}) }}\" class=\"filter-badge {{ filter|default('') == 'unverified' ? 'active' : '' }}\">
                 {{ 'admin.users.filter_unverified'|trans }}
             </a>
-            <a href=\"{{ path('app_admin_users', {'filter': 'approved'}) }}\" class=\"filter-badge {{ filter == 'approved' ? 'active' : '' }}\">
+            <a href=\"{{ path('app_admin_users', {'filter': 'approved'}) }}\" class=\"filter-badge {{ filter|default('') == 'approved' ? 'active' : '' }}\">
                 {{ 'admin.users.filter_approved'|trans }}
             </a>
-            <a href=\"{{ path('app_admin_users', {'filter': 'pending'}) }}\" class=\"filter-badge {{ filter == 'pending' ? 'active' : '' }}\">
+            <a href=\"{{ path('app_admin_users', {'filter': 'pending'}) }}\" class=\"filter-badge {{ filter|default('') == 'pending' ? 'active' : '' }}\">
                 {{ 'admin.users.filter_pending'|trans }}
             </a>
-            <a href=\"{{ path('app_admin_users', {'filter': 'admins'}) }}\" class=\"filter-badge {{ filter == 'admins' ? 'active' : '' }}\">
+            <a href=\"{{ path('app_admin_users', {'filter': 'admins'}) }}\" class=\"filter-badge {{ filter|default('') == 'admins' ? 'active' : '' }}\">
                 {{ 'admin.users.filter_admins'|trans }}
             </a>
-            <a href=\"{{ path('app_admin_users', {'filter': 'super_admins'}) }}\" class=\"filter-badge {{ filter == 'super_admins' ? 'active' : '' }}\">
+            <a href=\"{{ path('app_admin_users', {'filter': 'super_admins'}) }}\" class=\"filter-badge {{ filter|default('') == 'super_admins' ? 'active' : '' }}\">
                 {{ 'admin.users.filter_super_admins'|trans }}
             </a>
-            <a href=\"{{ path('app_admin_users', {'filter': 'users'}) }}\" class=\"filter-badge {{ filter == 'users' ? 'active' : '' }}\">
+            <a href=\"{{ path('app_admin_users', {'filter': 'users'}) }}\" class=\"filter-badge {{ filter|default('') == 'users' ? 'active' : '' }}\">
                 {{ 'admin.users.filter_regular_users'|trans }}
             </a>
         </div>
@@ -1197,10 +1197,10 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
         <div class=\"card-header d-flex justify-content-between align-items-center\">
             <h5 class=\"mb-0\">
                 {{ 'admin.users.list'|trans }}
-                {% if search %}
+                {% if search|default('') %}
                     <span class=\"ms-2 text-muted fs-6\">{{ 'admin.users.search_results'|trans({'%query%': search}) }}</span>
                 {% endif %}
-                {% if filter %}
+                {% if filter|default('') %}
                     <span class=\"ms-2 text-muted fs-6\">{{ ('admin.users.filtered_by_'~filter)|trans }}</span>
                 {% endif %}
             </h5>
@@ -1215,20 +1215,20 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
                     <thead>
                         <tr>
                             <th>
-                                <a href=\"{{ path('app_admin_users', {'sort': 'lastName', 'direction': sort == 'lastName' and direction == 'ASC' ? 'DESC' : 'ASC', 'q': search, 'filter': filter}) }}\" class=\"sort-link\">
+                                <a href=\"{{ path('app_admin_users', {'sort': 'lastName', 'direction': sort|default('lastName') == 'lastName' and direction|default('ASC') == 'ASC' ? 'DESC' : 'ASC', 'q': search|default(''), 'filter': filter|default('')}) }}\" class=\"sort-link\">
                                     {{ 'admin.users.name'|trans }}
-                                    {% if sort == 'lastName' %}
-                                        <i class=\"fas fa-sort-{{ direction == 'ASC' ? 'down' : 'up' }}\"></i>
+                                    {% if sort|default('lastName') == 'lastName' %}
+                                        <i class=\"fas fa-sort-{{ direction|default('ASC') == 'ASC' ? 'down' : 'up' }}\"></i>
                                     {% endif %}
                                 </a>
                             </th>
                             <th>{{ 'admin.users.email'|trans }}</th>
                             <th>{{ 'admin.users.username'|trans }}</th>
                             <th>
-                                <a href=\"{{ path('app_admin_users', {'sort': 'createdAt', 'direction': sort == 'createdAt' and direction == 'ASC' ? 'DESC' : 'ASC', 'q': search, 'filter': filter}) }}\" class=\"sort-link\">
+                                <a href=\"{{ path('app_admin_users', {'sort': 'createdAt', 'direction': sort|default('lastName') == 'createdAt' and direction|default('ASC') == 'ASC' ? 'DESC' : 'ASC', 'q': search|default(''), 'filter': filter|default('')}) }}\" class=\"sort-link\">
                                     {{ 'admin.users.registered_at'|trans }}
-                                    {% if sort == 'createdAt' %}
-                                        <i class=\"fas fa-sort-{{ direction == 'ASC' ? 'down' : 'up' }}\"></i>
+                                    {% if sort|default('lastName') == 'createdAt' %}
+                                        <i class=\"fas fa-sort-{{ direction|default('ASC') == 'ASC' ? 'down' : 'up' }}\"></i>
                                     {% endif %}
                                 </a>
                             </th>
@@ -1332,7 +1332,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
                                 <td colspan=\"7\" class=\"empty-state\">
                                     <i class=\"fas fa-users\"></i>
                                     <p class=\"mb-0\">{{ 'admin.users.no_users'|trans }}</p>
-                                    {% if search %}
+                                    {% if search|default('') %}
                                         <p class=\"mt-2\">
                                             <a href=\"{{ path('app_admin_users') }}\" class=\"btn btn-outline-primary mt-2\">
                                                 <i class=\"fas fa-times me-1\"></i> {{ 'admin.users.clear_search'|trans }}
@@ -1365,7 +1365,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
                 
                 sortDirectionBtn.addEventListener('click', function() {
                     // Inverser la direction
-                    const currentDirection = '{{ direction }}';
+                    const currentDirection = '{{ direction|default('ASC') }}';
                     const newDirection = currentDirection === 'ASC' ? 'DESC' : 'ASC';
                     
                     // Mettre à jour l'icône
@@ -1377,10 +1377,10 @@ $context["user"], "isAdmin", [], "any", false, false, false, 281)) {
                     updateSortUrl(newDirection);
                 });
                 
-                function updateSortUrl(direction = '{{ direction }}') {
+                function updateSortUrl(direction = '{{ direction|default('ASC') }}') {
                     const sort = sortSelect.value;
-                    const search = '{{ search }}';
-                    const filter = '{{ filter }}';
+                    const search = '{{ search|default('') }}';
+                    const filter = '{{ filter|default('') }}';
                     
                     let url = '{{ path('app_admin_users') }}?sort=' + sort + '&direction=' + direction;
                     

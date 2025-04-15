@@ -157,7 +157,7 @@
                         <span class="input-group-text bg-white">
                             <i class="fas fa-search text-muted"></i>
                         </span>
-                        <input type="text" name="q" class="form-control form-control-lg border-start-0" placeholder="{{ 'admin.users.search_placeholder'|trans }}" value="{{ search }}">
+                        <input type="text" name="q" class="form-control form-control-lg border-start-0" placeholder="{{ 'admin.users.search_placeholder'|trans }}" value="{{ search|default('') }}">
                         <button type="submit" class="btn btn-gradient">
                             {{ 'admin.users.search_btn'|trans }}
                         </button>
@@ -169,40 +169,40 @@
                 <div class="d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
                     <span class="text-muted me-2">{{ 'admin.users.sort_by'|trans }}:</span>
                     <select class="form-select" id="sort-select">
-                        <option value="lastName" {% if sort == 'lastName' %}selected{% endif %}>{{ 'admin.users.sort_name'|trans }}</option>
-                        <option value="createdAt" {% if sort == 'createdAt' %}selected{% endif %}>{{ 'admin.users.sort_date'|trans }}</option>
-                        <option value="lastLoginAt" {% if sort == 'lastLoginAt' %}selected{% endif %}>{{ 'admin.users.sort_login'|trans }}</option>
+                        <option value="lastName" {% if sort|default('lastName') == 'lastName' %}selected{% endif %}>{{ 'admin.users.sort_name'|trans }}</option>
+                        <option value="createdAt" {% if sort|default('lastName') == 'createdAt' %}selected{% endif %}>{{ 'admin.users.sort_date'|trans }}</option>
+                        <option value="lastLoginAt" {% if sort|default('lastName') == 'lastLoginAt' %}selected{% endif %}>{{ 'admin.users.sort_login'|trans }}</option>
                     </select>
-                    <button class="btn btn-outline-secondary ms-2" id="sort-direction-btn" title="{{ direction == 'ASC' ? 'admin.users.sort_desc'|trans : 'admin.users.sort_asc'|trans }}">
-                        <i class="fas fa-sort-{{ direction == 'ASC' ? 'down' : 'up' }}"></i>
+                    <button class="btn btn-outline-secondary ms-2" id="sort-direction-btn" title="{{ direction|default('ASC') == 'ASC' ? 'admin.users.sort_desc'|trans : 'admin.users.sort_asc'|trans }}">
+                        <i class="fas fa-sort-{{ direction|default('ASC') == 'ASC' ? 'down' : 'up' }}"></i>
                     </button>
                 </div>
             </div>
         </div>
         
         <div class="filter-badges d-flex flex-wrap">
-            <a href="{{ path('app_admin_users') }}" class="filter-badge {{ filter == '' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users') }}" class="filter-badge {{ filter|default('') == '' ? 'active' : '' }}">
                 {{ 'admin.users.filter_all'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'verified'}) }}" class="filter-badge {{ filter == 'verified' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'verified'}) }}" class="filter-badge {{ filter|default('') == 'verified' ? 'active' : '' }}">
                 {{ 'admin.users.filter_verified'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'unverified'}) }}" class="filter-badge {{ filter == 'unverified' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'unverified'}) }}" class="filter-badge {{ filter|default('') == 'unverified' ? 'active' : '' }}">
                 {{ 'admin.users.filter_unverified'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'approved'}) }}" class="filter-badge {{ filter == 'approved' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'approved'}) }}" class="filter-badge {{ filter|default('') == 'approved' ? 'active' : '' }}">
                 {{ 'admin.users.filter_approved'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'pending'}) }}" class="filter-badge {{ filter == 'pending' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'pending'}) }}" class="filter-badge {{ filter|default('') == 'pending' ? 'active' : '' }}">
                 {{ 'admin.users.filter_pending'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'admins'}) }}" class="filter-badge {{ filter == 'admins' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'admins'}) }}" class="filter-badge {{ filter|default('') == 'admins' ? 'active' : '' }}">
                 {{ 'admin.users.filter_admins'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'super_admins'}) }}" class="filter-badge {{ filter == 'super_admins' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'super_admins'}) }}" class="filter-badge {{ filter|default('') == 'super_admins' ? 'active' : '' }}">
                 {{ 'admin.users.filter_super_admins'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'users'}) }}" class="filter-badge {{ filter == 'users' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'users'}) }}" class="filter-badge {{ filter|default('') == 'users' ? 'active' : '' }}">
                 {{ 'admin.users.filter_regular_users'|trans }}
             </a>
         </div>
@@ -212,10 +212,10 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">
                 {{ 'admin.users.list'|trans }}
-                {% if search %}
+                {% if search|default('') %}
                     <span class="ms-2 text-muted fs-6">{{ 'admin.users.search_results'|trans({'%query%': search}) }}</span>
                 {% endif %}
-                {% if filter %}
+                {% if filter|default('') %}
                     <span class="ms-2 text-muted fs-6">{{ ('admin.users.filtered_by_'~filter)|trans }}</span>
                 {% endif %}
             </h5>
@@ -230,20 +230,20 @@
                     <thead>
                         <tr>
                             <th>
-                                <a href="{{ path('app_admin_users', {'sort': 'lastName', 'direction': sort == 'lastName' and direction == 'ASC' ? 'DESC' : 'ASC', 'q': search, 'filter': filter}) }}" class="sort-link">
+                                <a href="{{ path('app_admin_users', {'sort': 'lastName', 'direction': sort|default('lastName') == 'lastName' and direction|default('ASC') == 'ASC' ? 'DESC' : 'ASC', 'q': search|default(''), 'filter': filter|default('')}) }}" class="sort-link">
                                     {{ 'admin.users.name'|trans }}
-                                    {% if sort == 'lastName' %}
-                                        <i class="fas fa-sort-{{ direction == 'ASC' ? 'down' : 'up' }}"></i>
+                                    {% if sort|default('lastName') == 'lastName' %}
+                                        <i class="fas fa-sort-{{ direction|default('ASC') == 'ASC' ? 'down' : 'up' }}"></i>
                                     {% endif %}
                                 </a>
                             </th>
                             <th>{{ 'admin.users.email'|trans }}</th>
                             <th>{{ 'admin.users.username'|trans }}</th>
                             <th>
-                                <a href="{{ path('app_admin_users', {'sort': 'createdAt', 'direction': sort == 'createdAt' and direction == 'ASC' ? 'DESC' : 'ASC', 'q': search, 'filter': filter}) }}" class="sort-link">
+                                <a href="{{ path('app_admin_users', {'sort': 'createdAt', 'direction': sort|default('lastName') == 'createdAt' and direction|default('ASC') == 'ASC' ? 'DESC' : 'ASC', 'q': search|default(''), 'filter': filter|default('')}) }}" class="sort-link">
                                     {{ 'admin.users.registered_at'|trans }}
-                                    {% if sort == 'createdAt' %}
-                                        <i class="fas fa-sort-{{ direction == 'ASC' ? 'down' : 'up' }}"></i>
+                                    {% if sort|default('lastName') == 'createdAt' %}
+                                        <i class="fas fa-sort-{{ direction|default('ASC') == 'ASC' ? 'down' : 'up' }}"></i>
                                     {% endif %}
                                 </a>
                             </th>
@@ -347,7 +347,7 @@
                                 <td colspan="7" class="empty-state">
                                     <i class="fas fa-users"></i>
                                     <p class="mb-0">{{ 'admin.users.no_users'|trans }}</p>
-                                    {% if search %}
+                                    {% if search|default('') %}
                                         <p class="mt-2">
                                             <a href="{{ path('app_admin_users') }}" class="btn btn-outline-primary mt-2">
                                                 <i class="fas fa-times me-1"></i> {{ 'admin.users.clear_search'|trans }}
@@ -380,7 +380,7 @@
                 
                 sortDirectionBtn.addEventListener('click', function() {
                     // Inverser la direction
-                    const currentDirection = '{{ direction }}';
+                    const currentDirection = '{{ direction|default('ASC') }}';
                     const newDirection = currentDirection === 'ASC' ? 'DESC' : 'ASC';
                     
                     // Mettre à jour l'icône
@@ -392,10 +392,10 @@
                     updateSortUrl(newDirection);
                 });
                 
-                function updateSortUrl(direction = '{{ direction }}') {
+                function updateSortUrl(direction = '{{ direction|default('ASC') }}') {
                     const sort = sortSelect.value;
-                    const search = '{{ search }}';
-                    const filter = '{{ filter }}';
+                    const search = '{{ search|default('') }}';
+                    const filter = '{{ filter|default('') }}';
                     
                     let url = '{{ path('app_admin_users') }}?sort=' + sort + '&direction=' + direction;
                     
