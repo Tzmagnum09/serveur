@@ -380,11 +380,23 @@
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\Admin\UserController"/>
       </call>
     </service>
+    <service id="App\Controller\Admin\UserPermissionsController" class="App\Controller\Admin\UserPermissionsController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Service\AdminPermissionService"/>
+      <argument type="service" id="App\Repository\AdminPermissionRepository"/>
+      <argument type="service" id="App\Service\EmailTemplateService"/>
+      <argument type="service" id="monolog.logger"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\Admin\UserPermissionsController"/>
+      </call>
+    </service>
     <service id="App\Controller\AdminController" class="App\Controller\AdminController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <argument type="service" id="App\Service\AdminPermissionService"/>
       <argument type="service" id="App\Service\EmailTemplateService"/>
+      <argument type="service" id="monolog.logger"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\AdminController"/>
       </call>
@@ -539,6 +551,10 @@
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
       <argument type="service" id="translator.default"/>
     </service>
+    <service id="App\Form\UserPermissionsFormType" class="App\Form\UserPermissionsFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+      <argument type="service" id="translator.default"/>
+    </service>
     <service id="App\Message\SendEmailMessage" class="App\Message\SendEmailMessage" autowire="true" autoconfigure="true">
       <tag name="container.error" message="Cannot autowire service &quot;App\Message\SendEmailMessage&quot;: argument &quot;$from&quot; of method &quot;__construct()&quot; is type-hinted &quot;string&quot;, you should configure its value explicitly."/>
     </service>
@@ -622,7 +638,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.nI6CFwh"/>
+      <argument type="service" id=".service_locator.EWmgMz3"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1541,6 +1557,7 @@
         <argument>App\Form\RegistrationFormType</argument>
         <argument>App\Form\ResetPasswordRequestFormType</argument>
         <argument>App\Form\UserEditType</argument>
+        <argument>App\Form\UserPermissionsFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -3370,7 +3387,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.nI6CFwh"/>
+      <argument type="service" id=".service_locator.EWmgMz3"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3718,7 +3735,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.KreZxHw"/>
+      <argument type="service" id=".service_locator.DYtGeOu"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3823,6 +3840,7 @@
         <argument key="App\Form\RegistrationFormType">submit</argument>
         <argument key="App\Form\ResetPasswordRequestFormType">submit</argument>
         <argument key="App\Form\UserEditType">submit</argument>
+        <argument key="App\Form\UserPermissionsFormType">submit</argument>
       </argument>
     </service>
     <service id="validator" class="Symfony\Component\Validator\Validator\ValidatorInterface">
@@ -6955,6 +6973,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\UserController" class="App\Controller\Admin\UserController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\UserController" class="App\Controller\Admin\UserController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\UserController" class="App\Controller\Admin\UserController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\UserPermissionsController" class="App\Controller\Admin\UserPermissionsController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\UserPermissionsController" class="App\Controller\Admin\UserPermissionsController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\UserPermissionsController" class="App\Controller\Admin\UserPermissionsController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7016,6 +7037,8 @@
     <service id=".abstract.instanceof.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserEditType" class="App\Form\UserEditType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UserEditType" class="App\Form\UserEditType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserPermissionsFormType" class="App\Form\UserPermissionsFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\UserPermissionsFormType" class="App\Form\UserPermissionsFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\MessageHandler\SendEmailMessageHandler.0.App\MessageHandler\SendEmailMessageHandler" class="App\MessageHandler\SendEmailMessageHandler" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\MessageHandler\SendEmailMessageHandler" class="App\MessageHandler\SendEmailMessageHandler" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AdminPermissionRepository" class="App\Repository\AdminPermissionRepository" autowire="true" abstract="true"/>
@@ -7637,6 +7660,18 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.WkfvUVe" method="withContext"/>
     </service>
+    <service id=".service_locator.EWAQaZu" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service_closure" id=".errored..service_locator.EWAQaZu.App\Entity\User"/>
+      </argument>
+    </service>
+    <service id=".service_locator.EWAQaZu.App\Controller\Admin\UserPermissionsController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\UserPermissionsController::edit()"/>
+      <argument>App\Controller\Admin\UserPermissionsController::edit()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.EWAQaZu" method="withContext"/>
+    </service>
     <service id=".service_locator.6tMdNa5" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7673,12 +7708,6 @@
     <service id=".service_locator.Dw6dywA.App\Controller\AdminController::editUser()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\AdminController::editUser()"/>
       <argument>App\Controller\AdminController::editUser()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.Dw6dywA" method="withContext"/>
-    </service>
-    <service id=".service_locator.Dw6dywA.App\Controller\AdminController::approveUser()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\AdminController::approveUser()"/>
-      <argument>App\Controller\AdminController::approveUser()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.Dw6dywA" method="withContext"/>
     </service>
@@ -7866,7 +7895,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.Dw6dywA" method="withContext"/>
     </service>
-    <service id=".service_locator.nI6CFwh" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.EWmgMz3" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -7875,10 +7904,10 @@
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Controller\Admin\UserController::edit" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\UserController::edit()"/>
         <argument key="App\Controller\Admin\UserController::approve" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\UserController::approve()"/>
+        <argument key="App\Controller\Admin\UserPermissionsController::edit" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\Admin\UserPermissionsController::edit()"/>
         <argument key="App\Controller\AdminController::dashboard" type="service_closure" id=".service_locator.6tMdNa5.App\Controller\AdminController::dashboard()"/>
         <argument key="App\Controller\AdminController::users" type="service_closure" id=".service_locator.OzEre6h.App\Controller\AdminController::users()"/>
         <argument key="App\Controller\AdminController::editUser" type="service_closure" id=".service_locator.Dw6dywA.App\Controller\AdminController::editUser()"/>
-        <argument key="App\Controller\AdminController::approveUser" type="service_closure" id=".service_locator.Dw6dywA.App\Controller\AdminController::approveUser()"/>
         <argument key="App\Controller\EmailTemplateController::index" type="service_closure" id=".service_locator.k9R1AxW.App\Controller\EmailTemplateController::index()"/>
         <argument key="App\Controller\EmailTemplateController::new" type="service_closure" id=".service_locator.suHSJ1C.App\Controller\EmailTemplateController::new()"/>
         <argument key="App\Controller\EmailTemplateController::edit" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::edit()"/>
@@ -7901,10 +7930,10 @@
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.zHyJIs5.kernel::loadRoutes()"/>
         <argument key="App\Controller\Admin\UserController:edit" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\UserController::edit()"/>
         <argument key="App\Controller\Admin\UserController:approve" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\UserController::approve()"/>
+        <argument key="App\Controller\Admin\UserPermissionsController:edit" type="service_closure" id=".service_locator.EWAQaZu.App\Controller\Admin\UserPermissionsController::edit()"/>
         <argument key="App\Controller\AdminController:dashboard" type="service_closure" id=".service_locator.6tMdNa5.App\Controller\AdminController::dashboard()"/>
         <argument key="App\Controller\AdminController:users" type="service_closure" id=".service_locator.OzEre6h.App\Controller\AdminController::users()"/>
         <argument key="App\Controller\AdminController:editUser" type="service_closure" id=".service_locator.Dw6dywA.App\Controller\AdminController::editUser()"/>
-        <argument key="App\Controller\AdminController:approveUser" type="service_closure" id=".service_locator.Dw6dywA.App\Controller\AdminController::approveUser()"/>
         <argument key="App\Controller\EmailTemplateController:index" type="service_closure" id=".service_locator.k9R1AxW.App\Controller\EmailTemplateController::index()"/>
         <argument key="App\Controller\EmailTemplateController:new" type="service_closure" id=".service_locator.suHSJ1C.App\Controller\EmailTemplateController::new()"/>
         <argument key="App\Controller\EmailTemplateController:edit" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::edit()"/>
@@ -8002,7 +8031,7 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.KreZxHw" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.DYtGeOu" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AdminPermissionsFormType" type="service_closure" id="App\Form\AdminPermissionsFormType"/>
@@ -8013,6 +8042,7 @@
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="App\Form\ResetPasswordRequestFormType" type="service_closure" id="App\Form\ResetPasswordRequestFormType"/>
         <argument key="App\Form\UserEditType" type="service_closure" id="App\Form\UserEditType"/>
+        <argument key="App\Form\UserPermissionsFormType" type="service_closure" id="App\Form\UserPermissionsFormType"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
@@ -8502,6 +8532,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.ZyP9f7K" method="withContext"/>
     </service>
+    <service id=".service_locator.ZyP9f7K.App\Controller\Admin\UserPermissionsController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\UserPermissionsController"/>
+      <argument>App\Controller\Admin\UserPermissionsController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZyP9f7K" method="withContext"/>
+    </service>
     <service id=".service_locator.ZyP9f7K.App\Controller\AdminController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\AdminController"/>
       <argument>App\Controller\AdminController</argument>
@@ -8729,6 +8765,7 @@
         <argument type="collection">
           <argument>App\Kernel</argument>
           <argument>App\Controller\Admin\UserController</argument>
+          <argument>App\Controller\Admin\UserPermissionsController</argument>
           <argument>App\Controller\AdminController</argument>
           <argument>App\Controller\CookieController</argument>
           <argument>App\Controller\EmailTemplateController</argument>
@@ -8795,6 +8832,9 @@
     </service>
     <service id=".errored..service_locator.WkfvUVe.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.WkfvUVe&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.EWAQaZu.App\Entity\User" class="App\Entity\User">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.EWAQaZu&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".errored..service_locator.Dw6dywA.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.Dw6dywA&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
@@ -9754,7 +9794,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.nI6CFwh"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.EWmgMz3"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9784,6 +9824,7 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.n_ENPtW" alias=".service_locator.zHyJIs5"/>
     <service id=".service_locator.uXwZemd" alias=".service_locator.WkfvUVe"/>
+    <service id=".service_locator.gG4yR94" alias=".service_locator.EWAQaZu"/>
     <service id=".service_locator.9Jyh5r1" alias=".service_locator.6tMdNa5"/>
     <service id=".service_locator.hNMhKaf" alias=".service_locator.OzEre6h"/>
     <service id=".service_locator.sGQ9Z42" alias=".service_locator.Dw6dywA"/>

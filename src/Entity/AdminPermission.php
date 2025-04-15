@@ -13,7 +13,7 @@ class AdminPermission
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $admin = null;
 
@@ -21,13 +21,13 @@ class AdminPermission
     private ?string $permission = null;
 
     #[ORM\Column]
-    private ?bool $isGranted = true;
+    private ?bool $isGranted = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private $updatedAt = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
@@ -44,10 +44,9 @@ class AdminPermission
         return $this->admin;
     }
 
-    public function setAdmin(?User $admin): static
+    public function setAdmin(?User $admin): self
     {
         $this->admin = $admin;
-
         return $this;
     }
 
@@ -56,10 +55,9 @@ class AdminPermission
         return $this->permission;
     }
 
-    public function setPermission(string $permission): static
+    public function setPermission(string $permission): self
     {
         $this->permission = $permission;
-
         return $this;
     }
 
@@ -68,16 +66,21 @@ class AdminPermission
         return $this->isGranted;
     }
 
-    public function setIsGranted(bool $isGranted): static
+    public function setIsGranted(bool $isGranted): self
     {
         $this->isGranted = $isGranted;
-
         return $this;
     }
 
-    public function getCreatedAt(): \DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+        return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
@@ -85,10 +88,9 @@ class AdminPermission
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt = null): self
     {
-        $this->updatedAt = new \DateTimeImmutable();
-
+        $this->updatedAt = $updatedAt ?? new \DateTimeImmutable();
         return $this;
     }
 }

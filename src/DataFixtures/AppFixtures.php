@@ -37,7 +37,7 @@ class AppFixtures extends Fixture
         
         $superAdmin->setStreet(mb_convert_encoding('Avenue Charles Gilisquet', 'UTF-8', 'UTF-8'));
         $superAdmin->setHouseNumber('147');
-        $superAdmin->setBoxNumber('4'); // Ajout du numéro de boîte
+        $superAdmin->setBoxNumber('4');
         $superAdmin->setPostalCode('1030');
         $superAdmin->setCity(mb_convert_encoding('Schaerbeek', 'UTF-8', 'UTF-8'));
         $superAdmin->setCountry('BE');
@@ -102,7 +102,7 @@ class AppFixtures extends Fixture
             // Adresse factice pour les utilisateurs de test
             $user->setStreet(mb_convert_encoding('Rue de Test', 'UTF-8', 'UTF-8'));
             $user->setHouseNumber('42');
-            $user->setBoxNumber($userData['boxNumber']); // Ajout du numéro de boîte
+            $user->setBoxNumber($userData['boxNumber']);
             $user->setPostalCode('1050');
             $user->setCity(mb_convert_encoding('Ville de Test', 'UTF-8', 'UTF-8'));
             $user->setCountry('BE');

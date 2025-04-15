@@ -32,51 +32,53 @@ return [
         0 => '{^(?'
                 .'|/_error/(\\d+)(?:\\.([^/]++))?(*:35)'
                 .'|/admin/(?'
-                    .'|users/([^/]++)/(?'
-                        .'|edit(*:74)'
-                        .'|approve(*:88)'
+                    .'|users/(?'
+                        .'|([^/]++)/approve(*:77)'
+                        .'|permissions/([^/]++)(*:104)'
+                        .'|([^/]++)/edit(*:125)'
                     .')'
                     .'|email\\-templates/([^/]++)/(?'
-                        .'|edit(*:129)'
-                        .'|preview(*:144)'
-                        .'|delete(*:158)'
+                        .'|edit(*:167)'
+                        .'|preview(*:182)'
+                        .'|delete(*:196)'
                     .')'
-                    .'|static\\-translations/edit/([^/]++)(*:201)'
+                    .'|static\\-translations/edit/([^/]++)(*:239)'
                     .'|translations/(?'
-                        .'|table/([^/]++)(*:239)'
-                        .'|edit/([^/]++)/([^/]++)/([^/]++)(*:278)'
+                        .'|table/([^/]++)(*:277)'
+                        .'|edit/([^/]++)/([^/]++)/([^/]++)(*:316)'
                     .')'
                 .')'
-                .'|/change\\-locale/([^/]++)(*:312)'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:356)'
+                .'|/change\\-locale/([^/]++)(*:350)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:394)'
                 .'|/super\\-admin/(?'
                     .'|admin/([^/]++)/(?'
                         .'|p(?'
-                            .'|romote(*:409)'
-                            .'|ermissions(*:427)'
+                            .'|romote(*:447)'
+                            .'|ermissions(*:465)'
                         .')'
-                        .'|demote(*:442)'
+                        .'|demote(*:480)'
                     .')'
-                    .'|promote/([^/]++)/super\\-admin(*:480)'
+                    .'|promote/([^/]++)/super\\-admin(*:518)'
                 .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
         35 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        74 => [[['_route' => 'app_admin_user_edit', '_controller' => 'App\\Controller\\AdminController::editUser'], ['id'], null, null, false, false, null]],
-        88 => [[['_route' => 'app_admin_user_approve', '_controller' => 'App\\Controller\\AdminController::approveUser'], ['id'], null, null, false, false, null]],
-        129 => [[['_route' => 'app_admin_email_template_edit', '_controller' => 'App\\Controller\\EmailTemplateController::edit'], ['id'], null, null, false, false, null]],
-        144 => [[['_route' => 'app_admin_email_template_preview', '_controller' => 'App\\Controller\\EmailTemplateController::preview'], ['id'], null, null, false, false, null]],
-        158 => [[['_route' => 'app_admin_email_template_delete', '_controller' => 'App\\Controller\\EmailTemplateController::delete'], ['id'], ['POST' => 0], null, false, false, null]],
-        201 => [[['_route' => 'app_admin_static_translations_edit', '_controller' => 'App\\Controller\\StaticTranslationController::edit'], ['key'], null, null, false, true, null]],
-        239 => [[['_route' => 'app_admin_translations_table', '_controller' => 'App\\Controller\\TranslationController::table'], ['table'], null, null, false, true, null]],
-        278 => [[['_route' => 'app_admin_translations_edit', '_controller' => 'App\\Controller\\TranslationController::edit'], ['table', 'id', 'field'], null, null, false, true, null]],
-        312 => [[['_route' => 'change_locale', '_controller' => 'App\\Controller\\LocaleController::changeLocale'], ['locale'], null, null, false, true, null]],
-        356 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
-        409 => [[['_route' => 'app_super_admin_promote', '_controller' => 'App\\Controller\\SuperAdminController::promoteToAdmin'], ['id'], ['POST' => 0], null, false, false, null]],
-        427 => [[['_route' => 'app_super_admin_permissions', '_controller' => 'App\\Controller\\SuperAdminController::managePermissions'], ['id'], null, null, false, false, null]],
-        442 => [[['_route' => 'app_super_admin_demote', '_controller' => 'App\\Controller\\SuperAdminController::demoteAdmin'], ['id'], ['POST' => 0], null, false, false, null]],
-        480 => [
+        77 => [[['_route' => 'app_admin_user_approve', '_controller' => 'App\\Controller\\Admin\\UserController::approve'], ['id'], ['POST' => 0], null, false, false, null]],
+        104 => [[['_route' => 'app_admin_user_permissions', '_controller' => 'App\\Controller\\Admin\\UserPermissionsController::edit'], ['id'], null, null, false, true, null]],
+        125 => [[['_route' => 'app_admin_user_edit', '_controller' => 'App\\Controller\\AdminController::editUser'], ['id'], null, null, false, false, null]],
+        167 => [[['_route' => 'app_admin_email_template_edit', '_controller' => 'App\\Controller\\EmailTemplateController::edit'], ['id'], null, null, false, false, null]],
+        182 => [[['_route' => 'app_admin_email_template_preview', '_controller' => 'App\\Controller\\EmailTemplateController::preview'], ['id'], null, null, false, false, null]],
+        196 => [[['_route' => 'app_admin_email_template_delete', '_controller' => 'App\\Controller\\EmailTemplateController::delete'], ['id'], ['POST' => 0], null, false, false, null]],
+        239 => [[['_route' => 'app_admin_static_translations_edit', '_controller' => 'App\\Controller\\StaticTranslationController::edit'], ['key'], null, null, false, true, null]],
+        277 => [[['_route' => 'app_admin_translations_table', '_controller' => 'App\\Controller\\TranslationController::table'], ['table'], null, null, false, true, null]],
+        316 => [[['_route' => 'app_admin_translations_edit', '_controller' => 'App\\Controller\\TranslationController::edit'], ['table', 'id', 'field'], null, null, false, true, null]],
+        350 => [[['_route' => 'change_locale', '_controller' => 'App\\Controller\\LocaleController::changeLocale'], ['locale'], null, null, false, true, null]],
+        394 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        447 => [[['_route' => 'app_super_admin_promote', '_controller' => 'App\\Controller\\SuperAdminController::promoteToAdmin'], ['id'], ['POST' => 0], null, false, false, null]],
+        465 => [[['_route' => 'app_super_admin_permissions', '_controller' => 'App\\Controller\\SuperAdminController::managePermissions'], ['id'], null, null, false, false, null]],
+        480 => [[['_route' => 'app_super_admin_demote', '_controller' => 'App\\Controller\\SuperAdminController::demoteAdmin'], ['id'], ['POST' => 0], null, false, false, null]],
+        518 => [
             [['_route' => 'app_super_admin_promote_super', '_controller' => 'App\\Controller\\SuperAdminController::promoteToSuperAdmin'], ['id'], ['POST' => 0], null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],

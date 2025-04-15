@@ -18,6 +18,13 @@ class AdminPermissionsFormType extends AbstractType
                 'label' => $permission['label'],
                 'required' => false,
                 'data' => $permission['granted'],
+                'attr' => [
+                    'class' => 'form-check-input permission-checkbox',
+                    'data-permission' => $code
+                ],
+                'label_attr' => [
+                    'class' => 'form-check-label'
+                ]
             ]);
         }
     }
@@ -26,6 +33,7 @@ class AdminPermissionsFormType extends AbstractType
     {
         $resolver->setDefaults([
             'permissions' => [],
+            'translation_domain' => 'messages',
         ]);
     }
 }

@@ -2,6 +2,96 @@
 
 {% block title %}{{ 'admin.users.title'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Style pour la barre de recherche et les filtres */
+        .search-filter-container {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-filter-container .form-control:focus {
+            border-color: #8e44ad;
+            box-shadow: 0 0 0 0.25rem rgba(142, 68, 173, 0.25);
+        }
+        
+        .filter-badge {
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .filter-badge:hover {
+            transform: translateY(-2px);
+        }
+        
+        .filter-badge.active {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+        }
+        
+        .filter-badge:not(.active) {
+            background-color: #eee;
+            color: #666;
+        }
+        
+        /* Responsive table */
+        .table-responsive {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        /* User status styles */
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        
+        /* Sorting styles */
+        .sort-link {
+            color: inherit;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .sort-link:hover {
+            color: #8e44ad;
+        }
+        
+        .sort-link i {
+            margin-left: 0.25rem;
+        }
+        
+        /* Action buttons styles */
+        .action-btn-group .btn {
+            margin-right: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+    </style>
+{% endblock %}
+
 {% block sidebar %}
 <div class="sidebar">
     <h5 class="mb-4">{{ 'admin.sidebar.title'|trans }}</h5>
@@ -58,43 +148,105 @@
         </div>
     </div>
     
-    <div class="card shadow-sm mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">{{ 'admin.users.list'|trans }}</h5>
-            
-            <div class="d-flex">
-                <form class="me-2" method="get" action="{{ path('app_admin_users') }}">
+    <!-- Barre de recherche et filtres améliorés -->
+    <div class="search-filter-container">
+        <div class="row g-3 mb-3 align-items-center">
+            <div class="col-md-7">
+                <form method="get" action="{{ path('app_admin_users') }}" class="d-flex">
                     <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="{{ 'admin.users.search'|trans }}" value="{{ app.request.query.get('q', '') }}">
-                        <button class="btn btn-outline-secondary" type="submit">
-                            <i class="fas fa-search"></i>
+                        <span class="input-group-text bg-white">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input type="text" name="q" class="form-control form-control-lg border-start-0" placeholder="{{ 'admin.users.search_placeholder'|trans }}" value="{{ search }}">
+                        <button type="submit" class="btn btn-gradient">
+                            {{ 'admin.users.search_btn'|trans }}
                         </button>
                     </div>
                 </form>
-                
-                <div class="dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-filter me-1"></i> {{ 'admin.users.filter'|trans }}
+            </div>
+            
+            <div class="col-md-5">
+                <div class="d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+                    <span class="text-muted me-2">{{ 'admin.users.sort_by'|trans }}:</span>
+                    <select class="form-select" id="sort-select">
+                        <option value="lastName" {% if sort == 'lastName' %}selected{% endif %}>{{ 'admin.users.sort_name'|trans }}</option>
+                        <option value="createdAt" {% if sort == 'createdAt' %}selected{% endif %}>{{ 'admin.users.sort_date'|trans }}</option>
+                        <option value="lastLoginAt" {% if sort == 'lastLoginAt' %}selected{% endif %}>{{ 'admin.users.sort_login'|trans }}</option>
+                    </select>
+                    <button class="btn btn-outline-secondary ms-2" id="sort-direction-btn" title="{{ direction == 'ASC' ? 'admin.users.sort_desc'|trans : 'admin.users.sort_asc'|trans }}">
+                        <i class="fas fa-sort-{{ direction == 'ASC' ? 'down' : 'up' }}"></i>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdown">
-                        <li><a class="dropdown-item" href="{{ path('app_admin_users') }}">{{ 'admin.users.filter_all'|trans }}</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_admin_users', {'filter': 'verified'}) }}">{{ 'admin.users.filter_verified'|trans }}</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_admin_users', {'filter': 'unverified'}) }}">{{ 'admin.users.filter_unverified'|trans }}</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_admin_users', {'filter': 'approved'}) }}">{{ 'admin.users.filter_approved'|trans }}</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_admin_users', {'filter': 'pending'}) }}">{{ 'admin.users.filter_pending'|trans }}</a></li>
-                    </ul>
                 </div>
             </div>
+        </div>
+        
+        <div class="filter-badges d-flex flex-wrap">
+            <a href="{{ path('app_admin_users') }}" class="filter-badge {{ filter == '' ? 'active' : '' }}">
+                {{ 'admin.users.filter_all'|trans }}
+            </a>
+            <a href="{{ path('app_admin_users', {'filter': 'verified'}) }}" class="filter-badge {{ filter == 'verified' ? 'active' : '' }}">
+                {{ 'admin.users.filter_verified'|trans }}
+            </a>
+            <a href="{{ path('app_admin_users', {'filter': 'unverified'}) }}" class="filter-badge {{ filter == 'unverified' ? 'active' : '' }}">
+                {{ 'admin.users.filter_unverified'|trans }}
+            </a>
+            <a href="{{ path('app_admin_users', {'filter': 'approved'}) }}" class="filter-badge {{ filter == 'approved' ? 'active' : '' }}">
+                {{ 'admin.users.filter_approved'|trans }}
+            </a>
+            <a href="{{ path('app_admin_users', {'filter': 'pending'}) }}" class="filter-badge {{ filter == 'pending' ? 'active' : '' }}">
+                {{ 'admin.users.filter_pending'|trans }}
+            </a>
+            <a href="{{ path('app_admin_users', {'filter': 'admins'}) }}" class="filter-badge {{ filter == 'admins' ? 'active' : '' }}">
+                {{ 'admin.users.filter_admins'|trans }}
+            </a>
+            <a href="{{ path('app_admin_users', {'filter': 'super_admins'}) }}" class="filter-badge {{ filter == 'super_admins' ? 'active' : '' }}">
+                {{ 'admin.users.filter_super_admins'|trans }}
+            </a>
+            <a href="{{ path('app_admin_users', {'filter': 'users'}) }}" class="filter-badge {{ filter == 'users' ? 'active' : '' }}">
+                {{ 'admin.users.filter_regular_users'|trans }}
+            </a>
+        </div>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+                {{ 'admin.users.list'|trans }}
+                {% if search %}
+                    <span class="ms-2 text-muted fs-6">{{ 'admin.users.search_results'|trans({'%query%': search}) }}</span>
+                {% endif %}
+                {% if filter %}
+                    <span class="ms-2 text-muted fs-6">{{ ('admin.users.filtered_by_'~filter)|trans }}</span>
+                {% endif %}
+            </h5>
+            
+            {% if users|length > 0 %}
+            <span class="badge bg-primary rounded-pill">{{ users|length }} {{ 'admin.users.count'|trans }}</span>
+            {% endif %}
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
                     <thead>
                         <tr>
-                            <th>{{ 'admin.users.name'|trans }}</th>
+                            <th>
+                                <a href="{{ path('app_admin_users', {'sort': 'lastName', 'direction': sort == 'lastName' and direction == 'ASC' ? 'DESC' : 'ASC', 'q': search, 'filter': filter}) }}" class="sort-link">
+                                    {{ 'admin.users.name'|trans }}
+                                    {% if sort == 'lastName' %}
+                                        <i class="fas fa-sort-{{ direction == 'ASC' ? 'down' : 'up' }}"></i>
+                                    {% endif %}
+                                </a>
+                            </th>
                             <th>{{ 'admin.users.email'|trans }}</th>
                             <th>{{ 'admin.users.username'|trans }}</th>
-                            <th>{{ 'admin.users.registered_at'|trans }}</th>
+                            <th>
+                                <a href="{{ path('app_admin_users', {'sort': 'createdAt', 'direction': sort == 'createdAt' and direction == 'ASC' ? 'DESC' : 'ASC', 'q': search, 'filter': filter}) }}" class="sort-link">
+                                    {{ 'admin.users.registered_at'|trans }}
+                                    {% if sort == 'createdAt' %}
+                                        <i class="fas fa-sort-{{ direction == 'ASC' ? 'down' : 'up' }}"></i>
+                                    {% endif %}
+                                </a>
+                            </th>
                             <th>{{ 'admin.users.status'|trans }}</th>
                             <th>{{ 'admin.users.role'|trans }}</th>
                             <th>{{ 'admin.users.actions'|trans }}</th>
@@ -103,55 +255,106 @@
                     <tbody>
                         {% for user in users %}
                             <tr>
-                                <td>{{ user.fullName }}</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-circle bg-primary rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 36px; height: 36px;">
+                                            <span class="text-white">{{ user.firstName|first }}{{ user.lastName|first }}</span>
+                                        </div>
+                                        <span>{{ user.fullName }}</span>
+                                    </div>
+                                </td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.username }}</td>
                                 <td>{{ user.createdAt|date('d/m/Y') }}</td>
                                 <td>
                                     {% if user.isVerified and user.isApproved %}
-                                        <span class="badge bg-success">{{ 'admin.users.status_active'|trans }}</span>
+                                        <span class="status-badge bg-success">{{ 'admin.users.status_active'|trans }}</span>
                                     {% elseif user.isVerified and not user.isApproved %}
-                                        <span class="badge bg-warning text-dark">{{ 'admin.users.status_pending'|trans }}</span>
+                                        <span class="status-badge bg-warning text-dark">{{ 'admin.users.status_pending'|trans }}</span>
                                     {% else %}
-                                        <span class="badge bg-danger">{{ 'admin.users.status_unverified'|trans }}</span>
+                                        <span class="status-badge bg-danger">{{ 'admin.users.status_unverified'|trans }}</span>
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if user.isSuperAdmin %}
-                                        <span class="badge bg-danger">{{ 'admin.users.role_super_admin'|trans }}</span>
+                                        <span class="status-badge bg-danger">{{ 'admin.users.role_super_admin'|trans }}</span>
                                     {% elseif user.isAdmin %}
-                                        <span class="badge bg-primary">{{ 'admin.users.role_admin'|trans }}</span>
+                                        <span class="status-badge bg-primary">{{ 'admin.users.role_admin'|trans }}</span>
                                     {% else %}
-                                        <span class="badge bg-secondary">{{ 'admin.users.role_user'|trans }}</span>
+                                        <span class="status-badge bg-secondary">{{ 'admin.users.role_user'|trans }}</span>
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-outline-primary">
+                                    <div class="action-btn-group">
+                                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-outline-primary">
                                             <i class="fas fa-edit"></i>
                                         </a>
+                                        
                                         {% if user.isVerified and not user.isApproved and (is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'approve_users')) %}
-                                            <form method="post" action="{{ path('app_admin_user_approve', {'id': user.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'admin.users.confirm_approve'|trans }}')">
-                                                <button type="submit" class="btn btn-outline-success">
+                                            <form method="post" action="{{ path('app_admin_user_approve', {'id': user.id}) }}" class="d-inline" onsubmit="return confirm('{{ 'admin.users.confirm_approve'|trans }}')">
+                                                <button type="submit" class="btn btn-sm btn-success">
                                                     <i class="fas fa-check"></i>
                                                 </button>
                                             </form>
                                         {% endif %}
                                         
-                                        {% if is_granted('ROLE_SUPER_ADMIN') and not user.isAdmin and not user.isSuperAdmin %}
-                                            <form method="post" action="{{ path('app_super_admin_promote', {'id': user.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'admin.users.confirm_promote'|trans }}')">
-                                                <input type="hidden" name="_token" value="{{ csrf_token('promote' ~ user.id) }}">
-                                                <button type="submit" class="btn btn-outline-info" title="{{ 'admin.users.promote_to_admin'|trans }}">
-                                                    <i class="fas fa-user-plus"></i>
-                                                </button>
-                                            </form>
+                                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                            {% if not user.isAdmin and not user.isSuperAdmin %}
+                                                <form method="post" action="{{ path('app_admin_user_promote', {'id': user.id}) }}" class="d-inline" onsubmit="return confirm('{{ 'admin.users.confirm_promote'|trans }}')">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('promote' ~ user.id) }}">
+                                                    <button type="submit" class="btn btn-sm btn-outline-primary" title="{{ 'admin.users.promote_to_admin'|trans }}">
+                                                        <i class="fas fa-user-plus"></i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                            
+                                            {% if user.isAdmin and not user.isSuperAdmin %}
+                                                <form method="post" action="{{ path('app_admin_user_promote_super', {'id': user.id}) }}" class="d-inline" onsubmit="return confirm('{{ 'admin.users.confirm_promote_super'|trans }}')">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('promote-super' ~ user.id) }}">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="{{ 'admin.users.promote_to_super'|trans }}">
+                                                        <i class="fas fa-user-shield"></i>
+                                                    </button>
+                                                </form>
+                                                
+                                                <form method="post" action="{{ path('app_admin_user_demote', {'id': user.id}) }}" class="d-inline" onsubmit="return confirm('{{ 'admin.users.confirm_demote'|trans }}')">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('demote' ~ user.id) }}">
+                                                    <button type="submit" class="btn btn-sm btn-outline-warning" title="{{ 'admin.users.demote_to_user'|trans }}">
+                                                        <i class="fas fa-user-minus"></i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                            
+                                            {% if user.isSuperAdmin and user.id != 5 %}
+                                                <form method="post" action="{{ path('app_admin_user_demote_super', {'id': user.id}) }}" class="d-inline" onsubmit="return confirm('{{ 'admin.users.confirm_demote_super'|trans }}')">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('demote-super' ~ user.id) }}">
+                                                    <button type="submit" class="btn btn-sm btn-outline-warning" title="{{ 'admin.users.demote_to_admin'|trans }}">
+                                                        <i class="fas fa-user-minus"></i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                            
+                                            {% if user.id != 5 %}
+                                                <a href="{{ path('app_admin_user_permissions', {'id': user.id}) }}" class="btn btn-sm btn-outline-info" title="{{ 'admin.users.manage_permissions'|trans }}">
+                                                    <i class="fas fa-key"></i>
+                                                </a>
+                                            {% endif %}
                                         {% endif %}
                                     </div>
                                 </td>
                             </tr>
                         {% else %}
                             <tr>
-                                <td colspan="7" class="text-center py-4">{{ 'admin.users.no_users'|trans }}</td>
+                                <td colspan="7" class="empty-state">
+                                    <i class="fas fa-users"></i>
+                                    <p class="mb-0">{{ 'admin.users.no_users'|trans }}</p>
+                                    {% if search %}
+                                        <p class="mt-2">
+                                            <a href="{{ path('app_admin_users') }}" class="btn btn-outline-primary mt-2">
+                                                <i class="fas fa-times me-1"></i> {{ 'admin.users.clear_search'|trans }}
+                                            </a>
+                                        </p>
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -160,4 +363,53 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion du tri
+            const sortSelect = document.getElementById('sort-select');
+            const sortDirectionBtn = document.getElementById('sort-direction-btn');
+            
+            if (sortSelect && sortDirectionBtn) {
+                sortSelect.addEventListener('change', function() {
+                    updateSortUrl();
+                });
+                
+                sortDirectionBtn.addEventListener('click', function() {
+                    // Inverser la direction
+                    const currentDirection = '{{ direction }}';
+                    const newDirection = currentDirection === 'ASC' ? 'DESC' : 'ASC';
+                    
+                    // Mettre à jour l'icône
+                    const icon = sortDirectionBtn.querySelector('i');
+                    if (icon) {
+                        icon.className = currentDirection === 'ASC' ? 'fas fa-sort-up' : 'fas fa-sort-down';
+                    }
+                    
+                    updateSortUrl(newDirection);
+                });
+                
+                function updateSortUrl(direction = '{{ direction }}') {
+                    const sort = sortSelect.value;
+                    const search = '{{ search }}';
+                    const filter = '{{ filter }}';
+                    
+                    let url = '{{ path('app_admin_users') }}?sort=' + sort + '&direction=' + direction;
+                    
+                    if (search) {
+                        url += '&q=' + encodeURIComponent(search);
+                    }
+                    
+                    if (filter) {
+                        url += '&filter=' + encodeURIComponent(filter);
+                    }
+                    
+                    window.location.href = url;
+                }
+            }
+        });
+    </script>
 {% endblock %}

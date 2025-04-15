@@ -13,19 +13,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Psr\Log\LoggerInterface;
 
 #[Route('/admin')]
 class AdminController extends AbstractController
 {
     private AdminPermissionService $permissionService;
     private EmailTemplateService $emailService;
+    private LoggerInterface $logger;
     
     public function __construct(
         AdminPermissionService $permissionService,
-        EmailTemplateService $emailService
+        EmailTemplateService $emailService,
+        LoggerInterface $logger
     ) {
         $this->permissionService = $permissionService;
         $this->emailService = $emailService;
+        $this->logger = $logger;
     }
     
     #[Route('', name: 'app_admin_dashboard')]
@@ -46,11 +50,28 @@ class AdminController extends AbstractController
             $pending_approvals = $userRepository->findPendingApproval();
         }
         
+        // Récupérer les templates d'emails uniques par code et langue
+        $templateCodes = $emailTemplateRepository->findAllCodes();
+        $template_count = count($templateCodes);
+        
+        // Calculer les statistiques utilisateurs
+        $user_count = $userRepository->count([]);
+        $approved_count = $userRepository->count(['isVerified' => true, 'isApproved' => true]);
+        $super_admin_count = $userRepository->count(['roles' => '%ROLE_SUPER_ADMIN%']);
+        
+        // Logger l'accès au tableau de bord
+        $this->logger->info('Admin dashboard accessed', [
+            'admin_email' => $admin->getEmail(),
+            'user_count' => $user_count,
+            'approved_count' => $approved_count
+        ]);
+        
         return $this->render('admin/dashboard.html.twig', [
             'pending_approvals' => $pending_approvals,
-            'user_count' => $userRepository->count([]),
-            'approved_count' => $userRepository->count(['isVerified' => true, 'isApproved' => true]),
-            'template_count' => $emailTemplateRepository->count([]),
+            'user_count' => $user_count,
+            'approved_count' => $approved_count,
+            'super_admin_count' => $super_admin_count,
+            'template_count' => $template_count,
             'permission_service' => $this->permissionService
         ]);
     }
@@ -71,6 +92,12 @@ class AdminController extends AbstractController
         }
         
         $users = $userRepository->findBy([], ['lastName' => 'ASC', 'firstName' => 'ASC']);
+        
+        // Logger la consultation de la liste des utilisateurs
+        $this->logger->info('User list viewed', [
+            'admin_email' => $admin->getEmail(),
+            'total_users' => count($users)
+        ]);
         
         return $this->render('admin/users.html.twig', [
             'users' => $users,
@@ -116,24 +143,19 @@ class AdminController extends AbstractController
                         $user->setBirthDate($birthDate);
                     }
                 } catch (\Exception $e) {
-                    // En cas d'erreur, on ne fait rien
+                    // Gestion silencieuse des erreurs
                 }
             } else {
-                // Si le champ est vide, on met la date de naissance à null
                 $user->setBirthDate(null);
             }
             
-            // Si l'utilisateur est approuvé mais que la date d'approbation n'est pas définie
-            if ($user->isApproved() && $user->getApprovedAt() === null) {
-                $user->setApprovedAt(new \DateTimeImmutable());
-                
-                // Envoyer un email de notification si le service est disponible
-                if ($this->emailService !== null && $user->isVerified()) {
-                    $this->emailService->sendEmailToUser('account_approved', $user);
-                }
-            }
-            
             $userRepository->save($user, true);
+            
+            // Logger la modification de l'utilisateur
+            $this->logger->info('User profile updated', [
+                'admin_email' => $admin->getEmail(),
+                'user_email' => $user->getEmail()
+            ]);
             
             $this->addFlash('success', $translator->trans('admin.user.flash.updated'));
             
@@ -145,49 +167,5 @@ class AdminController extends AbstractController
             'userForm' => $form->createView(),
             'permission_service' => $this->permissionService
         ]);
-    }
-    
-    #[Route('/users/{id}/approve', name: 'app_admin_user_approve')]
-    public function approveUser(
-        User $user,
-        UserRepository $userRepository,
-        TranslatorInterface $translator,
-        Request $request
-    ): Response {
-        $admin = $this->getUser();
-        
-        if (!$admin || !$admin->isAdmin()) {
-            return $this->redirectToRoute('app_login');
-        }
-        
-        // Vérifier la permission d'approbation des utilisateurs
-        if (!$this->permissionService->hasPermission($admin, 'approve_users')) {
-            $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
-            return $this->redirectToRoute('app_admin_dashboard');
-        }
-        
-        // Valider que l'utilisateur est vérifié mais pas encore approuvé
-        if (!$user->isVerified() || $user->isApproved()) {
-            $this->addFlash('error', 'Cet utilisateur ne peut pas être approuvé.');
-            return $this->redirectToRoute('app_admin_dashboard');
-        }
-        
-        // Approuver l'utilisateur
-        $user->setIsApproved(true);
-        $user->setApprovedAt(new \DateTimeImmutable());
-        $userRepository->save($user, true);
-        
-        // Envoyer un email d'approbation
-        $this->emailService->sendEmailToUser('account_approved', $user);
-        
-        $this->addFlash('success', $translator->trans('admin.user.flash.approved'));
-        
-        // Rediriger vers la page précédente
-        $referer = $request->headers->get('referer');
-        if ($referer) {
-            return $this->redirect($referer);
-        }
-        
-        return $this->redirectToRoute('app_admin_dashboard');
     }
 }
