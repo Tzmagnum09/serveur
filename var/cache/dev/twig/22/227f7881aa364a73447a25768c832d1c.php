@@ -329,60 +329,135 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         <div class=\"card-body\">
             ";
         // line 134
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 134, $this->source); })()), 'form_start');
+        if ((array_key_exists("availableLocales", $context) && array_key_exists("existingLocales", $context))) {
+            // line 135
+            yield "            <div class=\"language-selector mb-4\">
+                <strong class=\"me-2\">";
+            // line 136
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.languages"), "html", null, true);
+            yield ":</strong>
+                ";
+            // line 137
+            $context['_parent'] = $context;
+            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["availableLocales"]) || array_key_exists("availableLocales", $context) ? $context["availableLocales"] : (function () { throw new RuntimeError('Variable "availableLocales" does not exist.', 137, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["loc"]) {
+                // line 138
+                yield "                    ";
+                $context["localeClass"] = ((($context["loc"] == CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 138, $this->source); })()), "locale", [], "any", false, false, false, 138))) ? ("active") : (""));
+                // line 139
+                yield "                    ";
+                $context["localeText"] = ((($context["loc"] == "fr")) ? ("Français") : (((($context["loc"] == "nl")) ? ("Néerlandais") : (((($context["loc"] == "en")) ? ("Anglais") : ("Allemand"))))));
+                // line 140
+                yield "                    
+                    ";
+                // line 141
+                if (CoreExtension::inFilter($context["loc"], (isset($context["existingLocales"]) || array_key_exists("existingLocales", $context) ? $context["existingLocales"] : (function () { throw new RuntimeError('Variable "existingLocales" does not exist.', 141, $this->source); })()))) {
+                    // line 142
+                    yield "                        <a href=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_edit_locale", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 142, $this->source); })()), "id", [], "any", false, false, false, 142), "locale" => $context["loc"]]), "html", null, true);
+                    yield "\" 
+                           class=\"language-badge ";
+                    // line 143
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["localeClass"]) || array_key_exists("localeClass", $context) ? $context["localeClass"] : (function () { throw new RuntimeError('Variable "localeClass" does not exist.', 143, $this->source); })()), "html", null, true);
+                    yield "\" 
+                           title=\"";
+                    // line 144
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.switch_language"), "html", null, true);
+                    yield "\">
+                            ";
+                    // line 145
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["localeText"]) || array_key_exists("localeText", $context) ? $context["localeText"] : (function () { throw new RuntimeError('Variable "localeText" does not exist.', 145, $this->source); })()), "html", null, true);
+                    yield "
+                        </a>
+                    ";
+                } else {
+                    // line 148
+                    yield "                        <a href=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_edit_locale", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 148, $this->source); })()), "id", [], "any", false, false, false, 148), "locale" => $context["loc"]]), "html", null, true);
+                    yield "\" 
+                           class=\"language-badge ";
+                    // line 149
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["localeClass"]) || array_key_exists("localeClass", $context) ? $context["localeClass"] : (function () { throw new RuntimeError('Variable "localeClass" does not exist.', 149, $this->source); })()), "html", null, true);
+                    yield "\" 
+                           title=\"";
+                    // line 150
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.create_translation"), "html", null, true);
+                    yield "\">
+                            ";
+                    // line 151
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["localeText"]) || array_key_exists("localeText", $context) ? $context["localeText"] : (function () { throw new RuntimeError('Variable "localeText" does not exist.', 151, $this->source); })()), "html", null, true);
+                    yield " <i class=\"fas fa-plus fa-xs\"></i>
+                        </a>
+                    ";
+                }
+                // line 154
+                yield "                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_key'], $context['loc'], $context['_parent']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 155
+            yield "            </div>
+            ";
+        }
+        // line 157
+        yield "            
+            ";
+        // line 158
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 158, $this->source); })()), 'form_start');
         yield "
                 <div class=\"row mb-3\">
                     <div class=\"col-md-6\">
                         ";
-        // line 137
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 137, $this->source); })()), "code", [], "any", false, false, false, 137), 'row');
+        // line 161
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 161, $this->source); })()), "code", [], "any", false, false, false, 161), 'row');
         yield "
                     </div>
                     <div class=\"col-md-6\">
                         ";
-        // line 140
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 140, $this->source); })()), "locale", [], "any", false, false, false, 140), 'row');
+        // line 164
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 164, $this->source); })()), "locale", [], "any", false, false, false, 164), 'row', ["attr" => ["id" => "locale-selector"]]);
         yield "
                     </div>
                 </div>
                 
                 <div class=\"mb-3\">
                     ";
-        // line 145
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 145, $this->source); })()), "subject", [], "any", false, false, false, 145), 'row');
+        // line 169
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 169, $this->source); })()), "subject", [], "any", false, false, false, 169), 'row');
         yield "
                 </div>
                 
                 <div class=\"mb-3\">
                     ";
-        // line 149
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 149, $this->source); })()), "htmlContent", [], "any", false, false, false, 149), 'label');
+        // line 173
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 173, $this->source); })()), "htmlContent", [], "any", false, false, false, 173), 'label');
         yield "
                     ";
-        // line 150
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 150, $this->source); })()), "htmlContent", [], "any", false, false, false, 150), 'widget', ["attr" => ["class" => "html-editor form-control"]]);
+        // line 174
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 174, $this->source); })()), "htmlContent", [], "any", false, false, false, 174), 'widget', ["attr" => ["class" => "html-editor form-control"]]);
         yield "
                     ";
-        // line 151
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 151, $this->source); })()), "htmlContent", [], "any", false, false, false, 151), 'help');
+        // line 175
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 175, $this->source); })()), "htmlContent", [], "any", false, false, false, 175), 'help');
         yield "
                     ";
-        // line 152
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 152, $this->source); })()), "htmlContent", [], "any", false, false, false, 152), 'errors');
+        // line 176
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 176, $this->source); })()), "htmlContent", [], "any", false, false, false, 176), 'errors');
         yield "
                 </div>
                 
                 <div class=\"mb-3\">
                     ";
-        // line 156
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 156, $this->source); })()), "textContent", [], "any", false, false, false, 156), 'row');
+        // line 180
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 180, $this->source); })()), "textContent", [], "any", false, false, false, 180), 'row');
         yield "
                 </div>
                 
                 <div class=\"card mb-3\">
                     <div class=\"card-header\">
                         <h6 class=\"mb-0\">";
-        // line 161
+        // line 185
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.title"), "html", null, true);
         yield "</h6>
                     </div>
@@ -391,7 +466,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"firstName\">
                                     ";
-        // line 167
+        // line 191
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.firstName"), "html", null, true);
         yield "
                                 </button>
@@ -399,7 +474,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"lastName\">
                                     ";
-        // line 172
+        // line 196
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.lastName"), "html", null, true);
         yield "
                                 </button>
@@ -407,7 +482,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"fullName\">
                                     ";
-        // line 177
+        // line 201
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.fullName"), "html", null, true);
         yield "
                                 </button>
@@ -415,7 +490,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"email\">
                                     ";
-        // line 182
+        // line 206
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.email"), "html", null, true);
         yield "
                                 </button>
@@ -423,7 +498,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"domain\">
                                     ";
-        // line 187
+        // line 211
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.domain"), "html", null, true);
         yield "
                                 </button>
@@ -431,7 +506,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"token\">
                                     ";
-        // line 192
+        // line 216
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.token"), "html", null, true);
         yield "
                                 </button>
@@ -442,19 +517,19 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                 
                 <div class=\"d-flex justify-content-end\">
                     <a href=\"";
-        // line 200
+        // line 224
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_templates");
         yield "\" class=\"btn btn-outline-secondary me-2\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.cancel_btn"), "html", null, true);
         yield "</a>
                     <button type=\"submit\" class=\"btn btn-gradient\">";
-        // line 201
+        // line 225
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.save_btn"), "html", null, true);
         yield "</button>
                 </div>
             ";
-        // line 203
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 203, $this->source); })()), 'form_end');
+        // line 227
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 227, $this->source); })()), 'form_end');
         yield "
         </div>
     </div>
@@ -466,8 +541,8 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         <div class=\"modal-content\">
             <div class=\"modal-header\">
                 <h5 class=\"modal-title\" id=\"previewModalLabel\">";
-        // line 213
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.preview_title"), "Prévisualisation du template"), "html", null, true);
+        // line 237
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.preview_title"), "html", null, true);
         yield "</h5>
                 <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
             </div>
@@ -477,15 +552,15 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                         <span class=\"visually-hidden\">Loading...</span>
                     </div>
                     <p class=\"mt-2\">";
-        // line 221
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.loading"), "Chargement..."), "html", null, true);
+        // line 245
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.loading"), "html", null, true);
         yield "</p>
                 </div>
                 <iframe id=\"previewFrame\" style=\"display: none;\"></iframe>
             </div>
             <div class=\"modal-footer\">
                 <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">";
-        // line 226
+        // line 250
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.close_btn"), "html", null, true);
         yield "</button>
             </div>
@@ -499,7 +574,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         yield from [];
     }
 
-    // line 233
+    // line 257
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -509,7 +584,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 234
+        // line 258
         yield "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js\"></script>
     
     <script>
@@ -518,7 +593,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
             \$('.html-editor').summernote({
                 height: 300,
                 placeholder: '";
-        // line 241
+        // line 265
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.editor.placeholder"), "html", null, true);
         yield "',
                 toolbar: [
@@ -533,18 +608,35 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                 callbacks: {
                     onImageUpload: function(files) {
                         alert('";
-        // line 253
+        // line 277
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.editor.no_image_upload"), "html", null, true);
         yield "');
                     }
                 }
             });
             
+            // Gestionnaire de changement de langue
+            const localeSelector = document.getElementById('locale-selector');
+            if (localeSelector) {
+                localeSelector.addEventListener('change', function() {
+                    const selectedLocale = this.value;
+                    const templateId = '";
+        // line 287
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 287, $this->source); })()), "id", [], "any", false, false, false, 287), "html", null, true);
+        yield "';
+                    // Rediriger vers la version du template dans la langue sélectionnée
+                    window.location.href = '";
+        // line 289
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_edit_locale", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 289, $this->source); })()), "id", [], "any", false, false, false, 289), "locale" => "__locale__"]), "html", null, true);
+        yield "'.replace('__locale__', selectedLocale);
+                });
+            }
+            
             // Variable buttons
             \$('.variable-btn').on('click', function() {
                 const variable = \$(this).data('variable');
                 \$('.html-editor').summernote('insertText', '";
-        // line 261
+        // line 296
         yield "{{";
         yield " ' + variable + ' ";
         yield "}}";
@@ -569,8 +661,8 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                     
                     // Charger le contenu
                     const previewUrl = '";
-        // line 281
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_preview", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 281, $this->source); })()), "id", [], "any", false, false, false, 281)]), "html", null, true);
+        // line 316
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_template_preview", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 316, $this->source); })()), "id", [], "any", false, false, false, 316)]), "html", null, true);
         yield "';
                     
                     // Charger l'URL dans l'iframe
@@ -615,7 +707,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  573 => 281,  548 => 261,  537 => 253,  522 => 241,  513 => 234,  503 => 233,  489 => 226,  481 => 221,  470 => 213,  457 => 203,  452 => 201,  446 => 200,  435 => 192,  427 => 187,  419 => 182,  411 => 177,  403 => 172,  395 => 167,  386 => 161,  378 => 156,  371 => 152,  367 => 151,  363 => 150,  359 => 149,  352 => 145,  344 => 140,  338 => 137,  332 => 134,  326 => 131,  315 => 123,  310 => 121,  304 => 120,  301 => 119,  295 => 116,  292 => 115,  290 => 114,  284 => 111,  280 => 110,  275 => 108,  271 => 106,  261 => 105,  252 => 102,  244 => 97,  240 => 96,  233 => 93,  231 => 92,  227 => 90,  220 => 86,  216 => 85,  213 => 84,  210 => 83,  203 => 79,  199 => 78,  196 => 77,  193 => 76,  186 => 72,  182 => 71,  179 => 70,  177 => 69,  171 => 66,  167 => 65,  161 => 62,  158 => 61,  148 => 60,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  665 => 316,  640 => 296,  630 => 289,  625 => 287,  612 => 277,  597 => 265,  588 => 258,  578 => 257,  564 => 250,  556 => 245,  545 => 237,  532 => 227,  527 => 225,  521 => 224,  510 => 216,  502 => 211,  494 => 206,  486 => 201,  478 => 196,  470 => 191,  461 => 185,  453 => 180,  446 => 176,  442 => 175,  438 => 174,  434 => 173,  427 => 169,  419 => 164,  413 => 161,  407 => 158,  404 => 157,  400 => 155,  394 => 154,  388 => 151,  384 => 150,  380 => 149,  375 => 148,  369 => 145,  365 => 144,  361 => 143,  356 => 142,  354 => 141,  351 => 140,  348 => 139,  345 => 138,  341 => 137,  337 => 136,  334 => 135,  332 => 134,  326 => 131,  315 => 123,  310 => 121,  304 => 120,  301 => 119,  295 => 116,  292 => 115,  290 => 114,  284 => 111,  280 => 110,  275 => 108,  271 => 106,  261 => 105,  252 => 102,  244 => 97,  240 => 96,  233 => 93,  231 => 92,  227 => 90,  220 => 86,  216 => 85,  213 => 84,  210 => 83,  203 => 79,  199 => 78,  196 => 77,  193 => 76,  186 => 72,  182 => 71,  179 => 70,  177 => 69,  171 => 66,  167 => 65,  161 => 62,  158 => 61,  148 => 60,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -753,13 +845,37 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
             <h5 class=\"mb-0\">{{ 'admin.email_template_edit.form_title'|trans }}</h5>
         </div>
         <div class=\"card-body\">
+            {% if availableLocales is defined and existingLocales is defined %}
+            <div class=\"language-selector mb-4\">
+                <strong class=\"me-2\">{{ 'admin.email_template_edit.languages'|trans }}:</strong>
+                {% for loc in availableLocales %}
+                    {% set localeClass = loc == template.locale ? 'active' : '' %}
+                    {% set localeText = loc == 'fr' ? 'Français' : (loc == 'nl' ? 'Néerlandais' : (loc == 'en' ? 'Anglais' : 'Allemand')) %}
+                    
+                    {% if loc in existingLocales %}
+                        <a href=\"{{ path('app_admin_email_template_edit_locale', {'id': template.id, 'locale': loc}) }}\" 
+                           class=\"language-badge {{ localeClass }}\" 
+                           title=\"{{ 'admin.email_template_edit.switch_language'|trans }}\">
+                            {{ localeText }}
+                        </a>
+                    {% else %}
+                        <a href=\"{{ path('app_admin_email_template_edit_locale', {'id': template.id, 'locale': loc}) }}\" 
+                           class=\"language-badge {{ localeClass }}\" 
+                           title=\"{{ 'admin.email_template_edit.create_translation'|trans }}\">
+                            {{ localeText }} <i class=\"fas fa-plus fa-xs\"></i>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            
             {{ form_start(form) }}
                 <div class=\"row mb-3\">
                     <div class=\"col-md-6\">
                         {{ form_row(form.code) }}
                     </div>
                     <div class=\"col-md-6\">
-                        {{ form_row(form.locale) }}
+                        {{ form_row(form.locale, {'attr': {'id': 'locale-selector'}}) }}
                     </div>
                 </div>
                 
@@ -832,7 +948,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
     <div class=\"modal-dialog modal-xl\">
         <div class=\"modal-content\">
             <div class=\"modal-header\">
-                <h5 class=\"modal-title\" id=\"previewModalLabel\">{{ 'admin.email_template_edit.preview_title'|trans|default('Prévisualisation du template') }}</h5>
+                <h5 class=\"modal-title\" id=\"previewModalLabel\">{{ 'admin.email_template_edit.preview_title'|trans }}</h5>
                 <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
             </div>
             <div class=\"modal-body\">
@@ -840,7 +956,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                     <div class=\"spinner-border text-primary\" role=\"status\">
                         <span class=\"visually-hidden\">Loading...</span>
                     </div>
-                    <p class=\"mt-2\">{{ 'admin.email_template_edit.loading'|trans|default('Chargement...') }}</p>
+                    <p class=\"mt-2\">{{ 'admin.email_template_edit.loading'|trans }}</p>
                 </div>
                 <iframe id=\"previewFrame\" style=\"display: none;\"></iframe>
             </div>
@@ -876,6 +992,17 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                     }
                 }
             });
+            
+            // Gestionnaire de changement de langue
+            const localeSelector = document.getElementById('locale-selector');
+            if (localeSelector) {
+                localeSelector.addEventListener('change', function() {
+                    const selectedLocale = this.value;
+                    const templateId = '{{ template.id }}';
+                    // Rediriger vers la version du template dans la langue sélectionnée
+                    window.location.href = '{{ path(\"app_admin_email_template_edit_locale\", {\"id\": template.id, \"locale\": \"__locale__\"}) }}'.replace('__locale__', selectedLocale);
+                });
+            }
             
             // Variable buttons
             \$('.variable-btn').on('click', function() {

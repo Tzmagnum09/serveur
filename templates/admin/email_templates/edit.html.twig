@@ -131,13 +131,37 @@
             <h5 class="mb-0">{{ 'admin.email_template_edit.form_title'|trans }}</h5>
         </div>
         <div class="card-body">
+            {% if availableLocales is defined and existingLocales is defined %}
+            <div class="language-selector mb-4">
+                <strong class="me-2">{{ 'admin.email_template_edit.languages'|trans }}:</strong>
+                {% for loc in availableLocales %}
+                    {% set localeClass = loc == template.locale ? 'active' : '' %}
+                    {% set localeText = loc == 'fr' ? 'Français' : (loc == 'nl' ? 'Néerlandais' : (loc == 'en' ? 'Anglais' : 'Allemand')) %}
+                    
+                    {% if loc in existingLocales %}
+                        <a href="{{ path('app_admin_email_template_edit_locale', {'id': template.id, 'locale': loc}) }}" 
+                           class="language-badge {{ localeClass }}" 
+                           title="{{ 'admin.email_template_edit.switch_language'|trans }}">
+                            {{ localeText }}
+                        </a>
+                    {% else %}
+                        <a href="{{ path('app_admin_email_template_edit_locale', {'id': template.id, 'locale': loc}) }}" 
+                           class="language-badge {{ localeClass }}" 
+                           title="{{ 'admin.email_template_edit.create_translation'|trans }}">
+                            {{ localeText }} <i class="fas fa-plus fa-xs"></i>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            
             {{ form_start(form) }}
                 <div class="row mb-3">
                     <div class="col-md-6">
                         {{ form_row(form.code) }}
                     </div>
                     <div class="col-md-6">
-                        {{ form_row(form.locale) }}
+                        {{ form_row(form.locale, {'attr': {'id': 'locale-selector'}}) }}
                     </div>
                 </div>
                 
@@ -210,7 +234,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="previewModalLabel">{{ 'admin.email_template_edit.preview_title'|trans|default('Prévisualisation du template') }}</h5>
+                <h5 class="modal-title" id="previewModalLabel">{{ 'admin.email_template_edit.preview_title'|trans }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -218,7 +242,7 @@
                     <div class="spinner-border text-primary" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                    <p class="mt-2">{{ 'admin.email_template_edit.loading'|trans|default('Chargement...') }}</p>
+                    <p class="mt-2">{{ 'admin.email_template_edit.loading'|trans }}</p>
                 </div>
                 <iframe id="previewFrame" style="display: none;"></iframe>
             </div>
@@ -254,6 +278,17 @@
                     }
                 }
             });
+            
+            // Gestionnaire de changement de langue
+            const localeSelector = document.getElementById('locale-selector');
+            if (localeSelector) {
+                localeSelector.addEventListener('change', function() {
+                    const selectedLocale = this.value;
+                    const templateId = '{{ template.id }}';
+                    // Rediriger vers la version du template dans la langue sélectionnée
+                    window.location.href = '{{ path("app_admin_email_template_edit_locale", {"id": template.id, "locale": "__locale__"}) }}'.replace('__locale__', selectedLocale);
+                });
+            }
             
             // Variable buttons
             $('.variable-btn').on('click', function() {
