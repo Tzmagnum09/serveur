@@ -36,6 +36,9 @@ class EmailTemplateService
         $this->translator = $translator;
     }
 
+    /**
+     * Génère une prévisualisation du template
+     */
     public function previewTemplate(EmailTemplate $template): string
     {
         return $this->emailRenderer->renderPreview($template);
@@ -70,7 +73,7 @@ class EmailTemplateService
         
         // Créer et envoyer le message
         $message = new SendEmailMessage(
-            $this->params->get('app.email') ?? 'contact@domaine.com',
+            $this->params->get('app.email') ?? 'contact@dmqode.be',
             $user->getEmail(),
             $emailContent['subject'],
             $emailContent['htmlContent'],

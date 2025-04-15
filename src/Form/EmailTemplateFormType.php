@@ -10,9 +10,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class EmailTemplateFormType extends AbstractType
 {
+    private TranslatorInterface $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -24,61 +32,61 @@ class EmailTemplateFormType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer un code',
+                        'message' => $this->translator->trans('admin.email_templates.validation.code_required'),
                     ]),
                 ],
-                'help' => 'Le code unique pour identifier ce template (ex: registration_confirmation)',
+                'help' => $this->translator->trans('admin.email_templates.help.code'),
             ])
             ->add('locale', ChoiceType::class, [
-                'label' => 'Langue',
+                'label' => $this->translator->trans('admin.email_templates.field.language'),
                 'choices' => [
-                    'Français' => 'fr',
-                    'Néerlandais' => 'nl',
-                    'Anglais' => 'en',
-                    'Allemand' => 'de',
+                    $this->translator->trans('language.french') => 'fr',
+                    $this->translator->trans('language.dutch') => 'nl',
+                    $this->translator->trans('language.english') => 'en',
+                    $this->translator->trans('language.german') => 'de',
                 ],
                 'attr' => [
                     'class' => 'form-control',
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez sélectionner une langue',
+                        'message' => $this->translator->trans('admin.email_templates.validation.language_required'),
                     ]),
                 ],
             ])
             ->add('subject', TextType::class, [
-                'label' => 'Sujet',
+                'label' => $this->translator->trans('admin.email_templates.field.subject'),
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Confirmation de votre inscription',
+                    'placeholder' => $this->translator->trans('admin.email_templates.placeholder.subject'),
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer un sujet',
+                        'message' => $this->translator->trans('admin.email_templates.validation.subject_required'),
                     ]),
                 ],
             ])
             ->add('htmlContent', TextareaType::class, [
-                'label' => 'Contenu HTML',
+                'label' => $this->translator->trans('admin.email_templates.field.html_content'),
                 'attr' => [
                     'class' => 'form-control html-editor',
                     'rows' => 15,
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer un contenu HTML',
+                        'message' => $this->translator->trans('admin.email_templates.validation.html_content_required'),
                     ]),
                 ],
-                'help' => 'Vous pouvez utiliser des variables comme {{ firstName }}, {{ lastName }}, {{ domain }}, etc.',
+                'help' => $this->translator->trans('admin.email_templates.help.variables'),
             ])
             ->add('textContent', TextareaType::class, [
-                'label' => 'Contenu texte (optionnel)',
+                'label' => $this->translator->trans('admin.email_templates.field.text_content'),
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control',
                     'rows' => 8,
                 ],
-                'help' => 'Version texte simple (sans HTML) de l\'email (optionnel)',
+                'help' => $this->translator->trans('admin.email_templates.help.text_content'),
             ])
         ;
     }
@@ -87,6 +95,7 @@ class EmailTemplateFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => EmailTemplate::class,
+            'translation_domain' => 'messages',
         ]);
     }
 }

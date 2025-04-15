@@ -1,9 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'admin.email_template_edit.title'|trans }}{% endblock %}
+{% block title %}{{ 'admin.email_template_edit.title'|trans({'%code%': template.code, '%locale%': template.locale|upper}) }}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css">
+    <style>
+        .language-selector {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .language-badge {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .language-badge.active {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+        }
+        
+        .language-badge:not(.active) {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .language-badge:hover:not(.active) {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        /* Styles pour la modal de prévisualisation */
+        #previewModal .modal-dialog {
+            max-width: 800px;
+        }
+        
+        #previewModal .modal-body {
+            padding: 0;
+        }
+        
+        #previewFrame {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        
+        #previewLoading {
+            padding: 3rem;
+            text-align: center;
+        }
+    </style>
 {% endblock %}
 
 {% block sidebar %}
@@ -61,9 +112,9 @@
             </a>
             
             {% if is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'preview_email_templates') %}
-            <a href="{{ path('app_admin_email_template_preview', {'id': template.id}) }}" target="_blank" class="btn btn-outline-primary me-2">
+            <button id="previewBtn" class="btn btn-outline-primary me-2">
                 <i class="fas fa-eye me-1"></i> {{ 'admin.email_template_edit.preview_btn'|trans }}
-            </a>
+            </button>
             {% endif %}
             
             <form method="post" action="{{ path('app_admin_email_template_delete', {'id': template.id}) }}" onsubmit="return confirm('{{ 'admin.email_template_edit.confirm_delete'|trans }}')">
@@ -80,6 +131,24 @@
             <h5 class="mb-0">{{ 'admin.email_template_edit.form_title'|trans }}</h5>
         </div>
         <div class="card-body">
+            <!-- Sélecteur de langue -->
+            <div class="language-selector mb-4">
+                <span class="me-2">{{ 'admin.email_template_edit.language'|trans|default('Langue') }}:</span>
+                {% for locale in availableLocales %}
+                    {% if locale in existingLocales %}
+                        <a href="{{ path('app_admin_email_template_edit_locale', {'id': template.id, 'locale': locale}) }}" 
+                           class="language-badge {% if template.locale == locale %}active{% endif %}">
+                            {{ locale|upper }}
+                        </a>
+                    {% else %}
+                        <a href="{{ path('app_admin_email_template_new', {'code': template.code, 'locale': locale}) }}" 
+                           class="language-badge" title="{{ 'admin.email_template_edit.create_translation'|trans|default('Créer cette traduction') }}">
+                            {{ locale|upper }} <i class="fas fa-plus-circle fs-6"></i>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        
             {{ form_start(form) }}
                 <div class="row mb-3">
                     <div class="col-md-6">
@@ -153,6 +222,30 @@
         </div>
     </div>
 </div>
+
+<!-- Modal pour la prévisualisation du template -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="previewModalLabel">{{ 'admin.email_template_edit.preview_title'|trans|default('Prévisualisation du template') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="previewLoading">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">{{ 'admin.email_template_edit.loading'|trans|default('Chargement...') }}</p>
+                </div>
+                <iframe id="previewFrame" style="display: none;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'admin.email_template_edit.close_btn'|trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block javascripts %}
@@ -184,6 +277,36 @@
             $('.variable-btn').on('click', function() {
                 const variable = $(this).data('variable');
                 $('.html-editor').summernote('insertText', '{{ '{{' }} ' + variable + ' {{ '}}' }}');
+            });
+            
+            // Modal preview
+            const previewBtn = document.getElementById('previewBtn');
+            const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+            const previewFrame = document.getElementById('previewFrame');
+            const previewLoading = document.getElementById('previewLoading');
+            
+            previewBtn.addEventListener('click', function() {
+                // Réinitialiser l'iframe et afficher le loader
+                previewFrame.src = '';
+                previewFrame.style.display = 'none';
+                previewLoading.style.display = 'block';
+                
+                // Afficher la modal
+                previewModal.show();
+                
+                // Charger le contenu
+                const previewUrl = '{{ path('app_admin_email_template_preview', {'id': template.id}) }}';
+                
+                // Charger l'URL dans l'iframe
+                setTimeout(function() {
+                    previewFrame.src = previewUrl;
+                    
+                    // Quand l'iframe est chargée, masquer le loader et afficher l'iframe
+                    previewFrame.onload = function() {
+                        previewLoading.style.display = 'none';
+                        previewFrame.style.display = 'block';
+                    };
+                }, 500);
             });
         });
     </script>

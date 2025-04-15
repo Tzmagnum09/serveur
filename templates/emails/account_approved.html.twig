@@ -1,0 +1,65 @@
+{% extends 'emails/email_template_base.html.twig' %}
+
+{% block email_content %}
+<p>
+    {% if locale == 'fr' %}
+        Bonjour {{ firstName }},
+    {% elseif locale == 'en' %}
+        Dear {{ firstName }},
+    {% elseif locale == 'nl' %}
+        Beste {{ firstName }},
+    {% elseif locale == 'de' %}
+        Sehr geehrte/-r {{ firstName }},
+    {% endif %}
+</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Nous avons le plaisir de vous informer que votre compte a été approuvé par notre équipe d'administration. Vous pouvez désormais vous connecter à votre compte en cliquant sur le bouton ci-dessous.
+    {% elseif locale == 'en' %}
+        We are pleased to inform you that your account has been approved by our administration team. You can now log in to your account by clicking the button below.
+    {% elseif locale == 'nl' %}
+        We zijn verheugd u te informeren dat uw account is goedgekeurd door ons administratieteam. U kunt nu inloggen op uw account door op de onderstaande knop te klikken.
+    {% elseif locale == 'de' %}
+        Wir freuen uns, Ihnen mitteilen zu können, dass Ihr Konto von unserem Verwaltungsteam genehmigt wurde. Sie können sich jetzt in Ihr Konto einloggen, indem Sie auf die Schaltfläche unten klicken.
+    {% endif %}
+</p>
+
+<p style="text-align: center;">
+    <a href="https://{{ domain }}/login" class="button">
+        {% if locale == 'fr' %}
+            Se connecter
+        {% elseif locale == 'en' %}
+            Log in
+        {% elseif locale == 'nl' %}
+            Inloggen
+        {% elseif locale == 'de' %}
+            Einloggen
+        {% endif %}
+    </a>
+</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Si vous avez des questions, n'hésitez pas à nous contacter.
+    {% elseif locale == 'en' %}
+        If you have any questions, please don't hesitate to contact us.
+    {% elseif locale == 'nl' %}
+        Als u vragen heeft, aarzel dan niet om contact met ons op te nemen.
+    {% elseif locale == 'de' %}
+        Wenn Sie Fragen haben, zögern Sie nicht, uns zu kontaktieren.
+    {% endif %}
+</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Cordialement,<br>L'équipe Dmqode.be.
+    {% elseif locale == 'en' %}
+        Best regards,<br>The Dmqode.be Team.
+    {% elseif locale == 'nl' %}
+        Met vriendelijke groeten,<br>Het Dmqode.be-team.
+    {% elseif locale == 'de' %}
+        Mit freundlichen Grüßen,<br>Das Dmqode.be-Team.
+    {% endif %}
+</p>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'emails/email_template_base.html.twig' %}
+
+{% block email_content %}
+<p>
+    {% if locale == 'fr' %}
+        Bonjour {{ firstName }},
+    {% elseif locale == 'en' %}
+        Dear {{ firstName }},
+    {% elseif locale == 'nl' %}
+        Beste {{ firstName }},
+    {% elseif locale == 'de' %}
+        Sehr geehrte/-r {{ firstName }},
+    {% endif %}
+</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Merci de vous être inscrit sur notre site. Pour confirmer votre adresse email, veuillez cliquer sur le bouton ci-dessous.
+    {% elseif locale == 'en' %}
+        Thank you for registering on our website. To confirm your email address, please click the button below.
+    {% elseif locale == 'nl' %}
+        Bedankt voor uw inschrijving op onze website. Om uw e-mailadres te bevestigen, klik op de onderstaande knop.
+    {% elseif locale == 'de' %}
+        Vielen Dank, dass Sie sich auf unserer Website registriert haben. Um Ihre E-Mail-Adresse zu bestätigen, klicken Sie bitte auf den untenstehenden Button.
+    {% endif %}
+</p>
+
+<p style="text-align: center;">
+    <a href="{{ signedUrl }}" class="button">
+        {% if locale == 'fr' %}
+            Confirmer mon adresse email
+        {% elseif locale == 'en' %}
+            Confirm my email address
+        {% elseif locale == 'nl' %}
+            Mijn e-mailadres bevestigen
+        {% elseif locale == 'de' %}
+            Meine E-Mail-Adresse bestätigen
+        {% endif %}
+    </a>
+</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :
+    {% elseif locale == 'en' %}
+        If the button doesn't work, you can copy and paste the following link into your browser:
+    {% elseif locale == 'nl' %}
+        Als de knop niet werkt, kunt u de volgende link kopiëren en plakken in uw browser:
+    {% elseif locale == 'de' %}
+        Wenn der Button nicht funktioniert, können Sie den folgenden Link kopieren und in Ihren Browser einfügen:
+    {% endif %}
+</p>
+<p>{{ signedUrl }}</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Ce lien expirera dans 24 heures.
+    {% elseif locale == 'en' %}
+        This link will expire in 24 hours.
+    {% elseif locale == 'nl' %}
+        Deze link verloopt binnen 24 uur.
+    {% elseif locale == 'de' %}
+        Dieser Link wird in 24 Stunden ablaufen.
+    {% endif %}
+</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Si vous n'avez pas créé de compte, veuillez ignorer cet email.
+    {% elseif locale == 'en' %}
+        If you did not create an account, please disregard this email.
+    {% elseif locale == 'nl' %}
+        Als u geen account heeft aangemaakt, kunt u deze e-mail negeren.
+    {% elseif locale == 'de' %}
+        Wenn Sie kein Konto erstellt haben, ignorieren Sie bitte diese E-Mail.
+    {% endif %}
+</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Cordialement,<br>L'équipe Dmqode.be.
+    {% elseif locale == 'en' %}
+        Best regards,<br>The Dmqode.be Team.
+    {% elseif locale == 'nl' %}
+        Met vriendelijke groeten,<br>Het Dmqode.be-team.
+    {% elseif locale == 'de' %}
+        Mit freundlichen Grüßen,<br>Das Dmqode.be-Team.
+    {% endif %}
+</p>
+{% endblock %}

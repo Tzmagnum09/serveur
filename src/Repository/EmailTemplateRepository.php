@@ -71,6 +71,9 @@ class EmailTemplateRepository extends ServiceEntityRepository
             $grouped[$template->getCode()][$template->getLocale()] = $template;
         }
         
+        // Sort by code alphabetically
+        ksort($grouped);
+        
         return $grouped;
     }
 
@@ -88,5 +91,39 @@ class EmailTemplateRepository extends ServiceEntityRepository
             ->getResult();
             
         return array_column($result, 'code');
+    }
+
+    /**
+     * Find templates by code
+     * 
+     * @param string $code 
+     * @return EmailTemplate[]
+     */
+    public function findByCode(string $code): array
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.code = :code')
+            ->setParameter('code', $code)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Search templates by code or content
+     * 
+     * @param string $query
+     * @return EmailTemplate[]
+     */
+    public function searchTemplates(string $query): array
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.code LIKE :query')
+            ->orWhere('e.subject LIKE :query')
+            ->orWhere('e.htmlContent LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->orderBy('e.code', 'ASC')
+            ->addOrderBy('e.locale', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }

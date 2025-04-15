@@ -1,0 +1,80 @@
+{% extends 'emails/email_template_base.html.twig' %}
+
+{% block email_content %}
+<p>
+    {% if locale == 'fr' %}
+        Bonjour {{ firstName }},
+    {% elseif locale == 'en' %}
+        Dear {{ firstName }},
+    {% elseif locale == 'nl' %}
+        Beste {{ firstName }},
+    {% elseif locale == 'de' %}
+        Sehr geehrte/-r {{ firstName }},
+    {% endif %}
+</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Nous vous informons que vos permissions sur le site Dmqode.be ont été modifiées.
+    {% elseif locale == 'en' %}
+        We are writing to inform you that your permissions on the Dmqode.be website have been updated.
+    {% elseif locale == 'nl' %}
+        We informeren u dat uw rechten op de Dmqode.be-website zijn gewijzigd.
+    {% elseif locale == 'de' %}
+        Wir möchten Sie darüber informieren, dass sich Ihre Berechtigungen auf der Dmqode.be-Website geändert haben.
+    {% endif %}
+</p>
+
+<div class="permission-changes">
+    <h3>
+        {% if locale == 'fr' %}
+            Détails des modifications
+        {% elseif locale == 'en' %}
+            Changes Details
+        {% elseif locale == 'nl' %}
+            Details van de wijzigingen
+        {% elseif locale == 'de' %}
+            Details der Änderungen
+        {% endif %}
+    </h3>
+    <p>{{ permissionChanges|raw }}</p>
+</div>
+
+<p>
+    {% if locale == 'fr' %}
+        Si vous avez des questions sur ces modifications, n'hésitez pas à contacter notre support.
+    {% elseif locale == 'en' %}
+        If you have any questions about these changes, please don't hesitate to contact our support.
+    {% elseif locale == 'nl' %}
+        Als u vragen heeft over deze wijzigingen, aarzel dan niet om contact op te nemen met onze ondersteuning.
+    {% elseif locale == 'de' %}
+        Bei Fragen zu diesen Änderungen zögern Sie nicht, unseren Support zu kontaktieren.
+    {% endif %}
+</p>
+
+<p style="text-align: center;">
+    <a href="https://{{ domain }}/login" class="button">
+        {% if locale == 'fr' %}
+            Se connecter
+        {% elseif locale == 'en' %}
+            Log in
+        {% elseif locale == 'nl' %}
+            Inloggen
+        {% elseif locale == 'de' %}
+            Einloggen
+        {% endif %}
+    </a>
+</p>
+
+<p>
+    {% if locale == 'fr' %}
+        Cordialement,<br>L'équipe Dmqode.be.
+    {% elseif locale == 'en' %}
+        Best regards,<br>The Dmqode.be Team.
+    {% elseif locale == 'nl' %}
+        Met vriendelijke groeten,<br>Het Dmqode.be-team.
+    {% elseif locale == 'de' %}
+        Mit freundlichen Grüßen,<br>Das Dmqode.be-Team.
+    {% endif %}
+</p>
+{% endblock %}

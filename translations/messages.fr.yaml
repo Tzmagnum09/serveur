@@ -292,6 +292,8 @@ admin:
     email_templates:
         title: "Gestion des templates d'emails"
         new_btn: "Nouveau template"
+        language: "Langue"
+        create_translation: "Créer cette traduction"
         list: "Liste des templates"
         code: "Code"
         subject: "Sujet"
@@ -326,6 +328,8 @@ admin:
         save_btn: "Enregistrer"
     email_template_edit:
         title: "Modifier le template %code% (%locale%)"
+        language: "Langue"
+        create_translation: "Créer cette traduction"
         back_btn: "Retour"
         preview_btn: "Prévisualiser"
         delete_btn: "Supprimer"

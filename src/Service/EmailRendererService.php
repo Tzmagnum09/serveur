@@ -34,7 +34,7 @@ class EmailRendererService
             'lastName' => $user->getLastName(),
             'fullName' => $user->getFullName(),
             'email' => $user->getEmail(),
-            'domain' => $this->params->get('app.domain') ?? $_SERVER['HTTP_HOST'] ?? 'domaine.com',
+            'domain' => $this->params->get('app.domain') ?? $_SERVER['HTTP_HOST'] ?? 'dmqode.be',
             'locale' => $user->getLocale()
         ]);
         
@@ -63,8 +63,8 @@ class EmailRendererService
             'email' => 'email@exemple.com',
             'domain' => $this->params->get('app.domain') ?? 'dmqode.be',
             'locale' => $template->getLocale(),
-            'resetToken' => 'https://exemple.com/reset/token123456789',
-            'signedUrl' => 'https://exemple.com/verify/email123456789',
+            'resetToken' => 'https://dmqode.be/reset/token123456789',
+            'signedUrl' => 'https://dmqode.be/verify/email123456789',
             'tokenLifetime' => '1',
             'permissionChanges' => 'Certaines permissions ont été modifiées',
             'previousRole' => 'Utilisateur',

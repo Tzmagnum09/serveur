@@ -7,6 +7,7 @@ use App\Form\EmailTemplateFormType;
 use App\Repository\EmailTemplateRepository;
 use App\Service\AdminPermissionService;
 use App\Service\EmailTemplateService;
+use App\Service\AuditLogService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,13 +19,16 @@ class EmailTemplateController extends AbstractController
 {
     private AdminPermissionService $permissionService;
     private EmailTemplateService $emailService;
+    private AuditLogService $auditLogService;
 
     public function __construct(
         AdminPermissionService $permissionService,
-        EmailTemplateService $emailService
+        EmailTemplateService $emailService,
+        AuditLogService $auditLogService
     ) {
         $this->permissionService = $permissionService;
         $this->emailService = $emailService;
+        $this->auditLogService = $auditLogService;
     }
 
     #[Route('', name: 'app_admin_email_templates')]
@@ -44,6 +48,13 @@ class EmailTemplateController extends AbstractController
 
         // Get templates grouped by code
         $templates = $templateRepository->findAllGroupedByCode();
+
+        // Log action
+        $this->auditLogService->log(
+            $admin,
+            'view_email_templates',
+            'Consultation de la liste des templates d\'email'
+        );
 
         return $this->render('admin/email_templates/index.html.twig', [
             'templates' => $templates,
@@ -84,7 +95,15 @@ class EmailTemplateController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $template->setCreatedAt(new \DateTimeImmutable());
             $templateRepository->save($template, true);
+
+            // Log action
+            $this->auditLogService->log(
+                $admin,
+                'create_email_template',
+                sprintf('Création du template d\'email "%s" pour la langue "%s"', $template->getCode(), $template->getLocale())
+            );
 
             $this->addFlash('success', $translator->trans('admin.email_template.flash.created'));
 
@@ -123,6 +142,17 @@ class EmailTemplateController extends AbstractController
             $template->setUpdatedAt(new \DateTimeImmutable());
             $templateRepository->save($template, true);
 
+            // Log action
+            $this->auditLogService->log(
+                $admin,
+                'update_email_template',
+                sprintf('Modification du template d\'email "%s" pour la langue "%s" (ID: %d)', 
+                    $template->getCode(), 
+                    $template->getLocale(),
+                    $template->getId()
+                )
+            );
+
             $this->addFlash('success', $translator->trans('admin.email_template.flash.updated'));
 
             return $this->redirectToRoute('app_admin_email_templates');
@@ -150,6 +180,17 @@ class EmailTemplateController extends AbstractController
             return $this->redirectToRoute('app_admin_dashboard');
         }
 
+        // Log action
+        $this->auditLogService->log(
+            $admin,
+            'preview_email_template',
+            sprintf('Prévisualisation du template d\'email "%s" pour la langue "%s" (ID: %d)', 
+                $template->getCode(), 
+                $template->getLocale(),
+                $template->getId()
+            )
+        );
+
         // Preview template with sample data
         $htmlContent = $this->emailService->previewTemplate($template);
 
@@ -176,6 +217,17 @@ class EmailTemplateController extends AbstractController
         }
 
         if ($this->isCsrfTokenValid('delete'.$template->getId(), $request->request->get('_token'))) {
+            // Log action before deletion
+            $this->auditLogService->log(
+                $admin,
+                'delete_email_template',
+                sprintf('Suppression du template d\'email "%s" pour la langue "%s" (ID: %d)', 
+                    $template->getCode(), 
+                    $template->getLocale(),
+                    $template->getId()
+                )
+            );
+
             $templateRepository->remove($template, true);
 
             $this->addFlash('success', $translator->trans('admin.email_template.flash.deleted'));
