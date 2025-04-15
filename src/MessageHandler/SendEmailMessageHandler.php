@@ -30,11 +30,6 @@ class SendEmailMessageHandler
                 ->subject($message->getSubject())
                 ->html($message->getHtmlContent());
             
-            // Ajouter du texte brut si disponible
-            if ($message->getTextContent()) {
-                $email->text($message->getTextContent());
-            }
-            
             // Ajouter les destinataires en copie
             foreach ($message->getCc() as $cc) {
                 $email->addCc($cc);

@@ -63,16 +63,6 @@ class EmailTemplateService
             $template = $this->emailTemplateRepository->findByCodeAndLocale($templateCode, 'en');
         }
         
-        // Si toujours pas de template, essayer en néerlandais
-        if (!$template && $locale !== 'nl') {
-            $template = $this->emailTemplateRepository->findByCodeAndLocale($templateCode, 'nl');
-        }
-        
-        // Si toujours pas de template, essayer en allemand
-        if (!$template && $locale !== 'de') {
-            $template = $this->emailTemplateRepository->findByCodeAndLocale($templateCode, 'de');
-        }
-        
         // Si aucun template n'est trouvé
         if (!$template) {
             return false;
@@ -86,8 +76,7 @@ class EmailTemplateService
             $this->params->get('app.email') ?? 'contact@dmqode.be',
             $user->getEmail(),
             $emailContent['subject'],
-            $emailContent['htmlContent'],
-            $emailContent['textContent']
+            $emailContent['htmlContent']
         );
         
         $this->messageBus->dispatch($message);
@@ -117,7 +106,7 @@ class EmailTemplateService
                 $template->setLocale($templateData['locale']);
                 $template->setSubject($templateData['subject']);
                 $template->setHtmlContent($templateData['htmlContent']);
-                $template->setTextContent($templateData['textContent']);
+                $template->setTextContent(null); // On ne définit plus de contenu texte
                 $template->setCreatedAt(new \DateTimeImmutable());
                 
                 $this->entityManager->persist($template);

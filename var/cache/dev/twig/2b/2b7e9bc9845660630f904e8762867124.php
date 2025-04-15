@@ -287,17 +287,10 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
         yield "
                 </div>
                 
-                <div class=\"mb-3\">
-                    ";
-        // line 90
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 90, $this->source); })()), "textContent", [], "any", false, false, false, 90), 'row');
-        yield "
-                </div>
-                
                 <div class=\"card mb-3\">
                     <div class=\"card-header\">
                         <h6 class=\"mb-0\">";
-        // line 95
+        // line 91
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.title"), "html", null, true);
         yield "</h6>
                     </div>
@@ -306,7 +299,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"firstName\">
                                     ";
-        // line 101
+        // line 97
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.firstName"), "html", null, true);
         yield "
                                 </button>
@@ -314,7 +307,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"lastName\">
                                     ";
-        // line 106
+        // line 102
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.lastName"), "html", null, true);
         yield "
                                 </button>
@@ -322,7 +315,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"fullName\">
                                     ";
-        // line 111
+        // line 107
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.fullName"), "html", null, true);
         yield "
                                 </button>
@@ -330,7 +323,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"email\">
                                     ";
-        // line 116
+        // line 112
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.email"), "html", null, true);
         yield "
                                 </button>
@@ -338,7 +331,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"domain\">
                                     ";
-        // line 121
+        // line 117
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.domain"), "html", null, true);
         yield "
                                 </button>
@@ -346,7 +339,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"token\">
                                     ";
-        // line 126
+        // line 122
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.token"), "html", null, true);
         yield "
                                 </button>
@@ -357,19 +350,19 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                 
                 <div class=\"d-flex justify-content-end\">
                     <a href=\"";
-        // line 134
+        // line 130
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_templates");
         yield "\" class=\"btn btn-outline-secondary me-2\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_new.cancel_btn"), "html", null, true);
         yield "</a>
                     <button type=\"submit\" class=\"btn btn-gradient\">";
-        // line 135
+        // line 131
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_new.save_btn"), "html", null, true);
         yield "</button>
                 </div>
             ";
-        // line 137
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 137, $this->source); })()), 'form_end');
+        // line 133
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 133, $this->source); })()), 'form_end');
         yield "
         </div>
     </div>
@@ -381,7 +374,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
         yield from [];
     }
 
-    // line 143
+    // line 139
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -391,7 +384,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 144
+        // line 140
         yield "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js\"></script>
     
     <script>
@@ -481,7 +474,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                 callbacks: {
                     onImageUpload: function(files) {
                         alert('";
-        // line 232
+        // line 228
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.editor.no_image_upload"), "html", null, true);
         yield "');
                     }
@@ -492,7 +485,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
             \$('.variable-btn').on('click', function() {
                 const variable = \$(this).data('variable');
                 \$('.html-editor').summernote('insertText', '";
-        // line 240
+        // line 236
         yield "{{";
         yield " ' + variable + ' ";
         yield "}}";
@@ -528,7 +521,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  496 => 240,  485 => 232,  395 => 144,  385 => 143,  372 => 137,  367 => 135,  361 => 134,  350 => 126,  342 => 121,  334 => 116,  326 => 111,  318 => 106,  310 => 101,  301 => 95,  293 => 90,  286 => 86,  282 => 85,  278 => 84,  274 => 83,  267 => 79,  259 => 74,  253 => 71,  247 => 68,  241 => 65,  232 => 59,  228 => 58,  224 => 57,  220 => 55,  210 => 54,  201 => 51,  193 => 46,  189 => 45,  182 => 42,  180 => 41,  176 => 39,  169 => 35,  165 => 34,  162 => 33,  159 => 32,  152 => 28,  148 => 27,  145 => 26,  142 => 25,  135 => 21,  131 => 20,  128 => 19,  126 => 18,  120 => 15,  116 => 14,  110 => 11,  107 => 10,  97 => 9,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  489 => 236,  478 => 228,  388 => 140,  378 => 139,  365 => 133,  360 => 131,  354 => 130,  343 => 122,  335 => 117,  327 => 112,  319 => 107,  311 => 102,  303 => 97,  294 => 91,  286 => 86,  282 => 85,  278 => 84,  274 => 83,  267 => 79,  259 => 74,  253 => 71,  247 => 68,  241 => 65,  232 => 59,  228 => 58,  224 => 57,  220 => 55,  210 => 54,  201 => 51,  193 => 46,  189 => 45,  182 => 42,  180 => 41,  176 => 39,  169 => 35,  165 => 34,  162 => 33,  159 => 32,  152 => 28,  148 => 27,  145 => 26,  142 => 25,  135 => 21,  131 => 20,  128 => 19,  126 => 18,  120 => 15,  116 => 14,  110 => 11,  107 => 10,  97 => 9,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -619,10 +612,6 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                     {{ form_widget(form.htmlContent, {'attr': {'class': 'html-editor form-control'}}) }}
                     {{ form_help(form.htmlContent) }}
                     {{ form_errors(form.htmlContent) }}
-                </div>
-                
-                <div class=\"mb-3\">
-                    {{ form_row(form.textContent) }}
                 </div>
                 
                 <div class=\"card mb-3\">

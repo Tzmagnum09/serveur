@@ -36,7 +36,6 @@ class EmailTemplateFormType extends AbstractType
                     ]),
                 ],
                 'help' => $this->translator->trans('admin.email_templates.help.code'),
-                'disabled' => $options['is_edit'] // Champ désactivé en mode édition
             ])
             ->add('locale', ChoiceType::class, [
                 'label' => $this->translator->trans('admin.email_templates.field.language'),
@@ -54,7 +53,6 @@ class EmailTemplateFormType extends AbstractType
                         'message' => $this->translator->trans('admin.email_templates.validation.language_required'),
                     ]),
                 ],
-                'disabled' => $options['is_edit'] // Champ désactivé en mode édition
             ])
             ->add('subject', TextType::class, [
                 'label' => $this->translator->trans('admin.email_templates.field.subject'),
@@ -81,15 +79,6 @@ class EmailTemplateFormType extends AbstractType
                 ],
                 'help' => $this->translator->trans('admin.email_templates.help.variables'),
             ])
-            ->add('textContent', TextareaType::class, [
-                'label' => $this->translator->trans('admin.email_templates.field.text_content'),
-                'required' => false,
-                'attr' => [
-                    'class' => 'form-control',
-                    'rows' => 8,
-                ],
-                'help' => $this->translator->trans('admin.email_templates.help.text_content'),
-            ])
         ;
     }
 
@@ -98,9 +87,6 @@ class EmailTemplateFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => EmailTemplate::class,
             'translation_domain' => 'messages',
-            'is_edit' => false, // Par défaut, mode création
         ]);
-        
-        $resolver->setAllowedTypes('is_edit', 'bool');
     }
 }

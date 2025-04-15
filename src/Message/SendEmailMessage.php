@@ -8,7 +8,6 @@ class SendEmailMessage
     private string $to;
     private string $subject;
     private string $htmlContent;
-    private ?string $textContent;
     private array $cc;
     private array $bcc;
     private array $attachments;
@@ -18,7 +17,6 @@ class SendEmailMessage
         string $to,
         string $subject,
         string $htmlContent,
-        ?string $textContent = null,
         array $cc = [],
         array $bcc = [],
         array $attachments = []
@@ -27,7 +25,6 @@ class SendEmailMessage
         $this->to = $to;
         $this->subject = $subject;
         $this->htmlContent = $htmlContent;
-        $this->textContent = $textContent;
         $this->cc = $cc;
         $this->bcc = $bcc;
         $this->attachments = $attachments;
@@ -51,11 +48,6 @@ class SendEmailMessage
     public function getHtmlContent(): string
     {
         return $this->htmlContent;
-    }
-    
-    public function getTextContent(): ?string
-    {
-        return $this->textContent;
     }
     
     public function getCc(): array

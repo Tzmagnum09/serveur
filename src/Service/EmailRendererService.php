@@ -35,12 +35,12 @@ class EmailRendererService
             'fullName' => $user->getFullName(),
             'email' => $user->getEmail(),
             'domain' => $this->params->get('app.domain') ?? $_SERVER['HTTP_HOST'] ?? 'dmqode.be',
-            'locale' => $template->getLocale() // Utiliser la locale du template, pas celle de l'utilisateur
+            'locale' => $user->getLocale()
         ]);
         
         // Générer le contenu
         $htmlContent = $this->renderHtmlContent($template, $variables);
-        $textContent = $template->getTextContent() ? $this->renderTextContent($template, $variables) : null;
+        $textContent = null; // On ne génère plus de contenu texte
         $subject = $this->renderSubject($template, $variables);
         
         return [
@@ -81,17 +81,6 @@ class EmailRendererService
     private function renderHtmlContent(EmailTemplate $template, array $variables): string
     {
         $content = $template->getHtmlContent();
-        
-        // Remplacement simple des variables
-        return $this->replaceVariables($content, $variables);
-    }
-    
-    /**
-     * Génère le contenu texte en remplaçant les variables
-     */
-    private function renderTextContent(EmailTemplate $template, array $variables): string
-    {
-        $content = $template->getTextContent();
         
         // Remplacement simple des variables
         return $this->replaceVariables($content, $variables);
