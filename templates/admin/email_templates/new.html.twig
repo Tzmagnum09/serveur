@@ -4,6 +4,33 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css">
+    <style>
+        .email-template-container {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        /* Styles pour l'éditeur */
+        .note-editor .note-editable {
+            text-align: left; /* Le contenu de l'éditeur sera aligné à gauche par défaut */
+        }
+        
+        /* Pour les contenus centrés spécifiquement */
+        .note-editor .note-editable[data-centered="true"] {
+            text-align: center;
+        }
+        
+        /* Style pour les titres dans l'éditeur */
+        .note-editor .email-template-container h1,
+        .note-editor .email-template-container h2,
+        .note-editor .email-template-container h3 {
+            text-align: center !important;
+        }
+    </style>
 {% endblock %}
 
 {% block sidebar %}
@@ -86,6 +113,10 @@
                     {{ form_errors(form.htmlContent) }}
                 </div>
                 
+                <div class="mb-3">
+                    {{ form_row(form.textContent) }}
+                </div>
+                
                 <div class="card mb-3">
                     <div class="card-header">
                         <h6 class="mb-0">{{ 'admin.email_templates.variables.title'|trans }}</h6>
@@ -126,7 +157,7 @@
                     </div>
                 </div>
                 
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end mt-3">
                     <a href="{{ path('app_admin_email_templates') }}" class="btn btn-outline-secondary me-2">{{ 'admin.email_template_new.cancel_btn'|trans }}</a>
                     <button type="submit" class="btn btn-gradient">{{ 'admin.email_template_new.save_btn'|trans }}</button>
                 </div>
@@ -145,75 +176,75 @@
             $('.html-editor').summernote({
                 height: 300,
                 placeholder: `<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nouveau template d'email</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .content {
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .button {
-            display: inline-block;
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-        }
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nouveau template d'email</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .header {
+        background: linear-gradient(135deg, #8e44ad, #3498db);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .content {
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+    .button {
+        display: inline-block;
+        background: linear-gradient(135deg, #8e44ad, #3498db);
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        margin-top: 20px;
+    }
+</style>
 
-
-    <div class="container" fgid="290438">
-        <div class="header" fgid="290444">
-            <h1 fgid="290450">Nouveau template d'email</h1>
-        </div>
-        <div class="content" fgid="290457">
-            <p fgid="290463">Bonjour,</p>
-            
-            <p fgid="290470">Text 1. </p><p fgid="290470">Text 2.</p>
-            
-            <p style="text-align: center;" fgid="290477">
-                <a href="" class="button" fgid="290483">Text bouton</a>
-            </p>
-            
-            <p fgid="290491">Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
-            <p fgid="290498"></p>
-            
-            <p fgid="290505">Ce lien expirera dans X heures.</p>
-            
-            <p fgid="290512">Text3.</p>
-            
-            <p fgid="290519">Cordialement,<br fgid="290526">L'équipe Dmqode.be.</p>
-        </div>
-        <div class="footer" fgid="290533">
-            <p fgid="290539">Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
-        </div>
-    </div>`,
+<div class="container">
+    <div class="header">
+        <h1>Nouveau template d'email</h1>
+    </div>
+    <div class="content">
+        <p>Bonjour,</p>
+        
+        <p>Text 1.</p>
+        <p>Text 2.</p>
+        
+        <p style="text-align: center;">
+            <a href="" class="button">Text bouton</a>
+        </p>
+        
+        <p>Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
+        <p></p>
+        
+        <p>Ce lien expirera dans X heures.</p>
+        
+        <p>Text3.</p>
+        
+        <p>Cordialement,<br>L'équipe Dmqode.be.</p>
+    </div>
+    <div class="footer">
+        <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+    </div>
+</div>`,
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
@@ -226,6 +257,24 @@
                 callbacks: {
                     onImageUpload: function(files) {
                         alert('{{ 'admin.email_templates.editor.no_image_upload'|trans }}');
+                    },
+                    onInit: function() {
+                        // Mettre le contenu de l'éditeur au centre après initialisation
+                        const $editable = $(this).find('.note-editable');
+                        
+                        // Ajouter une classe CSS pour le contenu centré
+                        $editable.attr('data-centered', 'true');
+                        
+                        // Si l'éditeur est vide, ajouter un template par défaut centré
+                        if ($editable.html().trim() === '') {
+                            $editable.html(`
+                                <div class="email-template-container">
+                                    <h1>Nouveau template d'email</h1>
+                                </div>
+                                <p>Bonjour,</p>
+                                <p>Text 1.</p>
+                            `);
+                        }
                     }
                 }
             });

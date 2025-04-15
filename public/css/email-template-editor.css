@@ -1,0 +1,114 @@
+/* Styles pour l'éditeur de templates d'emails */
+
+/* Style pour le gradient de fond des conteneurs d'emails */
+.email-template-container {
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Style pour les conteneurs de contenu */
+.email-content {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* Style pour les boutons */
+.email-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    color: white !important;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Style pour les footers d'emails */
+.email-footer {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+/* Styles pour l'éditeur Summernote */
+.note-editor .note-editable {
+    text-align: left; /* Le contenu de l'éditeur sera aligné à gauche par défaut */
+}
+
+/* Pour les contenus centrés spécifiquement */
+.note-editor .note-editable[data-centered="true"] {
+    text-align: center;
+}
+
+/* Pour s'assurer que les titres dans le conteneur restent centrés */
+.note-editor .email-template-container h1,
+.note-editor .email-template-container h2,
+.note-editor .email-template-container h3,
+.note-editor .email-template-container h4,
+.note-editor .email-template-container h5,
+.note-editor .email-template-container h6 {
+    text-align: center !important;
+}
+
+/* Pour s'assurer que les boutons sont bien centrés */
+.note-editor p[style*="text-align: center"] {
+    text-align: center !important;
+}
+
+/* Amélioration des styles de l'éditeur */
+.note-editor.note-frame {
+    border-color: #ced4da;
+    border-radius: 0.25rem;
+}
+
+.note-editor .note-toolbar {
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+}
+
+.note-editor .note-statusbar .note-resizebar {
+    background-color: #f8f9fa;
+}
+
+/* Styles pour les badges de langue */
+.language-badge {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.language-badge.active {
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    color: white;
+}
+
+.language-badge:not(.active) {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.language-badge:hover:not(.active) {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+/* Boutons de variables */
+.variable-btn {
+    transition: all 0.2s;
+}
+
+.variable-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

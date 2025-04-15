@@ -86,6 +86,33 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
 
         // line 6
         yield "    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css\">
+    <style>
+        .email-template-container {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        /* Styles pour l'éditeur */
+        .note-editor .note-editable {
+            text-align: left; /* Le contenu de l'éditeur sera aligné à gauche par défaut */
+        }
+        
+        /* Pour les contenus centrés spécifiquement */
+        .note-editor .note-editable[data-centered=\"true\"] {
+            text-align: center;
+        }
+        
+        /* Style pour les titres dans l'éditeur */
+        .note-editor .email-template-container h1,
+        .note-editor .email-template-container h2,
+        .note-editor .email-template-container h3 {
+            text-align: center !important;
+        }
+    </style>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -93,7 +120,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
         yield from [];
     }
 
-    // line 9
+    // line 36
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -103,93 +130,93 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "sidebar"));
 
-        // line 10
+        // line 37
         yield "<div class=\"sidebar\">
     <h5 class=\"mb-4\">";
-        // line 11
+        // line 38
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.title"), "html", null, true);
         yield "</h5>
     <ul class=\"nav flex-column\">
         <li class=\"nav-item\">
             <a class=\"nav-link\" href=\"";
-        // line 14
+        // line 41
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_dashboard");
         yield "\">
                 <i class=\"fas fa-tachometer-alt me-2\"></i> ";
-        // line 15
+        // line 42
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.dashboard"), "html", null, true);
         yield "
             </a>
         </li>
         ";
-        // line 18
-        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 18, $this->source); })()), "user", [], "any", false, false, false, 18), "isAdmin", [], "method", false, false, false, 18) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 18, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 18, $this->source); })()), "user", [], "any", false, false, false, 18), "manage_users"], "method", false, false, false, 18)))) {
-            // line 19
+        // line 45
+        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 45, $this->source); })()), "user", [], "any", false, false, false, 45), "isAdmin", [], "method", false, false, false, 45) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 45, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 45, $this->source); })()), "user", [], "any", false, false, false, 45), "manage_users"], "method", false, false, false, 45)))) {
+            // line 46
             yield "        <li class=\"nav-item\">
             <a class=\"nav-link\" href=\"";
-            // line 20
+            // line 47
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users");
             yield "\">
                 <i class=\"fas fa-users me-2\"></i> ";
-            // line 21
+            // line 48
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.users"), "html", null, true);
             yield "
             </a>
         </li>
         ";
         }
-        // line 25
+        // line 52
         yield "        ";
-        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 25, $this->source); })()), "user", [], "any", false, false, false, 25), "isAdmin", [], "method", false, false, false, 25) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 25, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 25, $this->source); })()), "user", [], "any", false, false, false, 25), "edit_email_templates"], "method", false, false, false, 25)))) {
-            // line 26
+        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 52, $this->source); })()), "user", [], "any", false, false, false, 52), "isAdmin", [], "method", false, false, false, 52) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 52, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 52, $this->source); })()), "user", [], "any", false, false, false, 52), "edit_email_templates"], "method", false, false, false, 52)))) {
+            // line 53
             yield "        <li class=\"nav-item\">
             <a class=\"nav-link active\" href=\"";
-            // line 27
+            // line 54
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_templates");
             yield "\">
                 <i class=\"fas fa-envelope me-2\"></i> ";
-            // line 28
+            // line 55
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.email_templates"), "html", null, true);
             yield "
             </a>
         </li>
         ";
         }
-        // line 32
+        // line 59
         yield "        ";
-        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 32, $this->source); })()), "user", [], "any", false, false, false, 32), "isAdmin", [], "method", false, false, false, 32) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 32, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 32, $this->source); })()), "user", [], "any", false, false, false, 32), "translate_content"], "method", false, false, false, 32)))) {
-            // line 33
+        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 59, $this->source); })()), "user", [], "any", false, false, false, 59), "isAdmin", [], "method", false, false, false, 59) && CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 59, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 59, $this->source); })()), "user", [], "any", false, false, false, 59), "translate_content"], "method", false, false, false, 59)))) {
+            // line 60
             yield "        <li class=\"nav-item\">
             <a class=\"nav-link\" href=\"";
-            // line 34
+            // line 61
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_translations");
             yield "\">
                 <i class=\"fas fa-language me-2\"></i> ";
-            // line 35
+            // line 62
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.translations"), "html", null, true);
             yield "
             </a>
         </li>
         ";
         }
-        // line 39
+        // line 66
         yield "    </ul>
     
     ";
-        // line 41
+        // line 68
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN")) {
-            // line 42
+            // line 69
             yield "    <h5 class=\"mb-3 mt-4\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.super_admin"), "html", null, true);
             yield "</h5>
     <ul class=\"nav flex-column\">
         <li class=\"nav-item\">
             <a class=\"nav-link\" href=\"";
-            // line 45
+            // line 72
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_dashboard");
             yield "\">
                 <i class=\"fas fa-shield-alt me-2\"></i> ";
-            // line 46
+            // line 73
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.sidebar.super_dashboard"), "html", null, true);
             yield "
             </a>
@@ -197,7 +224,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
     </ul>
     ";
         }
-        // line 51
+        // line 78
         yield "</div>
 ";
         
@@ -206,7 +233,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
         yield from [];
     }
 
-    // line 54
+    // line 81
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -216,19 +243,19 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 55
+        // line 82
         yield "<div class=\"container-fluid\">
     <div class=\"d-flex justify-content-between align-items-center mb-4\">
         <h1 class=\"h3\">";
-        // line 57
+        // line 84
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_new.title"), "html", null, true);
         yield "</h1>
         <a href=\"";
-        // line 58
+        // line 85
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_templates");
         yield "\" class=\"btn btn-outline-secondary\">
             <i class=\"fas fa-arrow-left me-1\"></i> ";
-        // line 59
+        // line 86
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_new.back_btn"), "html", null, true);
         yield "
         </a>
@@ -237,60 +264,67 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
     <div class=\"card shadow-sm mb-4\">
         <div class=\"card-header\">
             <h5 class=\"mb-0\">";
-        // line 65
+        // line 92
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_new.form_title"), "html", null, true);
         yield "</h5>
         </div>
         <div class=\"card-body\">
             ";
-        // line 68
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 68, $this->source); })()), 'form_start');
+        // line 95
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 95, $this->source); })()), 'form_start');
         yield "
                 <div class=\"row mb-3\">
                     <div class=\"col-md-6\">
                         ";
-        // line 71
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 71, $this->source); })()), "code", [], "any", false, false, false, 71), 'row');
+        // line 98
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 98, $this->source); })()), "code", [], "any", false, false, false, 98), 'row');
         yield "
                     </div>
                     <div class=\"col-md-6\">
                         ";
-        // line 74
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 74, $this->source); })()), "locale", [], "any", false, false, false, 74), 'row');
+        // line 101
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 101, $this->source); })()), "locale", [], "any", false, false, false, 101), 'row');
         yield "
                     </div>
                 </div>
                 
                 <div class=\"mb-3\">
                     ";
-        // line 79
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 79, $this->source); })()), "subject", [], "any", false, false, false, 79), 'row');
+        // line 106
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 106, $this->source); })()), "subject", [], "any", false, false, false, 106), 'row');
         yield "
                 </div>
                 
                 <div class=\"mb-3\">
                     ";
-        // line 83
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 83, $this->source); })()), "htmlContent", [], "any", false, false, false, 83), 'label');
+        // line 110
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 110, $this->source); })()), "htmlContent", [], "any", false, false, false, 110), 'label');
         yield "
                     ";
-        // line 84
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 84, $this->source); })()), "htmlContent", [], "any", false, false, false, 84), 'widget', ["attr" => ["class" => "html-editor form-control"]]);
+        // line 111
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 111, $this->source); })()), "htmlContent", [], "any", false, false, false, 111), 'widget', ["attr" => ["class" => "html-editor form-control"]]);
         yield "
                     ";
-        // line 85
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 85, $this->source); })()), "htmlContent", [], "any", false, false, false, 85), 'help');
+        // line 112
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 112, $this->source); })()), "htmlContent", [], "any", false, false, false, 112), 'help');
         yield "
                     ";
-        // line 86
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 86, $this->source); })()), "htmlContent", [], "any", false, false, false, 86), 'errors');
+        // line 113
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 113, $this->source); })()), "htmlContent", [], "any", false, false, false, 113), 'errors');
+        yield "
+                </div>
+                
+                <div class=\"mb-3\">
+                    ";
+        // line 117
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 117, $this->source); })()), "textContent", [], "any", false, false, false, 117), 'row');
         yield "
                 </div>
                 
                 <div class=\"card mb-3\">
                     <div class=\"card-header\">
                         <h6 class=\"mb-0\">";
-        // line 91
+        // line 122
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.title"), "html", null, true);
         yield "</h6>
                     </div>
@@ -299,7 +333,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"firstName\">
                                     ";
-        // line 97
+        // line 128
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.firstName"), "html", null, true);
         yield "
                                 </button>
@@ -307,7 +341,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"lastName\">
                                     ";
-        // line 102
+        // line 133
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.lastName"), "html", null, true);
         yield "
                                 </button>
@@ -315,7 +349,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"fullName\">
                                     ";
-        // line 107
+        // line 138
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.fullName"), "html", null, true);
         yield "
                                 </button>
@@ -323,7 +357,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"email\">
                                     ";
-        // line 112
+        // line 143
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.email"), "html", null, true);
         yield "
                                 </button>
@@ -331,7 +365,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"domain\">
                                     ";
-        // line 117
+        // line 148
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.domain"), "html", null, true);
         yield "
                                 </button>
@@ -339,7 +373,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                             <div class=\"col-md-4 mb-2\">
                                 <button type=\"button\" class=\"btn btn-sm btn-outline-secondary w-100 variable-btn\" data-variable=\"token\">
                                     ";
-        // line 122
+        // line 153
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.variables.token"), "html", null, true);
         yield "
                                 </button>
@@ -348,21 +382,21 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                     </div>
                 </div>
                 
-                <div class=\"d-flex justify-content-end\">
+                <div class=\"d-flex justify-content-end mt-3\">
                     <a href=\"";
-        // line 130
+        // line 161
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_email_templates");
         yield "\" class=\"btn btn-outline-secondary me-2\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_new.cancel_btn"), "html", null, true);
         yield "</a>
                     <button type=\"submit\" class=\"btn btn-gradient\">";
-        // line 131
+        // line 162
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_new.save_btn"), "html", null, true);
         yield "</button>
                 </div>
             ";
-        // line 133
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 133, $this->source); })()), 'form_end');
+        // line 164
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 164, $this->source); })()), 'form_end');
         yield "
         </div>
     </div>
@@ -374,7 +408,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
         yield from [];
     }
 
-    // line 139
+    // line 170
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -384,7 +418,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 140
+        // line 171
         yield "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js\"></script>
     
     <script>
@@ -393,75 +427,75 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
             \$('.html-editor').summernote({
                 height: 300,
                 placeholder: `<meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>Nouveau template d'email</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .content {
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .button {
-            display: inline-block;
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-        }
-    </style>
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+<title>Nouveau template d'email</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .header {
+        background: linear-gradient(135deg, #8e44ad, #3498db);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .content {
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+    .button {
+        display: inline-block;
+        background: linear-gradient(135deg, #8e44ad, #3498db);
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        margin-top: 20px;
+    }
+</style>
 
-
-    <div class=\"container\" fgid=\"290438\">
-        <div class=\"header\" fgid=\"290444\">
-            <h1 fgid=\"290450\">Nouveau template d'email</h1>
-        </div>
-        <div class=\"content\" fgid=\"290457\">
-            <p fgid=\"290463\">Bonjour,</p>
-            
-            <p fgid=\"290470\">Text 1. </p><p fgid=\"290470\">Text 2.</p>
-            
-            <p style=\"text-align: center;\" fgid=\"290477\">
-                <a href=\"\" class=\"button\" fgid=\"290483\">Text bouton</a>
-            </p>
-            
-            <p fgid=\"290491\">Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
-            <p fgid=\"290498\"></p>
-            
-            <p fgid=\"290505\">Ce lien expirera dans X heures.</p>
-            
-            <p fgid=\"290512\">Text3.</p>
-            
-            <p fgid=\"290519\">Cordialement,<br fgid=\"290526\">L'équipe Dmqode.be.</p>
-        </div>
-        <div class=\"footer\" fgid=\"290533\">
-            <p fgid=\"290539\">Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
-        </div>
-    </div>`,
+<div class=\"container\">
+    <div class=\"header\">
+        <h1>Nouveau template d'email</h1>
+    </div>
+    <div class=\"content\">
+        <p>Bonjour,</p>
+        
+        <p>Text 1.</p>
+        <p>Text 2.</p>
+        
+        <p style=\"text-align: center;\">
+            <a href=\"\" class=\"button\">Text bouton</a>
+        </p>
+        
+        <p>Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
+        <p></p>
+        
+        <p>Ce lien expirera dans X heures.</p>
+        
+        <p>Text3.</p>
+        
+        <p>Cordialement,<br>L'équipe Dmqode.be.</p>
+    </div>
+    <div class=\"footer\">
+        <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+    </div>
+</div>`,
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
@@ -474,9 +508,27 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                 callbacks: {
                     onImageUpload: function(files) {
                         alert('";
-        // line 228
+        // line 259
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_templates.editor.no_image_upload"), "html", null, true);
         yield "');
+                    },
+                    onInit: function() {
+                        // Mettre le contenu de l'éditeur au centre après initialisation
+                        const \$editable = \$(this).find('.note-editable');
+                        
+                        // Ajouter une classe CSS pour le contenu centré
+                        \$editable.attr('data-centered', 'true');
+                        
+                        // Si l'éditeur est vide, ajouter un template par défaut centré
+                        if (\$editable.html().trim() === '') {
+                            \$editable.html(`
+                                <div class=\"email-template-container\">
+                                    <h1>Nouveau template d'email</h1>
+                                </div>
+                                <p>Bonjour,</p>
+                                <p>Text 1.</p>
+                            `);
+                        }
                     }
                 }
             });
@@ -485,7 +537,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
             \$('.variable-btn').on('click', function() {
                 const variable = \$(this).data('variable');
                 \$('.html-editor').summernote('insertText', '";
-        // line 236
+        // line 285
         yield "{{";
         yield " ' + variable + ' ";
         yield "}}";
@@ -521,7 +573,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  489 => 236,  478 => 228,  388 => 140,  378 => 139,  365 => 133,  360 => 131,  354 => 130,  343 => 122,  335 => 117,  327 => 112,  319 => 107,  311 => 102,  303 => 97,  294 => 91,  286 => 86,  282 => 85,  278 => 84,  274 => 83,  267 => 79,  259 => 74,  253 => 71,  247 => 68,  241 => 65,  232 => 59,  228 => 58,  224 => 57,  220 => 55,  210 => 54,  201 => 51,  193 => 46,  189 => 45,  182 => 42,  180 => 41,  176 => 39,  169 => 35,  165 => 34,  162 => 33,  159 => 32,  152 => 28,  148 => 27,  145 => 26,  142 => 25,  135 => 21,  131 => 20,  128 => 19,  126 => 18,  120 => 15,  116 => 14,  110 => 11,  107 => 10,  97 => 9,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  541 => 285,  512 => 259,  422 => 171,  412 => 170,  399 => 164,  394 => 162,  388 => 161,  377 => 153,  369 => 148,  361 => 143,  353 => 138,  345 => 133,  337 => 128,  328 => 122,  320 => 117,  313 => 113,  309 => 112,  305 => 111,  301 => 110,  294 => 106,  286 => 101,  280 => 98,  274 => 95,  268 => 92,  259 => 86,  255 => 85,  251 => 84,  247 => 82,  237 => 81,  228 => 78,  220 => 73,  216 => 72,  209 => 69,  207 => 68,  203 => 66,  196 => 62,  192 => 61,  189 => 60,  186 => 59,  179 => 55,  175 => 54,  172 => 53,  169 => 52,  162 => 48,  158 => 47,  155 => 46,  153 => 45,  147 => 42,  143 => 41,  137 => 38,  134 => 37,  124 => 36,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -532,6 +584,33 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
 
 {% block stylesheets %}
     <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css\">
+    <style>
+        .email-template-container {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        /* Styles pour l'éditeur */
+        .note-editor .note-editable {
+            text-align: left; /* Le contenu de l'éditeur sera aligné à gauche par défaut */
+        }
+        
+        /* Pour les contenus centrés spécifiquement */
+        .note-editor .note-editable[data-centered=\"true\"] {
+            text-align: center;
+        }
+        
+        /* Style pour les titres dans l'éditeur */
+        .note-editor .email-template-container h1,
+        .note-editor .email-template-container h2,
+        .note-editor .email-template-container h3 {
+            text-align: center !important;
+        }
+    </style>
 {% endblock %}
 
 {% block sidebar %}
@@ -614,6 +693,10 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                     {{ form_errors(form.htmlContent) }}
                 </div>
                 
+                <div class=\"mb-3\">
+                    {{ form_row(form.textContent) }}
+                </div>
+                
                 <div class=\"card mb-3\">
                     <div class=\"card-header\">
                         <h6 class=\"mb-0\">{{ 'admin.email_templates.variables.title'|trans }}</h6>
@@ -654,7 +737,7 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                     </div>
                 </div>
                 
-                <div class=\"d-flex justify-content-end\">
+                <div class=\"d-flex justify-content-end mt-3\">
                     <a href=\"{{ path('app_admin_email_templates') }}\" class=\"btn btn-outline-secondary me-2\">{{ 'admin.email_template_new.cancel_btn'|trans }}</a>
                     <button type=\"submit\" class=\"btn btn-gradient\">{{ 'admin.email_template_new.save_btn'|trans }}</button>
                 </div>
@@ -673,75 +756,75 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
             \$('.html-editor').summernote({
                 height: 300,
                 placeholder: `<meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>Nouveau template d'email</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .content {
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .button {
-            display: inline-block;
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-        }
-    </style>
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+<title>Nouveau template d'email</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .header {
+        background: linear-gradient(135deg, #8e44ad, #3498db);
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .content {
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+    .button {
+        display: inline-block;
+        background: linear-gradient(135deg, #8e44ad, #3498db);
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        margin-top: 20px;
+    }
+</style>
 
-
-    <div class=\"container\" fgid=\"290438\">
-        <div class=\"header\" fgid=\"290444\">
-            <h1 fgid=\"290450\">Nouveau template d'email</h1>
-        </div>
-        <div class=\"content\" fgid=\"290457\">
-            <p fgid=\"290463\">Bonjour,</p>
-            
-            <p fgid=\"290470\">Text 1. </p><p fgid=\"290470\">Text 2.</p>
-            
-            <p style=\"text-align: center;\" fgid=\"290477\">
-                <a href=\"\" class=\"button\" fgid=\"290483\">Text bouton</a>
-            </p>
-            
-            <p fgid=\"290491\">Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
-            <p fgid=\"290498\"></p>
-            
-            <p fgid=\"290505\">Ce lien expirera dans X heures.</p>
-            
-            <p fgid=\"290512\">Text3.</p>
-            
-            <p fgid=\"290519\">Cordialement,<br fgid=\"290526\">L'équipe Dmqode.be.</p>
-        </div>
-        <div class=\"footer\" fgid=\"290533\">
-            <p fgid=\"290539\">Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
-        </div>
-    </div>`,
+<div class=\"container\">
+    <div class=\"header\">
+        <h1>Nouveau template d'email</h1>
+    </div>
+    <div class=\"content\">
+        <p>Bonjour,</p>
+        
+        <p>Text 1.</p>
+        <p>Text 2.</p>
+        
+        <p style=\"text-align: center;\">
+            <a href=\"\" class=\"button\">Text bouton</a>
+        </p>
+        
+        <p>Si le bouton ne fonctionne pas, vous pouvez copier et coller le lien suivant dans votre navigateur :</p>
+        <p></p>
+        
+        <p>Ce lien expirera dans X heures.</p>
+        
+        <p>Text3.</p>
+        
+        <p>Cordialement,<br>L'équipe Dmqode.be.</p>
+    </div>
+    <div class=\"footer\">
+        <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+    </div>
+</div>`,
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
@@ -754,6 +837,24 @@ class __TwigTemplate_4e5beed8e9623cb7fa870245155c29d6 extends Template
                 callbacks: {
                     onImageUpload: function(files) {
                         alert('{{ 'admin.email_templates.editor.no_image_upload'|trans }}');
+                    },
+                    onInit: function() {
+                        // Mettre le contenu de l'éditeur au centre après initialisation
+                        const \$editable = \$(this).find('.note-editable');
+                        
+                        // Ajouter une classe CSS pour le contenu centré
+                        \$editable.attr('data-centered', 'true');
+                        
+                        // Si l'éditeur est vide, ajouter un template par défaut centré
+                        if (\$editable.html().trim() === '') {
+                            \$editable.html(`
+                                <div class=\"email-template-container\">
+                                    <h1>Nouveau template d'email</h1>
+                                </div>
+                                <p>Bonjour,</p>
+                                <p>Text 1.</p>
+                            `);
+                        }
                     }
                 }
             });

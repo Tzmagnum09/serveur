@@ -71,6 +71,7 @@ class EmailTemplateFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control html-editor',
                     'rows' => 15,
+                    'data-centered' => 'true', // Ajout d'un attribut data pour indiquer que le contenu doit être centré
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -78,6 +79,15 @@ class EmailTemplateFormType extends AbstractType
                     ]),
                 ],
                 'help' => $this->translator->trans('admin.email_templates.help.variables'),
+            ])
+            ->add('textContent', TextareaType::class, [
+                'label' => $this->translator->trans('admin.email_templates.field.text_content'),
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'rows' => 8,
+                ],
+                'help' => $this->translator->trans('admin.email_templates.help.text_content'),
             ])
         ;
     }

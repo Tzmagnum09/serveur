@@ -54,6 +54,26 @@
             padding: 3rem;
             text-align: center;
         }
+        
+        /* Styles pour l'éditeur */
+        .note-editor .note-editable {
+            text-align: left; /* Le contenu de l'éditeur sera aligné à gauche par défaut */
+        }
+        
+        /* Pour les contenus centrés spécifiquement */
+        .note-editor .note-editable[data-centered="true"] {
+            text-align: center;
+        }
+        
+        /* Styles pour les conteneurs d'emails dans l'éditeur */
+        .email-template-container {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
     </style>
 {% endblock %}
 
@@ -171,9 +191,13 @@
                 
                 <div class="mb-3">
                     {{ form_label(form.htmlContent) }}
-                    {{ form_widget(form.htmlContent, {'attr': {'class': 'html-editor form-control'}}) }}
+                    {{ form_widget(form.htmlContent, {'attr': {'class': 'html-editor form-control', 'data-centered': 'true'}}) }}
                     {{ form_help(form.htmlContent) }}
                     {{ form_errors(form.htmlContent) }}
+                </div>
+                
+                <div class="mb-3">
+                    {{ form_row(form.textContent) }}
                 </div>
                 
                 <div class="card mb-3">
@@ -271,6 +295,11 @@
                 callbacks: {
                     onImageUpload: function(files) {
                         alert('{{ 'admin.email_templates.editor.no_image_upload'|trans }}');
+                    },
+                    onInit: function() {
+                        // Appliquer l'attribut data-centered à l'éditeur pour maintenir le centrage
+                        const $editable = $(this).find('.note-editable');
+                        $editable.attr('data-centered', 'true');
                     }
                 }
             });
