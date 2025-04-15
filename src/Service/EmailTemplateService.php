@@ -37,6 +37,13 @@ class EmailTemplateService
         $this->translator = $translator;
     }
     
+        
+        public function previewTemplate($templateId)
+    {
+        // Logique pour prévisualiser le template
+        return "Prévisualisation du template avec ID: " . $templateId;
+    }
+
     /**
      * Envoie un email à un utilisateur en utilisant un template
      */
