@@ -124,19 +124,83 @@
             <h5 class="mb-0">{{ 'admin.email_templates.about'|trans }}</h5>
         </div>
         <div class="card-body">
-            <div class="alert alert-info mb-0">
-                <h5 class="alert-heading">{{ 'admin.email_templates.variables.title'|trans }}</h5>
-                <p>{{ 'admin.email_templates.variables.description'|trans }}</p>
-                <hr>
-                <ul class="mb-0">
-                    <li><code>{{ '{{ firstName }}' }}</code> - {{ 'admin.email_templates.variables.firstName'|trans }}</li>
-                    <li><code>{{ '{{ lastName }}' }}</code> - {{ 'admin.email_templates.variables.lastName'|trans }}</li>
-                    <li><code>{{ '{{ fullName }}' }}</code> - {{ 'admin.email_templates.variables.fullName'|trans }}</li>
-                    <li><code>{{ '{{ email }}' }}</code> - {{ 'admin.email_templates.variables.email'|trans }}</li>
-                    <li><code>{{ '{{ domain }}' }}</code> - {{ 'admin.email_templates.variables.domain'|trans }}</li>
-                    <li><code>{{ '{{ token }}' }}</code> - {{ 'admin.email_templates.variables.token'|trans }}</li>
-                    <li><code>{{ '{{ resetToken }}' }}</code> - {{ 'admin.email_templates.variables.resetToken'|trans }}</li>
-                </ul>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">{{ 'admin.email_templates.variables.categories.personal'|trans|default('Informations personnelles') }}</h6>
+                        </div>
+                        <div class="card-body">
+                            <ul class="mb-0 ps-3">
+                                <li><code>{{ '{{ firstName }}' }}</code> - {{ 'admin.email_templates.variables.firstName'|trans }}</li>
+                                <li><code>{{ '{{ lastName }}' }}</code> - {{ 'admin.email_templates.variables.lastName'|trans }}</li>
+                                <li><code>{{ '{{ fullName }}' }}</code> - {{ 'admin.email_templates.variables.fullName'|trans }}</li>
+                                <li><code>{{ '{{ email }}' }}</code> - {{ 'admin.email_templates.variables.email'|trans }}</li>
+                                <li><code>{{ '{{ phoneNumber }}' }}</code> - {{ 'admin.email_templates.variables.phoneNumber'|trans|default('Téléphone') }}</li>
+                                <li><code>{{ '{{ birthDate }}' }}</code> - {{ 'admin.email_templates.variables.birthDate'|trans|default('Date de naissance') }}</li>
+                                <li><code>{{ '{{ age }}' }}</code> - {{ 'admin.email_templates.variables.age'|trans|default('Âge') }}</li>
+                                <li><code>{{ '{{ locale }}' }}</code> - {{ 'admin.email_templates.variables.locale'|trans|default('Langue') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">{{ 'admin.email_templates.variables.categories.address'|trans|default('Adresse') }}</h6>
+                        </div>
+                        <div class="card-body">
+                            <ul class="mb-0 ps-3">
+                                <li><code>{{ '{{ fullAddress }}' }}</code> - {{ 'admin.email_templates.variables.fullAddress'|trans|default('Adresse complète') }}</li>
+                                <li><code>{{ '{{ street }}' }}</code> - {{ 'admin.email_templates.variables.street'|trans|default('Rue') }}</li>
+                                <li><code>{{ '{{ houseNumber }}' }}</code> - {{ 'admin.email_templates.variables.houseNumber'|trans|default('Numéro') }}</li>
+                                <li><code>{{ '{{ boxNumber }}' }}</code> - {{ 'admin.email_templates.variables.boxNumber'|trans|default('Boîte') }}</li>
+                                <li><code>{{ '{{ postalCode }}' }}</code> - {{ 'admin.email_templates.variables.postalCode'|trans|default('Code postal') }}</li>
+                                <li><code>{{ '{{ city }}' }}</code> - {{ 'admin.email_templates.variables.city'|trans|default('Ville') }}</li>
+                                <li><code>{{ '{{ country }}' }}</code> - {{ 'admin.email_templates.variables.country'|trans|default('Pays') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">{{ 'admin.email_templates.variables.categories.system'|trans|default('Système') }}</h6>
+                        </div>
+                        <div class="card-body">
+                            <ul class="mb-0 ps-3">
+                                <li><code>{{ '{{ domain }}' }}</code> - {{ 'admin.email_templates.variables.domain'|trans }}</li>
+                                <li><code>{{ '{{ signedUrl }}' }}</code> - {{ 'admin.email_templates.variables.signedUrl'|trans|default('URL de vérification') }}</li>
+                                <li><code>{{ '{{ resetToken }}' }}</code> - {{ 'admin.email_templates.variables.resetToken'|trans|default('Token de réinitialisation') }}</li>
+                                <li><code>{{ '{{ tokenLifetime }}' }}</code> - {{ 'admin.email_templates.variables.tokenLifetime'|trans|default('Durée de vie du token') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">{{ 'admin.email_templates.variables.categories.specific'|trans|default('Variables spécifiques') }}</h6>
+                        </div>
+                        <div class="card-body">
+                            <ul class="mb-0 ps-3">
+                                <li><code>{{ '{{ permissionChanges }}' }}</code> - {{ 'admin.email_templates.variables.permissionChanges'|trans|default('Modifications des permissions') }}</li>
+                                <li><code>{{ '{{ previousRole }}' }}</code> - {{ 'admin.email_templates.variables.previousRole'|trans|default('Rôle précédent') }}</li>
+                                <li><code>{{ '{{ newRole }}' }}</code> - {{ 'admin.email_templates.variables.newRole'|trans|default('Nouveau rôle') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12">
+                    <div class="alert alert-info mb-0">
+                        <i class="fas fa-info-circle me-2"></i>
+                        {{ 'admin.email_templates.variables.description'|trans }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
