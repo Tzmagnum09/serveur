@@ -40,13 +40,11 @@ class EmailRendererService
         
         // Générer le contenu
         $htmlContent = $this->renderHtmlContent($template, $variables);
-        $textContent = null; // On ne génère plus de contenu texte
         $subject = $this->renderSubject($template, $variables);
         
         return [
             'subject' => $subject,
-            'htmlContent' => $htmlContent,
-            'textContent' => $textContent
+            'htmlContent' => $htmlContent
         ];
     }
     
@@ -69,7 +67,11 @@ class EmailRendererService
             'permissionChanges' => 'Certaines permissions ont été modifiées',
             'previousRole' => 'Utilisateur',
             'newRole' => 'Administrateur',
-            'promotedBy' => 'Super Admin'
+            'promotedBy' => 'Super Admin',
+            'demotedBy' => 'Super Admin',
+            'permissionName' => 'Gérer les utilisateurs',
+            'isGranted' => 'true',
+            'grantedBy' => 'Super Admin'
         ];
         
         return $this->renderHtmlContent($template, $variables);

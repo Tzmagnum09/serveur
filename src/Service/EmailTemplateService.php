@@ -106,7 +106,6 @@ class EmailTemplateService
                 $template->setLocale($templateData['locale']);
                 $template->setSubject($templateData['subject']);
                 $template->setHtmlContent($templateData['htmlContent']);
-                $template->setTextContent(null); // On ne définit plus de contenu texte
                 $template->setCreatedAt(new \DateTimeImmutable());
                 
                 $this->entityManager->persist($template);

@@ -29,9 +29,6 @@ class EmailTemplate
     #[Assert\NotBlank(message: 'Le contenu HTML est requis')]
     private ?string $htmlContent = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $textContent = null;
-
     #[ORM\Column(length: 10)]
     #[Assert\NotBlank(message: 'La langue est requise')]
     #[Assert\Choice(choices: ['fr', 'nl', 'en', 'de'], message: 'La langue doit être fr, nl, en ou de')]
@@ -85,18 +82,6 @@ class EmailTemplate
     public function setHtmlContent(string $htmlContent): static
     {
         $this->htmlContent = $htmlContent;
-
-        return $this;
-    }
-
-    public function getTextContent(): ?string
-    {
-        return $this->textContent;
-    }
-
-    public function setTextContent(?string $textContent): static
-    {
-        $this->textContent = $textContent;
 
         return $this;
     }
