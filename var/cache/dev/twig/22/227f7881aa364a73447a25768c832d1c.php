@@ -67,7 +67,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.title", ["%code%" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 3, $this->source); })()), "code", [], "any", false, false, false, 3), "%locale%" => Twig\Extension\CoreExtension::upper($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 3, $this->source); })()), "locale", [], "any", false, false, false, 3))]), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.title", ["%code%" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 3, $this->source); })()), "code", [], "any", false, false, false, 3)]), "html", null, true);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -272,7 +272,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
     <div class=\"d-flex justify-content-between align-items-center mb-4\">
         <h1 class=\"h3\">";
         // line 108
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.title", ["%code%" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 108, $this->source); })()), "code", [], "any", false, false, false, 108), "%locale%" => Twig\Extension\CoreExtension::upper($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 108, $this->source); })()), "locale", [], "any", false, false, false, 108))]), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.title", ["%code%" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["template"]) || array_key_exists("template", $context) ? $context["template"] : (function () { throw new RuntimeError('Variable "template" does not exist.', 108, $this->source); })()), "code", [], "any", false, false, false, 108)]), "html", null, true);
         yield "</h1>
         <div class=\"d-flex\">
             <a href=\"";
@@ -331,7 +331,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
             <div class=\"language-selector mb-4\">
                 <span class=\"me-2\">";
         // line 136
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.language"), "Langue"), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.language"), "html", null, true);
         yield ":</span>
                 ";
         // line 137
@@ -367,7 +367,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                     yield "\" 
                            class=\"language-badge\" title=\"";
                     // line 146
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::default($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.create_translation"), "Créer cette traduction"), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.email_template_edit.create_translation"), "html", null, true);
                     yield "\">
                             ";
                     // line 147
@@ -714,7 +714,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}{{ 'admin.email_template_edit.title'|trans({'%code%': template.code, '%locale%': template.locale|upper}) }}{% endblock %}
+{% block title %}{{ 'admin.email_template_edit.title'|trans({'%code%': template.code}) }}{% endblock %}
 
 {% block stylesheets %}
     <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css\">
@@ -819,7 +819,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
 {% block body %}
 <div class=\"container-fluid\">
     <div class=\"d-flex justify-content-between align-items-center mb-4\">
-        <h1 class=\"h3\">{{ 'admin.email_template_edit.title'|trans({'%code%': template.code, '%locale%': template.locale|upper}) }}</h1>
+        <h1 class=\"h3\">{{ 'admin.email_template_edit.title'|trans({'%code%': template.code}) }}</h1>
         <div class=\"d-flex\">
             <a href=\"{{ path('app_admin_email_templates') }}\" class=\"btn btn-outline-secondary me-2\">
                 <i class=\"fas fa-arrow-left me-1\"></i> {{ 'admin.email_template_edit.back_btn'|trans }}
@@ -847,7 +847,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
         <div class=\"card-body\">
             <!-- Sélecteur de langue -->
             <div class=\"language-selector mb-4\">
-                <span class=\"me-2\">{{ 'admin.email_template_edit.language'|trans|default('Langue') }}:</span>
+                <span class=\"me-2\">{{ 'admin.email_template_edit.language'|trans }}:</span>
                 {% if availableLocales is defined %}
                 {% for locale in availableLocales %}
                     {% if locale in existingLocales %}
@@ -857,7 +857,7 @@ class __TwigTemplate_0a8e22b0dec18cbfee3b7b5a19b6bf22 extends Template
                         </a>
                     {% else %}
                         <a href=\"{{ path('app_admin_email_template_new', {'code': template.code, 'locale': locale}) }}\" 
-                           class=\"language-badge\" title=\"{{ 'admin.email_template_edit.create_translation'|trans|default('Créer cette traduction') }}\">
+                           class=\"language-badge\" title=\"{{ 'admin.email_template_edit.create_translation'|trans }}\">
                             {{ locale|upper }} <i class=\"fas fa-plus-circle fs-6\"></i>
                         </a>
                     {% endif %}

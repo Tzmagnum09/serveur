@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'admin.email_template_edit.title'|trans({'%code%': template.code, '%locale%': template.locale|upper}) }}{% endblock %}
+{% block title %}{{ 'admin.email_template_edit.title'|trans({'%code%': template.code}) }}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css">
@@ -105,7 +105,7 @@
 {% block body %}
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3">{{ 'admin.email_template_edit.title'|trans({'%code%': template.code, '%locale%': template.locale|upper}) }}</h1>
+        <h1 class="h3">{{ 'admin.email_template_edit.title'|trans({'%code%': template.code}) }}</h1>
         <div class="d-flex">
             <a href="{{ path('app_admin_email_templates') }}" class="btn btn-outline-secondary me-2">
                 <i class="fas fa-arrow-left me-1"></i> {{ 'admin.email_template_edit.back_btn'|trans }}
@@ -133,7 +133,7 @@
         <div class="card-body">
             <!-- Sélecteur de langue -->
             <div class="language-selector mb-4">
-                <span class="me-2">{{ 'admin.email_template_edit.language'|trans|default('Langue') }}:</span>
+                <span class="me-2">{{ 'admin.email_template_edit.language'|trans }}:</span>
                 {% if availableLocales is defined %}
                 {% for locale in availableLocales %}
                     {% if locale in existingLocales %}
@@ -143,7 +143,7 @@
                         </a>
                     {% else %}
                         <a href="{{ path('app_admin_email_template_new', {'code': template.code, 'locale': locale}) }}" 
-                           class="language-badge" title="{{ 'admin.email_template_edit.create_translation'|trans|default('Créer cette traduction') }}">
+                           class="language-badge" title="{{ 'admin.email_template_edit.create_translation'|trans }}">
                             {{ locale|upper }} <i class="fas fa-plus-circle fs-6"></i>
                         </a>
                     {% endif %}
