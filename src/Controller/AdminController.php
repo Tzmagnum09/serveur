@@ -57,7 +57,15 @@ class AdminController extends AbstractController
         // Calculer les statistiques utilisateurs
         $user_count = $userRepository->count([]);
         $approved_count = $userRepository->count(['isVerified' => true, 'isApproved' => true]);
-        $super_admin_count = $userRepository->count(['roles' => '%ROLE_SUPER_ADMIN%']);
+        
+        // Compter les super admins
+        $super_admin_count = 0;
+        $allUsers = $userRepository->findAll();
+        foreach ($allUsers as $user) {
+            if ($user->isSuperAdmin()) {
+                $super_admin_count++;
+            }
+        }
         
         // Logger l'accès au tableau de bord
         $this->logger->info('Admin dashboard accessed', [
@@ -72,109 +80,6 @@ class AdminController extends AbstractController
             'approved_count' => $approved_count,
             'super_admin_count' => $super_admin_count,
             'template_count' => $template_count,
-            'permission_service' => $this->permissionService
-        ]);
-    }
-    
-    #[Route('/users', name: 'app_admin_users')]
-    public function users(Request $request, UserRepository $userRepository): Response
-    {
-        $admin = $this->getUser();
-        
-        if (!$admin || !$admin->isAdmin()) {
-            return $this->redirectToRoute('app_login');
-        }
-        
-        // Vérifier la permission de gestion des utilisateurs
-        if (!$this->permissionService->hasPermission($admin, 'manage_users')) {
-            $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
-            return $this->redirectToRoute('app_admin_dashboard');
-        }
-
-        // Récupérer les paramètres de recherche, filtrage et tri
-        $search = $request->query->get('q', '');
-        $filter = $request->query->get('filter', '');
-        $sort = $request->query->get('sort', 'lastName');
-        $direction = $request->query->get('direction', 'ASC');
-        
-        $users = $userRepository->findBy([], [$sort => $direction]);
-        
-        // Logger la consultation de la liste des utilisateurs
-        $this->logger->info('User list viewed', [
-            'admin_email' => $admin->getEmail(),
-            'total_users' => count($users)
-        ]);
-        
-        return $this->render('admin/users.html.twig', [
-            'users' => $users,
-            'permission_service' => $this->permissionService,
-            'search' => $search,
-            'filter' => $filter,
-            'sort' => $sort,
-            'direction' => $direction
-        ]);
-    }
-    
-    #[Route('/users/{id}/edit', name: 'app_admin_user_edit')]
-    public function editUser(
-        User $user,
-        Request $request,
-        UserRepository $userRepository,
-        TranslatorInterface $translator
-    ): Response {
-        $admin = $this->getUser();
-        
-        if (!$admin || !$admin->isAdmin()) {
-            return $this->redirectToRoute('app_login');
-        }
-        
-        // Vérifier la permission de gestion des utilisateurs
-        if (!$this->permissionService->hasPermission($admin, 'manage_users')) {
-            $this->addFlash('error', 'Vous n\'avez pas les permissions nécessaires.');
-            return $this->redirectToRoute('app_admin_dashboard');
-        }
-        
-        // Empêcher la modification d'un super admin par un admin standard
-        if ($user->isSuperAdmin() && !$admin->isSuperAdmin()) {
-            $this->addFlash('error', 'Vous ne pouvez pas modifier un super administrateur.');
-            return $this->redirectToRoute('app_admin_users');
-        }
-        
-        $form = $this->createForm(AdminUserFormType::class, $user);
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Traiter la date de naissance
-            $birthDateStr = $request->request->get('birth_date');
-            if (!empty($birthDateStr)) {
-                try {
-                    $birthDate = \DateTime::createFromFormat('d/m/Y', $birthDateStr);
-                    if ($birthDate instanceof \DateTime) {
-                        $user->setBirthDate($birthDate);
-                    }
-                } catch (\Exception $e) {
-                    // Gestion silencieuse des erreurs
-                }
-            } else {
-                $user->setBirthDate(null);
-            }
-            
-            $userRepository->save($user, true);
-            
-            // Logger la modification de l'utilisateur
-            $this->logger->info('User profile updated', [
-                'admin_email' => $admin->getEmail(),
-                'user_email' => $user->getEmail()
-            ]);
-            
-            $this->addFlash('success', $translator->trans('admin.user.flash.updated'));
-            
-            return $this->redirectToRoute('app_admin_users');
-        }
-        
-        return $this->render('admin/user_edit.html.twig', [
-            'user' => $user,
-            'userForm' => $form->createView(),
             'permission_service' => $this->permissionService
         ]);
     }

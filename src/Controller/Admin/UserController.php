@@ -54,60 +54,46 @@ class UserController extends AbstractController
         $sortField = $request->query->get('sort', 'lastName');
         $sortDirection = $request->query->get('direction', 'ASC');
 
-        // Construire la requête avec les filtres et la recherche
-        $queryBuilder = $this->userRepository->createQueryBuilder('u');
-
-        // Appliquer la recherche si présente
-        if (!empty($search)) {
-            $queryBuilder
-                ->andWhere('(u.email LIKE :search OR u.username LIKE :search OR u.firstName LIKE :search OR u.lastName LIKE :search OR CONCAT(u.firstName, \' \', u.lastName) LIKE :search)')
-                ->setParameter('search', '%' . $search . '%');
-        }
-
-        // Appliquer le filtre si présent
-        switch ($filter) {
-            case 'verified':
-                $queryBuilder->andWhere('u.isVerified = true');
-                break;
-            case 'unverified':
-                $queryBuilder->andWhere('u.isVerified = false');
-                break;
-            case 'approved':
-                $queryBuilder->andWhere('u.isApproved = true');
-                break;
-            case 'pending':
-                $queryBuilder->andWhere('u.isVerified = true AND u.isApproved = false');
-                break;
-            case 'admins':
-                $queryBuilder->andWhere('JSON_CONTAINS(u.roles, :role) = 1')
-                    ->setParameter('role', '"ROLE_ADMIN"');
-                break;
-            case 'super_admins':
-                $queryBuilder->andWhere('JSON_CONTAINS(u.roles, :role) = 1')
-                    ->setParameter('role', '"ROLE_SUPER_ADMIN"');
-                break;
-            case 'users':
-                $queryBuilder->andWhere('NOT JSON_CONTAINS(u.roles, :role1) AND NOT JSON_CONTAINS(u.roles, :role2)')
-                    ->setParameter('role1', '"ROLE_ADMIN"')
-                    ->setParameter('role2', '"ROLE_SUPER_ADMIN"');
-                break;
-        }
-
-        // Appliquer le tri (avec vérification pour éviter les injections SQL)
-        $allowedFields = ['lastName', 'firstName', 'email', 'username', 'createdAt', 'lastLoginAt'];
-        if (!in_array($sortField, $allowedFields)) {
-            $sortField = 'lastName';
-        }
+        // Filtrer les utilisateurs en fonction des critères
+        $users = [];
         
-        $allowedDirections = ['ASC', 'DESC'];
-        if (!in_array($sortDirection, $allowedDirections)) {
-            $sortDirection = 'ASC';
+        try {
+            // Utiliser la méthode du repository qui gère les filtres
+            switch ($filter) {
+                case 'verified':
+                    $users = $this->userRepository->findByFilters(['verified' => true], $search, $sortField, $sortDirection);
+                    break;
+                case 'unverified':
+                    $users = $this->userRepository->findByFilters(['verified' => false], $search, $sortField, $sortDirection);
+                    break;
+                case 'approved':
+                    $users = $this->userRepository->findByFilters(['approved' => true], $search, $sortField, $sortDirection);
+                    break;
+                case 'pending':
+                    $users = $this->userRepository->findByFilters(['verified' => true, 'approved' => false], $search, $sortField, $sortDirection);
+                    break;
+                case 'admins':
+                    $users = $this->userRepository->findByFilters(['role' => 'ROLE_ADMIN'], $search, $sortField, $sortDirection);
+                    break;
+                case 'super_admins':
+                    $users = $this->userRepository->findByFilters(['role' => 'ROLE_SUPER_ADMIN'], $search, $sortField, $sortDirection);
+                    break;
+                case 'users':
+                    $users = $this->userRepository->findByFilters(['role' => 'ROLE_USER_ONLY'], $search, $sortField, $sortDirection);
+                    break;
+                default:
+                    // Si pas de filtre, rechercher sur tous les utilisateurs
+                    if (!empty($search)) {
+                        $users = $this->userRepository->searchUsers($search);
+                    } else {
+                        $users = $this->userRepository->findBy([], [$sortField => $sortDirection]);
+                    }
+            }
+        } catch (\Exception $e) {
+            // En cas d'erreur, logger et afficher une erreur
+            $this->addFlash('error', 'Une erreur est survenue lors de la recherche: ' . $e->getMessage());
+            $users = $this->userRepository->findBy([], ['lastName' => 'ASC']);
         }
-
-        $queryBuilder->orderBy('u.' . $sortField, $sortDirection);
-
-        // Exécuter la requête
-        $users = $queryBuilder->getQuery()->getResult();
 
         // Log des vues des utilisateurs par l'admin
         $this->auditLogService->log(
@@ -255,7 +241,9 @@ class UserController extends AbstractController
         if ($this->isCsrfTokenValid('promote'.$user->getId(), $request->request->get('_token'))) {
             // Ne pas promouvoir un utilisateur qui a déjà le rôle Admin
             if (!$user->isAdmin()) {
-                $user->addRole('ROLE_ADMIN');
+                $roles = $user->getRoles();
+                $roles[] = 'ROLE_ADMIN';
+                $user->setRoles(array_unique($roles));
                 $entityManager->flush();
 
                 // Envoyer un email de notification
@@ -300,7 +288,8 @@ class UserController extends AbstractController
         if ($this->isCsrfTokenValid('demote'.$user->getId(), $request->request->get('_token'))) {
             // Ne rétrograder que s'il est admin mais pas super admin
             if ($user->isAdmin() && !$user->isSuperAdmin()) {
-                $user->removeRole('ROLE_ADMIN');
+                $roles = array_diff($user->getRoles(), ['ROLE_ADMIN']);
+                $user->setRoles($roles);
                 $entityManager->flush();
 
                 // Envoyer un email de notification
@@ -340,10 +329,12 @@ class UserController extends AbstractController
             // Ne pas promouvoir un utilisateur qui a déjà le rôle Super Admin
             if (!$user->isSuperAdmin()) {
                 // S'assurer qu'il a aussi le rôle ADMIN
-                if (!$user->isAdmin()) {
-                    $user->addRole('ROLE_ADMIN');
+                $roles = $user->getRoles();
+                if (!in_array('ROLE_ADMIN', $roles)) {
+                    $roles[] = 'ROLE_ADMIN';
                 }
-                $user->addRole('ROLE_SUPER_ADMIN');
+                $roles[] = 'ROLE_SUPER_ADMIN';
+                $user->setRoles(array_unique($roles));
                 $entityManager->flush();
 
                 // Envoyer un email de notification
@@ -388,7 +379,8 @@ class UserController extends AbstractController
         if ($this->isCsrfTokenValid('demote-super'.$user->getId(), $request->request->get('_token'))) {
             // Ne rétrograder que s'il est super admin
             if ($user->isSuperAdmin()) {
-                $user->removeRole('ROLE_SUPER_ADMIN');
+                $roles = array_diff($user->getRoles(), ['ROLE_SUPER_ADMIN']);
+                $user->setRoles($roles);
                 $entityManager->flush();
 
                 // Envoyer un email de notification

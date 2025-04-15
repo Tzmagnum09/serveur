@@ -519,6 +519,9 @@
       <argument type="service" id="App\Service\EmailTemplateService"/>
       <argument type="service" id="security.csrf.token_generator"/>
     </service>
+    <service id="App\Doctrine\Functions\JsonContainsFunction" class="App\Doctrine\Functions\JsonContainsFunction" autowire="true" autoconfigure="true">
+      <tag name="container.error" message="Cannot autowire service &quot;App\Doctrine\Functions\JsonContainsFunction&quot;: argument &quot;$name&quot; of method &quot;Doctrine\ORM\Query\AST\Functions\FunctionNode::__construct()&quot; is type-hinted &quot;string&quot;, you should configure its value explicitly."/>
+    </service>
     <service id="App\EventListener\LocaleListener" class="App\EventListener\LocaleListener" autowire="true" autoconfigure="true">
       <argument type="service" id="request_stack"/>
       <argument type="service" id="security.token_storage"/>
@@ -666,7 +669,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.tA9BDY8"/>
+      <argument type="service" id=".service_locator.KT9e6Jj"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3423,7 +3426,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.tA9BDY8"/>
+      <argument type="service" id=".service_locator.KT9e6Jj"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -5854,6 +5857,10 @@
       <call method="setRepositoryFactory">
         <argument type="service" id="doctrine.orm.container_repository_factory"/>
       </call>
+      <call method="addCustomStringFunction">
+        <argument>JSON_CONTAINS</argument>
+        <argument>App\Doctrine\Functions\JsonContainsFunction</argument>
+      </call>
     </service>
     <service id="doctrine.orm.default_attribute_metadata_driver" class="Doctrine\ORM\Mapping\Driver\AttributeDriver">
       <argument type="collection">
@@ -7743,32 +7750,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.6tMdNa5" method="withContext"/>
     </service>
-    <service id=".service_locator.OzEre6h" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
-      </argument>
-    </service>
-    <service id=".service_locator.OzEre6h.App\Controller\AdminController::users()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\AdminController::users()"/>
-      <argument>App\Controller\AdminController::users()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.OzEre6h" method="withContext"/>
-    </service>
-    <service id=".service_locator.Dw6dywA" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="user" type="service_closure" id=".errored..service_locator.Dw6dywA.App\Entity\User"/>
-        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
-        <argument key="translator" type="service_closure" id="translator.default"/>
-      </argument>
-    </service>
-    <service id=".service_locator.Dw6dywA.App\Controller\AdminController::editUser()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\AdminController::editUser()"/>
-      <argument>App\Controller\AdminController::editUser()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.Dw6dywA" method="withContext"/>
-    </service>
     <service id=".service_locator.k9R1AxW" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7929,11 +7910,25 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KHhLDTq" method="withContext"/>
     </service>
+    <service id=".service_locator.OzEre6h" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.OzEre6h.App\Controller\SuperAdminController::dashboard()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\SuperAdminController::dashboard()"/>
       <argument>App\Controller\SuperAdminController::dashboard()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.OzEre6h" method="withContext"/>
+    </service>
+    <service id=".service_locator.Dw6dywA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service_closure" id=".errored..service_locator.Dw6dywA.App\Entity\User"/>
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="translator" type="service_closure" id="translator.default"/>
+      </argument>
     </service>
     <service id=".service_locator.Dw6dywA.App\Controller\SuperAdminController::promoteToAdmin()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\SuperAdminController::promoteToAdmin()"/>
@@ -7966,7 +7961,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.Dw6dywA" method="withContext"/>
     </service>
-    <service id=".service_locator.tA9BDY8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.KT9e6Jj" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -7981,8 +7976,6 @@
         <argument key="App\Controller\Admin\UserController::demoteFromSuperAdmin" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\UserController::demoteFromSuperAdmin()"/>
         <argument key="App\Controller\Admin\UserPermissionsController::managePermissions" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\UserPermissionsController::managePermissions()"/>
         <argument key="App\Controller\AdminController::dashboard" type="service_closure" id=".service_locator.6tMdNa5.App\Controller\AdminController::dashboard()"/>
-        <argument key="App\Controller\AdminController::users" type="service_closure" id=".service_locator.OzEre6h.App\Controller\AdminController::users()"/>
-        <argument key="App\Controller\AdminController::editUser" type="service_closure" id=".service_locator.Dw6dywA.App\Controller\AdminController::editUser()"/>
         <argument key="App\Controller\EmailTemplateController::index" type="service_closure" id=".service_locator.k9R1AxW.App\Controller\EmailTemplateController::index()"/>
         <argument key="App\Controller\EmailTemplateController::new" type="service_closure" id=".service_locator.suHSJ1C.App\Controller\EmailTemplateController::new()"/>
         <argument key="App\Controller\EmailTemplateController::edit" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::edit()"/>
@@ -8012,8 +8005,6 @@
         <argument key="App\Controller\Admin\UserController:demoteFromSuperAdmin" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\UserController::demoteFromSuperAdmin()"/>
         <argument key="App\Controller\Admin\UserPermissionsController:managePermissions" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\UserPermissionsController::managePermissions()"/>
         <argument key="App\Controller\AdminController:dashboard" type="service_closure" id=".service_locator.6tMdNa5.App\Controller\AdminController::dashboard()"/>
-        <argument key="App\Controller\AdminController:users" type="service_closure" id=".service_locator.OzEre6h.App\Controller\AdminController::users()"/>
-        <argument key="App\Controller\AdminController:editUser" type="service_closure" id=".service_locator.Dw6dywA.App\Controller\AdminController::editUser()"/>
         <argument key="App\Controller\EmailTemplateController:index" type="service_closure" id=".service_locator.k9R1AxW.App\Controller\EmailTemplateController::index()"/>
         <argument key="App\Controller\EmailTemplateController:new" type="service_closure" id=".service_locator.suHSJ1C.App\Controller\EmailTemplateController::new()"/>
         <argument key="App\Controller\EmailTemplateController:edit" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::edit()"/>
@@ -8915,9 +8906,6 @@
     <service id=".errored..service_locator.WkfvUVe.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.WkfvUVe&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
-    <service id=".errored..service_locator.Dw6dywA.App\Entity\User" class="App\Entity\User">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.Dw6dywA&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
-    </service>
     <service id=".errored..service_locator.PUsP4l5.App\Entity\EmailTemplate" class="App\Entity\EmailTemplate">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.PUsP4l5&quot;: it needs an instance of &quot;App\Entity\EmailTemplate&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
@@ -8926,6 +8914,9 @@
     </service>
     <service id=".errored..service_locator.vOrWoox.App\Entity\EmailTemplate" class="App\Entity\EmailTemplate">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.vOrWoox&quot;: it needs an instance of &quot;App\Entity\EmailTemplate&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.Dw6dywA.App\Entity\User" class="App\Entity\User">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.Dw6dywA&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".errored..service_locator.E0eIVeV.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.E0eIVeV&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
@@ -9885,7 +9876,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.tA9BDY8"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.KT9e6Jj"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9916,8 +9907,6 @@
     <service id=".service_locator.n_ENPtW" alias=".service_locator.zHyJIs5"/>
     <service id=".service_locator.uXwZemd" alias=".service_locator.WkfvUVe"/>
     <service id=".service_locator.9Jyh5r1" alias=".service_locator.6tMdNa5"/>
-    <service id=".service_locator.hNMhKaf" alias=".service_locator.OzEre6h"/>
-    <service id=".service_locator.sGQ9Z42" alias=".service_locator.Dw6dywA"/>
     <service id=".service_locator.QXdywhL" alias=".service_locator.k9R1AxW"/>
     <service id=".service_locator.T0cBAxC" alias=".service_locator.suHSJ1C"/>
     <service id=".service_locator.55zciyI" alias=".service_locator.PUsP4l5"/>
@@ -9929,6 +9918,8 @@
     <service id=".service_locator.l6GrDWv" alias=".service_locator.KHhLDTq"/>
     <service id=".service_locator.UnhqfR0" alias=".service_locator.qHpfPrp"/>
     <service id=".service_locator.nQpY7zA" alias=".service_locator.QMbW_7n"/>
+    <service id=".service_locator.hNMhKaf" alias=".service_locator.OzEre6h"/>
+    <service id=".service_locator.sGQ9Z42" alias=".service_locator.Dw6dywA"/>
     <service id=".service_locator.vN1MlKD" alias=".service_locator.E0eIVeV"/>
     <service id=".service_locator.YoE4GGP" alias=".service_locator.ZyP9f7K"/>
   </services>

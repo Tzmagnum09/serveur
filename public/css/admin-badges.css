@@ -1,0 +1,68 @@
+/* Styles pour les badges de statut et rôle dans la liste des utilisateurs */
+.badge {
+    color: white !important;
+    font-weight: 500;
+}
+
+/* Badges spécifiques */
+.badge.bg-success,
+.badge.bg-danger,
+.badge.bg-primary,
+.badge.bg-secondary,
+.badge.bg-warning,
+.badge.bg-info,
+.badge.bg-dark {
+    color: white !important;
+}
+
+/* Badge de statut 'Actif' */
+.badge.bg-success {
+    color: white !important;
+}
+
+/* Badge de rôle 'Admin' */
+.badge.bg-primary {
+    color: white !important;
+}
+
+/* Badge de rôle 'Super Admin' */
+.badge.bg-danger {
+    color: white !important;
+}
+
+/* Badge de rôle 'Utilisateur' */
+.badge.bg-secondary {
+    color: white !important;
+}
+
+/* Pour les status-badge également utilisés dans le système */
+.status-badge {
+    color: white !important;
+    font-weight: 500;
+}
+
+.status-badge.bg-success,
+.status-badge.bg-danger,
+.status-badge.bg-primary,
+.status-badge.bg-secondary,
+.status-badge.bg-warning,
+.status-badge.bg-info,
+.status-badge.bg-dark {
+    color: white !important;
+}
+
+/* Badge de fond jaune avec texte foncé */
+.badge.bg-warning {
+    color: #212529 !important;
+}
+
+/* Styles pour le bouton de réinitialisation */
+.reset-button {
+    margin-left: 10px;
+    transition: all 0.3s;
+}
+
+.reset-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

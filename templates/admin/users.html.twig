@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin-badges.css') }}">
     <style>
         /* Style pour la barre de recherche et les filtres */
         .search-filter-container {
@@ -47,14 +48,6 @@
         .table-responsive {
             border-radius: 10px;
             overflow: hidden;
-        }
-        
-        /* User status styles */
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-weight: 500;
-            font-size: 0.85rem;
         }
         
         /* Sorting styles */
@@ -145,6 +138,14 @@
             <a href="{{ path('app_admin_dashboard') }}" class="btn btn-outline-secondary me-2">
                 <i class="fas fa-arrow-left me-1"></i> {{ 'admin.users.back_btn'|trans }}
             </a>
+            <a href="{{ path('app_admin_users') }}" class="btn btn-outline-primary me-2">
+                <i class="fas fa-sync-alt me-1"></i> {{ 'admin.users.reset_filters'|trans }}
+            </a>
+            {% if search|default('') is not empty %}
+            <a href="{{ path('app_admin_users', {'filter': filter|default('')}) }}" class="btn btn-outline-danger">
+                <i class="fas fa-times me-1"></i> {{ 'admin.users.clear_search'|trans }}
+            </a>
+            {% endif %}
         </div>
     </div>
     
@@ -158,6 +159,9 @@
                             <i class="fas fa-search text-muted"></i>
                         </span>
                         <input type="text" name="q" class="form-control form-control-lg border-start-0" placeholder="{{ 'admin.users.search_placeholder'|trans }}" value="{{ search|default('') }}">
+                        {% if filter|default('') is not empty %}
+                            <input type="hidden" name="filter" value="{{ filter }}">
+                        {% endif %}
                         <button type="submit" class="btn btn-gradient">
                             {{ 'admin.users.search_btn'|trans }}
                         </button>
@@ -181,28 +185,28 @@
         </div>
         
         <div class="filter-badges d-flex flex-wrap">
-            <a href="{{ path('app_admin_users') }}" class="filter-badge {{ filter|default('') == '' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'q': search|default('')}) }}" class="filter-badge {{ filter|default('') == '' ? 'active' : '' }}">
                 {{ 'admin.users.filter_all'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'verified'}) }}" class="filter-badge {{ filter|default('') == 'verified' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'verified', 'q': search|default('')}) }}" class="filter-badge {{ filter|default('') == 'verified' ? 'active' : '' }}">
                 {{ 'admin.users.filter_verified'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'unverified'}) }}" class="filter-badge {{ filter|default('') == 'unverified' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'unverified', 'q': search|default('')}) }}" class="filter-badge {{ filter|default('') == 'unverified' ? 'active' : '' }}">
                 {{ 'admin.users.filter_unverified'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'approved'}) }}" class="filter-badge {{ filter|default('') == 'approved' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'approved', 'q': search|default('')}) }}" class="filter-badge {{ filter|default('') == 'approved' ? 'active' : '' }}">
                 {{ 'admin.users.filter_approved'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'pending'}) }}" class="filter-badge {{ filter|default('') == 'pending' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'pending', 'q': search|default('')}) }}" class="filter-badge {{ filter|default('') == 'pending' ? 'active' : '' }}">
                 {{ 'admin.users.filter_pending'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'admins'}) }}" class="filter-badge {{ filter|default('') == 'admins' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'admins', 'q': search|default('')}) }}" class="filter-badge {{ filter|default('') == 'admins' ? 'active' : '' }}">
                 {{ 'admin.users.filter_admins'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'super_admins'}) }}" class="filter-badge {{ filter|default('') == 'super_admins' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'super_admins', 'q': search|default('')}) }}" class="filter-badge {{ filter|default('') == 'super_admins' ? 'active' : '' }}">
                 {{ 'admin.users.filter_super_admins'|trans }}
             </a>
-            <a href="{{ path('app_admin_users', {'filter': 'users'}) }}" class="filter-badge {{ filter|default('') == 'users' ? 'active' : '' }}">
+            <a href="{{ path('app_admin_users', {'filter': 'users', 'q': search|default('')}) }}" class="filter-badge {{ filter|default('') == 'users' ? 'active' : '' }}">
                 {{ 'admin.users.filter_regular_users'|trans }}
             </a>
         </div>
@@ -268,20 +272,20 @@
                                 <td>{{ user.createdAt|date('d/m/Y') }}</td>
                                 <td>
                                     {% if user.isVerified and user.isApproved %}
-                                        <span class="status-badge bg-success">{{ 'admin.users.status_active'|trans }}</span>
+                                        <span class="badge bg-success">{{ 'admin.users.status_active'|trans }}</span>
                                     {% elseif user.isVerified and not user.isApproved %}
-                                        <span class="status-badge bg-warning text-dark">{{ 'admin.users.status_pending'|trans }}</span>
+                                        <span class="badge bg-warning">{{ 'admin.users.status_pending'|trans }}</span>
                                     {% else %}
-                                        <span class="status-badge bg-danger">{{ 'admin.users.status_unverified'|trans }}</span>
+                                        <span class="badge bg-danger">{{ 'admin.users.status_unverified'|trans }}</span>
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if user.isSuperAdmin %}
-                                        <span class="status-badge bg-danger">{{ 'admin.users.role_super_admin'|trans }}</span>
+                                        <span class="badge bg-danger">{{ 'admin.users.role_super_admin'|trans }}</span>
                                     {% elseif user.isAdmin %}
-                                        <span class="status-badge bg-primary">{{ 'admin.users.role_admin'|trans }}</span>
+                                        <span class="badge bg-primary">{{ 'admin.users.role_admin'|trans }}</span>
                                     {% else %}
-                                        <span class="status-badge bg-secondary">{{ 'admin.users.role_user'|trans }}</span>
+                                        <span class="badge bg-secondary">{{ 'admin.users.role_user'|trans }}</span>
                                     {% endif %}
                                 </td>
                                 <td>
@@ -333,7 +337,7 @@
                                                 </form>
                                             {% endif %}
                                             
-                                            {% if user.id != 5 %}
+                                            {% if user.id != 5 and user.isAdmin %}
                                                 <a href="{{ path('app_admin_user_permissions', {'id': user.id}) }}" class="btn btn-sm btn-outline-info" title="{{ 'admin.users.manage_permissions'|trans }}">
                                                     <i class="fas fa-key"></i>
                                                 </a>
@@ -347,7 +351,7 @@
                                 <td colspan="7" class="empty-state">
                                     <i class="fas fa-users"></i>
                                     <p class="mb-0">{{ 'admin.users.no_users'|trans }}</p>
-                                    {% if search|default('') %}
+                                    {% if search|default('') or filter|default('') %}
                                         <p class="mt-2">
                                             <a href="{{ path('app_admin_users') }}" class="btn btn-outline-primary mt-2">
                                                 <i class="fas fa-times me-1"></i> {{ 'admin.users.clear_search'|trans }}
