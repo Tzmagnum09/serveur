@@ -134,6 +134,7 @@
             <!-- Sélecteur de langue -->
             <div class="language-selector mb-4">
                 <span class="me-2">{{ 'admin.email_template_edit.language'|trans|default('Langue') }}:</span>
+                {% if availableLocales is defined %}
                 {% for locale in availableLocales %}
                     {% if locale in existingLocales %}
                         <a href="{{ path('app_admin_email_template_edit_locale', {'id': template.id, 'locale': locale}) }}" 
@@ -147,6 +148,15 @@
                         </a>
                     {% endif %}
                 {% endfor %}
+                {% else %}
+                    {% set defaultLocales = ['fr', 'en', 'nl', 'de'] %}
+                    {% for locale in defaultLocales %}
+                        <a href="{{ path('app_admin_email_template_edit_locale', {'id': template.id, 'locale': locale}) }}" 
+                           class="language-badge {% if template.locale == locale %}active{% endif %}">
+                            {{ locale|upper }}
+                        </a>
+                    {% endfor %}
+                {% endif %}
             </div>
         
             {{ form_start(form) }}
@@ -281,33 +291,35 @@
             
             // Modal preview
             const previewBtn = document.getElementById('previewBtn');
-            const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
-            const previewFrame = document.getElementById('previewFrame');
-            const previewLoading = document.getElementById('previewLoading');
-            
-            previewBtn.addEventListener('click', function() {
-                // Réinitialiser l'iframe et afficher le loader
-                previewFrame.src = '';
-                previewFrame.style.display = 'none';
-                previewLoading.style.display = 'block';
+            if (previewBtn) {
+                const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+                const previewFrame = document.getElementById('previewFrame');
+                const previewLoading = document.getElementById('previewLoading');
                 
-                // Afficher la modal
-                previewModal.show();
-                
-                // Charger le contenu
-                const previewUrl = '{{ path('app_admin_email_template_preview', {'id': template.id}) }}';
-                
-                // Charger l'URL dans l'iframe
-                setTimeout(function() {
-                    previewFrame.src = previewUrl;
+                previewBtn.addEventListener('click', function() {
+                    // Réinitialiser l'iframe et afficher le loader
+                    previewFrame.src = '';
+                    previewFrame.style.display = 'none';
+                    previewLoading.style.display = 'block';
                     
-                    // Quand l'iframe est chargée, masquer le loader et afficher l'iframe
-                    previewFrame.onload = function() {
-                        previewLoading.style.display = 'none';
-                        previewFrame.style.display = 'block';
-                    };
-                }, 500);
-            });
+                    // Afficher la modal
+                    previewModal.show();
+                    
+                    // Charger le contenu
+                    const previewUrl = '{{ path('app_admin_email_template_preview', {'id': template.id}) }}';
+                    
+                    // Charger l'URL dans l'iframe
+                    setTimeout(function() {
+                        previewFrame.src = previewUrl;
+                        
+                        // Quand l'iframe est chargée, masquer le loader et afficher l'iframe
+                        previewFrame.onload = function() {
+                            previewLoading.style.display = 'none';
+                            previewFrame.style.display = 'block';
+                        };
+                    }, 500);
+                });
+            }
         });
     </script>
 {% endblock %}

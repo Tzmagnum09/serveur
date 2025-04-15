@@ -666,7 +666,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.SakCahV"/>
+      <argument type="service" id=".service_locator.tA9BDY8"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3162,14 +3162,6 @@
         <argument>200</argument>
       </call>
       <call method="addListener">
-        <argument>Symfony\Component\Messenger\Event\WorkerRunningEvent</argument>
-        <argument type="collection">
-          <argument type="service_closure" id="messenger.listener.dispatch_pcntl_signal_listener"/>
-          <argument>onWorkerRunning</argument>
-        </argument>
-        <argument>100</argument>
-      </call>
-      <call method="addListener">
         <argument>Symfony\Component\Messenger\Event\WorkerStartedEvent</argument>
         <argument type="collection">
           <argument type="service_closure" id="messenger.listener.stop_worker_on_restart_signal_listener"/>
@@ -3423,7 +3415,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.SakCahV"/>
+      <argument type="service" id=".service_locator.tA9BDY8"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7808,6 +7800,19 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.PUsP4l5" method="withContext"/>
     </service>
+    <service id=".service_locator.sZGeO9P" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="template" type="service_closure" id=".errored..service_locator.sZGeO9P.App\Entity\EmailTemplate"/>
+        <argument key="templateRepository" type="service_closure" id="App\Repository\EmailTemplateRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.sZGeO9P.App\Controller\EmailTemplateController::editLocale()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\EmailTemplateController::editLocale()"/>
+      <argument>App\Controller\EmailTemplateController::editLocale()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.sZGeO9P" method="withContext"/>
+    </service>
     <service id=".service_locator.vOrWoox" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7953,7 +7958,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.Dw6dywA" method="withContext"/>
     </service>
-    <service id=".service_locator.SakCahV" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.tA9BDY8" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -7973,6 +7978,7 @@
         <argument key="App\Controller\EmailTemplateController::index" type="service_closure" id=".service_locator.k9R1AxW.App\Controller\EmailTemplateController::index()"/>
         <argument key="App\Controller\EmailTemplateController::new" type="service_closure" id=".service_locator.suHSJ1C.App\Controller\EmailTemplateController::new()"/>
         <argument key="App\Controller\EmailTemplateController::edit" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::edit()"/>
+        <argument key="App\Controller\EmailTemplateController::editLocale" type="service_closure" id=".service_locator.sZGeO9P.App\Controller\EmailTemplateController::editLocale()"/>
         <argument key="App\Controller\EmailTemplateController::preview" type="service_closure" id=".service_locator.vOrWoox.App\Controller\EmailTemplateController::preview()"/>
         <argument key="App\Controller\EmailTemplateController::delete" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::delete()"/>
         <argument key="App\Controller\ProfileController::edit" type="service_closure" id=".service_locator.518uXiN.App\Controller\ProfileController::edit()"/>
@@ -8003,6 +8009,7 @@
         <argument key="App\Controller\EmailTemplateController:index" type="service_closure" id=".service_locator.k9R1AxW.App\Controller\EmailTemplateController::index()"/>
         <argument key="App\Controller\EmailTemplateController:new" type="service_closure" id=".service_locator.suHSJ1C.App\Controller\EmailTemplateController::new()"/>
         <argument key="App\Controller\EmailTemplateController:edit" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::edit()"/>
+        <argument key="App\Controller\EmailTemplateController:editLocale" type="service_closure" id=".service_locator.sZGeO9P.App\Controller\EmailTemplateController::editLocale()"/>
         <argument key="App\Controller\EmailTemplateController:preview" type="service_closure" id=".service_locator.vOrWoox.App\Controller\EmailTemplateController::preview()"/>
         <argument key="App\Controller\EmailTemplateController:delete" type="service_closure" id=".service_locator.PUsP4l5.App\Controller\EmailTemplateController::delete()"/>
         <argument key="App\Controller\ProfileController:edit" type="service_closure" id=".service_locator.518uXiN.App\Controller\ProfileController::edit()"/>
@@ -8905,6 +8912,9 @@
     </service>
     <service id=".errored..service_locator.PUsP4l5.App\Entity\EmailTemplate" class="App\Entity\EmailTemplate">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.PUsP4l5&quot;: it needs an instance of &quot;App\Entity\EmailTemplate&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.sZGeO9P.App\Entity\EmailTemplate" class="App\Entity\EmailTemplate">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.sZGeO9P&quot;: it needs an instance of &quot;App\Entity\EmailTemplate&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".errored..service_locator.vOrWoox.App\Entity\EmailTemplate" class="App\Entity\EmailTemplate">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.vOrWoox&quot;: it needs an instance of &quot;App\Entity\EmailTemplate&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
@@ -9867,7 +9877,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.SakCahV"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.tA9BDY8"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9903,6 +9913,7 @@
     <service id=".service_locator.QXdywhL" alias=".service_locator.k9R1AxW"/>
     <service id=".service_locator.T0cBAxC" alias=".service_locator.suHSJ1C"/>
     <service id=".service_locator.55zciyI" alias=".service_locator.PUsP4l5"/>
+    <service id=".service_locator.qohYVsv" alias=".service_locator.sZGeO9P"/>
     <service id=".service_locator.XssToh1" alias=".service_locator.vOrWoox"/>
     <service id=".service_locator.MDBPzv8" alias=".service_locator.518uXiN"/>
     <service id=".service_locator.mNg1H.S" alias=".service_locator.iWwUsxu"/>

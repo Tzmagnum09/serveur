@@ -158,10 +158,44 @@ class EmailTemplateController extends AbstractController
             return $this->redirectToRoute('app_admin_email_templates');
         }
 
+        // Récupérer les langues disponibles
+        $availableLocales = $this->getParameter('app.locales') ?? ['fr', 'en', 'nl', 'de'];
+        
+        // Récupérer les langues déjà existantes pour ce template (code)
+        $existingTemplates = $templateRepository->findByCode($template->getCode());
+        $existingLocales = array_map(function($t) {
+            return $t->getLocale();
+        }, $existingTemplates);
+
         return $this->render('admin/email_templates/edit.html.twig', [
             'template' => $template,
             'form' => $form->createView(),
+            'availableLocales' => $availableLocales,
+            'existingLocales' => $existingLocales,
             'permission_service' => $this->permissionService
+        ]);
+    }
+
+    #[Route('/{id}/edit/{locale}', name: 'app_admin_email_template_edit_locale')]
+    public function editLocale(
+        EmailTemplate $template,
+        string $locale,
+        EmailTemplateRepository $templateRepository
+    ): Response {
+        // Récupérer le template dans la langue demandée
+        $localizedTemplate = $templateRepository->findByCodeAndLocale($template->getCode(), $locale);
+        
+        // Si le template existe dans cette langue, rediriger vers son édition
+        if ($localizedTemplate) {
+            return $this->redirectToRoute('app_admin_email_template_edit', [
+                'id' => $localizedTemplate->getId()
+            ]);
+        }
+        
+        // Sinon, rediriger vers la création d'un nouveau template
+        return $this->redirectToRoute('app_admin_email_template_new', [
+            'code' => $template->getCode(),
+            'locale' => $locale
         ]);
     }
 

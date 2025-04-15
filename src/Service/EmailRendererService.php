@@ -82,16 +82,6 @@ class EmailRendererService
     {
         $content = $template->getHtmlContent();
         
-        try {
-            // Si le contenu est au format Twig, essayer de le rendre
-            if (strpos($content, '{% ') !== false || strpos($content, '{{ ') !== false) {
-                $template = $this->twig->createTemplate($content);
-                return $template->render($variables);
-            }
-        } catch (\Exception $e) {
-            // En cas d'erreur, utiliser le remplacement simple
-        }
-        
         // Remplacement simple des variables
         return $this->replaceVariables($content, $variables);
     }
@@ -103,16 +93,6 @@ class EmailRendererService
     {
         $content = $template->getTextContent();
         
-        try {
-            // Si le contenu est au format Twig, essayer de le rendre
-            if (strpos($content, '{% ') !== false || strpos($content, '{{ ') !== false) {
-                $template = $this->twig->createTemplate($content);
-                return $template->render($variables);
-            }
-        } catch (\Exception $e) {
-            // En cas d'erreur, utiliser le remplacement simple
-        }
-        
         // Remplacement simple des variables
         return $this->replaceVariables($content, $variables);
     }
@@ -123,16 +103,6 @@ class EmailRendererService
     private function renderSubject(EmailTemplate $template, array $variables): string
     {
         $subject = $template->getSubject();
-        
-        try {
-            // Si le sujet est au format Twig, essayer de le rendre
-            if (strpos($subject, '{% ') !== false || strpos($subject, '{{ ') !== false) {
-                $template = $this->twig->createTemplate($subject);
-                return $template->render($variables);
-            }
-        } catch (\Exception $e) {
-            // En cas d'erreur, utiliser le remplacement simple
-        }
         
         // Remplacement simple des variables
         return $this->replaceVariables($subject, $variables);
