@@ -6,7 +6,7 @@ use App\Repository\AuditLogRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AuditLogRepository::class)]
-#[ORM\Table(name: 'audit_log')]
+#[ORM\Table(name: 'audit_log', options: ['charset' => 'utf8mb4', 'collate' => 'utf8mb4_unicode_ci'])]
 class AuditLog
 {
     #[ORM\Id]
@@ -21,7 +21,7 @@ class AuditLog
     #[ORM\Column(length: 100)]
     private ?string $action = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true, options: ['charset' => 'utf8mb4', 'collate' => 'utf8mb4_unicode_ci'])]
     private ?string $details = null;
 
     #[ORM\Column(length: 45)]

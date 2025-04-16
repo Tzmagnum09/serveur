@@ -1,0 +1,31 @@
+<?php
+
+namespace DoctrineMigrations;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
+
+/**
+ * Migration pour modifier la table audit_log et utiliser utf8mb4
+ */
+final class Version20250417000001 extends AbstractMigration
+{
+    public function getDescription(): string
+    {
+        return 'Conversion de la table audit_log en utf8mb4';
+    }
+
+    public function up(Schema $schema): void
+    {
+        // Modifier la structure de la table audit_log pour utiliser UTF-8
+        $this->addSql('ALTER TABLE audit_log CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
+        
+        // S'assurer que la colonne details utilise bien utf8mb4
+        $this->addSql('ALTER TABLE audit_log MODIFY details TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
+    }
+
+    public function down(Schema $schema): void
+    {
+        // En cas de rollback, nous ne faisons rien car revenir à un encodage plus limité pourrait causer des pertes de données
+    }
+}

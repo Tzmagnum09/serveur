@@ -25,15 +25,21 @@ class AuditLogService
      */
     public function log(User $user, string $action, string $details = ''): void
     {
-        $log = new AuditLog();
-        $log->setUser($user);
-        $log->setAction($action);
-        $log->setDetails($details);
-        $log->setIpAddress($this->getClientIp());
-        $log->setCreatedAt(new \DateTimeImmutable());
-        
-        $this->entityManager->persist($log);
-        $this->entityManager->flush();
+        try {
+            $log = new AuditLog();
+            $log->setUser($user);
+            $log->setAction($action);
+            // S'assurer que le texte est bien encodé en UTF-8
+            $log->setDetails(mb_convert_encoding($details, 'UTF-8', 'UTF-8'));
+            $log->setIpAddress($this->getClientIp());
+            $log->setCreatedAt(new \DateTimeImmutable());
+            
+            $this->entityManager->persist($log);
+            $this->entityManager->flush();
+        } catch (\Exception $e) {
+            // Logguer l'erreur mais ne pas interrompre l'exécution
+            error_log('Erreur lors de l\'enregistrement du log d\'audit: ' . $e->getMessage());
+        }
     }
     
     /**
