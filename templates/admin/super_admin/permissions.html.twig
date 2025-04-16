@@ -88,7 +88,11 @@
                                     <td>{{ form_label(field) }}</td>
                                     <td>{{ form_widget(field) }}</td>
                                     <td>
-                                        <span class="text-muted">{{ ('super_admin.permissions.desc.' ~ permission)|trans }}</span>
+                                        {% if permission == '_token' %}
+                                            <span class="text-muted">{{ 'super_admin.permissions.desc.token'|trans }}</span>
+                                        {% else %}
+                                            <span class="text-muted">{{ ('super_admin.permissions.desc.' ~ permission)|trans }}</span>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}

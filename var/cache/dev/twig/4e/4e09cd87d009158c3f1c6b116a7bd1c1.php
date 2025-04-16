@@ -445,61 +445,97 @@ class __TwigTemplate_7bf2aebb350377056d6a7697e810dfaf extends Template
         $context['_seq'] = CoreExtension::ensureTraversable((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 200, $this->source); })()));
         foreach ($context['_seq'] as $context["permission"] => $context["field"]) {
             // line 201
-            yield "                                <div class=\"col-lg-6\">
-                                    <div class=\"permission-item mb-3 ";
-            // line 202
-            if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["field"], "vars", [], "any", false, false, false, 202), "data", [], "any", false, false, false, 202)) {
-                yield "active";
-            }
-            yield "\">
-                                        <div class=\"permission-check\">
-                                            <h6 class=\"permission-title\">";
-            // line 204
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["field"], "vars", [], "any", false, false, false, 204), "label", [], "any", false, false, false, 204), "html", null, true);
-            yield "</h6>
-                                            <div class=\"form-check form-switch\">
-                                                ";
-            // line 206
-            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($context["field"], 'widget');
-            yield "
+            yield "                                ";
+            if (($context["permission"] != "_token")) {
+                // line 202
+                yield "                                    <div class=\"col-lg-6\">
+                                        <div class=\"permission-item mb-3 ";
+                // line 203
+                if (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["field"], "vars", [], "any", false, false, false, 203), "data", [], "any", false, false, false, 203)) {
+                    yield "active";
+                }
+                yield "\">
+                                            <div class=\"permission-check\">
+                                                <h6 class=\"permission-title\">";
+                // line 205
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["field"], "vars", [], "any", false, false, false, 205), "label", [], "any", false, false, false, 205), "html", null, true);
+                yield "</h6>
+                                                <div class=\"form-check form-switch\">
+                                                    ";
+                // line 207
+                yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($context["field"], 'widget');
+                yield "
+                                                </div>
                                             </div>
+                                            <p class=\"permission-description mt-2\">
+                                                ";
+                // line 211
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(("admin.permissions.desc." . $context["permission"])), "html", null, true);
+                yield "
+                                            </p>
                                         </div>
-                                        <p class=\"permission-description mt-2\">
-                                            ";
-            // line 210
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(("admin.permissions.desc." . $context["permission"])), "html", null, true);
-            yield "
-                                        </p>
                                     </div>
-                                </div>
-                            ";
+                                ";
+            }
+            // line 216
+            yield "                            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['permission'], $context['field'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 215
+        // line 217
+        yield "                        </div>
+                        
+                        <div style=\"display: none;\">
+                            ";
+        // line 220
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 220, $this->source); })()));
+        foreach ($context['_seq'] as $context["permission"] => $context["field"]) {
+            // line 221
+            yield "                                ";
+            if (($context["permission"] == "_token")) {
+                // line 222
+                yield "                                    ";
+                yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($context["field"], 'widget');
+                yield "
+                                    <div>
+                                        <span class=\"text-muted\">";
+                // line 224
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.permissions.desc.token"), "html", null, true);
+                yield "</span>
+                                    </div>
+                                ";
+            }
+            // line 227
+            yield "                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['permission'], $context['field'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 228
         yield "                        </div>
                         
                         <div class=\"d-flex justify-content-end mt-4\">
                             <a href=\"";
-        // line 218
+        // line 231
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users");
         yield "\" class=\"btn btn-outline-secondary me-2\">
                                 ";
-        // line 219
+        // line 232
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.permissions.cancel_btn"), "html", null, true);
         yield "
                             </a>
                             <button type=\"submit\" class=\"btn btn-gradient\">
                                 <i class=\"fas fa-save me-1\"></i> ";
-        // line 222
+        // line 235
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.permissions.save_btn"), "html", null, true);
         yield "
                             </button>
                         </div>
                     ";
-        // line 225
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 225, $this->source); })()), 'form_end');
+        // line 238
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 238, $this->source); })()), 'form_end');
         yield "
                 </div>
             </div>
@@ -513,7 +549,7 @@ class __TwigTemplate_7bf2aebb350377056d6a7697e810dfaf extends Template
         yield from [];
     }
 
-    // line 233
+    // line 246
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -523,7 +559,7 @@ class __TwigTemplate_7bf2aebb350377056d6a7697e810dfaf extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 234
+        // line 247
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
 <script>
@@ -572,7 +608,7 @@ class __TwigTemplate_7bf2aebb350377056d6a7697e810dfaf extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  527 => 234,  517 => 233,  502 => 225,  496 => 222,  490 => 219,  486 => 218,  481 => 215,  470 => 210,  463 => 206,  458 => 204,  451 => 202,  448 => 201,  444 => 200,  439 => 198,  434 => 196,  428 => 193,  419 => 186,  413 => 183,  409 => 181,  407 => 180,  401 => 176,  395 => 174,  389 => 172,  387 => 171,  382 => 169,  376 => 166,  372 => 165,  366 => 161,  360 => 159,  354 => 157,  352 => 156,  347 => 155,  345 => 154,  340 => 152,  336 => 151,  330 => 149,  322 => 144,  311 => 136,  307 => 135,  303 => 134,  299 => 132,  289 => 131,  280 => 128,  272 => 123,  268 => 122,  261 => 119,  259 => 118,  255 => 116,  248 => 112,  244 => 111,  241 => 110,  238 => 109,  231 => 105,  227 => 104,  224 => 103,  221 => 102,  214 => 98,  210 => 97,  207 => 96,  205 => 95,  199 => 92,  195 => 91,  189 => 88,  186 => 87,  176 => 86,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  563 => 247,  553 => 246,  538 => 238,  532 => 235,  526 => 232,  522 => 231,  517 => 228,  511 => 227,  505 => 224,  499 => 222,  496 => 221,  492 => 220,  487 => 217,  481 => 216,  473 => 211,  466 => 207,  461 => 205,  454 => 203,  451 => 202,  448 => 201,  444 => 200,  439 => 198,  434 => 196,  428 => 193,  419 => 186,  413 => 183,  409 => 181,  407 => 180,  401 => 176,  395 => 174,  389 => 172,  387 => 171,  382 => 169,  376 => 166,  372 => 165,  366 => 161,  360 => 159,  354 => 157,  352 => 156,  347 => 155,  345 => 154,  340 => 152,  336 => 151,  330 => 149,  322 => 144,  311 => 136,  307 => 135,  303 => 134,  299 => 132,  289 => 131,  280 => 128,  272 => 123,  268 => 122,  261 => 119,  259 => 118,  255 => 116,  248 => 112,  244 => 111,  241 => 110,  238 => 109,  231 => 105,  227 => 104,  224 => 103,  221 => 102,  214 => 98,  210 => 97,  207 => 96,  205 => 95,  199 => 92,  195 => 91,  189 => 88,  186 => 87,  176 => 86,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -777,19 +813,32 @@ class __TwigTemplate_7bf2aebb350377056d6a7697e810dfaf extends Template
                     {{ form_start(form) }}
                         <div class=\"row\">
                             {% for permission, field in form %}
-                                <div class=\"col-lg-6\">
-                                    <div class=\"permission-item mb-3 {% if field.vars.data %}active{% endif %}\">
-                                        <div class=\"permission-check\">
-                                            <h6 class=\"permission-title\">{{ field.vars.label }}</h6>
-                                            <div class=\"form-check form-switch\">
-                                                {{ form_widget(field) }}
+                                {% if permission != '_token' %}
+                                    <div class=\"col-lg-6\">
+                                        <div class=\"permission-item mb-3 {% if field.vars.data %}active{% endif %}\">
+                                            <div class=\"permission-check\">
+                                                <h6 class=\"permission-title\">{{ field.vars.label }}</h6>
+                                                <div class=\"form-check form-switch\">
+                                                    {{ form_widget(field) }}
+                                                </div>
                                             </div>
+                                            <p class=\"permission-description mt-2\">
+                                                {{ ('admin.permissions.desc.' ~ permission)|trans }}
+                                            </p>
                                         </div>
-                                        <p class=\"permission-description mt-2\">
-                                            {{ ('admin.permissions.desc.' ~ permission)|trans }}
-                                        </p>
                                     </div>
-                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        
+                        <div style=\"display: none;\">
+                            {% for permission, field in form %}
+                                {% if permission == '_token' %}
+                                    {{ form_widget(field) }}
+                                    <div>
+                                        <span class=\"text-muted\">{{ 'admin.permissions.desc.token'|trans }}</span>
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                         

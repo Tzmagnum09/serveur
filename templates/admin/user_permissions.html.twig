@@ -198,19 +198,32 @@
                     {{ form_start(form) }}
                         <div class="row">
                             {% for permission, field in form %}
-                                <div class="col-lg-6">
-                                    <div class="permission-item mb-3 {% if field.vars.data %}active{% endif %}">
-                                        <div class="permission-check">
-                                            <h6 class="permission-title">{{ field.vars.label }}</h6>
-                                            <div class="form-check form-switch">
-                                                {{ form_widget(field) }}
+                                {% if permission != '_token' %}
+                                    <div class="col-lg-6">
+                                        <div class="permission-item mb-3 {% if field.vars.data %}active{% endif %}">
+                                            <div class="permission-check">
+                                                <h6 class="permission-title">{{ field.vars.label }}</h6>
+                                                <div class="form-check form-switch">
+                                                    {{ form_widget(field) }}
+                                                </div>
                                             </div>
+                                            <p class="permission-description mt-2">
+                                                {{ ('admin.permissions.desc.' ~ permission)|trans }}
+                                            </p>
                                         </div>
-                                        <p class="permission-description mt-2">
-                                            {{ ('admin.permissions.desc.' ~ permission)|trans }}
-                                        </p>
                                     </div>
-                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        
+                        <div style="display: none;">
+                            {% for permission, field in form %}
+                                {% if permission == '_token' %}
+                                    {{ form_widget(field) }}
+                                    <div>
+                                        <span class="text-muted">{{ 'admin.permissions.desc.token'|trans }}</span>
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                         

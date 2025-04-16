@@ -260,37 +260,49 @@ class __TwigTemplate_06c3767547bb8beecb5347007288f85c extends Template
             yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($context["field"], 'widget');
             yield "</td>
                                     <td>
-                                        <span class=\"text-muted\">";
+                                        ";
             // line 91
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(("super_admin.permissions.desc." . $context["permission"])), "html", null, true);
-            yield "</span>
-                                    </td>
+            if (($context["permission"] == "_token")) {
+                // line 92
+                yield "                                            <span class=\"text-muted\">";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.permissions.desc.token"), "html", null, true);
+                yield "</span>
+                                        ";
+            } else {
+                // line 94
+                yield "                                            <span class=\"text-muted\">";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(("super_admin.permissions.desc." . $context["permission"])), "html", null, true);
+                yield "</span>
+                                        ";
+            }
+            // line 96
+            yield "                                    </td>
                                 </tr>
                             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['permission'], $context['field'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 95
+        // line 99
         yield "                        </tbody>
                     </table>
                 </div>
                 
                 <div class=\"d-flex justify-content-end mt-3\">
                     <a href=\"";
-        // line 100
+        // line 104
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_dashboard");
         yield "\" class=\"btn btn-outline-secondary me-2\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.permissions.cancel_btn"), "html", null, true);
         yield "</a>
                     <button type=\"submit\" class=\"btn btn-gradient\">";
-        // line 101
+        // line 105
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.permissions.save_btn"), "html", null, true);
         yield "</button>
                 </div>
             ";
-        // line 103
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 103, $this->source); })()), 'form_end');
+        // line 107
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 107, $this->source); })()), 'form_end');
         yield "
         </div>
     </div>
@@ -323,7 +335,7 @@ class __TwigTemplate_06c3767547bb8beecb5347007288f85c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  293 => 103,  288 => 101,  282 => 100,  275 => 95,  265 => 91,  260 => 89,  256 => 88,  253 => 87,  249 => 86,  242 => 82,  238 => 81,  234 => 80,  226 => 75,  220 => 72,  208 => 63,  197 => 55,  192 => 53,  186 => 50,  182 => 49,  176 => 46,  172 => 45,  162 => 38,  153 => 32,  149 => 31,  145 => 30,  141 => 28,  131 => 27,  117 => 20,  113 => 19,  107 => 16,  99 => 11,  95 => 10,  89 => 7,  86 => 6,  76 => 5,  59 => 3,  42 => 1,);
+        return array (  305 => 107,  300 => 105,  294 => 104,  287 => 99,  279 => 96,  273 => 94,  267 => 92,  265 => 91,  260 => 89,  256 => 88,  253 => 87,  249 => 86,  242 => 82,  238 => 81,  234 => 80,  226 => 75,  220 => 72,  208 => 63,  197 => 55,  192 => 53,  186 => 50,  182 => 49,  176 => 46,  172 => 45,  162 => 38,  153 => 32,  149 => 31,  145 => 30,  141 => 28,  131 => 27,  117 => 20,  113 => 19,  107 => 16,  99 => 11,  95 => 10,  89 => 7,  86 => 6,  76 => 5,  59 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -418,7 +430,11 @@ class __TwigTemplate_06c3767547bb8beecb5347007288f85c extends Template
                                     <td>{{ form_label(field) }}</td>
                                     <td>{{ form_widget(field) }}</td>
                                     <td>
-                                        <span class=\"text-muted\">{{ ('super_admin.permissions.desc.' ~ permission)|trans }}</span>
+                                        {% if permission == '_token' %}
+                                            <span class=\"text-muted\">{{ 'super_admin.permissions.desc.token'|trans }}</span>
+                                        {% else %}
+                                            <span class=\"text-muted\">{{ ('super_admin.permissions.desc.' ~ permission)|trans }}</span>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -434,7 +450,6 @@ class __TwigTemplate_06c3767547bb8beecb5347007288f85c extends Template
         </div>
     </div>
 </div>
-{% endblock %}
-", "admin/super_admin/permissions.html.twig", "/var/www/serveur/templates/admin/super_admin/permissions.html.twig");
+{% endblock %}", "admin/super_admin/permissions.html.twig", "/var/www/serveur/templates/admin/super_admin/permissions.html.twig");
     }
 }

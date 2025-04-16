@@ -717,19 +717,25 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
             yield "                                </td>
                                 <td>
                                     <div class=\"action-btn-group\">
-                                        <a href=\"";
-            // line 293
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 293)]), "html", null, true);
-            yield "\" class=\"btn btn-sm btn-outline-primary\">
-                                            <i class=\"fas fa-edit\"></i>
-                                        </a>
-                                        
                                         ";
-            // line 297
-            if (((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isVerified", [], "any", false, false, false, 297) &&  !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isApproved", [], "any", false, false, false, 297)) && ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 297, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 297, $this->source); })()), "user", [], "any", false, false, false, 297), "approve_users"], "method", false, false, false, 297)))) {
-                // line 298
+            // line 293
+            if (((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 293) != "admin@dmqode.be") || (CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 293, $this->source); })()), "user", [], "any", false, false, false, 293), "email", [], "any", false, false, false, 293) == "admin@dmqode.be"))) {
+                // line 294
+                yield "                                            <a href=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 294)]), "html", null, true);
+                yield "\" class=\"btn btn-sm btn-outline-primary\">
+                                                <i class=\"fas fa-edit\"></i>
+                                            </a>
+                                        ";
+            }
+            // line 298
+            yield "                                        
+                                        ";
+            // line 299
+            if (((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isVerified", [], "any", false, false, false, 299) &&  !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isApproved", [], "any", false, false, false, 299)) && ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") || CoreExtension::getAttribute($this->env, $this->source, (isset($context["permission_service"]) || array_key_exists("permission_service", $context) ? $context["permission_service"] : (function () { throw new RuntimeError('Variable "permission_service" does not exist.', 299, $this->source); })()), "hasPermission", [CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 299, $this->source); })()), "user", [], "any", false, false, false, 299), "approve_users"], "method", false, false, false, 299)))) {
+                // line 300
                 yield "                                            <form method=\"post\" action=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_approve", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 298)]), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_approve", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 300)]), "html", null, true);
                 yield "\" class=\"d-inline\" onsubmit=\"return confirm('";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.confirm_approve"), "html", null, true);
                 yield "')\">
@@ -739,26 +745,26 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                             </form>
                                         ";
             }
-            // line 304
+            // line 306
             yield "                                        
                                         ";
-            // line 305
-            if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN")) {
-                // line 306
+            // line 307
+            if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMIN") && (CoreExtension::getAttribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 307) != "admin@dmqode.be"))) {
+                // line 308
                 yield "                                            ";
-                if (( !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isAdmin", [], "any", false, false, false, 306) &&  !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 306))) {
-                    // line 307
+                if (( !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isAdmin", [], "any", false, false, false, 308) &&  !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 308))) {
+                    // line 309
                     yield "                                                <form method=\"post\" action=\"";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_promote", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 307)]), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_promote", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 309)]), "html", null, true);
                     yield "\" class=\"d-inline\" onsubmit=\"return confirm('";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.confirm_promote"), "html", null, true);
                     yield "')\">
                                                     <input type=\"hidden\" name=\"_token\" value=\"";
-                    // line 308
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("promote" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 308))), "html", null, true);
+                    // line 310
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("promote" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 310))), "html", null, true);
                     yield "\">
                                                     <button type=\"submit\" class=\"btn btn-sm btn-outline-primary\" title=\"";
-                    // line 309
+                    // line 311
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.promote_to_admin"), "html", null, true);
                     yield "\">
                                                         <i class=\"fas fa-user-plus\"></i>
@@ -766,23 +772,23 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                                 </form>
                                             ";
                 }
-                // line 314
+                // line 316
                 yield "                                            
                                             ";
-                // line 315
-                if ((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isAdmin", [], "any", false, false, false, 315) &&  !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 315))) {
-                    // line 316
+                // line 317
+                if ((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isAdmin", [], "any", false, false, false, 317) &&  !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 317))) {
+                    // line 318
                     yield "                                                <form method=\"post\" action=\"";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_promote_super", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 316)]), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_promote_super", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 318)]), "html", null, true);
                     yield "\" class=\"d-inline\" onsubmit=\"return confirm('";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.confirm_promote_super"), "html", null, true);
                     yield "')\">
                                                     <input type=\"hidden\" name=\"_token\" value=\"";
-                    // line 317
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("promote-super" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 317))), "html", null, true);
+                    // line 319
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("promote-super" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 319))), "html", null, true);
                     yield "\">
                                                     <button type=\"submit\" class=\"btn btn-sm btn-outline-danger\" title=\"";
-                    // line 318
+                    // line 320
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.promote_to_super"), "html", null, true);
                     yield "\">
                                                         <i class=\"fas fa-user-shield\"></i>
@@ -790,17 +796,17 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                                 </form>
                                                 
                                                 <form method=\"post\" action=\"";
-                    // line 323
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_demote", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 323)]), "html", null, true);
+                    // line 325
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_demote", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 325)]), "html", null, true);
                     yield "\" class=\"d-inline\" onsubmit=\"return confirm('";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.confirm_demote"), "html", null, true);
                     yield "')\">
                                                     <input type=\"hidden\" name=\"_token\" value=\"";
-                    // line 324
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("demote" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 324))), "html", null, true);
+                    // line 326
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("demote" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 326))), "html", null, true);
                     yield "\">
                                                     <button type=\"submit\" class=\"btn btn-sm btn-outline-warning\" title=\"";
-                    // line 325
+                    // line 327
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.demote_to_user"), "html", null, true);
                     yield "\">
                                                         <i class=\"fas fa-user-minus\"></i>
@@ -808,23 +814,23 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                                 </form>
                                             ";
                 }
-                // line 330
+                // line 332
                 yield "                                            
                                             ";
-                // line 331
-                if ((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 331) && (CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 331) != 5))) {
-                    // line 332
+                // line 333
+                if ((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 333) && (CoreExtension::getAttribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 333) != "admin@dmqode.be"))) {
+                    // line 334
                     yield "                                                <form method=\"post\" action=\"";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_demote_super", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 332)]), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_demote_super", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 334)]), "html", null, true);
                     yield "\" class=\"d-inline\" onsubmit=\"return confirm('";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.confirm_demote_super"), "html", null, true);
                     yield "')\">
                                                     <input type=\"hidden\" name=\"_token\" value=\"";
-                    // line 333
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("demote-super" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 333))), "html", null, true);
+                    // line 335
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("demote-super" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 335))), "html", null, true);
                     yield "\">
                                                     <button type=\"submit\" class=\"btn btn-sm btn-outline-warning\" title=\"";
-                    // line 334
+                    // line 336
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.demote_to_admin"), "html", null, true);
                     yield "\">
                                                         <i class=\"fas fa-user-minus\"></i>
@@ -832,14 +838,14 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                                 </form>
                                             ";
                 }
-                // line 339
+                // line 341
                 yield "                                            
                                             ";
-                // line 340
-                if (((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 340) != 5) && CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isAdmin", [], "any", false, false, false, 340))) {
-                    // line 341
+                // line 342
+                if ((CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isAdmin", [], "any", false, false, false, 342) && (CoreExtension::getAttribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 342) != "admin@dmqode.be"))) {
+                    // line 343
                     yield "                                                <a href=\"";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_permissions", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 341)]), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_user_permissions", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 343)]), "html", null, true);
                     yield "\" class=\"btn btn-sm btn-outline-info\" title=\"";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.manage_permissions"), "html", null, true);
                     yield "\">
@@ -847,44 +853,44 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                                 </a>
                                             ";
                 }
-                // line 345
+                // line 347
                 yield "                                        ";
             }
-            // line 346
+            // line 348
             yield "                                    </div>
                                 </td>
                             </tr>
                         ";
             $context['_iterated'] = true;
         }
-        // line 349
+        // line 351
         if (!$context['_iterated']) {
-            // line 350
+            // line 352
             yield "                            <tr>
                                 <td colspan=\"7\" class=\"empty-state\">
                                     <i class=\"fas fa-users\"></i>
                                     <p class=\"mb-0\">";
-            // line 353
+            // line 355
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.no_users"), "html", null, true);
             yield "</p>
                                     ";
-            // line 354
-            if ((((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 354, $this->source); })()), "")) : ("")) || ((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 354, $this->source); })()), "")) : ("")))) {
-                // line 355
+            // line 356
+            if ((((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 356, $this->source); })()), "")) : ("")) || ((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 356, $this->source); })()), "")) : ("")))) {
+                // line 357
                 yield "                                        <p class=\"mt-2\">
                                             <a href=\"";
-                // line 356
+                // line 358
                 yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users");
                 yield "\" class=\"btn btn-outline-primary mt-2\">
                                                 <i class=\"fas fa-times me-1\"></i> ";
-                // line 357
+                // line 359
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("admin.users.clear_search"), "html", null, true);
                 yield "
                                             </a>
                                         </p>
                                     ";
             }
-            // line 361
+            // line 363
             yield "                                </td>
                             </tr>
                         ";
@@ -892,7 +898,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['user'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 364
+        // line 366
         yield "                    </tbody>
                 </table>
             </div>
@@ -906,7 +912,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
         yield from [];
     }
 
-    // line 372
+    // line 374
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -916,7 +922,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 373
+        // line 375
         yield "    ";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
@@ -934,8 +940,8 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                 sortDirectionBtn.addEventListener('click', function() {
                     // Inverser la direction
                     const currentDirection = '";
-        // line 387
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 387, $this->source); })()), "ASC")) : ("ASC")), "html", null, true);
+        // line 389
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 389, $this->source); })()), "ASC")) : ("ASC")), "html", null, true);
         yield "';
                     const newDirection = currentDirection === 'ASC' ? 'DESC' : 'ASC';
                     
@@ -949,21 +955,21 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                 });
                 
                 function updateSortUrl(direction = '";
-        // line 399
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 399, $this->source); })()), "ASC")) : ("ASC")), "html", null, true);
+        // line 401
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("direction", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["direction"]) || array_key_exists("direction", $context) ? $context["direction"] : (function () { throw new RuntimeError('Variable "direction" does not exist.', 401, $this->source); })()), "ASC")) : ("ASC")), "html", null, true);
         yield "') {
                     const sort = sortSelect.value;
                     const search = '";
-        // line 401
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 401, $this->source); })()), "")) : ("")), "html", null, true);
+        // line 403
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 403, $this->source); })()), "")) : ("")), "html", null, true);
         yield "';
                     const filter = '";
-        // line 402
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 402, $this->source); })()), "")) : ("")), "html", null, true);
+        // line 404
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 404, $this->source); })()), "")) : ("")), "html", null, true);
         yield "';
                     
                     let url = '";
-        // line 404
+        // line 406
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_users");
         yield "?sort=' + sort + '&direction=' + direction;
                     
@@ -1008,7 +1014,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
      */
     public function getDebugInfo(): array
     {
-        return array (  967 => 404,  962 => 402,  958 => 401,  953 => 399,  938 => 387,  920 => 373,  910 => 372,  896 => 364,  888 => 361,  881 => 357,  877 => 356,  874 => 355,  872 => 354,  868 => 353,  863 => 350,  861 => 349,  854 => 346,  851 => 345,  841 => 341,  839 => 340,  836 => 339,  828 => 334,  824 => 333,  817 => 332,  815 => 331,  812 => 330,  804 => 325,  800 => 324,  794 => 323,  786 => 318,  782 => 317,  775 => 316,  773 => 315,  770 => 314,  762 => 309,  758 => 308,  751 => 307,  748 => 306,  746 => 305,  743 => 304,  731 => 298,  729 => 297,  722 => 293,  717 => 290,  711 => 288,  705 => 286,  703 => 285,  698 => 284,  696 => 283,  692 => 281,  686 => 279,  680 => 277,  678 => 276,  673 => 275,  671 => 274,  666 => 272,  662 => 271,  658 => 270,  652 => 267,  646 => 265,  640 => 261,  635 => 260,  628 => 256,  624 => 255,  620 => 254,  616 => 252,  610 => 250,  608 => 249,  604 => 248,  600 => 247,  595 => 245,  591 => 244,  587 => 242,  581 => 240,  579 => 239,  575 => 238,  571 => 237,  562 => 230,  554 => 228,  552 => 227,  548 => 225,  542 => 223,  539 => 222,  533 => 220,  531 => 219,  527 => 218,  516 => 210,  510 => 209,  505 => 207,  499 => 206,  494 => 204,  488 => 203,  483 => 201,  477 => 200,  472 => 198,  466 => 197,  461 => 195,  455 => 194,  450 => 192,  444 => 191,  439 => 189,  433 => 188,  423 => 181,  419 => 180,  410 => 178,  402 => 177,  394 => 176,  389 => 174,  378 => 166,  375 => 165,  369 => 163,  367 => 162,  361 => 161,  353 => 156,  344 => 149,  338 => 146,  333 => 145,  331 => 144,  326 => 142,  322 => 141,  317 => 139,  313 => 138,  308 => 136,  304 => 134,  294 => 133,  285 => 130,  277 => 125,  273 => 124,  266 => 121,  264 => 120,  260 => 118,  253 => 114,  249 => 113,  246 => 112,  243 => 111,  236 => 107,  232 => 106,  229 => 105,  226 => 104,  219 => 100,  215 => 99,  212 => 98,  210 => 97,  204 => 94,  200 => 93,  194 => 90,  191 => 89,  181 => 88,  93 => 7,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  973 => 406,  968 => 404,  964 => 403,  959 => 401,  944 => 389,  926 => 375,  916 => 374,  902 => 366,  894 => 363,  887 => 359,  883 => 358,  880 => 357,  878 => 356,  874 => 355,  869 => 352,  867 => 351,  860 => 348,  857 => 347,  847 => 343,  845 => 342,  842 => 341,  834 => 336,  830 => 335,  823 => 334,  821 => 333,  818 => 332,  810 => 327,  806 => 326,  800 => 325,  792 => 320,  788 => 319,  781 => 318,  779 => 317,  776 => 316,  768 => 311,  764 => 310,  757 => 309,  754 => 308,  752 => 307,  749 => 306,  737 => 300,  735 => 299,  732 => 298,  724 => 294,  722 => 293,  717 => 290,  711 => 288,  705 => 286,  703 => 285,  698 => 284,  696 => 283,  692 => 281,  686 => 279,  680 => 277,  678 => 276,  673 => 275,  671 => 274,  666 => 272,  662 => 271,  658 => 270,  652 => 267,  646 => 265,  640 => 261,  635 => 260,  628 => 256,  624 => 255,  620 => 254,  616 => 252,  610 => 250,  608 => 249,  604 => 248,  600 => 247,  595 => 245,  591 => 244,  587 => 242,  581 => 240,  579 => 239,  575 => 238,  571 => 237,  562 => 230,  554 => 228,  552 => 227,  548 => 225,  542 => 223,  539 => 222,  533 => 220,  531 => 219,  527 => 218,  516 => 210,  510 => 209,  505 => 207,  499 => 206,  494 => 204,  488 => 203,  483 => 201,  477 => 200,  472 => 198,  466 => 197,  461 => 195,  455 => 194,  450 => 192,  444 => 191,  439 => 189,  433 => 188,  423 => 181,  419 => 180,  410 => 178,  402 => 177,  394 => 176,  389 => 174,  378 => 166,  375 => 165,  369 => 163,  367 => 162,  361 => 161,  353 => 156,  344 => 149,  338 => 146,  333 => 145,  331 => 144,  326 => 142,  322 => 141,  317 => 139,  313 => 138,  308 => 136,  304 => 134,  294 => 133,  285 => 130,  277 => 125,  273 => 124,  266 => 121,  264 => 120,  260 => 118,  253 => 114,  249 => 113,  246 => 112,  243 => 111,  236 => 107,  232 => 106,  229 => 105,  226 => 104,  219 => 100,  215 => 99,  212 => 98,  210 => 97,  204 => 94,  200 => 93,  194 => 90,  191 => 89,  181 => 88,  93 => 7,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1305,9 +1311,11 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                 </td>
                                 <td>
                                     <div class=\"action-btn-group\">
-                                        <a href=\"{{ path('app_admin_user_edit', {'id': user.id}) }}\" class=\"btn btn-sm btn-outline-primary\">
-                                            <i class=\"fas fa-edit\"></i>
-                                        </a>
+                                        {% if user.email != 'admin@dmqode.be' or app.user.email == 'admin@dmqode.be' %}
+                                            <a href=\"{{ path('app_admin_user_edit', {'id': user.id}) }}\" class=\"btn btn-sm btn-outline-primary\">
+                                                <i class=\"fas fa-edit\"></i>
+                                            </a>
+                                        {% endif %}
                                         
                                         {% if user.isVerified and not user.isApproved and (is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'approve_users')) %}
                                             <form method=\"post\" action=\"{{ path('app_admin_user_approve', {'id': user.id}) }}\" class=\"d-inline\" onsubmit=\"return confirm('{{ 'admin.users.confirm_approve'|trans }}')\">
@@ -1317,7 +1325,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                             </form>
                                         {% endif %}
                                         
-                                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                        {% if is_granted('ROLE_SUPER_ADMIN') and user.email != 'admin@dmqode.be' %}
                                             {% if not user.isAdmin and not user.isSuperAdmin %}
                                                 <form method=\"post\" action=\"{{ path('app_admin_user_promote', {'id': user.id}) }}\" class=\"d-inline\" onsubmit=\"return confirm('{{ 'admin.users.confirm_promote'|trans }}')\">
                                                     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('promote' ~ user.id) }}\">
@@ -1343,7 +1351,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                                 </form>
                                             {% endif %}
                                             
-                                            {% if user.isSuperAdmin and user.id != 5 %}
+                                            {% if user.isSuperAdmin and user.email != 'admin@dmqode.be' %}
                                                 <form method=\"post\" action=\"{{ path('app_admin_user_demote_super', {'id': user.id}) }}\" class=\"d-inline\" onsubmit=\"return confirm('{{ 'admin.users.confirm_demote_super'|trans }}')\">
                                                     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('demote-super' ~ user.id) }}\">
                                                     <button type=\"submit\" class=\"btn btn-sm btn-outline-warning\" title=\"{{ 'admin.users.demote_to_admin'|trans }}\">
@@ -1352,7 +1360,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 285)) {
                                                 </form>
                                             {% endif %}
                                             
-                                            {% if user.id != 5 and user.isAdmin %}
+                                            {% if user.isAdmin and user.email != 'admin@dmqode.be' %}
                                                 <a href=\"{{ path('app_admin_user_permissions', {'id': user.id}) }}\" class=\"btn btn-sm btn-outline-info\" title=\"{{ 'admin.users.manage_permissions'|trans }}\">
                                                     <i class=\"fas fa-key\"></i>
                                                 </a>
