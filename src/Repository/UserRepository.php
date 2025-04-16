@@ -209,4 +209,90 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * Trouve tous les administrateurs (admins et super-admins)
+     * 
+     * @return User[]
+     */
+    public function findAllAdministrators(): array
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->where('u.roles LIKE :adminRole')
+           ->setParameter('adminRole', '%"ROLE_ADMIN"%')
+           ->orderBy('u.lastName', 'ASC')
+           ->addOrderBy('u.firstName', 'ASC');
+        
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Trouve uniquement les administrateurs (pas les super-admins)
+     * 
+     * @return User[]
+     */
+    public function findAdminsOnly(): array
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->where('u.roles LIKE :adminRole')
+           ->andWhere('u.roles NOT LIKE :superRole')
+           ->setParameter('adminRole', '%"ROLE_ADMIN"%')
+           ->setParameter('superRole', '%"ROLE_SUPER_ADMIN"%')
+           ->orderBy('u.lastName', 'ASC')
+           ->addOrderBy('u.firstName', 'ASC');
+        
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Trouve uniquement les super-admins
+     * 
+     * @return User[]
+     */
+    public function findSuperAdmins(): array
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->where('u.roles LIKE :superRole')
+           ->setParameter('superRole', '%"ROLE_SUPER_ADMIN"%')
+           ->orderBy('u.lastName', 'ASC')
+           ->addOrderBy('u.firstName', 'ASC');
+        
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Trouve les administrateurs récemment créés
+     * 
+     * @param int $days Nombre de jours à considérer
+     * @return User[]
+     */
+    public function findRecentAdmins(int $days = 30): array
+    {
+        $date = new \DateTime();
+        $date->modify("-{$days} days");
+        
+        $qb = $this->createQueryBuilder('u');
+        $qb->where('u.roles LIKE :adminRole')
+           ->andWhere('u.createdAt >= :date')
+           ->setParameter('adminRole', '%"ROLE_ADMIN"%')
+           ->setParameter('date', $date)
+           ->orderBy('u.createdAt', 'DESC');
+        
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Compte le nombre de super-admins
+     * 
+     * @return int
+     */
+    public function countSuperAdmins(): int
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('COUNT(u.id)')
+           ->where('u.roles LIKE :superRole')
+           ->setParameter('superRole', '%"ROLE_SUPER_ADMIN"%');
+        
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
 }

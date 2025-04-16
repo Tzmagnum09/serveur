@@ -2,6 +2,41 @@
 
 {% block title %}{{ 'super_admin.dashboard.title'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .filter-badges {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .filter-badge {
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .filter-badge:hover {
+            transform: translateY(-2px);
+        }
+        
+        .filter-badge.active {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+        }
+        
+        .filter-badge:not(.active) {
+            background-color: #eee;
+            color: #666;
+        }
+    </style>
+{% endblock %}
+
 {% block sidebar %}
 <div class="sidebar">
     <h5 class="mb-4">{{ 'super_admin.sidebar.title'|trans }}</h5>
@@ -28,6 +63,9 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3">{{ 'super_admin.dashboard.title'|trans }}</h1>
+        <a href="{{ path('app_super_admin_dashboard') }}" class="btn btn-outline-primary">
+            <i class="fas fa-sync-alt me-1"></i> {{ 'admin.users.reset_filters'|trans }}
+        </a>
     </div>
     
     <div class="row mb-4">
@@ -83,8 +121,26 @@
     <div class="card shadow-sm mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">{{ 'super_admin.dashboard.admins_list'|trans }}</h5>
+            
+            {% if filter|default('') %}
+                <span class="badge bg-info">{{ ('super_admin.dashboard.filtered_by_'~filter)|trans }}</span>
+            {% endif %}
         </div>
         <div class="card-body p-0">
+            <div class="filter-badges px-3 pt-3">
+                <a href="{{ path('app_super_admin_dashboard') }}" class="filter-badge {{ filter|default('') == '' ? 'active' : '' }}">
+                    {{ 'super_admin.dashboard.filter_all'|trans }}
+                </a>
+                <a href="{{ path('app_super_admin_dashboard', {'filter': 'admins_only'}) }}" class="filter-badge {{ filter|default('') == 'admins_only' ? 'active' : '' }}">
+                    {{ 'super_admin.dashboard.filter_admins'|trans }}
+                </a>
+                <a href="{{ path('app_super_admin_dashboard', {'filter': 'super_admins'}) }}" class="filter-badge {{ filter|default('') == 'super_admins' ? 'active' : '' }}">
+                    {{ 'super_admin.dashboard.filter_super_admins'|trans }}
+                </a>
+                <a href="{{ path('app_super_admin_dashboard', {'filter': 'recent'}) }}" class="filter-badge {{ filter|default('') == 'recent' ? 'active' : '' }}">
+                    {{ 'super_admin.dashboard.filter_recent'|trans }}
+                </a>
+            </div>
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
                     <thead>
@@ -151,18 +207,26 @@
             <h5 class="mb-0">{{ 'super_admin.dashboard.promote_user'|trans }}</h5>
         </div>
         <div class="card-body">
-            <form action="#" method="get" class="row g-3">
+            <form action="{{ path('app_super_admin_dashboard') }}" method="get" class="row g-3">
                 <div class="col-md-10">
-                    <input type="text" class="form-control" id="userSearch" name="q" placeholder="{{ 'super_admin.dashboard.search_users'|trans }}">
-                </div>
-                <div class="col-md-2 d-grid">
-                    <button type="submit" class="btn btn-gradient">{{ 'super_admin.dashboard.search'|trans }}</button>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="userSearch" name="q" value="{{ search|default('') }}" placeholder="{{ 'super_admin.dashboard.search_users'|trans }}">
+                        {% if filter|default('') %}
+                            <input type="hidden" name="filter" value="{{ filter }}">
+                        {% endif %}
+                        <button type="submit" class="btn btn-gradient">{{ 'super_admin.dashboard.search'|trans }}</button>
+                        {% if search|default('') %}
+                            <a href="{{ path('app_super_admin_dashboard', {'filter': filter|default('')}) }}" class="btn btn-outline-danger">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
             </form>
             
-            {% if app.request.query.get('q') is not empty %}
+            {% if search|default('') is not empty %}
                 <div class="search-results mt-4">
-                    <h6>{{ 'super_admin.dashboard.search_results'|trans }}</h6>
+                    <h6>{{ 'super_admin.dashboard.search_results'|trans }} "{{ search }}"</h6>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -211,4 +275,17 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mettez automatiquement le focus sur le champ de recherche utilisateur
+            const searchInput = document.getElementById('userSearch');
+            if (searchInput) {
+                searchInput.focus();
+            }
+        });
+    </script>
 {% endblock %}
