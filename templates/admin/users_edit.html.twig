@@ -43,6 +43,89 @@
             font-weight: 500;
             padding: 5px;
         }
+
+        /* Amélioration des espacements et styles du formulaire */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #8e44ad;
+            box-shadow: 0 0 0 0.25rem rgba(142, 68, 173, 0.25);
+        }
+        
+        /* Styles pour les conteneurs flexbox d'adresse */
+        .address-flex-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .address-flex-container > div:first-child {
+            flex: 3;
+        }
+        
+        .address-flex-container > div:not(:first-child) {
+            flex: 1;
+        }
+        
+        /* Styles pour les conteneurs flexbox de localisation */
+        .location-flex-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .location-flex-container > div:first-child {
+            flex: 1;
+        }
+        
+        .location-flex-container > div:nth-child(2) {
+            flex: 2;
+        }
+        
+        .location-flex-container > div:last-child {
+            flex: 2;
+        }
+        
+        /* Style pour la section utilisateur */
+        .user-profile-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title {
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* Rendre la carte plus attrayante */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            border-radius: 12px 12px 0 0 !important;
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: white;
+        }
     </style>
 {% endblock %}
 
@@ -113,47 +196,47 @@
     <div class="row mb-4">
         <div class="col-md-4">
             <div class="card shadow-sm mb-4">
-                <div class="card-header">
+                <div class="card-header py-3">
                     <h5 class="mb-0">{{ 'admin.user_edit.user_info'|trans }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="text-center mb-4">
-                        <div class="avatar-circle bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <div class="avatar-circle bg-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 100px; height: 100px;">
                             <span class="h1 text-white">{{ user.firstName|first }}{{ user.lastName|first }}</span>
                         </div>
-                        <h5>{{ user.fullName }}</h5>
+                        <h5 class="mb-2">{{ user.fullName }}</h5>
                         <p class="text-muted mb-0">{{ user.email }}</p>
                     </div>
                     
-                    <div class="mb-3">
-                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.status'|trans }}</div>
+                    <div class="mb-4">
+                        <div class="fw-bold text-muted mb-2">{{ 'admin.user_edit.status'|trans }}</div>
                         {% if user.isVerified and user.isApproved %}
-                            <span class="badge bg-success">{{ 'admin.users.status_active'|trans }}</span>
+                            <span class="badge bg-success py-2 px-3">{{ 'admin.users.status_active'|trans }}</span>
                         {% elseif user.isVerified and not user.isApproved %}
-                            <span class="badge bg-warning text-dark">{{ 'admin.users.status_pending'|trans }}</span>
+                            <span class="badge bg-warning text-dark py-2 px-3">{{ 'admin.users.status_pending'|trans }}</span>
                         {% else %}
-                            <span class="badge bg-danger">{{ 'admin.users.status_unverified'|trans }}</span>
+                            <span class="badge bg-danger py-2 px-3">{{ 'admin.users.status_unverified'|trans }}</span>
                         {% endif %}
                     </div>
                     
-                    <div class="mb-3">
-                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.role'|trans }}</div>
+                    <div class="mb-4">
+                        <div class="fw-bold text-muted mb-2">{{ 'admin.user_edit.role'|trans }}</div>
                         {% if user.isSuperAdmin %}
-                            <span class="badge bg-danger">{{ 'admin.users.role_super_admin'|trans }}</span>
+                            <span class="badge bg-danger py-2 px-3">{{ 'admin.users.role_super_admin'|trans }}</span>
                         {% elseif user.isAdmin %}
-                            <span class="badge bg-primary">{{ 'admin.users.role_admin'|trans }}</span>
+                            <span class="badge bg-primary py-2 px-3">{{ 'admin.users.role_admin'|trans }}</span>
                         {% else %}
-                            <span class="badge bg-secondary">{{ 'admin.users.role_user'|trans }}</span>
+                            <span class="badge bg-secondary py-2 px-3">{{ 'admin.users.role_user'|trans }}</span>
                         {% endif %}
                     </div>
                     
-                    <div class="mb-3">
-                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.registered_on'|trans }}</div>
+                    <div class="mb-4">
+                        <div class="fw-bold text-muted mb-2">{{ 'admin.user_edit.registered_on'|trans }}</div>
                         <p class="mb-0">{{ user.createdAt|date('d/m/Y H:i') }}</p>
                     </div>
                     
-                    <div class="mb-3">
-                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.last_login'|trans }}</div>
+                    <div class="mb-4">
+                        <div class="fw-bold text-muted mb-2">{{ 'admin.user_edit.last_login'|trans }}</div>
                         <p class="mb-0">
                             {% if user.lastLoginAt %}
                                 {{ user.lastLoginAt|date('d/m/Y H:i') }}
@@ -163,8 +246,8 @@
                         </p>
                     </div>
                     
-                    <div class="mb-3">
-                        <div class="fw-bold text-muted mb-1">{{ 'profile.fields.birth_date'|trans }}</div>
+                    <div class="mb-4">
+                        <div class="fw-bold text-muted mb-2">{{ 'profile.fields.birth_date'|trans }}</div>
                         <p class="mb-0">
                             {% if user.birthDate %}
                                 {{ user.birthDate|date('d/m/Y') }}
@@ -176,15 +259,15 @@
                     </div>
                     
                     {% if user.isVerified %}
-                    <div class="mb-3">
-                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.verified_on'|trans }}</div>
+                    <div class="mb-4">
+                        <div class="fw-bold text-muted mb-2">{{ 'admin.user_edit.verified_on'|trans }}</div>
                         <p class="mb-0">{{ user.emailVerifiedAt|date('d/m/Y H:i') }}</p>
                     </div>
                     {% endif %}
                     
                     {% if user.isApproved %}
-                    <div class="mb-3">
-                        <div class="fw-bold text-muted mb-1">{{ 'admin.user_edit.approved_on'|trans }}</div>
+                    <div class="mb-4">
+                        <div class="fw-bold text-muted mb-2">{{ 'admin.user_edit.approved_on'|trans }}</div>
                         <p class="mb-0">{{ user.approvedAt|date('d/m/Y H:i') }}</p>
                     </div>
                     {% endif %}
@@ -194,88 +277,143 @@
         
         <div class="col-md-8">
             <div class="card shadow-sm mb-4">
-                <div class="card-header">
+                <div class="card-header py-3">
                     <h5 class="mb-0">{{ 'admin.user_edit.edit_profile'|trans }}</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     {{ form_start(userForm) }}
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                {{ form_row(userForm.email) }}
-                            </div>
-                            <div class="col-md-6">
-                                {{ form_row(userForm.username) }}
-                            </div>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                {{ form_row(userForm.firstName) }}
-                            </div>
-                            <div class="col-md-6">
-                                {{ form_row(userForm.lastName) }}
-                            </div>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="birth_date_input">{{ 'registration.form.birth_date'|trans }}</label>
-                                    <div class="input-group date-picker-group">
-                                        <input type="text" id="birth_date_input" name="birth_date" class="form-control datepicker" 
-                                            placeholder="JJ/MM/AAAA" autocomplete="off" 
-                                            value="{{ user.birthDate ? user.birthDate|date('d/m/Y') : '' }}">
-                                        <span class="input-group-text" id="calendar-icon">
-                                            <i class="fas fa-calendar-alt"></i>
-                                        </span>
+                        <!-- Informations d'identification -->
+                        <div class="user-profile-section">
+                            <h6 class="section-title">Informations d'identification</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{ form_label(userForm.email) }}
+                                        {{ form_widget(userForm.email, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_errors(userForm.email) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{ form_label(userForm.username) }}
+                                        {{ form_widget(userForm.username, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_errors(userForm.username) }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="row mb-3">
-                            <div class="col-md-8">
-                                {{ form_row(userForm.street) }}
+                        <!-- Informations personnelles -->
+                        <div class="user-profile-section">
+                            <h6 class="section-title">Informations personnelles</h6>
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{ form_label(userForm.firstName) }}
+                                        {{ form_widget(userForm.firstName, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_errors(userForm.firstName) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{ form_label(userForm.lastName) }}
+                                        {{ form_widget(userForm.lastName, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_errors(userForm.lastName) }}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-2">
-                                {{ form_row(userForm.houseNumber) }}
-                            </div>
-                            <div class="col-md-2">
-                                {{ form_row(userForm.boxNumber) }}
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="form-label" for="birth_date_input">{{ 'registration.form.birth_date'|trans }}</label>
+                                        <div class="input-group date-picker-group">
+                                            <input type="text" id="birth_date_input" name="birth_date" class="form-control datepicker" 
+                                                placeholder="JJ/MM/AAAA" autocomplete="off" 
+                                                value="{{ user.birthDate ? user.birthDate|date('d/m/Y') : '' }}">
+                                            <span class="input-group-text" id="calendar-icon">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{ form_label(userForm.phoneNumber) }}
+                                        {{ form_widget(userForm.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_errors(userForm.phoneNumber) }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="row mb-3">
-                            <div class="col-md-3">
-                                {{ form_row(userForm.postalCode) }}
+                        <!-- Adresse -->
+                        <div class="user-profile-section">
+                            <h6 class="section-title">Adresse</h6>
+                            
+                            <!-- Rue, numéro et boîte sur la même ligne -->
+                            <div class="address-flex-container">
+                                <div class="form-group">
+                                    {{ form_label(userForm.street) }}
+                                    {{ form_widget(userForm.street, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(userForm.street) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(userForm.houseNumber) }}
+                                    {{ form_widget(userForm.houseNumber, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(userForm.houseNumber) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(userForm.boxNumber) }}
+                                    {{ form_widget(userForm.boxNumber, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(userForm.boxNumber) }}
+                                </div>
                             </div>
-                            <div class="col-md-5">
-                                {{ form_row(userForm.city) }}
-                            </div>
-                            <div class="col-md-4">
-                                {{ form_row(userForm.country) }}
+                            
+                            <!-- Code postal, ville et pays sur la même ligne -->
+                            <div class="location-flex-container">
+                                <div class="form-group">
+                                    {{ form_label(userForm.postalCode) }}
+                                    {{ form_widget(userForm.postalCode, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(userForm.postalCode) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(userForm.city) }}
+                                    {{ form_widget(userForm.city, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(userForm.city) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(userForm.country) }}
+                                    {{ form_widget(userForm.country, {'attr': {'class': 'form-select'}}) }}
+                                    {{ form_errors(userForm.country) }}
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                {{ form_row(userForm.phoneNumber) }}
+                        <!-- Préférences -->
+                        <div class="user-profile-section">
+                            <h6 class="section-title">Préférences</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        {{ form_label(userForm.locale) }}
+                                        {{ form_widget(userForm.locale, {'attr': {'class': 'form-select'}}) }}
+                                        {{ form_errors(userForm.locale) }}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                {{ form_row(userForm.locale) }}
-                            </div>
+                            
+                            {% if userForm.isApproved is defined %}
+                                <div class="form-check mt-3">
+                                    {{ form_widget(userForm.isApproved, {'attr': {'class': 'form-check-input'}}) }}
+                                    {{ form_label(userForm.isApproved, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                </div>
+                            {% endif %}
                         </div>
                         
-                        {% if userForm.isApproved is defined %}
-                            <div class="mb-3 form-check">
-                                {{ form_widget(userForm.isApproved, {'attr': {'class': 'form-check-input'}}) }}
-                                {{ form_label(userForm.isApproved, null, {'label_attr': {'class': 'form-check-label'}}) }}
-                            </div>
-                        {% endif %}
-                        
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ path('app_admin_users') }}" class="btn btn-outline-secondary me-2">{{ 'admin.user_edit.cancel_btn'|trans }}</a>
-                            <button type="submit" class="btn btn-gradient">{{ 'admin.user_edit.save_btn'|trans }}</button>
+                        <div class="d-flex justify-content-end mt-4">
+                            <a href="{{ path('app_admin_users') }}" class="btn btn-outline-secondary me-2 px-4">{{ 'admin.user_edit.cancel_btn'|trans }}</a>
+                            <button type="submit" class="btn btn-gradient px-4">{{ 'admin.user_edit.save_btn'|trans }}</button>
                         </div>
                     {{ form_end(userForm) }}
                 </div>
@@ -316,7 +454,7 @@
                     dateFormat: "d/m/Y",
                     locale: locale,
                     maxDate: new Date(),
-                    minDate: "1900-01-01", // Date minimale = 1er janvier 1900
+                    minDate: new Date(1900, 0, 1), // Date minimum: 1er janvier 1900
                     disableMobile: true, // Important pour la compatibilité mobile
                     allowInput: true,
                     clickOpens: true,
@@ -354,6 +492,23 @@
                     calendarIcon.addEventListener('click', function() {
                         flatpickrInstance.open();
                     });
+                }
+            });
+
+            // Masquer les éventuels champs de date de naissance dupliqués
+            const dateLabels = document.querySelectorAll('label');
+            let birthDateCount = 0;
+            
+            dateLabels.forEach(label => {
+                if (label.textContent.trim() === '{{ 'registration.form.birth_date'|trans }}') {
+                    birthDateCount++;
+                    if (birthDateCount > 1) {
+                        // Masquer le conteneur complet du deuxième champ
+                        const container = label.closest('.form-group') || label.closest('div');
+                        if (container) {
+                            container.style.display = 'none';
+                        }
+                    }
                 }
             });
         });
