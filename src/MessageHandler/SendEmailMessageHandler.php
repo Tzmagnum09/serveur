@@ -57,6 +57,13 @@ class SendEmailMessageHandler
                 }
             }
             
+            // Debug
+            $this->logger->info('Envoi d\'email', [
+                'to' => $message->getTo(),
+                'subject' => $message->getSubject(),
+                'html_content_length' => strlen($message->getHtmlContent())
+            ]);
+            
             // Envoyer l'email
             $this->mailer->send($email);
             
@@ -70,7 +77,8 @@ class SendEmailMessageHandler
             $this->logger->error('Erreur lors de l\'envoi de l\'email', [
                 'to' => $message->getTo(),
                 'subject' => $message->getSubject(),
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
+                'stack_trace' => $e->getTraceAsString()
             ]);
             
             // Relancer l'exception pour permettre la gestion des erreurs au niveau supérieur

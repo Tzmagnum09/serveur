@@ -53,6 +53,9 @@ class EmailRendererService
         $textContent = null; // On ne génère plus de contenu texte
         $subject = $this->renderSubject($template, $variables);
         
+        // Debug
+        error_log("HTML Content length: " . strlen($htmlContent));
+        
         return [
             'subject' => $subject,
             'htmlContent' => $htmlContent,
@@ -124,8 +127,13 @@ class EmailRendererService
     {
         // Remplacer toutes les variables
         foreach ($variables as $key => $value) {
-            $content = str_replace('{{ ' . $key . ' }}', $value, $content);
-            $content = str_replace('{{' . $key . '}}', $value, $content);
+            if ($value !== null) {
+                $content = str_replace('{{ ' . $key . ' }}', $value, $content);
+                $content = str_replace('{{' . $key . '}}', $value, $content);
+            } else {
+                $content = str_replace('{{ ' . $key . ' }}', '', $content);
+                $content = str_replace('{{' . $key . '}}', '', $content);
+            }
         }
         
         return $content;

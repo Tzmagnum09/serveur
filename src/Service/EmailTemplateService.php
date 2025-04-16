@@ -65,23 +65,36 @@ class EmailTemplateService
         
         // Si aucun template n'est trouvé
         if (!$template) {
+            // Log d'erreur pour le débogage
+            error_log("Aucun template trouvé pour le code: $templateCode et la locale: $locale");
             return false;
         }
         
-        // Générer le contenu de l'email
-        $emailContent = $this->emailRenderer->renderForUser($template, $user, $params);
-        
-        // Créer et envoyer le message
-        $message = new SendEmailMessage(
-            $this->params->get('app.email') ?? 'contact@dmqode.be',
-            $user->getEmail(),
-            $emailContent['subject'],
-            $emailContent['htmlContent']
-        );
-        
-        $this->messageBus->dispatch($message);
-        
-        return true;
+        try {
+            // Générer le contenu de l'email
+            $emailContent = $this->emailRenderer->renderForUser($template, $user, $params);
+            
+            // Debug: vérifier le contenu généré
+            error_log("Email content subject: " . $emailContent['subject']);
+            error_log("Email content html length: " . strlen($emailContent['htmlContent']));
+            
+            // Créer et envoyer le message
+            $message = new SendEmailMessage(
+                $this->params->get('app.email') ?? 'contact@dmqode.be',
+                $user->getEmail(),
+                $emailContent['subject'],
+                $emailContent['htmlContent']
+            );
+            
+            $this->messageBus->dispatch($message);
+            
+            return true;
+        } catch (\Exception $e) {
+            // Log d'erreur pour le débogage
+            error_log("Erreur lors de l'envoi de l'email: " . $e->getMessage());
+            error_log("Trace: " . $e->getTraceAsString());
+            return false;
+        }
     }
     
     /**

@@ -56,6 +56,7 @@ class RegistrationController extends AbstractController
                     }
                 } catch (\Exception $e) {
                     // En cas d'erreur, continuer sans la date de naissance
+                    error_log("Erreur lors du traitement de la date de naissance: " . $e->getMessage());
                 }
             }
             
@@ -86,13 +87,20 @@ class RegistrationController extends AbstractController
                 );
                 
                 // Envoyer l'email de confirmation
-                $this->emailService->sendEmailToUser(
+                $success = $this->emailService->sendEmailToUser(
                     'registration_confirmation',
                     $user,
                     [
                         'signedUrl' => $signatureComponents->getSignedUrl(),
                     ]
                 );
+
+                if (!$success) {
+                    // Log une erreur si l'envoi d'email a échoué
+                    error_log("Échec d'envoi d'email de confirmation à " . $user->getEmail());
+                } else {
+                    error_log("Email de confirmation envoyé avec succès à " . $user->getEmail());
+                }
 
                 $this->addFlash('success', $translator->trans('registration.flash.check_email'));
 
@@ -103,6 +111,7 @@ class RegistrationController extends AbstractController
                 
                 // Log l'erreur pour débogage
                 error_log($e->getMessage());
+                error_log($e->getTraceAsString());
             }
         }
 
