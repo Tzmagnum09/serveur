@@ -619,6 +619,7 @@
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <argument type="service" id="App\Service\EmailTemplateService"/>
       <argument type="service" id="App\Service\AuditLogService"/>
+      <argument type="service" id="translator.default"/>
     </service>
     <service id="App\Service\AuditLogService" class="App\Service\AuditLogService" autowire="true" autoconfigure="true">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>

@@ -6,6 +6,7 @@ use App\Entity\AdminPermission;
 use App\Entity\User;
 use App\Repository\AdminPermissionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AdminPermissionService
 {
@@ -13,27 +14,30 @@ class AdminPermissionService
     private EntityManagerInterface $entityManager;
     private EmailTemplateService $emailService;
     private AuditLogService $auditLogService;
+    private TranslatorInterface $translator;
     
-    // Liste des permissions disponibles
+    // Liste des permissions disponibles avec leurs clés de traduction
     private const AVAILABLE_PERMISSIONS = [
-        'manage_users' => 'Gérer les utilisateurs',
-        'approve_users' => 'Approuver les nouveaux utilisateurs',
-        'edit_email_templates' => 'Éditer les templates d\'emails',
-        'preview_email_templates' => 'Prévisualiser les templates d\'emails',
-        'translate_content' => 'Traduire le contenu du site',
-        'view_audit_logs' => 'Consulter les logs d\'audit'
+        'manage_users' => 'permissions.manage_users',
+        'approve_users' => 'permissions.approve_users',
+        'edit_email_templates' => 'permissions.edit_email_templates',
+        'preview_email_templates' => 'permissions.preview_email_templates',
+        'translate_content' => 'permissions.translate_content',
+        'view_audit_logs' => 'permissions.view_audit_logs'
     ];
 
     public function __construct(
         AdminPermissionRepository $permissionRepository,
         EntityManagerInterface $entityManager,
         EmailTemplateService $emailService,
-        AuditLogService $auditLogService
+        AuditLogService $auditLogService,
+        TranslatorInterface $translator
     ) {
         $this->permissionRepository = $permissionRepository;
         $this->entityManager = $entityManager;
         $this->emailService = $emailService;
         $this->auditLogService = $auditLogService;
+        $this->translator = $translator;
     }
 
     /**
@@ -66,9 +70,9 @@ class AdminPermissionService
         // Initialiser le tableau de retour avec toutes les permissions disponibles
         $result = [];
         
-        foreach (self::AVAILABLE_PERMISSIONS as $code => $label) {
+        foreach (self::AVAILABLE_PERMISSIONS as $code => $translationKey) {
             $result[$code] = [
-                'label' => $label,
+                'label' => $this->translator->trans($translationKey),
                 'granted' => isset($permissions[$code]) ? $permissions[$code] : false,
             ];
         }
@@ -110,7 +114,7 @@ class AdminPermissionService
         
         // Envoyer une notification par email
         $this->emailService->sendEmailToUser('permission_update', $admin, [
-            'permissionName' => self::AVAILABLE_PERMISSIONS[$permission],
+            'permissionName' => $this->translator->trans(self::AVAILABLE_PERMISSIONS[$permission]),
             'isGranted' => $isGranted,
             'grantedBy' => $grantedBy->getFullName()
         ]);
@@ -133,6 +137,10 @@ class AdminPermissionService
      */
     public function getAvailablePermissions(): array
     {
-        return self::AVAILABLE_PERMISSIONS;
+        $result = [];
+        foreach (self::AVAILABLE_PERMISSIONS as $code => $translationKey) {
+            $result[$code] = $this->translator->trans($translationKey);
+        }
+        return $result;
     }
 }

@@ -1,597 +1,572 @@
-# General
 site:
-    name: "DMQode.be"
-
-# Navbar
+    name: DMQode.be
 navbar:
-    home: "Home"
-    super_admin: "Super Admin"
-    admin: "Administration"
-    profile: "My Profile"
-    logout: "Logout"
-    login: "Login"
-    register: "Register"
-
-# Home page
+    home: Home
+    super_admin: 'Super Admin'
+    admin: Administration
+    profile: 'My Profile'
+    logout: Logout
+    login: Login
+    register: Register
 home:
-    title: "Home"
-    welcome: "Welcome to our website"
-    intro: "Discover our platform with features adapted to your needs."
+    title: Home
+    welcome: 'Welcome to our website'
+    intro: 'Discover our platform with features adapted to your needs.'
     feature1:
-        title: "Simple Registration"
-        description: "Create your account in minutes and access all our services."
+        title: 'Simple Registration'
+        description: 'Create your account in minutes and access all our services.'
     feature2:
-        title: "Multilingual"
-        description: "Our site is available in French, Dutch, English, and German."
+        title: Multilingual
+        description: 'Our site is available in French, Dutch, English, and German.'
     feature3:
-        title: "Secure"
-        description: "Your data is protected and secured according to the latest standards."
-    register_btn: "Register"
-    login_btn: "Login"
-    profile_btn: "My Profile"
-
-# Login
+        title: Secure
+        description: 'Your data is protected and secured according to the latest standards.'
+    register_btn: Register
+    login_btn: Login
+    profile_btn: 'My Profile'
 login:
-    title: "Login"
-    header: "Login to your account"
-    username_or_email: "Username or Email"
-    password: "Password"
-    remember_me: "Remember me"
-    sign_in: "Sign in"
-    forgot_password: "Forgot your password?"
+    title: Login
+    header: 'Login to your account'
+    username_or_email: 'Username or Email'
+    password: Password
+    remember_me: 'Remember me'
+    sign_in: 'Sign in'
+    forgot_password: 'Forgot your password?'
     no_account: "Don't have an account?"
-    register: "Register"
-
-# Registration
+    register: Register
 registration:
-    title: "Registration"
-    header: "Create your account"
+    title: Registration
+    header: 'Create your account'
     info_approval: "After registration, you'll need to verify your email address. Then, an administrator will need to approve your account."
-    register: "Register"
-    already_account: "Already have an account?"
-    login: "Login"
+    register: Register
+    already_account: 'Already have an account?'
+    login: Login
     flash:
-        check_email: "An email has been sent to verify your account. Click on the link in the email to activate your account."
-        email_verified: "Your email address has been verified. Your account is pending approval by an administrator."
-        user_not_found: "User not found. Please register again."
-        invalid_token: "The email verification link is invalid. Please request a new link."
+        check_email: 'An email has been sent to verify your account. Click on the link in the email to activate your account.'
+        email_verified: 'Your email address has been verified. Your account is pending approval by an administrator.'
+        user_not_found: 'User not found. Please register again.'
+        invalid_token: 'The email verification link is invalid. Please request a new link.'
     form:
-        email: "Email Address"
-        email_placeholder: "example@domain.com"
-        username: "Username"
-        username_placeholder: "your_username"
-        first_name: "First Name"
-        first_name_placeholder: "Your first name"
-        last_name: "Last Name"
-        last_name_placeholder: "Your last name"
-        birth_date: "Birth date"
-        birth_date_placeholder: "DD/MM/YYYY"
-        street: "Street"
-        street_placeholder: "Street name"
-        house_number: "Number"
-        house_number_placeholder: "123"
-        box_number: "Box"
-        box_number_placeholder: "A"
-        postal_code: "Postal Code"
-        postal_code_placeholder: "1000"
-        city: "City"
-        city_placeholder: "Brussels"
-        country: "Country"
-        phone_number: "Phone Number"
-        phone_number_placeholder: "+32 470 12 34 56"
-        language: "Language"
+        email: 'Email Address'
+        email_placeholder: example@domain.com
+        username: Username
+        username_placeholder: your_username
+        first_name: 'First Name'
+        first_name_placeholder: 'Your first name'
+        last_name: 'Last Name'
+        last_name_placeholder: 'Your last name'
+        birth_date: 'Birth date'
+        birth_date_placeholder: DD/MM/YYYY
+        street: Street
+        street_placeholder: 'Street name'
+        house_number: Number
+        house_number_placeholder: '123'
+        box_number: Box
+        box_number_placeholder: A
+        postal_code: 'Postal Code'
+        postal_code_placeholder: '1000'
+        city: City
+        city_placeholder: Brussels
+        country: Country
+        phone_number: 'Phone Number'
+        phone_number_placeholder: '+32 470 12 34 56'
+        language: Language
         language_choices:
-            french: "French"
-            dutch: "Dutch"
-            english: "English"
-            german: "German"
-        password: "Password"
-        password_placeholder: "Minimum 8 characters"
-        confirm_password: "Confirm Password"
-        confirm_password_placeholder: "Repeat your password"
-        agree_terms: "I agree to the terms of service"
-        accept: "I Accept"
-        close: "Close"
+            french: French
+            dutch: Dutch
+            english: English
+            german: German
+        password: Password
+        password_placeholder: 'Minimum 8 characters'
+        confirm_password: 'Confirm Password'
+        confirm_password_placeholder: 'Repeat your password'
+        agree_terms: 'I agree to the terms of service'
+        accept: 'I Accept'
+        close: Close
     validation:
-        email_required: "Please enter an email address"
-        username_required: "Please enter a username"
-        username_min_length: "Your username must have at least {{ limit }} characters"
-        username_max_length: "Your username cannot exceed {{ limit }} characters"
-        first_name_required: "Please enter your first name"
-        last_name_required: "Please enter your last name"
-        birth_date_required: "Please enter your birth date"
-        minimum_age: "You must be at least 13 years old to register"
-        street_required: "Please enter your street"
-        house_number_required: "Please enter your house number"
-        postal_code_required: "Please enter your postal code"
-        city_required: "Please enter your city"
-        country_required: "Please select your country"
-        phone_number_required: "Please enter your phone number"
-        language_required: "Please select your language"
-        password_required: "Please enter a password"
-        password_min_length: "Your password must have at least {{ limit }} characters"
-        password_mismatch: "The passwords do not match"
-        terms_required: "You must agree to the terms of service"
-
-# Password Reset
+        email_required: 'Please enter an email address'
+        username_required: 'Please enter a username'
+        username_min_length: 'Your username must have at least {{ limit }} characters'
+        username_max_length: 'Your username cannot exceed {{ limit }} characters'
+        first_name_required: 'Please enter your first name'
+        last_name_required: 'Please enter your last name'
+        birth_date_required: 'Please enter your birth date'
+        minimum_age: 'You must be at least 13 years old to register'
+        street_required: 'Please enter your street'
+        house_number_required: 'Please enter your house number'
+        postal_code_required: 'Please enter your postal code'
+        city_required: 'Please enter your city'
+        country_required: 'Please select your country'
+        phone_number_required: 'Please enter your phone number'
+        language_required: 'Please select your language'
+        password_required: 'Please enter a password'
+        password_min_length: 'Your password must have at least {{ limit }} characters'
+        password_mismatch: 'The passwords do not match'
+        terms_required: 'You must agree to the terms of service'
 reset_password:
     request:
-        title: "Reset Password"
-        header: "Forgot Password"
+        title: 'Reset Password'
+        header: 'Forgot Password'
         info: "Enter your email address and we'll send you a link to reset your password."
-        submit: "Send"
-        back_to_login: "Back to login"
+        submit: Send
+        back_to_login: 'Back to login'
     check_email:
-        title: "Check your email"
-        header: "Email sent"
-        sent: "An email has been sent to your email address. Click on the link in the email to reset your password."
+        title: 'Check your email'
+        header: 'Email sent'
+        sent: 'An email has been sent to your email address. Click on the link in the email to reset your password.'
         not_received: "If you don't receive an email, check your spam folder or try again."
-        expires_in: "The link will expire in %hours% hour(s)."
-        try_again: "Try again"
+        expires_in: 'The link will expire in %hours% hour(s).'
+        try_again: 'Try again'
     reset:
-        title: "Reset Password"
-        header: "Set a new password"
-        new_password: "New password"
-        repeat_password: "Confirm password"
-        submit: "Reset password"
+        title: 'Reset Password'
+        header: 'Set a new password'
+        new_password: 'New password'
+        repeat_password: 'Confirm password'
+        submit: 'Reset password'
     flash:
-        success: "Your password has been reset successfully. You can now login."
-
-# Profile
+        success: 'Your password has been reset successfully. You can now login.'
 profile:
-    title: "My Profile"
+    title: 'My Profile'
     sidebar:
-        title: "My Account"
-        overview: "Overview"
-        edit_profile: "Edit Profile"
-        change_password: "Change Password"
+        title: 'My Account'
+        overview: Overview
+        edit_profile: 'Edit Profile'
+        change_password: 'Change Password'
     overview:
-        title: "Profile Overview"
-        edit_btn: "Edit"
-        personal_info: "Personal Information"
+        title: 'Profile Overview'
+        edit_btn: Edit
+        personal_info: 'Personal Information'
     edit:
-        title: "Edit Profile"
-        form_title: "Edit your information"
-        back_btn: "Back"
-        cancel_btn: "Cancel"
-        save_btn: "Save"
-        language_info: "Changing the language will update the interface after your next login."
+        title: 'Edit Profile'
+        form_title: 'Edit your information'
+        back_btn: Back
+        cancel_btn: Cancel
+        save_btn: Save
+        language_info: 'Changing the language will update the interface after your next login.'
     change_password:
-        title: "Change Password"
-        form_title: "Set a new password"
-        back_btn: "Back"
-        new_password: "New password"
-        repeat_password: "Confirm password"
+        title: 'Change Password'
+        form_title: 'Set a new password'
+        back_btn: Back
+        new_password: 'New password'
+        repeat_password: 'Confirm password'
         warning: "After changing your password, you'll need to log in again."
-        cancel_btn: "Cancel"
-        save_btn: "Save"
+        cancel_btn: Cancel
+        save_btn: Save
     fields:
-        email: "Email"
-        username: "Username"
-        full_name: "Full Name"
-        birth_date: "Birth date"
-        years_old: "years old"
-        phone: "Phone"
-        language: "Language"
-        address: "Address"
-        created_at: "Registration Date"
-        last_login: "Last Login"
-        status: "Status"
+        email: Email
+        username: Username
+        full_name: 'Full Name'
+        birth_date: 'Birth date'
+        years_old: 'years old'
+        phone: Phone
+        language: Language
+        address: Address
+        created_at: 'Registration Date'
+        last_login: 'Last Login'
+        status: Status
     status:
-        active: "Active"
-        pending_approval: "Pending Approval"
-        unverified: "Unverified"
+        active: Active
+        pending_approval: 'Pending Approval'
+        unverified: Unverified
     flash:
-        updated: "Your profile has been updated successfully."
-        password_changed: "Your password has been changed successfully."
-
-# Administration
+        updated: 'Your profile has been updated successfully.'
+        password_changed: 'Your password has been changed successfully.'
 admin:
     dashboard:
-        title: "Admin Dashboard"
-        pending_approvals: "Users Pending Approval"
+        title: 'Admin Dashboard'
+        pending_approvals: 'Users Pending Approval'
         stats:
-            total_users: "Total Users"
-            approved_users: "Approved Users"
-            pending_users: "Pending"
-            email_templates: "Email Templates"
-        quick_links: "Quick Links"
-        manage_users: "Manage Users"
-        manage_templates: "Manage Email Templates"
-        super_admin: "Super Admin"
+            total_users: 'Total Users'
+            approved_users: 'Approved Users'
+            pending_users: Pending
+            email_templates: 'Email Templates'
+        quick_links: 'Quick Links'
+        manage_users: 'Manage Users'
+        manage_templates: 'Manage Email Templates'
+        super_admin: 'Super Admin'
     sidebar:
-        title: "Administration"
-        dashboard: "Dashboard"
-        users: "Users"
-        email_templates: "Email Templates"
-        translations: "Translations"
-        super_admin: "Super Admin"
-        super_dashboard: "Super Dashboard"
+        title: Administration
+        dashboard: Dashboard
+        users: Users
+        email_templates: 'Email Templates'
+        translations: Translations
+        super_admin: 'Super Admin'
+        super_dashboard: 'Super Dashboard'
     users:
-        title: "User Management"
-        list: "User List"
-        back_btn: "Back to dashboard"
-        search: "Search for a user..."
-        filter: "Filter"
-        filter_all: "All Users"
-        filter_verified: "Verified Users"
-        filter_unverified: "Unverified Users"
-        filter_approved: "Approved Users"
-        filter_pending: "Pending Approval"
-        filter_admins: "Administrators"
-        filter_super_admins: "Super Administrators"
-        filter_regular_users: "Regular Users"
-        filtered_by_verified: "Filtered by: Verified"
-        filtered_by_unverified: "Filtered by: Unverified"
-        filtered_by_approved: "Filtered by: Approved"
-        filtered_by_pending: "Filtered by: Pending"
-        filtered_by_admins: "Filtered by: Administrators"
-        filtered_by_super_admins: "Filtered by: Super Administrators"
-        filtered_by_users: "Filtered by: Regular Users"
-        name: "Name"
-        email: "Email"
-        username: "Username"
-        registered_at: "Registered on"
-        status: "Status"
-        role: "Role"
-        actions: "Actions"
-        status_active: "Active"
-        status_pending: "Pending"
-        status_unverified: "Unverified"
-        role_super_admin: "Super Admin"
-        role_admin: "Admin"
-        role_user: "User"
-        search_placeholder: "Search by name, email, or username..."
-        search_btn: "Search"
+        title: 'User Management'
+        list: 'User List'
+        back_btn: 'Back to dashboard'
+        search: 'Search for a user...'
+        filter: Filter
+        filter_all: 'All Users'
+        filter_verified: 'Verified Users'
+        filter_unverified: 'Unverified Users'
+        filter_approved: 'Approved Users'
+        filter_pending: 'Pending Approval'
+        filter_admins: Administrators
+        filter_super_admins: 'Super Administrators'
+        filter_regular_users: 'Regular Users'
+        filtered_by_verified: 'Filtered by: Verified'
+        filtered_by_unverified: 'Filtered by: Unverified'
+        filtered_by_approved: 'Filtered by: Approved'
+        filtered_by_pending: 'Filtered by: Pending'
+        filtered_by_admins: 'Filtered by: Administrators'
+        filtered_by_super_admins: 'Filtered by: Super Administrators'
+        filtered_by_users: 'Filtered by: Regular Users'
+        name: Name
+        email: Email
+        username: Username
+        registered_at: 'Registered on'
+        status: Status
+        role: Role
+        actions: Actions
+        status_active: Active
+        status_pending: Pending
+        status_unverified: Unverified
+        role_super_admin: 'Super Admin'
+        role_admin: Admin
+        role_user: User
+        search_placeholder: 'Search by name, email, or username...'
+        search_btn: Search
         search_results: "Results for '%query%'"
-        clear_search: "Clear search"
-        no_users: "No users found"
-        sort_by: "Sort by"
-        sort_name: "Name"
-        sort_date: "Registration date"
-        sort_login: "Last login"
-        sort_asc: "Ascending"
-        sort_desc: "Descending"
-        count: "users"
-        confirm_approve: "Are you sure you want to approve this user?"
-        confirm_promote: "Are you sure you want to promote this user to administrator?"
-        confirm_demote: "Are you sure you want to demote this administrator to regular user?"
-        confirm_promote_super: "Are you sure you want to promote this user to super administrator? This will give them access to all application features."
-        confirm_demote_super: "Are you sure you want to demote this user from super administrator?"
-        promote_to_admin: "Promote to admin"
-        promote_to_super: "Promote to super admin"
-        demote_to_user: "Demote to user"
-        demote_to_admin: "Demote to admin"
-        manage_permissions: "Manage permissions"
+        clear_search: 'Clear search'
+        no_users: 'No users found'
+        sort_by: 'Sort by'
+        sort_name: Name
+        sort_date: 'Registration date'
+        sort_login: 'Last login'
+        sort_asc: Ascending
+        sort_desc: Descending
+        count: users
+        confirm_approve: 'Are you sure you want to approve this user?'
+        confirm_promote: 'Are you sure you want to promote this user to administrator?'
+        confirm_demote: 'Are you sure you want to demote this administrator to regular user?'
+        confirm_promote_super: 'Are you sure you want to promote this user to super administrator? This will give them access to all application features.'
+        confirm_demote_super: 'Are you sure you want to demote this user from super administrator?'
+        promote_to_admin: 'Promote to admin'
+        promote_to_super: 'Promote to super admin'
+        demote_to_user: 'Demote to user'
+        demote_to_admin: 'Demote to admin'
+        manage_permissions: 'Manage permissions'
     user_edit:
-        title: "Edit User %name%"
-        back_btn: "Back to list"
-        approve_btn: "Approve"
-        user_info: "User Information"
-        status: "Status"
-        role: "Role"
-        registered_on: "Registered on"
-        last_login: "Last login"
-        never_logged_in: "Never logged in"
-        verified_on: "Verified on"
-        approved_on: "Approved on"
-        edit_profile: "Edit Profile"
-        cancel_btn: "Cancel"
-        save_btn: "Save"
-        is_approved: "Approve this user"
+        title: 'Edit User %name%'
+        back_btn: 'Back to list'
+        approve_btn: Approve
+        user_info: 'User Information'
+        status: Status
+        role: Role
+        registered_on: 'Registered on'
+        last_login: 'Last login'
+        never_logged_in: 'Never logged in'
+        verified_on: 'Verified on'
+        approved_on: 'Approved on'
+        edit_profile: 'Edit Profile'
+        cancel_btn: Cancel
+        save_btn: Save
+        is_approved: 'Approve this user'
     user:
         flash:
-            updated: "The user has been updated successfully."
-            approved: "The user has been approved successfully."
+            updated: 'The user has been updated successfully.'
+            approved: 'The user has been approved successfully.'
     email_templates:
-        title: "Email Template Management"
-        new_btn: "New Template"
-        list: "Template List"
-        code: "Code"
-        subject: "Subject"
-        translations: "Translations"
-        updated_at: "Updated on"
-        actions: "Actions"
-        manage: "Modify"
-        edit: "Edit"
-        preview: "Preview"
-        add_translation: "Add translation"
-        no_templates: "No templates found"
-        about: "About Email Templates"
-        loading: "Loading preview..."
+        title: 'Email Template Management'
+        new_btn: 'New Template'
+        list: 'Template List'
+        code: Code
+        subject: Subject
+        translations: Translations
+        updated_at: 'Updated on'
+        actions: Actions
+        manage: Modify
+        edit: Edit
+        preview: Preview
+        add_translation: 'Add translation'
+        no_templates: 'No templates found'
+        about: 'About Email Templates'
+        loading: 'Loading preview...'
         variables:
-            title: "Available Variables"
-            description: "You can use these variables in your email templates. They will be replaced with actual values when sending."
+            title: 'Available Variables'
+            description: 'You can use these variables in your email templates. They will be replaced with actual values when sending.'
             firstName: "User's first name"
             lastName: "User's last name"
             fullName: "User's full name"
             email: "User's email address"
-            domain: "Site domain name"
-            token: "Email verification token"
-            resetToken: "Password reset token"
+            domain: 'Site domain name'
+            token: 'Email verification token'
+            resetToken: 'Password reset token'
         editor:
-            placeholder: "HTML content of the template..."
-            no_image_upload: "Image upload is not supported. Use links to external images."
+            placeholder: 'HTML content of the template...'
+            no_image_upload: 'Image upload is not supported. Use links to external images.'
     email_template_new:
-        title: "New Email Template"
-        back_btn: "Back"
-        form_title: "Create a new email template"
-        cancel_btn: "Cancel"
-        save_btn: "Save"
+        title: 'New Email Template'
+        back_btn: Back
+        form_title: 'Create a new email template'
+        cancel_btn: Cancel
+        save_btn: Save
     email_template_edit:
-        title: "Edit Template %code% (%locale%)"
-        back_btn: "Back"
-        preview_btn: "Preview"
-        delete_btn: "Delete"
-        form_title: "Edit Email Template"
-        cancel_btn: "Cancel"
-        save_btn: "Save"
-        close_btn: "Close"
-        confirm_delete: "Are you sure you want to delete this email template?"
+        title: 'Edit Template %code% (%locale%)'
+        back_btn: Back
+        preview_btn: Preview
+        delete_btn: Delete
+        form_title: 'Edit Email Template'
+        cancel_btn: Cancel
+        save_btn: Save
+        close_btn: Close
+        confirm_delete: 'Are you sure you want to delete this email template?'
     email_template:
         flash:
-            created: "The email template has been created successfully."
-            updated: "The email template has been updated successfully."
-            deleted: "The email template has been deleted successfully."
+            created: 'The email template has been created successfully.'
+            updated: 'The email template has been updated successfully.'
+            deleted: 'The email template has been deleted successfully.'
     translations:
-        title: "Translation Management"
-        tables_list: "Tables List"
-        table_title: "Table %table%"
-        edit_title: "Translate %table% (field: %field%)"
-        help_text: "Select a table to manage its translations. You can translate any text field into multiple languages."
-        items_list: "Items List"
-        no_tables: "No tables available for translation."
-        no_items: "No items found in this table."
-        select_field: "Select Field"
-        actions: "Actions"
-        translate: "Translate"
-        translate_field: "Translate field %field%"
-        original_content: "Original Content"
-        content: "Content"
-        translations: "Translations"
-        current_locale: "Current language"
-        back_btn: "Back"
-        cancel_btn: "Cancel"
-        save_btn: "Save"
-        static_translations: "Static Translations"
+        title: 'Translation Management'
+        tables_list: 'Tables List'
+        table_title: 'Table %table%'
+        edit_title: 'Translate %table% (field: %field%)'
+        help_text: 'Select a table to manage its translations. You can translate any text field into multiple languages.'
+        items_list: 'Items List'
+        no_tables: 'No tables available for translation.'
+        no_items: 'No items found in this table.'
+        select_field: 'Select Field'
+        actions: Actions
+        translate: Translate
+        translate_field: 'Translate field %field%'
+        original_content: 'Original Content'
+        content: Content
+        translations: Translations
+        current_locale: 'Current language'
+        back_btn: Back
+        cancel_btn: Cancel
+        save_btn: Save
+        static_translations: 'Static Translations'
         flash:
-            updated: "Translations have been updated successfully."
+            updated: 'Translations have been updated successfully.'
     static_translations:
-        title: "Static Translations"
+        title: 'Static Translations'
         edit_title: "Edit translation for '%key%'"
-        back_btn: "Back"
-        keys_list: "Translation Keys List"
-        help_text: "Edit site interface translations. These changes are saved in the YAML translation files."
-        key: "Key"
-        value: "Value"
-        actions: "Actions"
-        edit: "Edit"
-        no_keys: "No translation keys found"
-        edit_form_title: "Edit Translations"
-        cancel_btn: "Cancel"
-        save_btn: "Save"
+        back_btn: Back
+        keys_list: 'Translation Keys List'
+        help_text: 'Edit site interface translations. These changes are saved in the YAML translation files.'
+        key: Key
+        value: Value
+        actions: Actions
+        edit: Edit
+        no_keys: 'No translation keys found'
+        edit_form_title: 'Edit Translations'
+        cancel_btn: Cancel
+        save_btn: Save
     permissions:
-        title: "Permissions Management for %username%"
-        back_btn: "Back to users list"
-        user_info: "User Information"
-        registered_on: "Registered on"
-        last_login: "Last login"
-        never: "Never"
-        manage_permissions: "Manage permissions"
-        description: "Use the options below to grant or revoke specific permissions for this administrator."
-        cancel_btn: "Cancel"
-        save_btn: "Save permissions"
-        super_admin_info: "Super administrators automatically have all permissions. This panel is for informational purposes only."
+        title: 'Permissions Management for %username%'
+        back_btn: 'Back to users list'
+        user_info: 'User Information'
+        registered_on: 'Registered on'
+        last_login: 'Last login'
+        never: Never
+        manage_permissions: 'Manage permissions'
+        description: 'Use the options below to grant or revoke specific permissions for this administrator.'
+        cancel_btn: Cancel
+        save_btn: 'Save permissions'
+        super_admin_info: 'Super administrators automatically have all permissions. This panel is for informational purposes only.'
         desc:
-            manage_users: "Allows accessing the user list, editing their information, and managing their accounts."
-            approve_users: "Allows approving new users who have validated their email address."
-            edit_email_templates: "Allows creating, editing, and deleting system email templates."
-            preview_email_templates: "Allows previewing email templates before use."
-            translate_content: "Allows accessing the translation module and modifying multilingual content."
-            view_audit_logs: "Allows accessing and viewing system audit logs."
+            manage_users: 'Allows accessing the user list, editing their information, and managing their accounts.'
+            approve_users: 'Allows approving new users who have validated their email address.'
+            edit_email_templates: 'Allows creating, editing, and deleting system email templates.'
+            preview_email_templates: 'Allows previewing email templates before use.'
+            translate_content: 'Allows accessing the translation module and modifying multilingual content.'
+            view_audit_logs: 'Allows accessing and viewing system audit logs.'
     flash:
         no_permission: "You don't have the necessary permissions to perform this action."
-        user_updated: "User successfully updated."
-        user_approved: "User successfully approved."
-        user_already_approved: "This user is already approved."
-        cannot_edit_first_admin: "You cannot modify the main super administrator."
-        permissions_updated: "Permissions have been successfully updated."
-        user_not_admin: "This user is not an administrator."
-        user_promoted: "The user has been successfully promoted to administrator."
-        user_demoted: "The user has been successfully demoted."
-        user_already_admin: "This user is already an administrator."
-        cannot_demote_user: "Unable to demote this user."
-        user_promoted_super: "The user has been successfully promoted to super administrator."
-        user_demoted_super: "The user has been successfully demoted from super administrator role."
-        user_already_super_admin: "This user is already a super administrator."
-        user_not_super_admin: "This user is not a super administrator."
-        cannot_demote_first_admin: "You cannot demote the main super administrator."
-
-# Super Administration
+        user_updated: 'User successfully updated.'
+        user_approved: 'User successfully approved.'
+        user_already_approved: 'This user is already approved.'
+        cannot_edit_first_admin: 'You cannot modify the main super administrator.'
+        permissions_updated: 'Permissions have been successfully updated.'
+        user_not_admin: 'This user is not an administrator.'
+        user_promoted: 'The user has been successfully promoted to administrator.'
+        user_demoted: 'The user has been successfully demoted.'
+        user_already_admin: 'This user is already an administrator.'
+        cannot_demote_user: 'Unable to demote this user.'
+        user_promoted_super: 'The user has been successfully promoted to super administrator.'
+        user_demoted_super: 'The user has been successfully demoted from super administrator role.'
+        user_already_super_admin: 'This user is already a super administrator.'
+        user_not_super_admin: 'This user is not a super administrator.'
+        cannot_demote_first_admin: 'You cannot demote the main super administrator.'
 super_admin:
     dashboard:
-        title: "Super Administration"
+        title: 'Super Administration'
         stats:
-            admins: "Administrators"
-            super_admins: "Super Admins"
-            total_users: "Total Users"
-            permissions: "Permissions"
-        admins_list: "Administrator List"
-        admin_name: "Name"
-        admin_email: "Email"
-        created_at: "Created on"
-        last_login: "Last login"
-        actions: "Actions"
-        no_admins: "No administrators found"
-        confirm_demote: "Are you sure you want to demote this administrator?"
-        confirm_promote_super: "Are you sure you want to promote this administrator to super administrator?"
-        promote_user: "Promote a User"
-        search_users: "Search for a user to promote..."
-        search: "Search"
-        search_results: "Search Results"
-        user_name: "Name"
-        user_email: "Email"
-        user_role: "Role"
-        role_super_admin: "Super Admin"
-        role_admin: "Admin"
-        role_user: "User"
-        promote_to_admin: "Promote to admin"
-        no_results: "No results found"
+            admins: Administrators
+            super_admins: 'Super Admins'
+            total_users: 'Total Users'
+            permissions: Permissions
+        admins_list: 'Administrator List'
+        admin_name: Name
+        admin_email: Email
+        created_at: 'Created on'
+        last_login: 'Last login'
+        actions: Actions
+        no_admins: 'No administrators found'
+        confirm_demote: 'Are you sure you want to demote this administrator?'
+        confirm_promote_super: 'Are you sure you want to promote this administrator to super administrator?'
+        promote_user: 'Promote a User'
+        search_users: 'Search for a user to promote...'
+        search: Search
+        search_results: 'Search Results'
+        user_name: Name
+        user_email: Email
+        user_role: Role
+        role_super_admin: 'Super Admin'
+        role_admin: Admin
+        role_user: User
+        promote_to_admin: 'Promote to admin'
+        no_results: 'No results found'
     sidebar:
-        title: "Super Admin"
-        dashboard: "Dashboard"
-        admin_section: "Administration"
-        back_to_admin: "Back to Admin"
+        title: 'Super Admin'
+        dashboard: Dashboard
+        admin_section: Administration
+        back_to_admin: 'Back to Admin'
     permissions:
-        title: "Permission Management"
-        back_btn: "Back"
-        admin_info: "Permissions for %name%"
-        name: "Name"
-        email: "Email"
-        role: "Role"
-        admin_role: "Administrator"
+        title: 'Permission Management'
+        back_btn: Back
+        admin_info: 'Permissions for %name%'
+        name: Name
+        email: Email
+        role: Role
+        admin_role: Administrator
         info: "Manage this administrator's permissions. Super administrators have all permissions by default."
-        manage_title: "Manage Permissions"
-        permission: "Permission"
-        granted: "Granted"
-        description: "Description"
-        cancel_btn: "Cancel"
-        save_btn: "Save"
+        manage_title: 'Manage Permissions'
+        permission: Permission
+        granted: Granted
+        description: Description
+        cancel_btn: Cancel
+        save_btn: Save
         desc:
-            manage_users: "Allows managing users (view, edit)"
-            approve_users: "Allows approving pending users"
-            edit_email_templates: "Allows creating and editing email templates"
-            preview_email_templates: "Allows previewing email templates"
-            translate_content: "Allows translating dynamic content"
-            view_statistics: "Allows viewing site statistics"
+            manage_users: 'Allows managing users (view, edit)'
+            approve_users: 'Allows approving pending users'
+            edit_email_templates: 'Allows creating and editing email templates'
+            preview_email_templates: 'Allows previewing email templates'
+            translate_content: 'Allows translating dynamic content'
+            view_statistics: 'Allows viewing site statistics'
+            token: ''
     flash:
-        user_promoted: "The user has been promoted to administrator successfully."
-        admin_demoted: "The administrator has been demoted successfully."
-        user_promoted_super: "The administrator has been promoted to super administrator successfully."
-        permissions_updated: "Permissions have been updated successfully."
-
-# Terms of Service
+        user_promoted: 'The user has been promoted to administrator successfully.'
+        admin_demoted: 'The administrator has been demoted successfully.'
+        user_promoted_super: 'The administrator has been promoted to super administrator successfully.'
+        permissions_updated: 'Permissions have been updated successfully.'
 terms:
-    title: "Terms of Service"
+    title: 'Terms of Service'
     introduction:
-        title: "Introduction"
-        content: "Welcome to DMQode.be. These terms of service govern your use of our website and services. By registering on our site, you agree to be bound by these terms. Please read them carefully."
+        title: Introduction
+        content: 'Welcome to DMQode.be. These terms of service govern your use of our website and services. By registering on our site, you agree to be bound by these terms. Please read them carefully.'
     definitions:
-        title: "Definitions"
-        service: "\"Service\" refers to the DMQode.be website"
-        user: "\"User\" refers to any person who accesses the Service and creates an account"
-        account: "\"Account\" refers to personalized access to the Service"
+        title: Definitions
+        service: '"Service" refers to the DMQode.be website'
+        user: '"User" refers to any person who accesses the Service and creates an account'
+        account: '"Account" refers to personalized access to the Service'
     registration:
-        title: "Registration and Account"
-        content1: "To use certain features of the Service, you must create an account. When registering, you agree to provide accurate, current, and complete information. You are responsible for the confidentiality of your password and for all activities that occur under your account."
-        content2: "After registering, you will need to verify your email address. Then, an administrator will need to approve your account before you can access all features of the service."
+        title: 'Registration and Account'
+        content1: 'To use certain features of the Service, you must create an account. When registering, you agree to provide accurate, current, and complete information. You are responsible for the confidentiality of your password and for all activities that occur under your account.'
+        content2: 'After registering, you will need to verify your email address. Then, an administrator will need to approve your account before you can access all features of the service.'
     rights:
-        title: "Rights and Responsibilities"
-        content: "When using our Service, you agree not to:"
-        item1: "Violate applicable laws"
-        item2: "Distribute viruses or any other malicious code"
-        item3: "Disrupt or interfere with the security of the Service"
-        item4: "Collect information about other users without their consent"
-        item5: "Use the Service in a way that could damage, disable, overburden, or impair the Service"
+        title: 'Rights and Responsibilities'
+        content: 'When using our Service, you agree not to:'
+        item1: 'Violate applicable laws'
+        item2: 'Distribute viruses or any other malicious code'
+        item3: 'Disrupt or interfere with the security of the Service'
+        item4: 'Collect information about other users without their consent'
+        item5: 'Use the Service in a way that could damage, disable, overburden, or impair the Service'
     data_protection:
-        title: "Personal Data Protection"
-        content1: "We respect your privacy and protect your personal data in accordance with our privacy policy and applicable laws, including the General Data Protection Regulation (GDPR)."
-        content2: "The personal data you provide during registration is used only for providing our services and will not be shared with third parties without your explicit consent."
+        title: 'Personal Data Protection'
+        content1: 'We respect your privacy and protect your personal data in accordance with our privacy policy and applicable laws, including the General Data Protection Regulation (GDPR).'
+        content2: 'The personal data you provide during registration is used only for providing our services and will not be shared with third parties without your explicit consent.'
     changes:
-        title: "Changes to Terms of Service"
-        content: "We reserve the right to modify these terms of service at any time. Changes take effect immediately upon posting on the Service. It is your responsibility to regularly review these terms."
+        title: 'Changes to Terms of Service'
+        content: 'We reserve the right to modify these terms of service at any time. Changes take effect immediately upon posting on the Service. It is your responsibility to regularly review these terms.'
     termination:
-        title: "Termination"
-        content: "We reserve the right to suspend or terminate your account and access to the Service at our sole discretion, without notice, for conduct that we deem contrary to these terms of service or any applicable law."
+        title: Termination
+        content: 'We reserve the right to suspend or terminate your account and access to the Service at our sole discretion, without notice, for conduct that we deem contrary to these terms of service or any applicable law.'
     contact:
-        title: "Contact"
-        content: "If you have any questions regarding these terms of service, please contact us at: contact@dmqode.be"
+        title: Contact
+        content: 'If you have any questions regarding these terms of service, please contact us at: contact@dmqode.be'
     footer:
-        last_update: "Last updated:"
-    back_btn: "Back to registration"
+        last_update: 'Last updated:'
+    back_btn: 'Back to registration'
 cookie:
-  preferences:
-    title: "Cookie Preferences"
-    intro: "On this page, you can manage your preferences regarding the use of cookies on our site."
-  
-  banner:
-    title: "This website uses cookies"
-    content: "As a visitor to our site, we try to offer you the most pleasant experience possible. We use cookies primarily to improve your user experience and to enhance the functioning of our online services. In addition, we use cookies to make the content of our websites and (mobile) applications more interesting for you. We also use cookies to map your browsing behavior."
-    customize: "Customize"
-    necessary_only: "Necessary only"
-    accept_all: "Allow and continue"
-
-  modal:
-    title: "Cookie Preferences"
-    necessary_only: "Necessary only"
-    accept_all: "Allow all"
-    save: "Save preferences"
-    
-    tab:
-      overview: "Overview"
-      details: "Details"
-      about: "About"
-    
-    overview:
-      intro: "You can choose which cookies you want to accept. Necessary cookies are required for the proper functioning of the site."
-      necessary:
-        title: "Necessary cookies"
-        description: "These cookies are essential for the basic functionality of the website and cannot be disabled."
-      preferences:
-        title: "Preference cookies"
-        description: "These cookies allow the website to remember your choices and preferences, such as your preferred language or the region where you are located."
-      statistics:
-        title: "Statistical cookies"
-        description: "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously."
-      marketing:
-        title: "Marketing cookies"
-        description: "These cookies are used to track visitors across websites. They allow relevant and engaging advertisements to be displayed to the user."
-    
-    details:
-      necessary:
-        title: "Necessary cookies"
-        description: "Necessary cookies help make a website usable by enabling basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies."
-        session: "User session maintenance"
-        session_end: "End of session"
-        consent: "Storing cookie consent preferences"
-        year: "year"
-        month: "months"
-      preferences:
-        title: "Preference cookies"
-        description: "Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in."
-        language: "Storing language preference"
-      statistics:
-        title: "Statistical cookies"
-        description: "Statistical cookies help website owners understand how visitors interact with websites by collecting and reporting information anonymously."
-        analytics: "Tracking user behavior on the site to improve experience"
-        user_id: "User distinction"
-        years: "years"
-        hours: "hours"
-      marketing:
-        title: "Marketing cookies"
-        description: "Marketing cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third-party advertisers."
-        facebook: "Tracking ad conversions and retargeting"
-        months: "months"
-      table:
-        name: "Name"
-        provider: "Provider"
-        purpose: "Purpose"
-        expiry: "Expiry"
-    
-    about:
-      what_are:
-        title: "What are cookies?"
-        description: "Cookies are small text files that are stored on your computer or mobile device when you visit a website. They allow the site to remember your actions and preferences for a period of time, so you don't have to re-enter them every time you visit the site or navigate from one page to another."
-      how_used:
-        title: "How do we use cookies?"
-        description: "We use different types of cookies to run our site, improve your user experience, analyze how the site is used, and personalize the content and advertisements you see."
-      how_manage:
-        title: "How to manage cookies?"
-        description: "You can manage your cookie preferences at any time by clicking on the 'Cookie settings' link at the bottom of our site. You can also change your browser settings to delete or prevent certain cookies from being stored on your computer or mobile device without your explicit consent."
-      more_info:
-        title: "More information"
-        description: "To learn more about our use of cookies, please read our privacy policy and terms of use on"
-        terms_link: "our terms of use page"
-
-  footer:
-    settings: "Cookie settings"
+    preferences:
+        title: 'Cookie Preferences'
+        intro: 'On this page, you can manage your preferences regarding the use of cookies on our site.'
+    banner:
+        title: 'This website uses cookies'
+        content: 'As a visitor to our site, we try to offer you the most pleasant experience possible. We use cookies primarily to improve your user experience and to enhance the functioning of our online services. In addition, we use cookies to make the content of our websites and (mobile) applications more interesting for you. We also use cookies to map your browsing behavior.'
+        customize: Customize
+        necessary_only: 'Necessary only'
+        accept_all: 'Allow and continue'
+    modal:
+        title: 'Cookie Preferences'
+        necessary_only: 'Necessary only'
+        accept_all: 'Allow all'
+        save: 'Save preferences'
+        tab:
+            overview: Overview
+            details: Details
+            about: About
+        overview:
+            intro: 'You can choose which cookies you want to accept. Necessary cookies are required for the proper functioning of the site.'
+            necessary:
+                title: 'Necessary cookies'
+                description: 'These cookies are essential for the basic functionality of the website and cannot be disabled.'
+            preferences:
+                title: 'Preference cookies'
+                description: 'These cookies allow the website to remember your choices and preferences, such as your preferred language or the region where you are located.'
+            statistics:
+                title: 'Statistical cookies'
+                description: 'These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.'
+            marketing:
+                title: 'Marketing cookies'
+                description: 'These cookies are used to track visitors across websites. They allow relevant and engaging advertisements to be displayed to the user.'
+        details:
+            necessary:
+                title: 'Necessary cookies'
+                description: 'Necessary cookies help make a website usable by enabling basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies.'
+                session: 'User session maintenance'
+                session_end: 'End of session'
+                consent: 'Storing cookie consent preferences'
+                year: year
+                month: months
+            preferences:
+                title: 'Preference cookies'
+                description: 'Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.'
+                language: 'Storing language preference'
+            statistics:
+                title: 'Statistical cookies'
+                description: 'Statistical cookies help website owners understand how visitors interact with websites by collecting and reporting information anonymously.'
+                analytics: 'Tracking user behavior on the site to improve experience'
+                user_id: 'User distinction'
+                years: years
+                hours: hours
+            marketing:
+                title: 'Marketing cookies'
+                description: 'Marketing cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third-party advertisers.'
+                facebook: 'Tracking ad conversions and retargeting'
+                months: months
+            table:
+                name: Name
+                provider: Provider
+                purpose: Purpose
+                expiry: Expiry
+        about:
+            what_are:
+                title: 'What are cookies?'
+                description: "Cookies are small text files that are stored on your computer or mobile device when you visit a website. They allow the site to remember your actions and preferences for a period of time, so you don't have to re-enter them every time you visit the site or navigate from one page to another."
+            how_used:
+                title: 'How do we use cookies?'
+                description: 'We use different types of cookies to run our site, improve your user experience, analyze how the site is used, and personalize the content and advertisements you see.'
+            how_manage:
+                title: 'How to manage cookies?'
+                description: "You can manage your cookie preferences at any time by clicking on the 'Cookie settings' link at the bottom of our site. You can also change your browser settings to delete or prevent certain cookies from being stored on your computer or mobile device without your explicit consent."
+            more_info:
+                title: 'More information'
+                description: 'To learn more about our use of cookies, please read our privacy policy and terms of use on'
+                terms_link: 'our terms of use page'
+    footer:
+        settings: 'Cookie settings'

@@ -2,6 +2,36 @@
 
 {% block title %}{{ 'admin.email_templates.title'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .language-badge {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .language-badge:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Modal styles */
+        #previewModal .modal-dialog {
+            max-width: 800px;
+        }
+        
+        #previewFrame {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        
+        #previewLoading {
+            padding: 3rem;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
 {% block sidebar %}
 <div class="sidebar">
     <h5 class="mb-4">{{ 'admin.sidebar.title'|trans }}</h5>
@@ -84,10 +114,34 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {% if localeTemplates['fr'] is defined %}<span class="badge bg-primary me-1">FR</span>{% endif %}
-                                    {% if localeTemplates['nl'] is defined %}<span class="badge bg-primary me-1">NL</span>{% endif %}
-                                    {% if localeTemplates['en'] is defined %}<span class="badge bg-primary me-1">EN</span>{% endif %}
-                                    {% if localeTemplates['de'] is defined %}<span class="badge bg-primary me-1">DE</span>{% endif %}
+                                    {% if localeTemplates['fr'] is defined %}
+                                        <span class="badge bg-primary me-1 language-badge" 
+                                              data-template-id="{{ localeTemplates['fr'].id }}" 
+                                              data-template-locale="fr"
+                                              data-bs-toggle="tooltip" 
+                                              title="{{ 'admin.email_templates.preview'|trans }} (FR)">FR</span>
+                                    {% endif %}
+                                    {% if localeTemplates['nl'] is defined %}
+                                        <span class="badge bg-primary me-1 language-badge" 
+                                              data-template-id="{{ localeTemplates['nl'].id }}" 
+                                              data-template-locale="nl"
+                                              data-bs-toggle="tooltip" 
+                                              title="{{ 'admin.email_templates.preview'|trans }} (NL)">NL</span>
+                                    {% endif %}
+                                    {% if localeTemplates['en'] is defined %}
+                                        <span class="badge bg-primary me-1 language-badge" 
+                                              data-template-id="{{ localeTemplates['en'].id }}" 
+                                              data-template-locale="en"
+                                              data-bs-toggle="tooltip" 
+                                              title="{{ 'admin.email_templates.preview'|trans }} (EN)">EN</span>
+                                    {% endif %}
+                                    {% if localeTemplates['de'] is defined %}
+                                        <span class="badge bg-primary me-1 language-badge" 
+                                              data-template-id="{{ localeTemplates['de'].id }}" 
+                                              data-template-locale="de"
+                                              data-bs-toggle="tooltip" 
+                                              title="{{ 'admin.email_templates.preview'|trans }} (DE)">DE</span>
+                                    {% endif %}
                                 </td>
                                 <td>
                                     {% if localeTemplates['fr'] is defined and localeTemplates['fr'].updatedAt %}
@@ -99,7 +153,6 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <!-- Modifier le menu déroulant par un seul bouton Modifier -->
                                     {% set defaultTemplate = localeTemplates['fr'] is defined ? localeTemplates['fr'] : localeTemplates|first %}
                                     {% if defaultTemplate %}
                                         <a href="{{ path('app_admin_email_template_edit', {'id': defaultTemplate.id}) }}" class="btn btn-sm btn-outline-primary">
@@ -199,4 +252,80 @@
         </div>
     </div>
 </div>
+
+<!-- Modal pour la prévisualisation du template -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="previewModalLabel">{{ 'admin.email_template_edit.preview_title'|trans }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="previewLoading">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">{{ 'admin.email_template_edit.loading'|trans }}</p>
+                </div>
+                <iframe id="previewFrame" style="display: none;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'admin.email_template_edit.close_btn'|trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser les tooltips
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+            
+            // Gestionnaire d'événements pour les badges de langue
+            const languageBadges = document.querySelectorAll('.language-badge');
+            const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+            const previewFrame = document.getElementById('previewFrame');
+            const previewLoading = document.getElementById('previewLoading');
+            
+            languageBadges.forEach(function(badge) {
+                badge.addEventListener('click', function() {
+                    // Récupérer l'ID du template et la locale
+                    const templateId = this.getAttribute('data-template-id');
+                    const locale = this.getAttribute('data-template-locale');
+                    
+                    // Mettre à jour le titre de la modal
+                    const modalTitle = document.getElementById('previewModalLabel');
+                    modalTitle.textContent = '{{ 'admin.email_template_edit.preview_title'|trans }} (' + locale.toUpperCase() + ')';
+                    
+                    // Réinitialiser l'iframe et afficher le loader
+                    previewFrame.src = '';
+                    previewFrame.style.display = 'none';
+                    previewLoading.style.display = 'block';
+                    
+                    // Afficher la modal
+                    previewModal.show();
+                    
+                    // Charger la prévisualisation
+                    setTimeout(function() {
+                        const previewUrl = '{{ path('app_admin_email_template_preview', {'id': 'TEMPLATE_ID'}) }}'.replace('TEMPLATE_ID', templateId);
+                        
+                        previewFrame.src = previewUrl;
+                        
+                        // Quand l'iframe est chargée, masquer le loader et afficher l'iframe
+                        previewFrame.onload = function() {
+                            previewLoading.style.display = 'none';
+                            previewFrame.style.display = 'block';
+                        };
+                    }, 500);
+                });
+            });
+        });
+    </script>
 {% endblock %}

@@ -1,530 +1,505 @@
-# Allgemein
 site:
-    name: "DMQode.be"
-
-# Navigationsleiste
+    name: DMQode.be
 navbar:
-    home: "Startseite"
-    super_admin: "Super Admin"
-    admin: "Verwaltung"
-    profile: "Mein Profil"
-    logout: "Abmelden"
-    login: "Anmelden"
-    register: "Registrieren"
-
-# Startseite
+    home: Startseite
+    super_admin: 'Super Admin'
+    admin: Verwaltung
+    profile: 'Mein Profil'
+    logout: Abmelden
+    login: Anmelden
+    register: Registrieren
 home:
-    title: "Startseite"
-    welcome: "Willkommen auf unserer Website"
-    intro: "Entdecken Sie unsere Plattform mit Funktionen, die auf Ihre Bedürfnisse zugeschnitten sind."
+    title: Startseite
+    welcome: 'Willkommen auf unserer Website'
+    intro: 'Entdecken Sie unsere Plattform mit Funktionen, die auf Ihre Bedürfnisse zugeschnitten sind.'
     feature1:
-        title: "Einfache Registrierung"
-        description: "Erstellen Sie Ihren Account in wenigen Minuten und greifen Sie auf alle unsere Dienste zu."
+        title: 'Einfache Registrierung'
+        description: 'Erstellen Sie Ihren Account in wenigen Minuten und greifen Sie auf alle unsere Dienste zu.'
     feature2:
-        title: "Mehrsprachig"
-        description: "Unsere Website ist auf Französisch, Niederländisch, Englisch und Deutsch verfügbar."
+        title: Mehrsprachig
+        description: 'Unsere Website ist auf Französisch, Niederländisch, Englisch und Deutsch verfügbar.'
     feature3:
-        title: "Sicher"
-        description: "Ihre Daten werden nach den neuesten Standards geschützt und gesichert."
-    register_btn: "Registrieren"
-    login_btn: "Anmelden"
-    profile_btn: "Mein Profil"
-
-# Anmeldung
+        title: Sicher
+        description: 'Ihre Daten werden nach den neuesten Standards geschützt und gesichert.'
+    register_btn: Registrieren
+    login_btn: Anmelden
+    profile_btn: 'Mein Profil'
 login:
-    title: "Anmeldung"
-    header: "Melden Sie sich in Ihrem Account an"
-    username_or_email: "Benutzername oder E-Mail"
-    password: "Passwort"
-    remember_me: "Angemeldet bleiben"
-    sign_in: "Anmelden"
-    forgot_password: "Passwort vergessen?"
-    no_account: "Noch kein Account?"
-    register: "Registrieren"
-
-# Registrierung
+    title: Anmeldung
+    header: 'Melden Sie sich in Ihrem Account an'
+    username_or_email: 'Benutzername oder E-Mail'
+    password: Passwort
+    remember_me: 'Angemeldet bleiben'
+    sign_in: Anmelden
+    forgot_password: 'Passwort vergessen?'
+    no_account: 'Noch kein Account?'
+    register: Registrieren
 registration:
-    title: "Registrierung"
-    header: "Erstellen Sie Ihren Account"
-    info_approval: "Nach der Registrierung müssen Sie Ihre E-Mail-Adresse bestätigen. Danach muss ein Administrator Ihren Account freigeben."
-    register: "Registrieren"
-    already_account: "Haben Sie bereits einen Account?"
-    login: "Anmelden"
+    title: Registrierung
+    header: 'Erstellen Sie Ihren Account'
+    info_approval: 'Nach der Registrierung müssen Sie Ihre E-Mail-Adresse bestätigen. Danach muss ein Administrator Ihren Account freigeben.'
+    register: Registrieren
+    already_account: 'Haben Sie bereits einen Account?'
+    login: Anmelden
     flash:
-        check_email: "Eine E-Mail wurde gesendet, um Ihren Account zu bestätigen. Klicken Sie auf den Link in der E-Mail, um Ihren Account zu aktivieren."
-        email_verified: "Ihre E-Mail-Adresse wurde bestätigt. Ihr Account wartet auf Freigabe durch einen Administrator."
-        user_not_found: "Benutzer nicht gefunden. Bitte registrieren Sie sich erneut."
-        invalid_token: "Der E-Mail-Bestätigungslink ist ungültig. Bitte fordern Sie einen neuen Link an."
+        check_email: 'Eine E-Mail wurde gesendet, um Ihren Account zu bestätigen. Klicken Sie auf den Link in der E-Mail, um Ihren Account zu aktivieren.'
+        email_verified: 'Ihre E-Mail-Adresse wurde bestätigt. Ihr Account wartet auf Freigabe durch einen Administrator.'
+        user_not_found: 'Benutzer nicht gefunden. Bitte registrieren Sie sich erneut.'
+        invalid_token: 'Der E-Mail-Bestätigungslink ist ungültig. Bitte fordern Sie einen neuen Link an.'
     form:
-        email: "E-Mail-Adresse"
-        email_placeholder: "beispiel@domain.com"
-        username: "Benutzername"
-        username_placeholder: "ihr_benutzername"
-        first_name: "Vorname"
-        first_name_placeholder: "Ihr Vorname"
-        last_name: "Nachname"
-        last_name_placeholder: "Ihr Nachname"
-        birth_date: "Geburtsdatum"
-        birth_date_placeholder: "TT/MM/JJJJ"
-        street: "Straße"
-        street_placeholder: "Straßenname"
-        house_number: "Hausnummer"
-        house_number_placeholder: "123"
-        box_number: "Wohnungsnummer"
-        box_number_placeholder: "A"
-        postal_code: "Postleitzahl"
-        postal_code_placeholder: "1000"
-        city: "Stadt"
-        city_placeholder: "Brüssel"
-        country: "Land"
-        phone_number: "Telefonnummer"
-        phone_number_placeholder: "+32 470 12 34 56"
-        language: "Sprache"
+        email: E-Mail-Adresse
+        email_placeholder: beispiel@domain.com
+        username: Benutzername
+        username_placeholder: ihr_benutzername
+        first_name: Vorname
+        first_name_placeholder: 'Ihr Vorname'
+        last_name: Nachname
+        last_name_placeholder: 'Ihr Nachname'
+        birth_date: Geburtsdatum
+        birth_date_placeholder: TT/MM/JJJJ
+        street: Straße
+        street_placeholder: Straßenname
+        house_number: Hausnummer
+        house_number_placeholder: '123'
+        box_number: Wohnungsnummer
+        box_number_placeholder: A
+        postal_code: Postleitzahl
+        postal_code_placeholder: '1000'
+        city: Stadt
+        city_placeholder: Brüssel
+        country: Land
+        phone_number: Telefonnummer
+        phone_number_placeholder: '+32 470 12 34 56'
+        language: Sprache
         language_choices:
-            french: "Französisch"
-            dutch: "Niederländisch"
-            english: "Englisch"
-            german: "Deutsch"
-        password: "Passwort"
-        password_placeholder: "Mindestens 8 Zeichen"
-        confirm_password: "Passwort bestätigen"
-        confirm_password_placeholder: "Wiederholen Sie Ihr Passwort"
-        agree_terms: "Ich akzeptiere die Nutzungsbedingungen"
-        accept: "Ich akzeptiere"
-        close: "Schließen"
+            french: Französisch
+            dutch: Niederländisch
+            english: Englisch
+            german: Deutsch
+        password: Passwort
+        password_placeholder: 'Mindestens 8 Zeichen'
+        confirm_password: 'Passwort bestätigen'
+        confirm_password_placeholder: 'Wiederholen Sie Ihr Passwort'
+        agree_terms: 'Ich akzeptiere die Nutzungsbedingungen'
+        accept: 'Ich akzeptiere'
+        close: Schließen
     validation:
-        email_required: "Bitte geben Sie eine E-Mail-Adresse ein"
-        username_required: "Bitte geben Sie einen Benutzernamen ein"
-        username_min_length: "Ihr Benutzername muss mindestens {{ limit }} Zeichen haben"
-        username_max_length: "Ihr Benutzername darf nicht mehr als {{ limit }} Zeichen haben"
-        first_name_required: "Bitte geben Sie Ihren Vornamen ein"
-        last_name_required: "Bitte geben Sie Ihren Nachnamen ein"
-        birth_date_required: "Bitte geben Sie Ihr Geburtsdatum ein"
-        minimum_age: "Sie müssen mindestens 13 Jahre alt sein, um sich zu registrieren"
-        street_required: "Bitte geben Sie Ihre Straße ein"
-        house_number_required: "Bitte geben Sie Ihre Hausnummer ein"
-        postal_code_required: "Bitte geben Sie Ihre Postleitzahl ein"
-        city_required: "Bitte geben Sie Ihre Stadt ein"
-        country_required: "Bitte wählen Sie Ihr Land aus"
-        phone_number_required: "Bitte geben Sie Ihre Telefonnummer ein"
-        language_required: "Bitte wählen Sie Ihre Sprache aus"
-        password_required: "Bitte geben Sie ein Passwort ein"
-        password_min_length: "Ihr Passwort muss mindestens {{ limit }} Zeichen haben"
-        password_mismatch: "Die Passwörter stimmen nicht überein"
-        terms_required: "Sie müssen die Nutzungsbedingungen akzeptieren"
-
-# Passwort zurücksetzen
+        email_required: 'Bitte geben Sie eine E-Mail-Adresse ein'
+        username_required: 'Bitte geben Sie einen Benutzernamen ein'
+        username_min_length: 'Ihr Benutzername muss mindestens {{ limit }} Zeichen haben'
+        username_max_length: 'Ihr Benutzername darf nicht mehr als {{ limit }} Zeichen haben'
+        first_name_required: 'Bitte geben Sie Ihren Vornamen ein'
+        last_name_required: 'Bitte geben Sie Ihren Nachnamen ein'
+        birth_date_required: 'Bitte geben Sie Ihr Geburtsdatum ein'
+        minimum_age: 'Sie müssen mindestens 13 Jahre alt sein, um sich zu registrieren'
+        street_required: 'Bitte geben Sie Ihre Straße ein'
+        house_number_required: 'Bitte geben Sie Ihre Hausnummer ein'
+        postal_code_required: 'Bitte geben Sie Ihre Postleitzahl ein'
+        city_required: 'Bitte geben Sie Ihre Stadt ein'
+        country_required: 'Bitte wählen Sie Ihr Land aus'
+        phone_number_required: 'Bitte geben Sie Ihre Telefonnummer ein'
+        language_required: 'Bitte wählen Sie Ihre Sprache aus'
+        password_required: 'Bitte geben Sie ein Passwort ein'
+        password_min_length: 'Ihr Passwort muss mindestens {{ limit }} Zeichen haben'
+        password_mismatch: 'Die Passwörter stimmen nicht überein'
+        terms_required: 'Sie müssen die Nutzungsbedingungen akzeptieren'
 reset_password:
     request:
-        title: "Passwort zurücksetzen"
-        header: "Passwort vergessen"
-        info: "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts."
-        submit: "Senden"
-        back_to_login: "Zurück zur Anmeldung"
+        title: 'Passwort zurücksetzen'
+        header: 'Passwort vergessen'
+        info: 'Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.'
+        submit: Senden
+        back_to_login: 'Zurück zur Anmeldung'
     check_email:
-        title: "Überprüfen Sie Ihre E-Mail"
-        header: "E-Mail gesendet"
-        sent: "Eine E-Mail wurde an Ihre E-Mail-Adresse gesendet. Klicken Sie auf den Link in der E-Mail, um Ihr Passwort zurückzusetzen."
-        not_received: "Wenn Sie keine E-Mail erhalten, überprüfen Sie Ihren Spam-Ordner oder versuchen Sie es erneut."
-        expires_in: "Der Link läuft in %hours% Stunde(n) ab."
-        try_again: "Erneut versuchen"
+        title: 'Überprüfen Sie Ihre E-Mail'
+        header: 'E-Mail gesendet'
+        sent: 'Eine E-Mail wurde an Ihre E-Mail-Adresse gesendet. Klicken Sie auf den Link in der E-Mail, um Ihr Passwort zurückzusetzen.'
+        not_received: 'Wenn Sie keine E-Mail erhalten, überprüfen Sie Ihren Spam-Ordner oder versuchen Sie es erneut.'
+        expires_in: 'Der Link läuft in %hours% Stunde(n) ab.'
+        try_again: 'Erneut versuchen'
     reset:
-        title: "Passwort zurücksetzen"
-        header: "Neues Passwort festlegen"
-        new_password: "Neues Passwort"
-        repeat_password: "Passwort bestätigen"
-        submit: "Passwort zurücksetzen"
+        title: 'Passwort zurücksetzen'
+        header: 'Neues Passwort festlegen'
+        new_password: 'Neues Passwort'
+        repeat_password: 'Passwort bestätigen'
+        submit: 'Passwort zurücksetzen'
     flash:
-        success: "Ihr Passwort wurde erfolgreich zurückgesetzt. Sie können sich jetzt anmelden."
-
-# Profil
+        success: 'Ihr Passwort wurde erfolgreich zurückgesetzt. Sie können sich jetzt anmelden.'
 profile:
-    title: "Mein Profil"
+    title: 'Mein Profil'
     sidebar:
-        title: "Mein Account"
-        overview: "Übersicht"
-        edit_profile: "Profil bearbeiten"
-        change_password: "Passwort ändern"
+        title: 'Mein Account'
+        overview: Übersicht
+        edit_profile: 'Profil bearbeiten'
+        change_password: 'Passwort ändern'
     overview:
-        title: "Profilübersicht"
-        edit_btn: "Bearbeiten"
-        personal_info: "Persönliche Informationen"
+        title: Profilübersicht
+        edit_btn: Bearbeiten
+        personal_info: 'Persönliche Informationen'
     edit:
-        title: "Profil bearbeiten"
-        form_title: "Ihre Informationen aktualisieren"
-        back_btn: "Zurück"
-        cancel_btn: "Abbrechen"
-        save_btn: "Speichern"
-        language_info: "Die Änderung der Sprache wird erst nach Ihrer nächsten Anmeldung wirksam."
+        title: 'Profil bearbeiten'
+        form_title: 'Ihre Informationen aktualisieren'
+        back_btn: Zurück
+        cancel_btn: Abbrechen
+        save_btn: Speichern
+        language_info: 'Die Änderung der Sprache wird erst nach Ihrer nächsten Anmeldung wirksam.'
     change_password:
-        title: "Passwort ändern"
-        form_title: "Neues Passwort festlegen"
-        back_btn: "Zurück"
-        new_password: "Neues Passwort"
-        repeat_password: "Passwort bestätigen"
-        warning: "Nach der Änderung Ihres Passworts müssen Sie sich erneut anmelden."
-        cancel_btn: "Abbrechen"
-        save_btn: "Speichern"
+        title: 'Passwort ändern'
+        form_title: 'Neues Passwort festlegen'
+        back_btn: Zurück
+        new_password: 'Neues Passwort'
+        repeat_password: 'Passwort bestätigen'
+        warning: 'Nach der Änderung Ihres Passworts müssen Sie sich erneut anmelden.'
+        cancel_btn: Abbrechen
+        save_btn: Speichern
     fields:
-        email: "E-Mail"
-        username: "Benutzername"
-        full_name: "Vollständiger Name"
-        phone: "Telefon"
-        language: "Sprache"
-        address: "Adresse"
-        created_at: "Registrierungsdatum"
-        last_login: "Letzte Anmeldung"
-        status: "Status"
+        email: E-Mail
+        username: Benutzername
+        full_name: 'Vollständiger Name'
+        phone: Telefon
+        language: Sprache
+        address: Adresse
+        created_at: Registrierungsdatum
+        last_login: 'Letzte Anmeldung'
+        status: Status
     status:
-        active: "Aktiv"
-        pending_approval: "Warten auf Freigabe"
-        unverified: "Nicht bestätigt"
+        active: Aktiv
+        pending_approval: 'Warten auf Freigabe'
+        unverified: 'Nicht bestätigt'
     flash:
-        updated: "Ihr Profil wurde erfolgreich aktualisiert."
-        password_changed: "Ihr Passwort wurde erfolgreich geändert."
-
-# Verwaltung
+        updated: 'Ihr Profil wurde erfolgreich aktualisiert.'
+        password_changed: 'Ihr Passwort wurde erfolgreich geändert.'
 admin:
     dashboard:
-        title: "Verwaltungs-Dashboard"
-        pending_approvals: "Benutzer warten auf Freigabe"
+        title: Verwaltungs-Dashboard
+        pending_approvals: 'Benutzer warten auf Freigabe'
         stats:
-            total_users: "Gesamtanzahl Benutzer"
-            approved_users: "Freigegebene Benutzer"
-            pending_users: "Ausstehend"
-            email_templates: "E-Mail-Vorlagen"
-        quick_links: "Schnellzugriff"
-        manage_users: "Benutzer verwalten"
-        manage_templates: "E-Mail-Vorlagen verwalten"
-        super_admin: "Super Admin"
+            total_users: 'Gesamtanzahl Benutzer'
+            approved_users: 'Freigegebene Benutzer'
+            pending_users: Ausstehend
+            email_templates: E-Mail-Vorlagen
+        quick_links: Schnellzugriff
+        manage_users: 'Benutzer verwalten'
+        manage_templates: 'E-Mail-Vorlagen verwalten'
+        super_admin: 'Super Admin'
     sidebar:
-        title: "Verwaltung"
-        dashboard: "Dashboard"
-        users: "Benutzer"
-        email_templates: "E-Mail-Vorlagen"
-        translations: "Übersetzungen"
-        super_admin: "Super Admin"
-        super_dashboard: "Super Dashboard"
+        title: Verwaltung
+        dashboard: Dashboard
+        users: Benutzer
+        email_templates: E-Mail-Vorlagen
+        translations: Übersetzungen
+        super_admin: 'Super Admin'
+        super_dashboard: 'Super Dashboard'
     users:
-        title: "Benutzerverwaltung"
-        list: "Benutzerliste"
-        back_btn: "Zurück"
-        search: "Benutzer suchen..."
-        filter: "Filtern"
-        filter_all: "Alle Benutzer"
-        filter_verified: "Bestätigte Benutzer"
-        filter_unverified: "Unbestätigte Benutzer"
-        filter_approved: "Freigegebene Benutzer"
-        filter_pending: "Wartet auf Freigabe"
-        name: "Name"
-        email: "E-Mail"
-        username: "Benutzer"
-        registered_at: "Registriert am"
-        status: "Status"
-        role: "Rolle"
-        actions: "Aktionen"
-        status_active: "Aktiv"
-        status_pending: "Ausstehend"
-        status_unverified: "Unbestätigt"
-        role_super_admin: "Super Admin"
-        role_admin: "Admin"
-        role_user: "Benutzer"
-        no_users: "Keine Benutzer gefunden"
-        confirm_approve: "Sind Sie sicher, dass Sie diesen Benutzer freigeben möchten?"
-        confirm_promote: "Sind Sie sicher, dass Sie diesen Benutzer zum Administrator befördern möchten?"
-        promote_to_admin: "Zum Admin befördern"
+        title: Benutzerverwaltung
+        list: Benutzerliste
+        back_btn: Zurück
+        search: 'Benutzer suchen...'
+        filter: Filtern
+        filter_all: 'Alle Benutzer'
+        filter_verified: 'Bestätigte Benutzer'
+        filter_unverified: 'Unbestätigte Benutzer'
+        filter_approved: 'Freigegebene Benutzer'
+        filter_pending: 'Wartet auf Freigabe'
+        name: Name
+        email: E-Mail
+        username: Benutzer
+        registered_at: 'Registriert am'
+        status: Status
+        role: Rolle
+        actions: Aktionen
+        status_active: Aktiv
+        status_pending: Ausstehend
+        status_unverified: Unbestätigt
+        role_super_admin: 'Super Admin'
+        role_admin: Admin
+        role_user: Benutzer
+        no_users: 'Keine Benutzer gefunden'
+        confirm_approve: 'Sind Sie sicher, dass Sie diesen Benutzer freigeben möchten?'
+        confirm_promote: 'Sind Sie sicher, dass Sie diesen Benutzer zum Administrator befördern möchten?'
+        promote_to_admin: 'Zum Admin befördern'
     user_edit:
-        title: "Benutzer %name% bearbeiten"
-        back_btn: "Zurück"
-        approve_btn: "Freigeben"
-        user_info: "Benutzerinformationen"
-        status: "Status"
-        role: "Rolle"
-        registered_on: "Registriert am"
-        last_login: "Letzte Anmeldung"
-        never_logged_in: "Nie angemeldet"
-        verified_on: "Bestätigt am"
-        approved_on: "Freigegeben am"
-        edit_profile: "Profil bearbeiten"
-        cancel_btn: "Abbrechen"
-        save_btn: "Speichern"
+        title: 'Benutzer %name% bearbeiten'
+        back_btn: Zurück
+        approve_btn: Freigeben
+        user_info: Benutzerinformationen
+        status: Status
+        role: Rolle
+        registered_on: 'Registriert am'
+        last_login: 'Letzte Anmeldung'
+        never_logged_in: 'Nie angemeldet'
+        verified_on: 'Bestätigt am'
+        approved_on: 'Freigegeben am'
+        edit_profile: 'Profil bearbeiten'
+        cancel_btn: Abbrechen
+        save_btn: Speichern
     user:
         flash:
-            updated: "Der Benutzer wurde erfolgreich aktualisiert."
-            approved: "Der Benutzer wurde erfolgreich freigegeben."
+            updated: 'Der Benutzer wurde erfolgreich aktualisiert.'
+            approved: 'Der Benutzer wurde erfolgreich freigegeben.'
     email_templates:
-        title: "E-Mail-Vorlagenverwaltung"
-        new_btn: "Neue Vorlage"
-        list: "Vorlagenliste"
-        code: "Code"
-        subject: "Betreff"
-        translations: "Übersetzungen"
-        updated_at: "Aktualisiert am"
-        actions: "Aktionen"
-        manage: "Verwalten"
-        edit: "Bearbeiten"
-        preview: "Vorschau"
-        add_translation: "Übersetzung hinzufügen"
-        no_templates: "Keine Vorlagen gefunden"
-        about: "Über E-Mail-Vorlagen"
-        loading: "Vorschau wird geladen..."
+        title: E-Mail-Vorlagenverwaltung
+        new_btn: 'Neue Vorlage'
+        list: Vorlagenliste
+        code: Code
+        subject: Betreff
+        translations: Übersetzungen
+        updated_at: 'Aktualisiert am'
+        actions: Aktionen
+        manage: Verwalten
+        edit: Bearbeiten
+        preview: Vorschau
+        add_translation: 'Übersetzung hinzufügen'
+        no_templates: 'Keine Vorlagen gefunden'
+        about: 'Über E-Mail-Vorlagen'
+        loading: 'Vorschau wird geladen...'
         variables:
-            title: "Verfügbare Variablen"
-            description: "Sie können diese Variablen in Ihren E-Mail-Vorlagen verwenden. Sie werden beim Senden durch tatsächliche Werte ersetzt."
-            firstName: "Vorname des Benutzers"
-            lastName: "Nachname des Benutzers"
-            fullName: "Vollständiger Name des Benutzers"
-            email: "E-Mail-Adresse des Benutzers"
-            domain: "Domainname der Website"
-            token: "E-Mail-Bestätigungstoken"
-            resetToken: "Passwort-Reset-Token"
+            title: 'Verfügbare Variablen'
+            description: 'Sie können diese Variablen in Ihren E-Mail-Vorlagen verwenden. Sie werden beim Senden durch tatsächliche Werte ersetzt.'
+            firstName: 'Vorname des Benutzers'
+            lastName: 'Nachname des Benutzers'
+            fullName: 'Vollständiger Name des Benutzers'
+            email: 'E-Mail-Adresse des Benutzers'
+            domain: 'Domainname der Website'
+            token: E-Mail-Bestätigungstoken
+            resetToken: Passwort-Reset-Token
         editor:
-            placeholder: "HTML-Inhalt der Vorlage..."
-            no_image_upload: "Das Hochladen von Bildern wird nicht unterstützt. Verwenden Sie Links zu externen Bildern."
+            placeholder: 'HTML-Inhalt der Vorlage...'
+            no_image_upload: 'Das Hochladen von Bildern wird nicht unterstützt. Verwenden Sie Links zu externen Bildern.'
     email_template_new:
-        title: "Neue E-Mail-Vorlage"
-        back_btn: "Zurück"
-        form_title: "Neue E-Mail-Vorlage erstellen"
-        cancel_btn: "Abbrechen"
-        save_btn: "Speichern"
+        title: 'Neue E-Mail-Vorlage'
+        back_btn: Zurück
+        form_title: 'Neue E-Mail-Vorlage erstellen'
+        cancel_btn: Abbrechen
+        save_btn: Speichern
     email_template_edit:
-        title: "Vorlage %code% (%locale%) bearbeiten"
-        back_btn: "Zurück"
-        preview_btn: "Vorschau"
-        delete_btn: "Löschen"
-        form_title: "E-Mail-Vorlage bearbeiten"
-        cancel_btn: "Abbrechen"
-        save_btn: "Speichern"
-        close_btn: "Schließen"
-        confirm_delete: "Sind Sie sicher, dass Sie diese E-Mail-Vorlage löschen möchten?"
+        title: 'Vorlage %code% (%locale%) bearbeiten'
+        back_btn: Zurück
+        preview_btn: Vorschau
+        delete_btn: Löschen
+        form_title: 'E-Mail-Vorlage bearbeiten'
+        cancel_btn: Abbrechen
+        save_btn: Speichern
+        close_btn: Schließen
+        confirm_delete: 'Sind Sie sicher, dass Sie diese E-Mail-Vorlage löschen möchten?'
     email_template:
         flash:
-            created: "Die E-Mail-Vorlage wurde erfolgreich erstellt."
-            updated: "Die E-Mail-Vorlage wurde erfolgreich aktualisiert."
-            deleted: "Die E-Mail-Vorlage wurde erfolgreich gelöscht."
+            created: 'Die E-Mail-Vorlage wurde erfolgreich erstellt.'
+            updated: 'Die E-Mail-Vorlage wurde erfolgreich aktualisiert.'
+            deleted: 'Die E-Mail-Vorlage wurde erfolgreich gelöscht.'
     translations:
-        title: "Übersetzungsverwaltung"
-        tables_list: "Tabellenliste"
-        table_title: "Tabelle %table%"
-        edit_title: "Übersetze %table% (Feld: %field%)"
-        help_text: "Wählen Sie eine Tabelle aus, um ihre Übersetzungen zu verwalten. Sie können jedes Textfeld in mehrere Sprachen übersetzen."
-        items_list: "Elementliste"
-        no_tables: "Keine Tabellen für die Übersetzung verfügbar."
-        no_items: "Keine Elemente in dieser Tabelle gefunden."
-        select_field: "Feld auswählen"
-        actions: "Aktionen"
-        translate: "Übersetzen"
-        translate_field: "Feld %field% übersetzen"
-        original_content: "Originalinhalt"
-        content: "Inhalt"
-        translations: "Übersetzungen"
-        current_locale: "Aktuelle Sprache"
-        back_btn: "Zurück"
-        cancel_btn: "Abbrechen"
-        save_btn: "Speichern"
-        static_translations: "Statische Übersetzungen"
+        title: Übersetzungsverwaltung
+        tables_list: Tabellenliste
+        table_title: 'Tabelle %table%'
+        edit_title: 'Übersetze %table% (Feld: %field%)'
+        help_text: 'Wählen Sie eine Tabelle aus, um ihre Übersetzungen zu verwalten. Sie können jedes Textfeld in mehrere Sprachen übersetzen.'
+        items_list: Elementliste
+        no_tables: 'Keine Tabellen für die Übersetzung verfügbar.'
+        no_items: 'Keine Elemente in dieser Tabelle gefunden.'
+        select_field: 'Feld auswählen'
+        actions: Aktionen
+        translate: Übersetzen
+        translate_field: 'Feld %field% übersetzen'
+        original_content: Originalinhalt
+        content: Inhalt
+        translations: Übersetzungen
+        current_locale: 'Aktuelle Sprache'
+        back_btn: Zurück
+        cancel_btn: Abbrechen
+        save_btn: Speichern
+        static_translations: 'Statische Übersetzungen'
         flash:
-            updated: "Übersetzungen wurden erfolgreich aktualisiert."
+            updated: 'Übersetzungen wurden erfolgreich aktualisiert.'
     static_translations:
-        title: "Statische Übersetzungen"
+        title: 'Statische Übersetzungen'
         edit_title: "Übersetzung von '%key%' bearbeiten"
-        back_btn: "Zurück"
-        keys_list: "Liste der Übersetzungsschlüssel"
-        help_text: "Bearbeiten Sie die Übersetzungen der Website-Oberfläche. Diese Änderungen werden in den YAML-Übersetzungsdateien gespeichert."
-        key: "Schlüssel"
-        value: "Wert"
-        actions: "Aktionen"
-        edit: "Bearbeiten"
-        no_keys: "Keine Übersetzungsschlüssel gefunden"
-        edit_form_title: "Übersetzungen bearbeiten"
-        cancel_btn: "Abbrechen"
-        save_btn: "Speichern"
-
-# Super-Verwaltung
+        back_btn: Zurück
+        keys_list: 'Liste der Übersetzungsschlüssel'
+        help_text: 'Bearbeiten Sie die Übersetzungen der Website-Oberfläche. Diese Änderungen werden in den YAML-Übersetzungsdateien gespeichert.'
+        key: Schlüssel
+        value: Wert
+        actions: Aktionen
+        edit: Bearbeiten
+        no_keys: 'Keine Übersetzungsschlüssel gefunden'
+        edit_form_title: 'Übersetzungen bearbeiten'
+        cancel_btn: Abbrechen
+        save_btn: Speichern
 super_admin:
     dashboard:
-        title: "Super-Verwaltung"
+        title: Super-Verwaltung
         stats:
-            admins: "Administratoren"
-            super_admins: "Super Admins"
-            total_users: "Gesamtanzahl Benutzer"
-            permissions: "Berechtigungen"
-        admins_list: "Administratorenliste"
-        admin_name: "Name"
-        admin_email: "E-Mail"
-        created_at: "Erstellt am"
-        last_login: "Letzte Anmeldung"
-        actions: "Aktionen"
-        no_admins: "Keine Administratoren gefunden"
-        confirm_demote: "Sind Sie sicher, dass Sie diesen Administrator herabstufen möchten?"
-        confirm_promote_super: "Sind Sie sicher, dass Sie diesen Administrator zum Super-Administrator befördern möchten?"
-        promote_user: "Benutzer befördern"
-        search_users: "Benutzer zum Befördern suchen..."
-        search: "Suchen"
-        search_results: "Suchergebnisse"
-        user_name: "Name"
-        user_email: "E-Mail"
-        user_role: "Rolle"
-        role_super_admin: "Super Admin"
-        role_admin: "Admin"
-        role_user: "Benutzer"
-        promote_to_admin: "Zum Admin befördern"
-        no_results: "Keine Ergebnisse gefunden"
+            admins: Administratoren
+            super_admins: 'Super Admins'
+            total_users: 'Gesamtanzahl Benutzer'
+            permissions: Berechtigungen
+        admins_list: Administratorenliste
+        admin_name: Name
+        admin_email: E-Mail
+        created_at: 'Erstellt am'
+        last_login: 'Letzte Anmeldung'
+        actions: Aktionen
+        no_admins: 'Keine Administratoren gefunden'
+        confirm_demote: 'Sind Sie sicher, dass Sie diesen Administrator herabstufen möchten?'
+        confirm_promote_super: 'Sind Sie sicher, dass Sie diesen Administrator zum Super-Administrator befördern möchten?'
+        promote_user: 'Benutzer befördern'
+        search_users: 'Benutzer zum Befördern suchen...'
+        search: Suchen
+        search_results: Suchergebnisse
+        user_name: Name
+        user_email: E-Mail
+        user_role: Rolle
+        role_super_admin: 'Super Admin'
+        role_admin: Admin
+        role_user: Benutzer
+        promote_to_admin: 'Zum Admin befördern'
+        no_results: 'Keine Ergebnisse gefunden'
     sidebar:
-        title: "Super Admin"
-        dashboard: "Dashboard"
-        admin_section: "Verwaltung"
-        back_to_admin: "Zurück zur Verwaltung"
+        title: 'Super Admin'
+        dashboard: Dashboard
+        admin_section: Verwaltung
+        back_to_admin: 'Zurück zur Verwaltung'
     permissions:
-        title: "Berechtigungsverwaltung"
-        back_btn: "Zurück"
-        admin_info: "Berechtigungen für %name%"
-        name: "Name"
-        email: "E-Mail"
-        role: "Rolle"
-        admin_role: "Administrator"
-        info: "Verwalten Sie die Berechtigungen dieses Administrators. Super-Administratoren haben standardmäßig alle Berechtigungen."
-        manage_title: "Berechtigungen verwalten"
-        permission: "Berechtigung"
-        granted: "Erteilt"
-        description: "Beschreibung"
-        cancel_btn: "Abbrechen"
-        save_btn: "Speichern"
+        title: Berechtigungsverwaltung
+        back_btn: Zurück
+        admin_info: 'Berechtigungen für %name%'
+        name: Name
+        email: E-Mail
+        role: Rolle
+        admin_role: Administrator
+        info: 'Verwalten Sie die Berechtigungen dieses Administrators. Super-Administratoren haben standardmäßig alle Berechtigungen.'
+        manage_title: 'Berechtigungen verwalten'
+        permission: Berechtigung
+        granted: Erteilt
+        description: Beschreibung
+        cancel_btn: Abbrechen
+        save_btn: Speichern
         desc:
-            manage_users: "Ermöglicht die Verwaltung von Benutzern (Anzeigen, Bearbeiten)"
-            approve_users: "Ermöglicht die Freigabe wartender Benutzer"
-            edit_email_templates: "Ermöglicht das Erstellen und Bearbeiten von E-Mail-Vorlagen"
-            preview_email_templates: "Ermöglicht die Vorschau von E-Mail-Vorlagen"
-            translate_content: "Ermöglicht das Übersetzen dynamischer Inhalte"
-            view_statistics: "Ermöglicht das Anzeigen von Website-Statistiken"
+            manage_users: 'Ermöglicht die Verwaltung von Benutzern (Anzeigen, Bearbeiten)'
+            approve_users: 'Ermöglicht die Freigabe wartender Benutzer'
+            edit_email_templates: 'Ermöglicht das Erstellen und Bearbeiten von E-Mail-Vorlagen'
+            preview_email_templates: 'Ermöglicht die Vorschau von E-Mail-Vorlagen'
+            translate_content: 'Ermöglicht das Übersetzen dynamischer Inhalte'
+            view_statistics: 'Ermöglicht das Anzeigen von Website-Statistiken'
+            token: ''
     flash:
-        user_promoted: "Der Benutzer wurde erfolgreich zum Administrator befördert."
-        admin_demoted: "Der Administrator wurde erfolgreich herabgestuft."
-        user_promoted_super: "Der Administrator wurde erfolgreich zum Super Administrator befördert."
-        permissions_updated: "Die Berechtigungen wurden erfolgreich aktualisiert."
-
-# Nutzungsbedingungen
+        user_promoted: 'Der Benutzer wurde erfolgreich zum Administrator befördert.'
+        admin_demoted: 'Der Administrator wurde erfolgreich herabgestuft.'
+        user_promoted_super: 'Der Administrator wurde erfolgreich zum Super Administrator befördert.'
+        permissions_updated: 'Die Berechtigungen wurden erfolgreich aktualisiert.'
 terms:
-    title: "Nutzungsbedingungen"
+    title: Nutzungsbedingungen
     introduction:
-        title: "Einführung"
-        content: "Willkommen bei DMQode.be. Diese Nutzungsbedingungen regeln Ihre Nutzung unserer Website und Dienste. Durch die Registrierung auf unserer Website stimmen Sie zu, an diese Bedingungen gebunden zu sein. Bitte lesen Sie sie sorgfältig durch."
+        title: Einführung
+        content: 'Willkommen bei DMQode.be. Diese Nutzungsbedingungen regeln Ihre Nutzung unserer Website und Dienste. Durch die Registrierung auf unserer Website stimmen Sie zu, an diese Bedingungen gebunden zu sein. Bitte lesen Sie sie sorgfältig durch.'
     definitions:
-        title: "Definitionen"
-        service: "\"Dienst\" bezieht sich auf die Website DMQode.be"
-        user: "\"Benutzer\" bezieht sich auf jede Person, die auf den Dienst zugreift und ein Konto erstellt"
-        account: "\"Konto\" bezieht sich auf den personalisierten Zugang zum Dienst"
+        title: Definitionen
+        service: '"Dienst" bezieht sich auf die Website DMQode.be'
+        user: '"Benutzer" bezieht sich auf jede Person, die auf den Dienst zugreift und ein Konto erstellt'
+        account: '"Konto" bezieht sich auf den personalisierten Zugang zum Dienst'
     registration:
-        title: "Registrierung und Konto"
-        content1: "Um bestimmte Funktionen des Dienstes nutzen zu können, müssen Sie ein Konto erstellen. Bei der Registrierung stimmen Sie zu, genaue, aktuelle und vollständige Informationen anzugeben. Sie sind für die Vertraulichkeit Ihres Passworts und für alle Aktivitäten, die unter Ihrem Konto stattfinden, verantwortlich."
-        content2: "Nach der Registrierung müssen Sie Ihre E-Mail-Adresse bestätigen. Anschließend muss ein Administrator Ihr Konto freigeben, bevor Sie auf alle Funktionen des Dienstes zugreifen können."
+        title: 'Registrierung und Konto'
+        content1: 'Um bestimmte Funktionen des Dienstes nutzen zu können, müssen Sie ein Konto erstellen. Bei der Registrierung stimmen Sie zu, genaue, aktuelle und vollständige Informationen anzugeben. Sie sind für die Vertraulichkeit Ihres Passworts und für alle Aktivitäten, die unter Ihrem Konto stattfinden, verantwortlich.'
+        content2: 'Nach der Registrierung müssen Sie Ihre E-Mail-Adresse bestätigen. Anschließend muss ein Administrator Ihr Konto freigeben, bevor Sie auf alle Funktionen des Dienstes zugreifen können.'
     rights:
-        title: "Rechte und Pflichten"
-        content: "Bei der Nutzung unseres Dienstes stimmen Sie zu, Folgendes zu unterlassen:"
-        item1: "Verletzung geltender Gesetze"
-        item2: "Verbreitung von Viren oder anderen schädlichen Codes"
-        item3: "Störung oder Beeinträchtigung der Sicherheit des Dienstes"
-        item4: "Sammlung von Informationen über andere Benutzer ohne deren Zustimmung"
-        item5: "Nutzung des Dienstes in einer Weise, die den Dienst beschädigen, deaktivieren, überlasten oder beeinträchtigen könnte"
+        title: 'Rechte und Pflichten'
+        content: 'Bei der Nutzung unseres Dienstes stimmen Sie zu, Folgendes zu unterlassen:'
+        item1: 'Verletzung geltender Gesetze'
+        item2: 'Verbreitung von Viren oder anderen schädlichen Codes'
+        item3: 'Störung oder Beeinträchtigung der Sicherheit des Dienstes'
+        item4: 'Sammlung von Informationen über andere Benutzer ohne deren Zustimmung'
+        item5: 'Nutzung des Dienstes in einer Weise, die den Dienst beschädigen, deaktivieren, überlasten oder beeinträchtigen könnte'
     data_protection:
-        title: "Schutz personenbezogener Daten"
-        content1: "Wir respektieren Ihre Privatsphäre und schützen Ihre personenbezogenen Daten gemäß unserer Datenschutzrichtlinie und den geltenden Gesetzen, einschließlich der Datenschutz-Grundverordnung (DSGVO)."
-        content2: "Die personenbezogenen Daten, die Sie bei der Registrierung angeben, werden nur für die Bereitstellung unserer Dienste verwendet und nicht ohne Ihre ausdrückliche Zustimmung an Dritte weitergegeben."
+        title: 'Schutz personenbezogener Daten'
+        content1: 'Wir respektieren Ihre Privatsphäre und schützen Ihre personenbezogenen Daten gemäß unserer Datenschutzrichtlinie und den geltenden Gesetzen, einschließlich der Datenschutz-Grundverordnung (DSGVO).'
+        content2: 'Die personenbezogenen Daten, die Sie bei der Registrierung angeben, werden nur für die Bereitstellung unserer Dienste verwendet und nicht ohne Ihre ausdrückliche Zustimmung an Dritte weitergegeben.'
     changes:
-        title: "Änderungen der Nutzungsbedingungen"
-        content: "Wir behalten uns das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern. Änderungen treten sofort nach der Veröffentlichung auf dem Dienst in Kraft. Es liegt in Ihrer Verantwortung, diese Bedingungen regelmäßig zu überprüfen."
+        title: 'Änderungen der Nutzungsbedingungen'
+        content: 'Wir behalten uns das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern. Änderungen treten sofort nach der Veröffentlichung auf dem Dienst in Kraft. Es liegt in Ihrer Verantwortung, diese Bedingungen regelmäßig zu überprüfen.'
     termination:
-        title: "Kündigung"
-        content: "Wir behalten uns das Recht vor, Ihr Konto und den Zugang zum Dienst nach eigenem Ermessen und ohne Vorankündigung zu sperren oder zu kündigen, wenn wir der Ansicht sind, dass Ihr Verhalten gegen diese Nutzungsbedingungen oder geltendes Recht verstößt."
+        title: Kündigung
+        content: 'Wir behalten uns das Recht vor, Ihr Konto und den Zugang zum Dienst nach eigenem Ermessen und ohne Vorankündigung zu sperren oder zu kündigen, wenn wir der Ansicht sind, dass Ihr Verhalten gegen diese Nutzungsbedingungen oder geltendes Recht verstößt.'
     contact:
-        title: "Kontakt"
-        content: "Wenn Sie Fragen zu diesen Nutzungsbedingungen haben, kontaktieren Sie uns bitte unter: contact@dmqode.be"
+        title: Kontakt
+        content: 'Wenn Sie Fragen zu diesen Nutzungsbedingungen haben, kontaktieren Sie uns bitte unter: contact@dmqode.be'
     footer:
-        last_update: "Zuletzt aktualisiert:"
-    back_btn: "Zurück zur Registrierung"
+        last_update: 'Zuletzt aktualisiert:'
+    back_btn: 'Zurück zur Registrierung'
 cookie:
-  preferences:
-    title: "Cookie-Einstellungen"
-    intro: "Auf dieser Seite können Sie Ihre Präferenzen bezüglich der Verwendung von Cookies auf unserer Website verwalten."
-  
-  banner:
-    title: "Diese Website verwendet Cookies"
-    content: "Als Besucher unserer Website bemühen wir uns, Ihnen eine möglichst angenehme Erfahrung zu bieten. Wir verwenden Cookies in erster Linie, um Ihre Benutzererfahrung zu verbessern und den Betrieb unserer Online-Dienste zu optimieren. Darüber hinaus setzen wir Cookies ein, um die Inhalte unserer Websites und mobilen Anwendungen für Sie interessanter zu gestalten. Wir verwenden auch Cookies, um Ihr Surfverhalten zu analysieren."
-    customize: "Anpassen"
-    necessary_only: "Nur notwendig"
-    accept_all: "Alle zulassen und fortfahren"
-
-  modal:
-    title: "Cookie-Präferenzen"
-    necessary_only: "Nur notwendig"
-    accept_all: "Alle zulassen"
-    save: "Einstellungen speichern"
-    
-    tab:
-      overview: "Übersicht"
-      details: "Details"
-      about: "Über"
-    
-    overview:
-      intro: "Sie können auswählen, welche Cookies Sie akzeptieren möchten. Notwendige Cookies sind für den ordnungsgemäßen Betrieb der Website unerlässlich."
-      necessary:
-        title: "Notwendige Cookies"
-        description: "Diese Cookies sind für die Grundfunktionen der Website unerlässlich und können nicht deaktiviert werden."
-      preferences:
-        title: "Präferenz-Cookies"
-        description: "Diese Cookies ermöglichen es, Ihre Einstellungen und Präferenzen wie bevorzugte Sprache oder Ihre Region zu speichern."
-      statistics:
-        title: "Statistik-Cookies"
-        description: "Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, indem sie anonym Informationen sammeln und melden."
-      marketing:
-        title: "Marketing-Cookies"
-        description: "Diese Cookies werden verwendet, um Besucher auf Websites zu verfolgen. Sie ermöglichen es, relevante und ansprechende Werbung für den Nutzer anzuzeigen."
-    
-    details:
-      necessary:
-        title: "Notwendige Cookies"
-        description: "Notwendige Cookies machen eine Website benutzbar, indem sie grundlegende Funktionen wie die Seitennavigation und den Zugang zu geschützten Bereichen ermöglichen. Ohne diese Cookies kann die Website nicht richtig funktionieren."
-        session: "Aufrechterhaltung der Benutzersitzung"
-        session_end: "Sitzungsende"
-        consent: "Speicherung der Cookie-Zustimmungseinstellungen"
-        year: "Jahr"
-        month: "Monate"
-      preferences:
-        title: "Präferenz-Cookies"
-        description: "Präferenz-Cookies ermöglichen es einer Website, Informationen zu speichern, die das Verhalten oder die Darstellung der Seite verändern, wie z.B. Ihre bevorzugte Sprache oder Region."
-        language: "Speicherung der Spracheinstellungen"
-      statistics:
-        title: "Statistik-Cookies"
-        description: "Statistik-Cookies helfen den Website-Betreibern zu verstehen, wie Besucher die Seite nutzen, indem sie anonym Informationen sammeln und übermitteln."
-        analytics: "Verfolgung des Nutzerverhaltens auf der Seite zur Verbesserung der Benutzererfahrung"
-        user_id: "Unterscheidung der Nutzer"
-        years: "Jahre"
-        hours: "Stunden"
-      marketing:
-        title: "Marketing-Cookies"
-        description: "Marketing-Cookies werden verwendet, um Besucher auf Websites zu verfolgen. Ziel ist es, Werbung anzuzeigen, die für den einzelnen Nutzer relevant und interessant ist und somit für Drittanbieter (Publisher und Werbetreibende) wertvoller ist."
-        facebook: "Verfolgung von Werbekonversionen und Retargeting"
-        months: "Monate"
-      table:
-        name: "Name"
-        provider: "Anbieter"
-        purpose: "Zweck"
-        expiry: "Ablaufdatum"
-    
-    about:
-      what_are:
-        title: "Was sind Cookies?"
-        description: "Cookies sind kleine Textdateien, die auf Ihrem Computer oder mobilen Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie ermöglichen es der Website, Ihre Aktionen und Einstellungen für einen bestimmten Zeitraum zu speichern, damit Sie diese nicht bei jedem Besuch oder Seitenwechsel erneut eingeben müssen."
-      how_used:
-        title: "Wie verwenden wir Cookies?"
-        description: "Wir verwenden verschiedene Arten von Cookies, um unsere Website funktionsfähig zu machen, Ihre Benutzererfahrung zu verbessern, zu analysieren, wie die Seite genutzt wird, und um die Inhalte und Werbung, die Sie sehen, zu personalisieren."
-      how_manage:
-        title: "Wie verwalten Sie Cookies?"
-        description: "Sie können Ihre Cookie-Einstellungen jederzeit verwalten, indem Sie auf den Link 'Cookie-Einstellungen' am unteren Rand unserer Website klicken. Außerdem können Sie die Einstellungen Ihres Browsers ändern, um bestimmte Cookies zu löschen oder ihre Speicherung ohne Ihre ausdrückliche Zustimmung zu verhindern."
-      more_info:
-        title: "Mehr Informationen"
-        description: "Für weitere Informationen über unsere Nutzung von Cookies lesen Sie bitte unsere Datenschutzrichtlinie und Nutzungsbedingungen unter"
-        terms_link: "unserer Seite mit den Nutzungsbedingungen"
-
-  footer:
-    settings: "Cookie-Einstellungen"
+    preferences:
+        title: Cookie-Einstellungen
+        intro: 'Auf dieser Seite können Sie Ihre Präferenzen bezüglich der Verwendung von Cookies auf unserer Website verwalten.'
+    banner:
+        title: 'Diese Website verwendet Cookies'
+        content: 'Als Besucher unserer Website bemühen wir uns, Ihnen eine möglichst angenehme Erfahrung zu bieten. Wir verwenden Cookies in erster Linie, um Ihre Benutzererfahrung zu verbessern und den Betrieb unserer Online-Dienste zu optimieren. Darüber hinaus setzen wir Cookies ein, um die Inhalte unserer Websites und mobilen Anwendungen für Sie interessanter zu gestalten. Wir verwenden auch Cookies, um Ihr Surfverhalten zu analysieren.'
+        customize: Anpassen
+        necessary_only: 'Nur notwendig'
+        accept_all: 'Alle zulassen und fortfahren'
+    modal:
+        title: Cookie-Präferenzen
+        necessary_only: 'Nur notwendig'
+        accept_all: 'Alle zulassen'
+        save: 'Einstellungen speichern'
+        tab:
+            overview: Übersicht
+            details: Details
+            about: Über
+        overview:
+            intro: 'Sie können auswählen, welche Cookies Sie akzeptieren möchten. Notwendige Cookies sind für den ordnungsgemäßen Betrieb der Website unerlässlich.'
+            necessary:
+                title: 'Notwendige Cookies'
+                description: 'Diese Cookies sind für die Grundfunktionen der Website unerlässlich und können nicht deaktiviert werden.'
+            preferences:
+                title: Präferenz-Cookies
+                description: 'Diese Cookies ermöglichen es, Ihre Einstellungen und Präferenzen wie bevorzugte Sprache oder Ihre Region zu speichern.'
+            statistics:
+                title: Statistik-Cookies
+                description: 'Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, indem sie anonym Informationen sammeln und melden.'
+            marketing:
+                title: Marketing-Cookies
+                description: 'Diese Cookies werden verwendet, um Besucher auf Websites zu verfolgen. Sie ermöglichen es, relevante und ansprechende Werbung für den Nutzer anzuzeigen.'
+        details:
+            necessary:
+                title: 'Notwendige Cookies'
+                description: 'Notwendige Cookies machen eine Website benutzbar, indem sie grundlegende Funktionen wie die Seitennavigation und den Zugang zu geschützten Bereichen ermöglichen. Ohne diese Cookies kann die Website nicht richtig funktionieren.'
+                session: 'Aufrechterhaltung der Benutzersitzung'
+                session_end: Sitzungsende
+                consent: 'Speicherung der Cookie-Zustimmungseinstellungen'
+                year: Jahr
+                month: Monate
+            preferences:
+                title: Präferenz-Cookies
+                description: 'Präferenz-Cookies ermöglichen es einer Website, Informationen zu speichern, die das Verhalten oder die Darstellung der Seite verändern, wie z.B. Ihre bevorzugte Sprache oder Region.'
+                language: 'Speicherung der Spracheinstellungen'
+            statistics:
+                title: Statistik-Cookies
+                description: 'Statistik-Cookies helfen den Website-Betreibern zu verstehen, wie Besucher die Seite nutzen, indem sie anonym Informationen sammeln und übermitteln.'
+                analytics: 'Verfolgung des Nutzerverhaltens auf der Seite zur Verbesserung der Benutzererfahrung'
+                user_id: 'Unterscheidung der Nutzer'
+                years: Jahre
+                hours: Stunden
+            marketing:
+                title: Marketing-Cookies
+                description: 'Marketing-Cookies werden verwendet, um Besucher auf Websites zu verfolgen. Ziel ist es, Werbung anzuzeigen, die für den einzelnen Nutzer relevant und interessant ist und somit für Drittanbieter (Publisher und Werbetreibende) wertvoller ist.'
+                facebook: 'Verfolgung von Werbekonversionen und Retargeting'
+                months: Monate
+            table:
+                name: Name
+                provider: Anbieter
+                purpose: Zweck
+                expiry: Ablaufdatum
+        about:
+            what_are:
+                title: 'Was sind Cookies?'
+                description: 'Cookies sind kleine Textdateien, die auf Ihrem Computer oder mobilen Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie ermöglichen es der Website, Ihre Aktionen und Einstellungen für einen bestimmten Zeitraum zu speichern, damit Sie diese nicht bei jedem Besuch oder Seitenwechsel erneut eingeben müssen.'
+            how_used:
+                title: 'Wie verwenden wir Cookies?'
+                description: 'Wir verwenden verschiedene Arten von Cookies, um unsere Website funktionsfähig zu machen, Ihre Benutzererfahrung zu verbessern, zu analysieren, wie die Seite genutzt wird, und um die Inhalte und Werbung, die Sie sehen, zu personalisieren.'
+            how_manage:
+                title: 'Wie verwalten Sie Cookies?'
+                description: "Sie können Ihre Cookie-Einstellungen jederzeit verwalten, indem Sie auf den Link 'Cookie-Einstellungen' am unteren Rand unserer Website klicken. Außerdem können Sie die Einstellungen Ihres Browsers ändern, um bestimmte Cookies zu löschen oder ihre Speicherung ohne Ihre ausdrückliche Zustimmung zu verhindern."
+            more_info:
+                title: 'Mehr Informationen'
+                description: 'Für weitere Informationen über unsere Nutzung von Cookies lesen Sie bitte unsere Datenschutzrichtlinie und Nutzungsbedingungen unter'
+                terms_link: 'unserer Seite mit den Nutzungsbedingungen'
+    footer:
+        settings: Cookie-Einstellungen
