@@ -420,54 +420,66 @@ class __TwigTemplate_d3ec7277ff40169d332e71cf42ce4892 extends Template
                                             <i class=\"fas fa-edit\"></i>
                                         </a>
                                         
-                                        <a href=\"";
+                                        ";
             // line 174
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_permissions", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 174)]), "html", null, true);
-            yield "\" class=\"btn btn-outline-secondary\">
-                                            <i class=\"fas fa-key\"></i>
-                                        </a>
-                                        
-                                        <form method=\"post\" action=\"";
-            // line 178
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_demote", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 178)]), "html", null, true);
-            yield "\" style=\"display: inline-block;\" onsubmit=\"return confirm('";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.confirm_demote"), "html", null, true);
-            yield "')\">
-                                            <input type=\"hidden\" name=\"_token\" value=\"";
-            // line 179
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("demote" . CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 179))), "html", null, true);
-            yield "\">
-                                            <button type=\"submit\" class=\"btn btn-outline-danger\">
-                                                <i class=\"fas fa-user-minus\"></i>
-                                            </button>
-                                        </form>
-                                        
-                                        <form method=\"post\" action=\"";
-            // line 185
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_promote_super", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 185)]), "html", null, true);
-            yield "\" style=\"display: inline-block;\" onsubmit=\"return confirm('";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.confirm_promote_super"), "html", null, true);
-            yield "')\">
-                                            <input type=\"hidden\" name=\"_token\" value=\"";
-            // line 186
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("promote-super" . CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 186))), "html", null, true);
-            yield "\">
-                                            <button type=\"submit\" class=\"btn btn-outline-primary\">
-                                                <i class=\"fas fa-user-shield\"></i>
-                                            </button>
-                                        </form>
-                                    </div>
+            if ((CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "email", [], "any", false, false, false, 174) != "admin@dmqode.be")) {
+                // line 175
+                yield "                                            <a href=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_permissions", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 175)]), "html", null, true);
+                yield "\" class=\"btn btn-outline-secondary\">
+                                                <i class=\"fas fa-key\"></i>
+                                            </a>
+                                            
+                                            <form method=\"post\" action=\"";
+                // line 179
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_demote", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 179)]), "html", null, true);
+                yield "\" style=\"display: inline-block;\" onsubmit=\"return confirm('";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.confirm_demote"), "html", null, true);
+                yield "')\">
+                                                <input type=\"hidden\" name=\"_token\" value=\"";
+                // line 180
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("demote" . CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 180))), "html", null, true);
+                yield "\">
+                                                <button type=\"submit\" class=\"btn btn-outline-danger\">
+                                                    <i class=\"fas fa-user-minus\"></i>
+                                                </button>
+                                            </form>
+                                            
+                                            ";
+                // line 186
+                if ( !CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "isSuperAdmin", [], "any", false, false, false, 186)) {
+                    // line 187
+                    yield "                                                <form method=\"post\" action=\"";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_promote_super", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 187)]), "html", null, true);
+                    yield "\" style=\"display: inline-block;\" onsubmit=\"return confirm('";
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.confirm_promote_super"), "html", null, true);
+                    yield "')\">
+                                                    <input type=\"hidden\" name=\"_token\" value=\"";
+                    // line 188
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("promote-super" . CoreExtension::getAttribute($this->env, $this->source, $context["admin"], "id", [], "any", false, false, false, 188))), "html", null, true);
+                    yield "\">
+                                                    <button type=\"submit\" class=\"btn btn-outline-primary\">
+                                                        <i class=\"fas fa-user-shield\"></i>
+                                                    </button>
+                                                </form>
+                                            ";
+                }
+                // line 194
+                yield "                                        ";
+            }
+            // line 195
+            yield "                                    </div>
                                 </td>
                             </tr>
                         ";
             $context['_iterated'] = true;
         }
-        // line 194
+        // line 198
         if (!$context['_iterated']) {
-            // line 195
+            // line 199
             yield "                            <tr>
                                 <td colspan=\"5\" class=\"text-center py-4\">";
-            // line 196
+            // line 200
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.no_admins"), "html", null, true);
             yield "</td>
                             </tr>
@@ -476,7 +488,7 @@ class __TwigTemplate_d3ec7277ff40169d332e71cf42ce4892 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['admin'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 199
+        // line 203
         yield "                    </tbody>
                 </table>
             </div>
@@ -486,160 +498,160 @@ class __TwigTemplate_d3ec7277ff40169d332e71cf42ce4892 extends Template
     <div class=\"card shadow-sm mb-4\">
         <div class=\"card-header\">
             <h5 class=\"mb-0\">";
-        // line 207
+        // line 211
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.promote_user"), "html", null, true);
         yield "</h5>
         </div>
         <div class=\"card-body\">
             <form action=\"";
-        // line 210
+        // line 214
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_dashboard");
         yield "\" method=\"get\" class=\"row g-3\">
                 <div class=\"col-md-10\">
                     <div class=\"input-group\">
                         <input type=\"text\" class=\"form-control\" id=\"userSearch\" name=\"q\" value=\"";
-        // line 213
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 213, $this->source); })()), "")) : ("")), "html", null, true);
+        // line 217
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 217, $this->source); })()), "")) : ("")), "html", null, true);
         yield "\" placeholder=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.search_users"), "html", null, true);
         yield "\">
                         ";
-        // line 214
-        if (((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 214, $this->source); })()), "")) : (""))) {
-            // line 215
+        // line 218
+        if (((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 218, $this->source); })()), "")) : (""))) {
+            // line 219
             yield "                            <input type=\"hidden\" name=\"filter\" value=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 215, $this->source); })()), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 219, $this->source); })()), "html", null, true);
             yield "\">
                         ";
         }
-        // line 217
+        // line 221
         yield "                        <button type=\"submit\" class=\"btn btn-gradient\">";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.search"), "html", null, true);
         yield "</button>
                         ";
-        // line 218
-        if (((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 218, $this->source); })()), "")) : (""))) {
-            // line 219
+        // line 222
+        if (((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 222, $this->source); })()), "")) : (""))) {
+            // line 223
             yield "                            <a href=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_dashboard", ["filter" => ((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 219, $this->source); })()), "")) : (""))]), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_dashboard", ["filter" => ((array_key_exists("filter", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["filter"]) || array_key_exists("filter", $context) ? $context["filter"] : (function () { throw new RuntimeError('Variable "filter" does not exist.', 223, $this->source); })()), "")) : (""))]), "html", null, true);
             yield "\" class=\"btn btn-outline-danger\">
                                 <i class=\"fas fa-times\"></i>
                             </a>
                         ";
         }
-        // line 223
+        // line 227
         yield "                    </div>
                 </div>
             </form>
             
             ";
-        // line 227
-        if ( !Twig\Extension\CoreExtension::testEmpty(((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 227, $this->source); })()), "")) : ("")))) {
-            // line 228
+        // line 231
+        if ( !Twig\Extension\CoreExtension::testEmpty(((array_key_exists("search", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 231, $this->source); })()), "")) : ("")))) {
+            // line 232
             yield "                <div class=\"search-results mt-4\">
                     <h6>";
-            // line 229
+            // line 233
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.search_results"), "html", null, true);
             yield " \"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 229, $this->source); })()), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["search"]) || array_key_exists("search", $context) ? $context["search"] : (function () { throw new RuntimeError('Variable "search" does not exist.', 233, $this->source); })()), "html", null, true);
             yield "\"</h6>
                     <div class=\"table-responsive\">
                         <table class=\"table table-hover\">
                             <thead>
                                 <tr>
                                     <th>";
-            // line 234
+            // line 238
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.user_name"), "html", null, true);
             yield "</th>
                                     <th>";
-            // line 235
+            // line 239
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.user_email"), "html", null, true);
             yield "</th>
                                     <th>";
-            // line 236
+            // line 240
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.user_role"), "html", null, true);
             yield "</th>
                                     <th>";
-            // line 237
+            // line 241
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.actions"), "html", null, true);
             yield "</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ";
-            // line 241
+            // line 245
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(((array_key_exists("search_results", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search_results"]) || array_key_exists("search_results", $context) ? $context["search_results"] : (function () { throw new RuntimeError('Variable "search_results" does not exist.', 241, $this->source); })()), [])) : ([])));
+            $context['_seq'] = CoreExtension::ensureTraversable(((array_key_exists("search_results", $context)) ? (Twig\Extension\CoreExtension::default((isset($context["search_results"]) || array_key_exists("search_results", $context) ? $context["search_results"] : (function () { throw new RuntimeError('Variable "search_results" does not exist.', 245, $this->source); })()), [])) : ([])));
             $context['_iterated'] = false;
             foreach ($context['_seq'] as $context["_key"] => $context["user"]) {
-                // line 242
+                // line 246
                 yield "                                    <tr>
                                         <td>";
-                // line 243
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["user"], "fullName", [], "any", false, false, false, 243), "html", null, true);
+                // line 247
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["user"], "fullName", [], "any", false, false, false, 247), "html", null, true);
                 yield "</td>
                                         <td>";
-                // line 244
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 244), "html", null, true);
+                // line 248
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 248), "html", null, true);
                 yield "</td>
                                         <td>
                                             ";
-                // line 246
-                if (CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 246)) {
-                    // line 247
+                // line 250
+                if (CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 250)) {
+                    // line 251
                     yield "                                                <span class=\"badge bg-danger\">";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.role_super_admin"), "html", null, true);
                     yield "</span>
                                             ";
-                } elseif (CoreExtension::getAttribute($this->env, $this->source,                 // line 248
-$context["user"], "isAdmin", [], "any", false, false, false, 248)) {
-                    // line 249
+                } elseif (CoreExtension::getAttribute($this->env, $this->source,                 // line 252
+$context["user"], "isAdmin", [], "any", false, false, false, 252)) {
+                    // line 253
                     yield "                                                <span class=\"badge bg-primary\">";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.role_admin"), "html", null, true);
                     yield "</span>
                                             ";
                 } else {
-                    // line 251
+                    // line 255
                     yield "                                                <span class=\"badge bg-secondary\">";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.role_user"), "html", null, true);
                     yield "</span>
                                             ";
                 }
-                // line 253
+                // line 257
                 yield "                                        </td>
                                         <td>
                                             ";
-                // line 255
-                if (( !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isAdmin", [], "any", false, false, false, 255) &&  !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 255))) {
-                    // line 256
+                // line 259
+                if (( !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isAdmin", [], "any", false, false, false, 259) &&  !CoreExtension::getAttribute($this->env, $this->source, $context["user"], "isSuperAdmin", [], "any", false, false, false, 259))) {
+                    // line 260
                     yield "                                                <form method=\"post\" action=\"";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_promote", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 256)]), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_super_admin_promote", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 260)]), "html", null, true);
                     yield "\" style=\"display: inline-block;\">
                                                     <input type=\"hidden\" name=\"_token\" value=\"";
-                    // line 257
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("promote" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 257))), "html", null, true);
+                    // line 261
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("promote" . CoreExtension::getAttribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 261))), "html", null, true);
                     yield "\">
                                                     <button type=\"submit\" class=\"btn btn-sm btn-outline-primary\">
                                                         <i class=\"fas fa-user-plus me-1\"></i> ";
-                    // line 259
+                    // line 263
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.promote_to_admin"), "html", null, true);
                     yield "
                                                     </button>
                                                 </form>
                                             ";
                 }
-                // line 263
+                // line 267
                 yield "                                        </td>
                                     </tr>
                                 ";
                 $context['_iterated'] = true;
             }
-            // line 265
+            // line 269
             if (!$context['_iterated']) {
-                // line 266
+                // line 270
                 yield "                                    <tr>
                                         <td colspan=\"4\" class=\"text-center py-3\">";
-                // line 267
+                // line 271
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("super_admin.dashboard.no_results"), "html", null, true);
                 yield "</td>
                                     </tr>
@@ -648,14 +660,14 @@ $context["user"], "isAdmin", [], "any", false, false, false, 248)) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['user'], $context['_parent'], $context['_iterated']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 270
+            // line 274
             yield "                            </tbody>
                         </table>
                     </div>
                 </div>
             ";
         }
-        // line 275
+        // line 279
         yield "        </div>
     </div>
 </div>
@@ -666,7 +678,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 248)) {
         yield from [];
     }
 
-    // line 280
+    // line 284
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -676,7 +688,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 248)) {
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 281
+        // line 285
         yield "    ";
         yield from $this->yieldParentBlock("javascripts", $context, $blocks);
         yield "
@@ -717,7 +729,7 @@ $context["user"], "isAdmin", [], "any", false, false, false, 248)) {
      */
     public function getDebugInfo(): array
     {
-        return array (  680 => 281,  670 => 280,  659 => 275,  652 => 270,  643 => 267,  640 => 266,  638 => 265,  632 => 263,  625 => 259,  620 => 257,  615 => 256,  613 => 255,  609 => 253,  603 => 251,  597 => 249,  595 => 248,  590 => 247,  588 => 246,  583 => 244,  579 => 243,  576 => 242,  571 => 241,  564 => 237,  560 => 236,  556 => 235,  552 => 234,  542 => 229,  539 => 228,  537 => 227,  531 => 223,  523 => 219,  521 => 218,  516 => 217,  510 => 215,  508 => 214,  502 => 213,  496 => 210,  490 => 207,  480 => 199,  471 => 196,  468 => 195,  466 => 194,  453 => 186,  447 => 185,  438 => 179,  432 => 178,  425 => 174,  418 => 170,  413 => 167,  409 => 165,  403 => 163,  401 => 162,  396 => 160,  392 => 159,  388 => 158,  385 => 157,  380 => 156,  373 => 152,  369 => 151,  365 => 150,  361 => 149,  357 => 148,  347 => 141,  341 => 140,  336 => 138,  330 => 137,  325 => 135,  319 => 134,  314 => 132,  308 => 131,  303 => 128,  297 => 126,  295 => 125,  290 => 123,  279 => 115,  275 => 114,  261 => 103,  257 => 102,  243 => 91,  239 => 90,  225 => 79,  221 => 78,  207 => 67,  203 => 66,  199 => 65,  195 => 63,  185 => 62,  171 => 55,  167 => 54,  161 => 51,  153 => 46,  149 => 45,  143 => 42,  140 => 41,  130 => 40,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
+        return array (  692 => 285,  682 => 284,  671 => 279,  664 => 274,  655 => 271,  652 => 270,  650 => 269,  644 => 267,  637 => 263,  632 => 261,  627 => 260,  625 => 259,  621 => 257,  615 => 255,  609 => 253,  607 => 252,  602 => 251,  600 => 250,  595 => 248,  591 => 247,  588 => 246,  583 => 245,  576 => 241,  572 => 240,  568 => 239,  564 => 238,  554 => 233,  551 => 232,  549 => 231,  543 => 227,  535 => 223,  533 => 222,  528 => 221,  522 => 219,  520 => 218,  514 => 217,  508 => 214,  502 => 211,  492 => 203,  483 => 200,  480 => 199,  478 => 198,  471 => 195,  468 => 194,  459 => 188,  452 => 187,  450 => 186,  441 => 180,  435 => 179,  427 => 175,  425 => 174,  418 => 170,  413 => 167,  409 => 165,  403 => 163,  401 => 162,  396 => 160,  392 => 159,  388 => 158,  385 => 157,  380 => 156,  373 => 152,  369 => 151,  365 => 150,  361 => 149,  357 => 148,  347 => 141,  341 => 140,  336 => 138,  330 => 137,  325 => 135,  319 => 134,  314 => 132,  308 => 131,  303 => 128,  297 => 126,  295 => 125,  290 => 123,  279 => 115,  275 => 114,  261 => 103,  257 => 102,  243 => 91,  239 => 90,  225 => 79,  221 => 78,  207 => 67,  203 => 66,  199 => 65,  195 => 63,  185 => 62,  171 => 55,  167 => 54,  161 => 51,  153 => 46,  149 => 45,  143 => 42,  140 => 41,  130 => 40,  88 => 6,  78 => 5,  61 => 3,  44 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -895,23 +907,27 @@ $context["user"], "isAdmin", [], "any", false, false, false, 248)) {
                                             <i class=\"fas fa-edit\"></i>
                                         </a>
                                         
-                                        <a href=\"{{ path('app_super_admin_permissions', {'id': admin.id}) }}\" class=\"btn btn-outline-secondary\">
-                                            <i class=\"fas fa-key\"></i>
-                                        </a>
-                                        
-                                        <form method=\"post\" action=\"{{ path('app_super_admin_demote', {'id': admin.id}) }}\" style=\"display: inline-block;\" onsubmit=\"return confirm('{{ 'super_admin.dashboard.confirm_demote'|trans }}')\">
-                                            <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('demote' ~ admin.id) }}\">
-                                            <button type=\"submit\" class=\"btn btn-outline-danger\">
-                                                <i class=\"fas fa-user-minus\"></i>
-                                            </button>
-                                        </form>
-                                        
-                                        <form method=\"post\" action=\"{{ path('app_super_admin_promote_super', {'id': admin.id}) }}\" style=\"display: inline-block;\" onsubmit=\"return confirm('{{ 'super_admin.dashboard.confirm_promote_super'|trans }}')\">
-                                            <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('promote-super' ~ admin.id) }}\">
-                                            <button type=\"submit\" class=\"btn btn-outline-primary\">
-                                                <i class=\"fas fa-user-shield\"></i>
-                                            </button>
-                                        </form>
+                                        {% if admin.email != 'admin@dmqode.be' %}
+                                            <a href=\"{{ path('app_super_admin_permissions', {'id': admin.id}) }}\" class=\"btn btn-outline-secondary\">
+                                                <i class=\"fas fa-key\"></i>
+                                            </a>
+                                            
+                                            <form method=\"post\" action=\"{{ path('app_super_admin_demote', {'id': admin.id}) }}\" style=\"display: inline-block;\" onsubmit=\"return confirm('{{ 'super_admin.dashboard.confirm_demote'|trans }}')\">
+                                                <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('demote' ~ admin.id) }}\">
+                                                <button type=\"submit\" class=\"btn btn-outline-danger\">
+                                                    <i class=\"fas fa-user-minus\"></i>
+                                                </button>
+                                            </form>
+                                            
+                                            {% if not admin.isSuperAdmin %}
+                                                <form method=\"post\" action=\"{{ path('app_super_admin_promote_super', {'id': admin.id}) }}\" style=\"display: inline-block;\" onsubmit=\"return confirm('{{ 'super_admin.dashboard.confirm_promote_super'|trans }}')\">
+                                                    <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('promote-super' ~ admin.id) }}\">
+                                                    <button type=\"submit\" class=\"btn btn-outline-primary\">
+                                                        <i class=\"fas fa-user-shield\"></i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
                                 </td>
                             </tr>

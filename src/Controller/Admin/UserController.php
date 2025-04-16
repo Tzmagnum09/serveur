@@ -23,6 +23,9 @@ class UserController extends AbstractController
     private TranslatorInterface $translator;
     private EmailTemplateService $emailService;
     private AuditLogService $auditLogService;
+    
+    // Définir l'email du super admin principal qui ne peut pas être modifié
+    private const MAIN_SUPER_ADMIN_EMAIL = 'admin@dmqode.be';
 
     public function __construct(
         UserRepository $userRepository,
@@ -122,8 +125,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_admin_dashboard');
         }
 
-        // Empêcher la modification du premier super admin sauf par lui-même
-        if ($user->getId() == 5 && $user->isSuperAdmin() && $admin->getId() != 5) {
+        // Empêcher la modification du super admin principal par d'autres utilisateurs
+        if ($user->getEmail() === self::MAIN_SUPER_ADMIN_EMAIL && $admin->getEmail() !== self::MAIN_SUPER_ADMIN_EMAIL) {
             $this->addFlash('error', $this->translator->trans('admin.flash.cannot_edit_first_admin'));
             return $this->redirectToRoute('app_admin_users');
         }
@@ -279,8 +282,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_admin_users');
         }
 
-        // Empêcher la rétrogradation du premier super admin
-        if ($user->getId() == 5 && $user->isSuperAdmin()) {
+        // Empêcher la rétrogradation du super admin principal
+        if ($user->getEmail() === self::MAIN_SUPER_ADMIN_EMAIL) {
             $this->addFlash('error', $this->translator->trans('admin.flash.cannot_demote_first_admin'));
             return $this->redirectToRoute('app_admin_users');
         }
@@ -370,8 +373,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_admin_users');
         }
 
-        // Empêcher la rétrogradation du premier super admin
-        if ($user->getId() == 5 && $user->isSuperAdmin()) {
+        // Empêcher la rétrogradation du super admin principal
+        if ($user->getEmail() === self::MAIN_SUPER_ADMIN_EMAIL) {
             $this->addFlash('error', $this->translator->trans('admin.flash.cannot_demote_first_admin'));
             return $this->redirectToRoute('app_admin_users');
         }

@@ -290,9 +290,11 @@
                                 </td>
                                 <td>
                                     <div class="action-btn-group">
-                                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                        {% if user.email != 'admin@dmqode.be' or app.user.email == 'admin@dmqode.be' %}
+                                            <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        {% endif %}
                                         
                                         {% if user.isVerified and not user.isApproved and (is_granted('ROLE_SUPER_ADMIN') or permission_service.hasPermission(app.user, 'approve_users')) %}
                                             <form method="post" action="{{ path('app_admin_user_approve', {'id': user.id}) }}" class="d-inline" onsubmit="return confirm('{{ 'admin.users.confirm_approve'|trans }}')">
@@ -302,7 +304,7 @@
                                             </form>
                                         {% endif %}
                                         
-                                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                        {% if is_granted('ROLE_SUPER_ADMIN') and user.email != 'admin@dmqode.be' %}
                                             {% if not user.isAdmin and not user.isSuperAdmin %}
                                                 <form method="post" action="{{ path('app_admin_user_promote', {'id': user.id}) }}" class="d-inline" onsubmit="return confirm('{{ 'admin.users.confirm_promote'|trans }}')">
                                                     <input type="hidden" name="_token" value="{{ csrf_token('promote' ~ user.id) }}">
@@ -328,7 +330,7 @@
                                                 </form>
                                             {% endif %}
                                             
-                                            {% if user.isSuperAdmin and user.id != 5 %}
+                                            {% if user.isSuperAdmin and user.email != 'admin@dmqode.be' %}
                                                 <form method="post" action="{{ path('app_admin_user_demote_super', {'id': user.id}) }}" class="d-inline" onsubmit="return confirm('{{ 'admin.users.confirm_demote_super'|trans }}')">
                                                     <input type="hidden" name="_token" value="{{ csrf_token('demote-super' ~ user.id) }}">
                                                     <button type="submit" class="btn btn-sm btn-outline-warning" title="{{ 'admin.users.demote_to_admin'|trans }}">
@@ -337,7 +339,7 @@
                                                 </form>
                                             {% endif %}
                                             
-                                            {% if user.id != 5 and user.isAdmin %}
+                                            {% if user.isAdmin and user.email != 'admin@dmqode.be' %}
                                                 <a href="{{ path('app_admin_user_permissions', {'id': user.id}) }}" class="btn btn-sm btn-outline-info" title="{{ 'admin.users.manage_permissions'|trans }}">
                                                     <i class="fas fa-key"></i>
                                                 </a>

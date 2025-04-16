@@ -171,23 +171,27 @@
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         
-                                        <a href="{{ path('app_super_admin_permissions', {'id': admin.id}) }}" class="btn btn-outline-secondary">
-                                            <i class="fas fa-key"></i>
-                                        </a>
-                                        
-                                        <form method="post" action="{{ path('app_super_admin_demote', {'id': admin.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'super_admin.dashboard.confirm_demote'|trans }}')">
-                                            <input type="hidden" name="_token" value="{{ csrf_token('demote' ~ admin.id) }}">
-                                            <button type="submit" class="btn btn-outline-danger">
-                                                <i class="fas fa-user-minus"></i>
-                                            </button>
-                                        </form>
-                                        
-                                        <form method="post" action="{{ path('app_super_admin_promote_super', {'id': admin.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'super_admin.dashboard.confirm_promote_super'|trans }}')">
-                                            <input type="hidden" name="_token" value="{{ csrf_token('promote-super' ~ admin.id) }}">
-                                            <button type="submit" class="btn btn-outline-primary">
-                                                <i class="fas fa-user-shield"></i>
-                                            </button>
-                                        </form>
+                                        {% if admin.email != 'admin@dmqode.be' %}
+                                            <a href="{{ path('app_super_admin_permissions', {'id': admin.id}) }}" class="btn btn-outline-secondary">
+                                                <i class="fas fa-key"></i>
+                                            </a>
+                                            
+                                            <form method="post" action="{{ path('app_super_admin_demote', {'id': admin.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'super_admin.dashboard.confirm_demote'|trans }}')">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('demote' ~ admin.id) }}">
+                                                <button type="submit" class="btn btn-outline-danger">
+                                                    <i class="fas fa-user-minus"></i>
+                                                </button>
+                                            </form>
+                                            
+                                            {% if not admin.isSuperAdmin %}
+                                                <form method="post" action="{{ path('app_super_admin_promote_super', {'id': admin.id}) }}" style="display: inline-block;" onsubmit="return confirm('{{ 'super_admin.dashboard.confirm_promote_super'|trans }}')">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('promote-super' ~ admin.id) }}">
+                                                    <button type="submit" class="btn btn-outline-primary">
+                                                        <i class="fas fa-user-shield"></i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
                                 </td>
                             </tr>

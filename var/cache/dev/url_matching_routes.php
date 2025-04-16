@@ -22,7 +22,7 @@ return [
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/admin/static-translations' => [[['_route' => 'app_admin_static_translations', '_controller' => 'App\\Controller\\StaticTranslationController::index'], null, null, null, false, false, null]],
-        '/super-admin' => [[['_route' => 'app_super_admin_dashboard', '_controller' => 'App\\Controller\\SuperAdminController::index'], null, null, null, false, false, null]],
+        '/super-admin' => [[['_route' => 'app_super_admin_dashboard', '_controller' => 'App\\Controller\\SuperAdminController::dashboard'], null, null, null, false, false, null]],
         '/conditions' => [[['_route' => 'app_terms', '_controller' => 'App\\Controller\\TermsController::index'], null, null, null, false, false, null]],
         '/admin/translations' => [[['_route' => 'app_admin_translations', '_controller' => 'App\\Controller\\TranslationController::index'], null, null, null, true, false, null]],
         '/logout' => [[['_route' => 'app_logout'], null, ['GET' => 0], null, false, false, null]],
@@ -63,15 +63,18 @@ return [
                 .')'
                 .'|/change\\-locale/([^/]++)(*:432)'
                 .'|/reset\\-password/reset(?:/([^/]++))?(*:476)'
-                .'|/super\\-admin/([^/]++)/(?'
+                .'|/super\\-admin/(?'
                     .'|p(?'
-                        .'|ermissions(*:524)'
+                        .'|ermissions/([^/]++)(*:524)'
                         .'|romote(?'
-                            .'|(*:541)'
-                            .'|\\-super(*:556)'
+                            .'|/([^/]++)(*:550)'
+                            .'|\\-super/([^/]++)(*:574)'
                         .')'
                     .')'
-                    .'|demote(*:572)'
+                    .'|demote(?'
+                        .'|/([^/]++)(*:602)'
+                        .'|\\-super/([^/]++)(*:626)'
+                    .')'
                 .')'
             .')/?$}sDu',
     ],
@@ -93,11 +96,12 @@ return [
         398 => [[['_route' => 'app_admin_translations_edit', '_controller' => 'App\\Controller\\TranslationController::edit'], ['table', 'id', 'field'], null, null, false, true, null]],
         432 => [[['_route' => 'change_locale', '_controller' => 'App\\Controller\\LocaleController::changeLocale'], ['locale'], null, null, false, true, null]],
         476 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
-        524 => [[['_route' => 'app_super_admin_permissions', '_controller' => 'App\\Controller\\SuperAdminController::permissions'], ['id'], null, null, false, false, null]],
-        541 => [[['_route' => 'app_super_admin_promote', '_controller' => 'App\\Controller\\SuperAdminController::promoteToAdmin'], ['id'], ['POST' => 0], null, false, false, null]],
-        556 => [[['_route' => 'app_super_admin_promote_super', '_controller' => 'App\\Controller\\SuperAdminController::promoteToSuperAdmin'], ['id'], ['POST' => 0], null, false, false, null]],
-        572 => [
-            [['_route' => 'app_super_admin_demote', '_controller' => 'App\\Controller\\SuperAdminController::demoteFromAdmin'], ['id'], ['POST' => 0], null, false, false, null],
+        524 => [[['_route' => 'app_super_admin_permissions', '_controller' => 'App\\Controller\\SuperAdminController::managePermissions'], ['id'], null, null, false, true, null]],
+        550 => [[['_route' => 'app_super_admin_promote', '_controller' => 'App\\Controller\\SuperAdminController::promoteToAdmin'], ['id'], ['POST' => 0], null, false, true, null]],
+        574 => [[['_route' => 'app_super_admin_promote_super', '_controller' => 'App\\Controller\\SuperAdminController::promoteToSuperAdmin'], ['id'], ['POST' => 0], null, false, true, null]],
+        602 => [[['_route' => 'app_super_admin_demote', '_controller' => 'App\\Controller\\SuperAdminController::demoteFromAdmin'], ['id'], ['POST' => 0], null, false, true, null]],
+        626 => [
+            [['_route' => 'app_super_admin_demote_super', '_controller' => 'App\\Controller\\SuperAdminController::demoteFromSuperAdmin'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

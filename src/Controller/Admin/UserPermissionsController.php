@@ -19,6 +19,9 @@ class UserPermissionsController extends AbstractController
     private AdminPermissionService $permissionService;
     private TranslatorInterface $translator;
     private AuditLogService $auditLogService;
+    
+    // Définir l'email du super admin principal qui ne peut pas être modifié
+    private const MAIN_SUPER_ADMIN_EMAIL = 'admin@dmqode.be';
 
     public function __construct(
         AdminPermissionService $permissionService,
@@ -46,8 +49,8 @@ class UserPermissionsController extends AbstractController
             return $this->redirectToRoute('app_admin_users');
         }
         
-        // Empêcher la modification des permissions du premier super admin
-        if ($user->getId() == 5 && $user->isSuperAdmin()) {
+        // Empêcher la modification des permissions du super admin principal
+        if ($user->getEmail() === self::MAIN_SUPER_ADMIN_EMAIL) {
             $this->addFlash('error', $this->translator->trans('admin.flash.cannot_edit_first_admin'));
             return $this->redirectToRoute('app_admin_users');
         }
@@ -86,6 +89,7 @@ class UserPermissionsController extends AbstractController
             'user' => $user,
             'form' => $form->createView(),
             'permissions' => $adminPermissions,
+            'permission_service' => $this->permissionService,
         ]);
     }
 }
