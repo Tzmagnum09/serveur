@@ -1320,6 +1320,7 @@
       <argument type="service" id="monolog.logger.messenger" on-invalid="null"/>
       <argument type="collection">
         <argument>async</argument>
+        <argument>failed</argument>
       </argument>
       <argument type="service" id="messenger.listener.reset_services" on-invalid="null"/>
       <argument type="collection">
@@ -1340,6 +1341,8 @@
       <argument type="service" id="messenger.receiver_locator"/>
       <argument type="collection">
         <argument>async</argument>
+        <argument>failed</argument>
+        <argument>sync</argument>
       </argument>
       <call method="setName">
         <argument>messenger:setup-transports</argument>
@@ -1413,6 +1416,8 @@
       <argument type="service" id="messenger.receiver_locator"/>
       <argument type="collection">
         <argument>async</argument>
+        <argument>failed</argument>
+        <argument>sync</argument>
       </argument>
       <call method="setName">
         <argument>messenger:stats</argument>
@@ -3170,6 +3175,14 @@
         <argument>200</argument>
       </call>
       <call method="addListener">
+        <argument>Symfony\Component\Messenger\Event\WorkerRunningEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="messenger.listener.dispatch_pcntl_signal_listener"/>
+          <argument>onWorkerRunning</argument>
+        </argument>
+        <argument>100</argument>
+      </call>
+      <call method="addListener">
         <argument>Symfony\Component\Messenger\Event\WorkerStartedEvent</argument>
         <argument type="collection">
           <argument type="service_closure" id="messenger.listener.stop_worker_on_restart_signal_listener"/>
@@ -4236,10 +4249,10 @@
     <service id="messenger.senders_locator" class="Symfony\Component\Messenger\Transport\Sender\SendersLocator">
       <argument type="collection">
         <argument key="App\Message\SendEmailMessage" type="collection">
-          <argument>async</argument>
+          <argument>sync</argument>
         </argument>
       </argument>
-      <argument type="service" id=".service_locator.z5tAQ4v"/>
+      <argument type="service" id=".service_locator.Mghweq_"/>
     </service>
     <service id="messenger.middleware.send_message" class="Symfony\Component\Messenger\Middleware\SendMessageMiddleware" abstract="true">
       <tag name="monolog.logger" channel="messenger"/>
@@ -4280,6 +4293,10 @@
       <argument type="collection">
         <argument key="messenger.transport.async" type="service_closure" id="messenger.transport.async"/>
         <argument key="async" type="service_closure" id="messenger.transport.async"/>
+        <argument key="messenger.transport.failed" type="service_closure" id="messenger.transport.failed"/>
+        <argument key="failed" type="service_closure" id="messenger.transport.failed"/>
+        <argument key="messenger.transport.sync" type="service_closure" id="messenger.transport.sync"/>
+        <argument key="sync" type="service_closure" id="messenger.transport.sync"/>
       </argument>
     </service>
     <service id="messenger.transport_factory" class="Symfony\Component\Messenger\Transport\TransportFactory">
@@ -4306,6 +4323,8 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="async" type="service_closure" id="messenger.retry.multiplier_retry_strategy.async"/>
+        <argument key="failed" type="service_closure" id="messenger.retry.multiplier_retry_strategy.failed"/>
+        <argument key="sync" type="service_closure" id="messenger.retry.multiplier_retry_strategy.sync"/>
       </argument>
     </service>
     <service id="messenger.retry.abstract_multiplier_retry_strategy" class="Symfony\Component\Messenger\Retry\MultiplierRetryStrategy" abstract="true">
@@ -4318,7 +4337,7 @@
     <service id="messenger.retry.send_failed_message_for_retry_listener" class="Symfony\Component\Messenger\EventListener\SendFailedMessageForRetryListener">
       <tag name="monolog.logger" channel="messenger"/>
       <tag name="kernel.event_subscriber"/>
-      <argument type="service" id=".service_locator.z5tAQ4v"/>
+      <argument type="service" id=".service_locator.Mghweq_"/>
       <argument type="service" id="messenger.retry_strategy_locator"/>
       <argument type="service" id="monolog.logger.messenger" on-invalid="ignore"/>
       <argument type="service" id="debug.event_dispatcher"/>
@@ -4365,6 +4384,8 @@
       <tag name="messenger.receiver" alias="async" is_failure_transport=""/>
       <argument>%env(MESSENGER_TRANSPORT_DSN)%</argument>
       <argument type="collection">
+        <argument key="use_notify">true</argument>
+        <argument key="check_delayed_interval">60000</argument>
         <argument key="transport_name">async</argument>
       </argument>
       <argument type="service" id="messenger.transport.native_php_serializer"/>
@@ -4377,11 +4398,47 @@
       <argument>0</argument>
       <argument>0.1</argument>
     </service>
-    <service id=".service_locator.z5tAQ4v" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id="messenger.transport.failed" class="Symfony\Component\Messenger\Transport\TransportInterface">
+      <tag name="messenger.receiver" alias="failed" is_failure_transport=""/>
+      <argument>doctrine://default?queue_name=failed</argument>
+      <argument type="collection">
+        <argument key="transport_name">failed</argument>
+      </argument>
+      <argument type="service" id="messenger.transport.native_php_serializer"/>
+      <factory service="messenger.transport_factory" method="createTransport"/>
+    </service>
+    <service id="messenger.retry.multiplier_retry_strategy.failed" class="Symfony\Component\Messenger\Retry\MultiplierRetryStrategy">
+      <argument>3</argument>
+      <argument>1000</argument>
+      <argument>2</argument>
+      <argument>0</argument>
+      <argument>0.1</argument>
+    </service>
+    <service id="messenger.transport.sync" class="Symfony\Component\Messenger\Transport\TransportInterface">
+      <tag name="messenger.receiver" alias="sync" is_failure_transport="" is_consumable=""/>
+      <argument>sync://</argument>
+      <argument type="collection">
+        <argument key="transport_name">sync</argument>
+      </argument>
+      <argument type="service" id="messenger.transport.native_php_serializer"/>
+      <factory service="messenger.transport_factory" method="createTransport"/>
+    </service>
+    <service id="messenger.retry.multiplier_retry_strategy.sync" class="Symfony\Component\Messenger\Retry\MultiplierRetryStrategy">
+      <argument>3</argument>
+      <argument>1000</argument>
+      <argument>2</argument>
+      <argument>0</argument>
+      <argument>0.1</argument>
+    </service>
+    <service id=".service_locator.Mghweq_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="async" type="service_closure" id="messenger.transport.async"/>
+        <argument key="failed" type="service_closure" id="messenger.transport.failed"/>
+        <argument key="sync" type="service_closure" id="messenger.transport.sync"/>
         <argument key="messenger.transport.async" type="service_closure" id="messenger.transport.async"/>
+        <argument key="messenger.transport.failed" type="service_closure" id="messenger.transport.failed"/>
+        <argument key="messenger.transport.sync" type="service_closure" id="messenger.transport.sync"/>
       </argument>
     </service>
     <service id="mime_types" class="Symfony\Component\Mime\MimeTypes">
@@ -9861,8 +9918,8 @@
     <service id="Psr\Log\LoggerInterface $securityLogger" alias="monolog.logger.security"/>
     <service id="Psr\Log\LoggerInterface $doctrineLogger" alias="monolog.logger.doctrine"/>
     <service id="Psr\Log\LoggerInterface $deprecationLogger" alias="monolog.logger.deprecation"/>
-    <service id=".service_locator.y2tERyj" alias="messenger.receiver_locator"/>
-    <service id=".service_locator.n_WDrVs" alias="messenger.retry_strategy_locator"/>
+    <service id=".service_locator.fe9AxCv" alias="messenger.receiver_locator"/>
+    <service id=".service_locator.p2HlDno" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.q6rKGBk" alias=".1_ServiceLocator~3JtSWxQ"/>
     <service id=".service_locator.WLqw5Ek" alias=".service_locator.mJTctrn"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>

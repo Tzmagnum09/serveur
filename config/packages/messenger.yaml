@@ -11,7 +11,7 @@ framework:
                     use_notify: true
                     check_delayed_interval: 60000
             failed: 'doctrine://default?queue_name=failed'
-            # sync: 'sync://'
+            sync: 'sync://'
 
         routing:
             # Route your messages to the transports
